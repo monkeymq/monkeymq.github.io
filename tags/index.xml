@@ -2,22 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Siquan&#39; blog</title>
-    <link>http://lvsq.net/tags/</link>
+    <link>https://monkeymq.github.io/tags/</link>
     <description>Recent content in Tags on Siquan&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright notice</copyright>
-    <lastBuildDate>Wed, 27 Nov 2019 14:51:01 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2019 15:47:42 +0800</lastBuildDate>
     
-	<atom:link href="http://lvsq.net/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://monkeymq.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>welcome</title>
-      <link>http://lvsq.net/tags/welcome/</link>
-      <pubDate>Wed, 27 Nov 2019 14:51:01 +0800</pubDate>
+      <title>ind</title>
+      <link>https://monkeymq.github.io/tags/ind/</link>
+      <pubDate>Wed, 27 Nov 2019 15:47:42 +0800</pubDate>
       
-      <guid>http://lvsq.net/tags/welcome/</guid>
+      <guid>https://monkeymq.github.io/tags/ind/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wel</title>
+      <link>https://monkeymq.github.io/tags/wel/</link>
+      <pubDate>Wed, 27 Nov 2019 15:47:42 +0800</pubDate>
+      
+      <guid>https://monkeymq.github.io/tags/wel/</guid>
       <description></description>
     </item>
     
