@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -29,7 +29,8 @@
   
 
   <link rel="stylesheet" href="https://monkeymq.github.io/css/style.css">
-  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <meta property="og:title" content="Emacs" />
 <meta property="og:description" content="M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查" />
 <meta property="og:type" content="article" />
@@ -77,7 +78,7 @@
         </div><div class="search" id="search-form-wrap">
     <form class="search-form sidebar-form">
         <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
             <span class="input-group-btn">
                 <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
                         class="icon icon-search"></i></button>
@@ -87,7 +88,7 @@
             <div class="ins-search-mask"></div>
             <div class="ins-search-container">
                 <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
                         x-webkit-speech />
                     <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
                         aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -146,17 +147,17 @@
   <div class="slimContent">
     
       <div class="widget">
-    <h3 class="widget-title">Board</h3>
+    <h3 class="widget-title">公告</h3>
     <div class="widget-body">
         <div id="board">
-            <div class="content"><p>enjoy~</p>
+            <div class="content"><p>欢迎光临</p>
             </div>
         </div>
     </div>
 </div>
 
       <div class="widget">
-    <h3 class="widget-title"> Categories</h3>
+    <h3 class="widget-title"> 分类</h3>
     <div class="widget-body">
         <ul class="category-list">
             <li class="category-list-item"><a href="https://monkeymq.github.io/categories/ide/" class="category-list-link">ide</a><span class="category-list-count">1</span></li>
@@ -165,7 +166,7 @@
     </div>
 </div>
       <div class="widget">
-    <h3 class="widget-title"> Tags</h3>
+    <h3 class="widget-title"> 标签</h3>
     <div class="widget-body">
         <ul class="tag-list">
             
@@ -179,7 +180,7 @@
 </div>
       
 <div class="widget">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
             <li>
@@ -203,7 +204,7 @@
   <aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
     <div class="slimContent">
       <nav id="toc" class="article-toc">
-        <h3 class="toc-title">Catalogue</h3>
+        <h3 class="toc-title">文章目录</h3>
         <div class="toc-content always-active"><nav id="TableOfContents">
 <ul>
 <li>
@@ -247,10 +248,16 @@
     <a class="article-tag-link" href="/tags/emacs/"> emacs </a>
   </span>
 
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/emacs/#comments"
-            class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:611words</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:2minutes </span>
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:611字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
@@ -489,7 +496,7 @@
 <blockquote class="mt-2x">
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
-      <strong>Permalink: </strong>
+      <strong>本文链接: </strong>
       <a href="https://monkeymq.github.io/2019/11/emacs/" title="Emacs" target="_blank" rel="external">https://monkeymq.github.io/2019/11/emacs/</a>
     </li>
     <li class="post-copyright-license">
@@ -578,11 +585,11 @@ hljs.initHighlightingOnLoad();
       (function (window) {
           var INSIGHT_CONFIG = {
               TRANSLATION: {
-                  POSTS: 'Posts',
-                  PAGES: 'Pages',
-                  CATEGORIES: 'Categories',
-                  TAGS: 'Tags',
-                  UNTITLED: '(Untitled)',
+                  POSTS: '文章',
+                  PAGES: '页面',
+                  CATEGORIES: '分类',
+                  TAGS: '标签',
+                  UNTITLED: '(未命名)',
               },
               ROOT_URL: 'https:\/\/monkeymq.github.io\/',
               CONTENT_URL: 'https:\/\/monkeymq.github.io\/\/searchindex.json ',
@@ -592,6 +599,22 @@ hljs.initHighlightingOnLoad();
       </script>
 <script type="text/javascript" src="https://monkeymq.github.io/js/insight.js"></script>
 
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'https:\/\/monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq#必须. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
 
   </body>
 </html>
