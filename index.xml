@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Siquan 的博客, AI-Life</title>
-    <link>https://monkeymq.github.io/</link>
+    <link>https://lvsq.net/</link>
     <description>Recent content on Siquan 的博客, AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 27 Nov 2019 20:58:09 +0800</lastBuildDate>
     
-        <atom:link href="https://monkeymq.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Emacs</title>
-      <link>https://monkeymq.github.io/2019/11/emacs/</link>
+      <link>https://lvsq.net/2019/11/emacs/</link>
       <pubDate>Wed, 27 Nov 2019 20:58:09 +0800</pubDate>
       
-      <guid>https://monkeymq.github.io/2019/11/emacs/</guid>
+      <guid>https://lvsq.net/2019/11/emacs/</guid>
       <description>M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查</description>
     </item>
     
