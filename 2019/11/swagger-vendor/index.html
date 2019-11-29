@@ -43,7 +43,7 @@
 
 <meta itemprop="datePublished" content="2019-11-29T10:21:12&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-29T10:21:12&#43;08:00" />
-<meta itemprop="wordCount" content="597">
+<meta itemprop="wordCount" content="590">
 
 
 
@@ -288,7 +288,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/swagger-vendor/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:597字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:590字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
@@ -301,10 +301,13 @@
 
 <hr />
 
-<p>springfox目前只允许三种扩展实现:
-- ListVendorExtension:列表的形式,该对象支持泛型，最终形式：”x-field”:[{field:value}]
-- ObjectVendorExtension:对象的扩展形式,最终的扩展形式是：”x-field”:[{field:value}]
-- StringVendorExtension:string类型的扩展实现，最终的扩展形式是”x-field”:”value”</p>
+<p>springfox目前只允许三种扩展实现:</p>
+
+<ul>
+<li>ListVendorExtension:列表的形式,该对象支持泛型，最终形式：”x-field”:[{field:value}]</li>
+<li>ObjectVendorExtension:对象的扩展形式,最终的扩展形式是：”x-field”:[{field:value}]</li>
+<li>StringVendorExtension:string类型的扩展实现，最终的扩展形式是”x-field”:”value”</li>
+</ul>
 
 <hr />
 
@@ -347,7 +350,7 @@ return new ApiInfoBuilder()
 
 <h2 id="内部对象扩展">内部对象扩展</h2>
 
-<p>给Path添加一个扩展属性==x-order==为例</p>
+<p>给Path添加一个扩展属性<html><span style="color:red;font-weight: bold">x-order</span></html>为例</p>
 
 <pre><code>@Component
 @Order(Ordered.HIGHEST_PRECEDENCE+100)
