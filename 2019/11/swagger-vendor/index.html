@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Siquan 的博客, AI-Life</title>
+        Swagger 如何使用vendorExtensions进行扩展 - Siquan 的博客, AI-Life
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,25 +23,34 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Siquan 的博客, AI-Life</title>
+  <title>Swagger 如何使用vendorExtensions进行扩展 - Siquan 的博客, AI-Life</title>
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <meta property="og:title" content="404 Page not found" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/404.html" />
+  <meta property="og:title" content="Swagger 如何使用vendorExtensions进行扩展" />
+<meta property="og:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2019/11/swagger-vendor/" />
+<meta property="article:published_time" content="2019-11-29T10:21:12+08:00" />
+<meta property="article:modified_time" content="2019-11-29T10:21:12+08:00" />
+<meta itemprop="name" content="Swagger 如何使用vendorExtensions进行扩展">
+<meta itemprop="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq">
 
-<meta itemprop="name" content="404 Page not found">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2019-11-29T10:21:12&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-29T10:21:12&#43;08:00" />
+<meta itemprop="wordCount" content="597">
+
+
+
+<meta itemprop="keywords" content="swagger,vendorExtensions," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Swagger 如何使用vendorExtensions进行扩展"/>
+<meta name="twitter:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -223,21 +233,52 @@
 
     
     
-<main class="main" role="main">
-    <div class="content">
-        <article class="article">
-            <div class="article-header">
-                <h1 class="article-title" itemprop="name">
-                    <a href="#">404 Not Found</a>
-                </h1>
-            </div>
-            <div class="article-meta">
-                <span class="article-date">
+  <aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+    <div class="slimContent">
+      <nav id="toc" class="article-toc">
+        <h3 class="toc-title">文章目录</h3>
+        <div class="toc-content always-active"><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#一切开始之前-有一点需要keep-in-mind-即增加扩展的位置不同-所用的方法不同-所以需要对swagger的标准有所了解-可参考-官方文档-https-swagger-io-specification-v2">一切开始之前，有一点需要keep in mind，即增加扩展的位置不同，所用的方法不同，所以需要对Swagger的标准有所了解，可参考<a href="https://swagger.io/specification/v2/">官方文档</a></a></li>
+<li><a href="#swagger根对象扩展">Swagger根对象扩展</a></li>
+<li><a href="#内部对象扩展">内部对象扩展</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+      </nav>
+    </div>
+  </aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/11/swagger-vendor/"
+    >Swagger 如何使用vendorExtensions进行扩展</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/404.html" class="article-date">
-  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+<a href="https://lvsq.net/2019/11/swagger-vendor/" class="article-date">
+  <time datetime="2019-11-29 10:21:12 &#43;0800 CST" itemprop="datePublished">2019-11-29</time>
 </a>
-</span>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/tool/"> tool </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/swagger/"> swagger </a>
+    <a class="article-tag-link" href="/tags/vendorextensions/"> vendorExtensions </a>
+  </span>
 
 	<span class="article-read hidden-xs">
 	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
@@ -245,22 +286,91 @@
 			<span id="busuanzi_value_page_pv">0</span>
 		</span>
 	</span>
-                <span class="post-comment"><i class="icon icon-comment"></i> <a href="/404.html#comments"
-                        class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:0字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:0分 </span>
-            </div>
-            <div class="article-entry marked-body" itemprop="articleBody">
-                <br>
-                <p>找不到页面啦~请换个姿势(￣.￣)</p>
-                <a href="/">返回首页</a>
-            </div>
-            <div class="article-footer">
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/swagger-vendor/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:597字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+
+<p>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdquo;x-&ldquo;）该如何开发做紧要的介绍。</p>
+
+<h2 id="一切开始之前-有一点需要keep-in-mind-即增加扩展的位置不同-所用的方法不同-所以需要对swagger的标准有所了解-可参考-官方文档-https-swagger-io-specification-v2">一切开始之前，有一点需要keep in mind，即增加扩展的位置不同，所用的方法不同，所以需要对Swagger的标准有所了解，可参考<a href="https://swagger.io/specification/v2/">官方文档</a></h2>
+
+<hr />
+
+<p>springfox目前只允许三种扩展实现:
+- ListVendorExtension:列表的形式,该对象支持泛型，最终形式：”x-field”:[{field:value}]
+- ObjectVendorExtension:对象的扩展形式,最终的扩展形式是：”x-field”:[{field:value}]
+- StringVendorExtension:string类型的扩展实现，最终的扩展形式是”x-field”:”value”</p>
+
+<hr />
+
+<h2 id="swagger根对象扩展">Swagger根对象扩展</h2>
+
+<p>以在info中添加一个x-logo为例</p>
+
+<pre><code>&quot;info&quot;: {
+        &quot;description&quot;: &quot;&lt;div style='font-size:14px;color:red;'&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&quot;,
+        &quot;version&quot;: &quot;1.0&quot;,
+        &quot;title&quot;: &quot;swagger-bootstrap-ui！！！&quot;,
+        &quot;termsOfService&quot;: &quot;http://www.xxx.com/&quot;,
+        &quot;contact&quot;: {
+            &quot;name&quot;: pxxxx@domain.com&quot;
+        },
+	&quot;x-logo&quot;: {
+	    &quot;url&quot;: &quot;http://&quot;,
+	    &quot;color&quot;: &quot;#090807&quot;
+	}
+    },
+    ...
+</code></pre>
+
+<p>后台代码：</p>
+
+<pre><code>ObjectVendorExtension logo = new ObjectVendorExtension(&quot;x-logo&quot;);
+logo.addProperty(new StringVendorExtension(&quot;url&quot;, &quot;https://xxx.svg&quot;));
+logo.addProperty(new StringVendorExtension(&quot;color&quot;, &quot;#090807&quot;));
+
+return new ApiInfoBuilder()
+    .title(&quot;swagger-bootstrap-ui！！&quot;)
+    .extensions(Lists.newArrayList(logo))
+    .description(&quot;&lt;div style='font-size:14px;color:red;'&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&quot;)
+    .termsOfServiceUrl(&quot;http://www.xxx.com/&quot;)
+    .version(&quot;1.0.0&quot;)
+    .build();
+</code></pre>
+
+<hr />
+
+<h2 id="内部对象扩展">内部对象扩展</h2>
+
+<p>给Path添加一个扩展属性==x-order==为例</p>
+
+<pre><code>@Component
+@Order(Ordered.HIGHEST_PRECEDENCE+100)
+public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
+    @Override
+    public void apply(OperationContext context) {
+        context.operationBuilder().extensions(Lists.newArrayList(new StringVendorExtension(&quot;x-order&quot;,&quot;1&quot;)));
+    }
+
+    @Override
+    public boolean supports(DocumentationType delimiter) {
+        return true;
+    }
+}
+</code></pre>
+
+    </div>
+    <div class="article-footer">
 <blockquote class="mt-2x">
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://lvsq.net/404.html" title="404 Page not found" target="_blank" rel="external">https://lvsq.net/404.html</a>
+      <a href="https://lvsq.net/2019/11/swagger-vendor/" title="Swagger 如何使用vendorExtensions进行扩展" target="_blank" rel="external">https://lvsq.net/2019/11/swagger-vendor/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -283,12 +393,37 @@
     </figure>
   </div>
 </div>
-            </div>
-        </article>
+    </div>
+  </article>
 <section id="comments">
 </section>
 
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2019/11/do-not-touch-history/" title="历史不能碰"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
+        </div>
     </div>
+</nav>
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -354,6 +489,22 @@ hljs.initHighlightingOnLoad();
       </script>
 <script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
 
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
 
   </body>
 </html>
