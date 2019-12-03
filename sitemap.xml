@@ -3,6 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lvsq.net/about/</loc>
+    <lastmod>2019-12-03T09:06:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/about/</loc>
+    <lastmod>2019-12-03T09:06:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2019-12-03T09:06:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2019-12-03T09:06:26+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://lvsq.net/categories/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -17,13 +45,6 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2019-11-29T10:21:12+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/tags/swagger/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -32,13 +53,6 @@
   
   <url>
     <loc>https://lvsq.net/2019/11/swagger-vendor/</loc>
-    <lastmod>2019-11-29T10:21:12+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

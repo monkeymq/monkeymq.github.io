@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>About</title>
+      <link>https://lvsq.net/about/</link>
+      <pubDate>Tue, 03 Dec 2019 09:06:26 +0800</pubDate>
+      
+      <guid>https://lvsq.net/about/</guid>
+      <description>生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风蛙声与我入眠。学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过</description>
+    </item>
+    
+    <item>
       <title>Swagger 如何使用vendorExtensions进行扩展</title>
       <link>https://lvsq.net/2019/11/swagger-vendor/</link>
       <pubDate>Fri, 29 Nov 2019 10:21:12 +0800</pubDate>
