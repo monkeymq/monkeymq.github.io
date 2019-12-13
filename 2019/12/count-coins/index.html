@@ -350,7 +350,7 @@
 
 <p>b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
 
-<pre><code>(letrec 
+<pre><code class="language-scheme">(letrec 
     [
         (A (lambda (n d) (if (= 0 (mod n d)) 1 0))) 
         (B (lambda (n d) 
