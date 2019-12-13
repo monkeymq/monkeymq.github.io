@@ -5,10 +5,19 @@
     <link>https://lvsq.net/posts/</link>
     <description>Recent content in Posts on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 29 Nov 2019 10:21:12 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 15:11:35 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>钱币组合问题</title>
+      <link>https://lvsq.net/2019/12/count-coins/</link>
+      <pubDate>Fri, 13 Dec 2019 15:11:35 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/count-coins/</guid>
+      <description>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发</description>
+    </item>
     
     <item>
       <title>About</title>

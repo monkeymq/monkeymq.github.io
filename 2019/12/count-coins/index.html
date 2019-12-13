@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Siquan的网络日志 | AI-Life</title>
+        钱币组合问题 - Siquan的网络日志 | AI-Life
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,27 +23,34 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Siquan的网络日志 | AI-Life</title>
+  <title>钱币组合问题 - Siquan的网络日志 | AI-Life</title>
   
 
-  <link rel="alternate" type="application/rss+xml" href="https://lvsq.net/tags/index.xml" title="Siquan的网络日志 | AI-Life" />
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <meta property="og:title" content="Tags" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/tags/" />
+  <meta property="og:title" content="钱币组合问题" />
+<meta property="og:description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2019/12/count-coins/" />
+<meta property="article:published_time" content="2019-12-13T15:11:35+08:00" />
+<meta property="article:modified_time" content="2019-12-13T15:11:35+08:00" />
+<meta itemprop="name" content="钱币组合问题">
+<meta itemprop="description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发">
 
-<meta property="og:updated_time" content="2019-12-13T15:11:35+08:00" />
-<meta itemprop="name" content="Tags">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2019-12-13T15:11:35&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-13T15:11:35&#43;08:00" />
+<meta itemprop="wordCount" content="380">
+
+
+
+<meta itemprop="keywords" content="Scheme,SICP," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="钱币组合问题"/>
+<meta name="twitter:description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -248,179 +256,174 @@
 
     
     
-<main class="main" role="main">
-    <article class="article article-tags post-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">Tags</h1>
-            <p class="text-muted hidden-xs">共 7 个标签</p>
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-                    <li><a href="https://lvsq.net/tags">All</a></li>
-                    <li><a href="https://lvsq.net/tags/about/">about</a></li>
-                    <li><a href="https://lvsq.net/tags/emacs/">emacs</a></li>
-                    <li><a href="https://lvsq.net/tags/scheme/">Scheme</a></li>
-                    <li><a href="https://lvsq.net/tags/sicp/">SICP</a></li>
-                    <li><a href="https://lvsq.net/tags/swagger/">swagger</a></li>
-                    <li><a href="https://lvsq.net/tags/vendorextensions/">vendorExtensions</a></li>
-                    <li><a href="https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/">历史</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <div class="article-body">
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/about" title="#about"># about</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-03 09:06:26 &#43;0800 CST"
-                itemprop="datePublished">2019-12-03</time>
+  <aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+    <div class="slimContent">
+      <nav id="toc" class="article-toc">
+        <h3 class="toc-title">文章目录</h3>
+        <div class="toc-content always-active"><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#问题描述">问题描述</a></li>
+<li><a href="#思路">思路</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
         </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/about/">About</a>
-        </h3>
+      </nav>
     </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/about" class="label label-default mb">about</a>
+  </aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/12/count-coins/"
+    >钱币组合问题</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2019/12/count-coins/" class="article-date">
+  <time datetime="2019-12-13 15:11:35 &#43;0800 CST" itemprop="datePublished">2019-12-13</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/scheme/"> Scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/scheme/"> Scheme </a>
+    <a class="article-tag-link" href="/tags/sicp/"> SICP </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/count-coins/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:380字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
+      </div>
     </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/emacs" title="#emacs"># emacs</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-11-27 20:58:09 &#43;0800 CST"
-                itemprop="datePublished">2019-11-27</time>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+
+<p>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发。</p>
+
+<hr />
+
+<h3 id="问题描述">问题描述</h3>
+
+<p>假设我们已经有足够多的1分，2分，5分钱币，任意给定金额比如1元，问有多少种组合方式？</p>
+
+<hr />
+
+<h3 id="思路">思路</h3>
+
+<p>组合方式的总和应为：
+1. 任意扣去一种钱币比如1分，1元采用2分，5分两种钱币的组合数，再加上：
+2. 总额为（1元-1分），采用1分，2分，5分三种钱币的组合数；</p>
+
+<p><em>很明显这可以很容易用递归实现</em></p>
+
+<p>稍作一点解释：
+a. 上面两步的意思是：不带1分的组合数 + 带1分的组合数 = 全部的组合数； 这是显而易见的
+b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
+
+<pre><code>(letrec 
+    [
+        (A (lambda (n d) (if (= 0 (mod n d)) 1 0))) 
+        (B (lambda (n d) 
+                (cond
+                    [(not (pair? d)) 0]
+                    [(null? d) 0] 
+                    [(= 0 n) 1] 
+                    [(&gt; 0 n) 0]
+                    [(= 1 (length d)) (A n (car d))]
+                    [else 
+                        ( + (B n (cdr d)) (B (- n (car d)) d))
+                    ]
+                )
+            )
+        )
+    ]
+
+    [B 100 '(1 2 5)]
+)
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2019/12/count-coins/" title="钱币组合问题" target="_blank" rel="external">https://lvsq.net/2019/12/count-coins/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">Siquan</span><small class="ml-1x">函数式编程爱好者, 爱读历史</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/about/" title="About"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
         </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/11/emacs/">Emacs</a>
-        </h3>
     </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/emacs" class="label label-default mb">emacs</a>
-    </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/scheme" title="#scheme"># scheme</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-13 15:11:35 &#43;0800 CST"
-                itemprop="datePublished">2019-12-13</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/12/count-coins/">钱币组合问题</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/scheme" class="label label-default mb">Scheme</a>
-        <a href="https://lvsq.net/tags/sicp" class="label label-default mb">SICP</a>
-    </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/sicp" title="#sicp"># sicp</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-13 15:11:35 &#43;0800 CST"
-                itemprop="datePublished">2019-12-13</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/12/count-coins/">钱币组合问题</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/scheme" class="label label-default mb">Scheme</a>
-        <a href="https://lvsq.net/tags/sicp" class="label label-default mb">SICP</a>
-    </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/swagger" title="#swagger"># swagger</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-11-29 10:21:12 &#43;0800 CST"
-                itemprop="datePublished">2019-11-29</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/11/swagger-vendor/">Swagger 如何使用vendorExtensions进行扩展</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/swagger" class="label label-default mb">swagger</a>
-        <a href="https://lvsq.net/tags/vendorextensions" class="label label-default mb">vendorExtensions</a>
-    </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/vendorextensions" title="#vendorextensions"># vendorextensions</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-11-29 10:21:12 &#43;0800 CST"
-                itemprop="datePublished">2019-11-29</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/11/swagger-vendor/">Swagger 如何使用vendorExtensions进行扩展</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/swagger" class="label label-default mb">swagger</a>
-        <a href="https://lvsq.net/tags/vendorextensions" class="label label-default mb">vendorExtensions</a>
-    </div>
-</article>
-                </div>
-            </div>
-            <h3 class="panel-title mb-1x">
-                <a href="https://lvsq.net/tags/%E5%8E%86%E5%8F%B2" title="#历史"># 历史</a>
-                <small class="text-muted">(Total1 articles)</small>
-            </h3>
-            <div class="row">
-                <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-11-28 12:43:50 &#43;0800 CST"
-                itemprop="datePublished">2019-11-28</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/11/do-not-touch-history/">历史不能碰</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/%E5%8E%86%E5%8F%B2" class="label label-default mb">历史</a>
-    </div>
-</article>
-                </div>
-            </div>
-        </div>
-    </article>
+</nav>
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -486,6 +489,22 @@ hljs.initHighlightingOnLoad();
       </script>
 <script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
 
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
 
   </body>
 </html>
