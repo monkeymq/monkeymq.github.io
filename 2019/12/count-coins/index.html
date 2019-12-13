@@ -43,7 +43,7 @@
 
 <meta itemprop="datePublished" content="2019-12-13T15:11:35&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-13T15:11:35&#43;08:00" />
-<meta itemprop="wordCount" content="380">
+<meta itemprop="wordCount" content="378">
 
 
 
@@ -313,7 +313,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/count-coins/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:380字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:378字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -332,15 +332,21 @@
 
 <h3 id="思路">思路</h3>
 
-<p>组合方式的总和应为：
-1. 任意扣去一种钱币比如1分，1元采用2分，5分两种钱币的组合数，再加上：
-2. 总额为（1元-1分），采用1分，2分，5分三种钱币的组合数；</p>
+<p>组合方式的总和应为：</p>
+
+<ol>
+<li><p>任意扣去一种钱币比如1分，1元采用2分，5分两种钱币的组合数，再加上：</p></li>
+
+<li><p>总额为（1元-1分），采用1分，2分，5分三种钱币的组合数；</p></li>
+</ol>
 
 <p><em>很明显这可以很容易用递归实现</em></p>
 
-<p>稍作一点解释：
-a. 上面两步的意思是：不带1分的组合数 + 带1分的组合数 = 全部的组合数； 这是显而易见的
-b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
+<p>稍作一点解释：</p>
+
+<p>a. 上面两步的意思是：不带1分的组合数 + 带1分的组合数 = 全部的组合数； 这是显而易见的</p>
+
+<p>b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
 
 <pre><code>(letrec 
     [
