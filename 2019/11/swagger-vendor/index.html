@@ -338,7 +338,7 @@
 
 <p>以在info中添加一个x-logo为例</p>
 
-<pre><code>&quot;info&quot;: {
+<pre><code class="language-json">&quot;info&quot;: {
         &quot;description&quot;: &quot;&lt;div style='font-size:14px;color:red;'&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&quot;,
         &quot;version&quot;: &quot;1.0&quot;,
         &quot;title&quot;: &quot;swagger-bootstrap-ui！！！&quot;,
@@ -356,7 +356,7 @@
 
 <p>后台代码：</p>
 
-<pre><code>ObjectVendorExtension logo = new ObjectVendorExtension(&quot;x-logo&quot;);
+<pre><code class="language-java">ObjectVendorExtension logo = new ObjectVendorExtension(&quot;x-logo&quot;);
 logo.addProperty(new StringVendorExtension(&quot;url&quot;, &quot;https://xxx.svg&quot;));
 logo.addProperty(new StringVendorExtension(&quot;color&quot;, &quot;#090807&quot;));
 
@@ -375,7 +375,7 @@ return new ApiInfoBuilder()
 
 <p>给Path添加一个扩展属性<html><span style="color:red;font-weight: bold">x-order</span></html>为例</p>
 
-<pre><code>@Component
+<pre><code class="language-java">@Component
 @Order(Ordered.HIGHEST_PRECEDENCE+100)
 public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
     @Override
