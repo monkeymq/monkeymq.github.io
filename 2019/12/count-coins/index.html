@@ -160,6 +160,7 @@
     <h3 class="widget-title"> 分类</h3>
     <div class="widget-body">
         <ul class="category-list">
+            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E5%8E%86%E5%8F%B2/" class="category-list-link">历史</a><span class="category-list-count">1</span></li>
@@ -180,8 +181,12 @@
                     class="tag-list-count">1</span></li>
             
             
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
                     class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
+                    class="tag-list-count">2</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -208,6 +213,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2019/12/leetcode-2/" class="title">两数相加</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-12-17 20:00:31 &#43;0800 CST" itemprop="datePublished">2019-12-17</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -350,7 +365,7 @@
 
 <p>b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
 
-<pre><code class="language-scheme">(letrec 
+<pre><code class="language-lisp">(letrec 
     [
         (A (lambda (n d) (if (= 0 (mod n d)) 1 0))) 
         (B (lambda (n d) 
@@ -413,6 +428,11 @@
                 <a href="https://lvsq.net/about/" title="About"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://lvsq.net/2019/12/leetcode-2/"
+                    title="两数相加"><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">

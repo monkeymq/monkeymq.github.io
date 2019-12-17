@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>两数相加</title>
+      <link>https://lvsq.net/2019/12/leetcode-2/</link>
+      <pubDate>Tue, 17 Dec 2019 20:00:31 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/leetcode-2/</guid>
+      <description>本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result</description>
+    </item>
+    
+    <item>
       <title>钱币组合问题</title>
       <link>https://lvsq.net/2019/12/count-coins/</link>
       <pubDate>Fri, 13 Dec 2019 15:11:35 +0800</pubDate>
