@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Siquan的网络日志 | AI-Life</title>
+        Jgossip - gossip协议的开源实现 - Siquan的网络日志 | AI-Life
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,27 +23,34 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Siquan的网络日志 | AI-Life</title>
+  <title>Jgossip - gossip协议的开源实现 - Siquan的网络日志 | AI-Life</title>
   
 
-  <link rel="alternate" type="application/rss+xml" href="https://lvsq.net/tags/scheme/index.xml" title="Siquan的网络日志 | AI-Life" />
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <meta property="og:title" content="Scheme" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/tags/scheme/" />
+  <meta property="og:title" content="Jgossip - gossip协议的开源实现" />
+<meta property="og:description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2019/12/jgossip/" />
+<meta property="article:published_time" content="2019-12-19T16:07:31+08:00" />
+<meta property="article:modified_time" content="2019-12-19T16:07:31+08:00" />
+<meta itemprop="name" content="Jgossip - gossip协议的开源实现">
+<meta itemprop="description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些">
 
-<meta property="og:updated_time" content="2019-12-17T20:00:31+08:00" />
-<meta itemprop="name" content="Scheme">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2019-12-19T16:07:31&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-19T16:07:31&#43;08:00" />
+<meta itemprop="wordCount" content="254">
+
+
+
+<meta itemprop="keywords" content="jgossip,gossip," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Scheme"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Jgossip - gossip协议的开源实现"/>
+<meta name="twitter:description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -272,63 +280,160 @@
 
     
     
-<main class="main" role="main">
-    <article class="content article article-tags post-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">Scheme</h1>
-            <p class="text-muted hidden-xs">共 10 个标签</p>
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-                    <li><a href="https://lvsq.net/tags">All</a></li>
-                    <li><a href="https://lvsq.net/tags/about/">about</a></li>
-                    <li><a href="https://lvsq.net/tags/emacs/">emacs</a></li>
-                    <li><a href="https://lvsq.net/tags/gossip/">gossip</a></li>
-                    <li><a href="https://lvsq.net/tags/jgossip/">jgossip</a></li>
-                    <li><a href="https://lvsq.net/tags/leetcode/">leetcode</a></li>
-                    <li><a href="https://lvsq.net/tags/scheme/">Scheme</a></li>
-                    <li><a href="https://lvsq.net/tags/sicp/">SICP</a></li>
-                    <li><a href="https://lvsq.net/tags/swagger/">swagger</a></li>
-                    <li><a href="https://lvsq.net/tags/vendorextensions/">vendorExtensions</a></li>
-                    <li><a href="https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/">历史</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <div class="article-body">
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-17 20:00:31 &#43;0800 CST"
-                itemprop="datePublished">2019-12-17</time>
+  <aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+    <div class="slimContent">
+      <nav id="toc" class="article-toc">
+        <h3 class="toc-title">文章目录</h3>
+        <div class="toc-content always-active">
         </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/12/leetcode-2/">两数相加</a>
-        </h3>
+      </nav>
     </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/scheme" class="label label-default mb">Scheme</a>
-        <a href="https://lvsq.net/tags/leetcode" class="label label-default mb">leetcode</a>
+  </aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/12/jgossip/"
+    >Jgossip - gossip协议的开源实现</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2019/12/jgossip/" class="article-date">
+  <time datetime="2019-12-19 16:07:31 &#43;0800 CST" itemprop="datePublished">2019-12-19</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/java/"> Java </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/jgossip/"> jgossip </a>
+    <a class="article-tag-link" href="/tags/gossip/"> gossip </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/jgossip/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:254字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
+      </div>
     </div>
-</article>
-            </div>
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-13 15:11:35 &#43;0800 CST"
-                itemprop="datePublished">2019-12-13</time>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      <p><a href="http://en.wikipedia.org/wiki/Gossip_protocol">Gossip</a>是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些时间，动手写了一个，目前已经在公司内部运行了几年，效果良好，并且已经开源在Github上，以飨各位。</p>
+
+<hr />
+
+<p>特点：
+- API简洁
+- 支持3种事件：
+  1. UP
+  2. DOWN
+  3. JOIN
+- 基于<a href="http://vertx.io/">Vert.X</a></p>
+
+<p>一个简单的例子：</p>
+
+<pre><code class="language-java">int gossip_port = 60001;
+String cluster = &quot;gossip_cluster&quot;;
+
+GossipSettings settings = new GossipSettings();
+settings.setGossipInterval(1000);
+
+try {
+    String myIpAddress = InetAddress.getLocalHost().getHostAddress();
+    List&lt;SeedMember&gt; seedNodes = new ArrayList&lt;&gt;();
+    SeedMember seed = new SeedMember();
+    seed.setCluster(cluster);
+    seed.setIpAddress(myIpAddress);
+    seed.setPort(60001);
+    seedNodes.add(seed);
+
+    gossipService = new GossipService(cluster, myIpAddress, gossip_port, null, seedNodes, settings, (member, state) -&gt;System.out.println(&quot;member:&quot; + member + &quot;  state: &quot; + state));
+} catch (Exception e) {
+    e.printStackTrace();
+}
+gossipService.start();
+
+</code></pre>
+
+<hr />
+
+<p>详细介绍请看 =&gt; <a href="https://github.com/monkeymq/jgossip">项目地址</a></p>
+
+<p>欢迎大家fork， 如果觉得好请start ~~~</p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2019/12/jgossip/" title="Jgossip - gossip协议的开源实现" target="_blank" rel="external">https://lvsq.net/2019/12/jgossip/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">Siquan</span><small class="ml-1x">函数式编程爱好者, 爱读历史</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2019/12/leetcode-2/" title="两数相加"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
         </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/12/count-coins/">钱币组合问题</a>
-        </h3>
     </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/scheme" class="label label-default mb">Scheme</a>
-        <a href="https://lvsq.net/tags/sicp" class="label label-default mb">SICP</a>
-    </div>
-</article>
-            </div>
-        </div>
-    </article>
+</nav>
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -394,6 +499,22 @@ hljs.initHighlightingOnLoad();
       </script>
 <script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
 
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
 
   </body>
 </html>
