@@ -43,7 +43,7 @@
 
 <meta itemprop="datePublished" content="2019-12-24T16:43:57&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-24T16:43:57&#43;08:00" />
-<meta itemprop="wordCount" content="400">
+<meta itemprop="wordCount" content="374">
 
 
 
@@ -340,7 +340,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/fluid-binding/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:400字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:374字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -376,18 +376,18 @@
 
 <p>再学习下两个例子，加深印象：</p>
 
-<pre><code class="language-scheme">(let ([x ’a])
+<pre><code class="language-scheme">(let ([x 'a])
   (letrec ([f (lambda (y) (cons x y))])
-	(fluid-let ([x ’b]) (f ’c))
+	(fluid-let ([x 'b]) (f 'c))
 )) ⇒ (b . c)
 </code></pre>
 
-<pre><code class="language-scheme">(let ([x ’a])
+<pre><code class="language-scheme">(let ([x 'a])
   (call/cc
     (lambda (k)
-       (fluid-let ([x ’b])
-       (letrec ([f (lambda (y) (k ’*))])
-           (f ’*)))))
+       (fluid-let ([x 'b])
+       (letrec ([f (lambda (y) (k '*))])
+           (f '*)))))
 x) ⇒ a
 </code></pre>
 

@@ -38,14 +38,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/scheme/</loc>
+    <loc>https://lvsq.net/tags/scheme/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/scheme/</loc>
+    <loc>https://lvsq.net/categories/scheme/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,14 +192,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/</loc>
+    <loc>https://lvsq.net/categories/%E5%8E%86%E5%8F%B2/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/%E5%8E%86%E5%8F%B2/</loc>
+    <loc>https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
