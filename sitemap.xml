@@ -4,7 +4,49 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2019-12-24T16:43:57+08:00</lastmod>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/%E6%96%87%E5%8F%B2/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2019/12/think/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/</loc>
+    <lastmod>2019-12-24T17:24:01+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,20 +73,6 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2019-12-24T16:43:57+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/scheme/</loc>
-    <lastmod>2019-12-24T16:43:57+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/categories/scheme/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -52,14 +80,7 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2019-12-24T16:43:57+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
+    <loc>https://lvsq.net/tags/scheme/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,14 +213,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/%E5%8E%86%E5%8F%B2/</loc>
+    <loc>https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/%E5%8E%86%E5%8F%B2/</loc>
+    <loc>https://lvsq.net/categories/%E5%8E%86%E5%8F%B2/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
