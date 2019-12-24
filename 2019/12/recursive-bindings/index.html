@@ -355,8 +355,10 @@
 
 <p>This form is useful for creating recursive objects (especially procedures) that do not depend on external variables for the recursion, which are sometimes undesirable because the exter-nal bindings can change. For example, a recursive procedure defined at top level depends on the value of the top-level variable given as its name. If the value of this variable should change, the meaning of the procedure itself would change. If the procedure is defined instead with rec, its meaning is independent of the variable to which it is bound.</p>
 
-<p>简要翻译一下：
-语法<strong>rec</strong> 通过在expr中建立var与expr的值的绑定，创建一个递归对象。从本质上讲，这是letrec用于自递归对象的一种特殊情况。语法<strong>rec</strong>通过绑定expr中创建一个递归对象，用来
+<p>简要翻译一下：<br>
+语法<strong>rec</strong> 通过在expr中建立var与expr的值的绑定，创建一个递归对象。从本质上讲，这是letrec用于自递归对象的一种特殊情况。</p>
+
+<p>语法<strong>rec</strong>通过绑定expr中创建一个递归对象，用来
 这种形式对于创建不依赖于外部变量进行递归的递归对象（尤其是过程）很有用，因为外部绑定可能会发生变化，所以有时这是不可取的。</p>
 
 <hr />
