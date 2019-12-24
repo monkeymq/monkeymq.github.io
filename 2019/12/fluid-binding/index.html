@@ -364,9 +364,13 @@
 </code></pre>
 
 <p>先定义变量x=3，然后在加法操作当中临时将x的值改为5，最后结果为8，如果将<strong>fluid-let</strong>中的x换个名字，比如y，将如何呢？<br>
-会得到一个异常：
-&gt; Exception: variable y is not bound
-y没有绑定，是的，y即没有在顶层中被定义，也未在某个lambda中活任何其他形式，这里只能是x</p>
+会得到一个异常：</p>
+
+<blockquote>
+<p>Exception: variable y is not bound</p>
+</blockquote>
+
+<p>y没有绑定，是的，y即没有在顶层中被定义，也未在某个lambda中或者任何其他形式，这里只能是x</p>
 
 <hr />
 
