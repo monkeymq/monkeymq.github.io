@@ -5,10 +5,19 @@
     <link>https://lvsq.net/tags/scheme/</link>
     <description>Recent content in Scheme on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Dec 2019 15:20:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Dec 2019 16:43:57 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fluid Binding in Chez Scheme</title>
+      <link>https://lvsq.net/2019/12/fluid-binding/</link>
+      <pubDate>Tue, 24 Dec 2019 16:43:57 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/fluid-binding/</guid>
+      <description>Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫流式绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描</description>
+    </item>
     
     <item>
       <title>Recursive Bindings in Chez Scheme</title>
