@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2019-12-25T16:47:08&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-25T16:47:08&#43;08:00" />
-<meta itemprop="wordCount" content="420">
+<meta itemprop="wordCount" content="493">
 
 
 
@@ -346,7 +346,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/case-in-chez-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:420字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:493字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -395,7 +395,18 @@
 <li>其他情况返回#f</li>
 </ul>
 
-<p>可见，有了case语法多条件判断写起来就方便很多，并且代码也容易读了。</p>
+<p>可见，有了case语法多条件判断写起来就方便很多，并且代码也容易读了，当然这里也可以用cond来写，这里只是为了描述case的语法而没有使用cond</p>
+
+<p>再看一个例子，就不用解释了：</p>
+
+<pre><code class="language-scheme">(let ([ls '(ii iv)])
+  (case (cadr ls)
+	[i 1]
+	[ii 2]
+	[iii 3]
+	[(iiii iv) 4]
+	[else 'out-of-range])) ⇒ 4
+</code></pre>
 
     </div>
     <div class="article-footer">
