@@ -29,8 +29,9 @@
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css"> 
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
   <meta property="og:title" content="Swagger 如何使用vendorExtensions进行扩展" />
 <meta property="og:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq" />
 <meta property="og:type" content="article" />
@@ -62,6 +63,7 @@
     <![endif]-->
 
 </head>
+
   </head>
   
 
@@ -143,14 +145,15 @@
       </nav>
     </div>
   </header>
-  <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
   <div class="slimContent">
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
     <div class="widget-body">
         <div id="board">
-            <div class="content"><p>来了就别想走了</p>
+            <div class="content"><p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
             </div>
         </div>
     </div>
@@ -297,24 +300,14 @@
 
     
     
-  <aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-    <div class="slimContent">
-      <nav id="toc" class="article-toc">
-        <h3 class="toc-title">文章目录</h3>
-        <div class="toc-content always-active"><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#一切开始之前-有一点需要keep-in-mind-即增加扩展的位置不同-所用的方法不同-所以需要对swagger的标准有所了解-可参考-官方文档-https-swagger-io-specification-v2">一切开始之前，有一点需要keep in mind，即增加扩展的位置不同，所用的方法不同，所以需要对Swagger的标准有所了解，可参考<a href="https://swagger.io/specification/v2/">官方文档</a></a></li>
-<li><a href="#swagger根对象扩展">Swagger根对象扩展</a></li>
-<li><a href="#内部对象扩展">内部对象扩展</a></li>
-</ul></li>
-</ul>
-</nav>
-        </div>
-      </nav>
-    </div>
-  </aside>
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
 <main class="main" role="main"><div class="content">
   <article id="-" class="article article-type-" itemscope
     itemtype="http://schema.org/BlogPosting">
@@ -356,7 +349,7 @@
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       
 
 <p>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdquo;x-&ldquo;）该如何开发做紧要的介绍。</p>
@@ -491,6 +484,10 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
                 </a>
             </li>
         </ul>
+        
+        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+            data-target="#donateModal"><span>赏</span></button>
+        
         <div class="bar-right">
             <div class="share-component" data-sites="wechat,twitter"
                 data-mobile-sites="wechat,twitter"></div>
@@ -498,6 +495,53 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
     </div>
 </nav>
 
+
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content donate">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="modal-body">
+                <div class="donate-box">
+                    <div class="donate-head">
+                        <p>感谢您的支持,我会继续努力的!</p>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                    <div class="donate-footer">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
+                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
+                                    微信支付</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -510,7 +554,7 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
   <div class="copyright">
     &copy;2019  -
     2019
-    <div class="publishby">
+    <div class="publishby" style="display:none">
         Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
     </div>
   </div>
@@ -529,39 +573,54 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 <script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/rust.min.js"></script>
-<script type="text/javascript"
-   src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script>
-hljs.configure({
-  tabReplace: '    ', 
-  classPrefix: ''     
-                      
-})
-hljs.initHighlightingOnLoad();
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/erlang.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/scheme.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/java.min.js"></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
 </script>
 <script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
 <script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
 <script>
-      (function (window) {
-          var INSIGHT_CONFIG = {
-              TRANSLATION: {
-                  POSTS: '文章',
-                  PAGES: '页面',
-                  CATEGORIES: '分类',
-                  TAGS: '标签',
-                  UNTITLED: '(未命名)',
-              },
-              ROOT_URL: 'https:\/\/lvsq.net\/',
-              CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
-          };
-          window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-      })(window);
-      </script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/lvsq.net\/',
+            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
 <script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
 
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
