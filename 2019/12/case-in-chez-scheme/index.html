@@ -315,7 +315,7 @@
     <div class="article-header">
       <h1 itemprop="name">
   <a
-    class="article-title"
+    class=""
     href="/2019/12/case-in-chez-scheme/"
     >Chez Scheme中的case扩展</a
   >
@@ -369,14 +369,13 @@
 <li>(<strong>else</strong> expr1 expr2 &hellip;)</li>
 </ul>
 
+<hr />
+
 <p>那么返回值是什么呢？</p>
 
 <p><html><span style="color:green;font-weight: bold">匹配到某个key的或者else中的最后一个expr的值</span></html></p>
 
-<hr />
-
-<pre><code class="language-scheme">
-(define p
+<pre><code class="language-scheme">(define p
   (lambda (x)
     (case x
       [(&quot;abc&quot; &quot;def&quot;) 'one '1]
