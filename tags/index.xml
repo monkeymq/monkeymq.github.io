@@ -5,10 +5,19 @@
     <link>https://lvsq.net/tags/</link>
     <description>Recent content in Tags on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Dec 2019 17:24:01 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 16:47:08 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chez Scheme中的case扩展</title>
+      <link>https://lvsq.net/2019/12/case-in-chez-scheme/</link>
+      <pubDate>Wed, 25 Dec 2019 16:47:08 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/case-in-chez-scheme/</guid>
+      <description>Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Scheme</description>
+    </item>
     
     <item>
       <title>继学录</title>
