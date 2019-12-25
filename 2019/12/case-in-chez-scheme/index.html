@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2019-12-25T16:47:08&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-25T16:47:08&#43;08:00" />
-<meta itemprop="wordCount" content="423">
+<meta itemprop="wordCount" content="420">
 
 
 
@@ -315,7 +315,7 @@
     <div class="article-header">
       <h1 itemprop="name">
   <a
-    class=""
+    class="article-title"
     href="/2019/12/case-in-chez-scheme/"
     >Chez Scheme中的case扩展</a
   >
@@ -346,7 +346,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/case-in-chez-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:423字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:420字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -387,10 +387,13 @@
 
 </code></pre>
 
-<p>上面的例子定义了一个函数p，接收一个参数x
-- 如果x为字符串&rdquo;abc&rdquo;或者&rdquo;def&rdquo;，则返回1；
-- 如果x为列表((a b c)，则返回two
-- 其他情况返回#f</p>
+<p>上面的例子定义了一个函数p，接收一个参数x</p>
+
+<ul>
+<li>如果x为字符串&rdquo;abc&rdquo;或者&rdquo;def&rdquo;，则返回1；</li>
+<li>如果x为列表((a b c)，则返回two</li>
+<li>其他情况返回#f</li>
+</ul>
 
 <p>可见，有了case语法多条件判断写起来就方便很多，并且代码也容易读了。</p>
 
