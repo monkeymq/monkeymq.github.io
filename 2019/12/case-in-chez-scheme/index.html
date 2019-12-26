@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2019-12-25T16:47:08&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-25T16:47:08&#43;08:00" />
-<meta itemprop="wordCount" content="784">
+<meta itemprop="wordCount" content="789">
 
 
 
@@ -346,7 +346,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/case-in-chez-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:784字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:789字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
@@ -439,7 +439,7 @@
 <p>(else body1 body2 &hellip;)</p>
 </blockquote>
 
-<p><strong>expr</strong>必须是一个pair。Chez会拿(car expr)与各个子句中的key进行比较（用eqv?）来确定哪一个clause匹配, (cdr expr)会与<strong>formals</strong>绑定。</p>
+<p><strong>expr</strong>必须是一个pair。Chez会拿(car expr)与各个子句中的key进行比较（用eqv?）来确定哪一个clause匹配, 然后(cdr expr)将与<strong>formals</strong>绑定。</p>
 
 <p>来看换一个例子：</p>
 
