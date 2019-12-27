@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scheme on Siquan的网络日志 | AI-Life</title>
+    <title>scheme on Siquan的网络日志 | AI-Life</title>
     <link>https://lvsq.net/categories/scheme/</link>
-    <description>Recent content in Scheme on Siquan的网络日志 | AI-Life</description>
+    <description>Recent content in scheme on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 27 Dec 2019 10:30:09 +0800</lastBuildDate>
     
@@ -16,7 +16,7 @@
       <pubDate>Fri, 27 Dec 2019 10:30:09 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/12/engine-in-scheme/</guid>
-      <description>Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的th</description>
+      <description>Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun</description>
     </item>
     
     <item>

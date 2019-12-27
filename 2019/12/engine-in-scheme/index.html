@@ -23,7 +23,7 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的th" />
+  <meta name="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
   <title>Engine in Scheme - Siquan的网络日志 | AI-Life</title>
   
@@ -33,25 +33,25 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
   <meta property="og:title" content="Engine in Scheme" />
-<meta property="og:description" content="Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的th" />
+<meta property="og:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2019/12/engine-in-scheme/" />
 <meta property="article:published_time" content="2019-12-27T10:30:09+08:00" />
 <meta property="article:modified_time" content="2019-12-27T10:30:09+08:00" />
 <meta itemprop="name" content="Engine in Scheme">
-<meta itemprop="description" content="Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的th">
+<meta itemprop="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun">
 
 
 <meta itemprop="datePublished" content="2019-12-27T10:30:09&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-27T10:30:09&#43;08:00" />
-<meta itemprop="wordCount" content="1275">
+<meta itemprop="wordCount" content="1273">
 
 
 
 <meta itemprop="keywords" content="engine,scheme," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Engine in Scheme"/>
-<meta name="twitter:description" content="Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的th"/>
+<meta name="twitter:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -349,12 +349,12 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/engine-in-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1275字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1273字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>Engine(引擎)是支持*时间抢占*的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。</p>
+      <p>Engine(引擎)是支持<em>时间抢占</em> 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。</p>
 
 <blockquote>
 <p>(make-engine thunk)</p>
@@ -383,9 +383,9 @@
     (lambda () 3)))
 
 (eng
-	10  ;; **ticks**
-	(lambda (ticks value) value)  ;; **complete**
-	(lambda (x) x)  ;; **expire**
+	10  ;; ticks
+	(lambda (ticks value) value)  ;; complete
+	(lambda (x) x)  ;; expire
 ) ⇒ 3
 
 </code></pre>
