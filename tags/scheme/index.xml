@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scheme on Siquan的网络日志 | AI-Life</title>
+    <title>scheme on Siquan的网络日志 | AI-Life</title>
     <link>https://lvsq.net/tags/scheme/</link>
-    <description>Recent content in Scheme on Siquan的网络日志 | AI-Life</description>
+    <description>Recent content in scheme on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 27 Dec 2019 10:30:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 16:27:27 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scheme/Chez Scheme 对象操作</title>
+      <link>https://lvsq.net/2019/12/operations-on-objects/</link>
+      <pubDate>Mon, 30 Dec 2019 16:27:27 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/operations-on-objects/</guid>
+      <description>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? ’(a b c)) ⇒ #f (atom? ’(3 . 4)) ⇒ #f (atom? ’()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) *n*是一个非负整数，且小于</description>
+    </item>
     
     <item>
       <title>Engine in Scheme</title>

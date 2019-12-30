@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Scheme/Chez Scheme 对象操作</title>
+      <link>https://lvsq.net/2019/12/operations-on-objects/</link>
+      <pubDate>Mon, 30 Dec 2019 16:27:27 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/operations-on-objects/</guid>
+      <description>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? ’(a b c)) ⇒ #f (atom? ’(3 . 4)) ⇒ #f (atom? ’()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) *n*是一个非负整数，且小于</description>
+    </item>
+    
+    <item>
       <title>Engine in Scheme</title>
       <link>https://lvsq.net/2019/12/engine-in-scheme/</link>
       <pubDate>Fri, 27 Dec 2019 10:30:09 +0800</pubDate>

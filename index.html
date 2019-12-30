@@ -37,7 +37,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lvsq.net/" />
 
-<meta property="og:updated_time" content="2019-12-27T10:30:09+08:00" />
+<meta property="og:updated_time" content="2019-12-30T16:27:27+08:00" />
 <meta itemprop="name" content="Siquan的网络日志 | AI-Life">
 <meta itemprop="description" content="">
 
@@ -158,7 +158,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">3</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">5</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">6</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
         </ul>
@@ -207,7 +207,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
-                    class="tag-list-count">6</span></li>
+                    class="tag-list-count">7</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -238,6 +238,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2019/12/operations-on-objects/" class="title">Scheme/Chez Scheme 对象操作</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-12-30 16:27:27 &#43;0800 CST" itemprop="datePublished">2019-12-30</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -278,16 +288,6 @@
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2019/12/recursive-bindings/" class="title">Recursive Bindings in Chez Scheme</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2019-12-24 15:20:48 &#43;0800 CST" itemprop="datePublished">2019-12-24</time>
-                    </p>
-                </div>
-            </li>
         </ul>
     </div>
 </div>
@@ -303,6 +303,41 @@
     
     
     
+    <article
+      class="article article-type-page"
+      itemscope
+      itemtype="http://schema.org/BlogPosting"
+    >
+      <div class="article-header">
+        <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/12/operations-on-objects/"
+    >Scheme/Chez Scheme 对象操作</a
+  >
+</h1>
+
+      </div>
+      <div class="article-entry text-muted" itemprop="description">Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? ’(a b c)) ⇒ #f (atom? ’(3 . 4)) ⇒ #f (atom? ’()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) *n*是一个非负整数，且小于</div>
+      <p class="article-meta"><span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2019/12/operations-on-objects/" class="">
+  <time datetime="2019-12-30 16:27:27 &#43;0800 CST" itemprop="datePublished">2019-12-30</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/operations-on-objects/#comments" class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:570字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+      </p>
+    </article>
     <article
       class="article article-type-page"
       itemscope
@@ -624,42 +659,6 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/about/#comments" class="article-comment-link">评论</a></span>
 		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:146字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/11/swagger-vendor/"
-    >Swagger 如何使用vendorExtensions进行扩展</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/swagger-vendor/" class="">
-  <time datetime="2019-11-29 10:21:12 &#43;0800 CST" itemprop="datePublished">2019-11-29</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/tool/"> tool </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/swagger/"> swagger </a>
-    <a class="article-tag-link" href="/tags/vendorextensions/"> vendorExtensions </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/swagger-vendor/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:598字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </p>
     </article></div>
   
