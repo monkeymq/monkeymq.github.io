@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>Syntactic Extension and Modules in Chez Scheme</title>
+      <link>https://lvsq.net/2020/01/syntactic-extension-and-modules/</link>
+      <pubDate>Wed, 15 Jan 2020 16:00:51 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/01/syntactic-extension-and-modules/</guid>
+      <description>Fluid Keyword Bindings fluid-let-syntax 语法: fluid-let-syntax ((keyword expr) &amp;hellip;) form1 form2 &amp;hellip;) fluid-let-syntax与标准let语法相似，不同之处在于Fluid-let-syntax在其body扩</description>
+    </item>
+    
+    <item>
       <title>Chez Scheme中Boxes介绍</title>
       <link>https://lvsq.net/2020/01/boxes-in-chez/</link>
       <pubDate>Fri, 03 Jan 2020 14:44:33 +0800</pubDate>
