@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Swagger 如何使用vendorExtensions进行扩展 - Siquan的网络日志 | AI-Life
+        自定义 Let* - Siquan的网络日志 | AI-Life
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,35 +23,35 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq" />
+  <meta name="description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Swagger 如何使用vendorExtensions进行扩展 - Siquan的网络日志 | AI-Life</title>
+  <title>自定义 Let* - Siquan的网络日志 | AI-Life</title>
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Swagger 如何使用vendorExtensions进行扩展" />
-<meta property="og:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq" />
+  <meta property="og:title" content="自定义 Let*" />
+<meta property="og:description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/11/swagger-vendor/" />
-<meta property="article:published_time" content="2019-11-29T10:21:12+08:00" />
-<meta property="article:modified_time" content="2019-11-29T10:21:12+08:00" />
-<meta itemprop="name" content="Swagger 如何使用vendorExtensions进行扩展">
-<meta itemprop="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq">
+<meta property="og:url" content="https://lvsq.net/2020/01/my-let/" />
+<meta property="article:published_time" content="2020-01-17T10:13:27+08:00" />
+<meta property="article:modified_time" content="2020-01-17T10:13:27+08:00" />
+<meta itemprop="name" content="自定义 Let*">
+<meta itemprop="description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_">
 
 
-<meta itemprop="datePublished" content="2019-11-29T10:21:12&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-29T10:21:12&#43;08:00" />
-<meta itemprop="wordCount" content="598">
+<meta itemprop="datePublished" content="2020-01-17T10:13:27&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-17T10:13:27&#43;08:00" />
+<meta itemprop="wordCount" content="219">
 
 
 
-<meta itemprop="keywords" content="swagger,vendorExtensions," />
+<meta itemprop="keywords" content="scheme," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Swagger 如何使用vendorExtensions进行扩展"/>
-<meta name="twitter:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq"/>
+<meta name="twitter:title" content="自定义 Let*"/>
+<meta name="twitter:description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -328,25 +328,24 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/11/swagger-vendor/"
-    >Swagger 如何使用vendorExtensions进行扩展</a
+    href="/2020/01/my-let/"
+    >自定义 Let*</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/swagger-vendor/" class="article-date">
-  <time datetime="2019-11-29 10:21:12 &#43;0800 CST" itemprop="datePublished">2019-11-29</time>
+<a href="https://lvsq.net/2020/01/my-let/" class="article-date">
+  <time datetime="2020-01-17 10:13:27 &#43;0800 CST" itemprop="datePublished">2020-01-17</time>
 </a>
 </span><span class="article-category">
   <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/tool/"> tool </a>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/swagger/"> swagger </a>
-    <a class="article-tag-link" href="/tags/vendorextensions/"> vendorExtensions </a>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -355,88 +354,52 @@
 			<span id="busuanzi_value_page_pv">0</span>
 		</span>
 	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/swagger-vendor/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/my-let/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:598字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:219字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
-
-<p>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdquo;x-&ldquo;）该如何开发做紧要的介绍。</p>
-
-<h2 id="一切开始之前-有一点需要keep-in-mind-即增加扩展的位置不同-所用的方法不同-所以需要对swagger的标准有所了解-可参考-官方文档-https-swagger-io-specification-v2">一切开始之前，有一点需要keep in mind，即增加扩展的位置不同，所用的方法不同，所以需要对Swagger的标准有所了解，可参考<a href="https://swagger.io/specification/v2/">官方文档</a></h2>
+      <p>实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。</p>
 
 <hr />
 
-<p>springfox目前只允许三种扩展实现:</p>
-
-<ul>
-<li>ListVendorExtension:列表的形式,该对象支持泛型，最终形式：”x-field”:[{field:value}]</li>
-<li>ObjectVendorExtension:对象的扩展形式,最终的扩展形式是：”x-field”:[{field:value}]</li>
-<li>StringVendorExtension:string类型的扩展实现，最终的扩展形式是”x-field”:”value”</li>
-</ul>
-
-<hr />
-
-<h2 id="swagger根对象扩展">Swagger根对象扩展</h2>
-
-<p>以在info中添加一个x-logo为例</p>
-
-<pre><code class="language-json">&quot;info&quot;: {
-        &quot;description&quot;: &quot;&lt;div style='font-size:14px;color:red;'&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&quot;,
-        &quot;version&quot;: &quot;1.0&quot;,
-        &quot;title&quot;: &quot;swagger-bootstrap-ui！！！&quot;,
-        &quot;termsOfService&quot;: &quot;http://www.xxx.com/&quot;,
-        &quot;contact&quot;: {
-            &quot;name&quot;: pxxxx@domain.com&quot;
-        },
-	&quot;x-logo&quot;: {
-	    &quot;url&quot;: &quot;http://&quot;,
-	    &quot;color&quot;: &quot;#090807&quot;
-	}
-    },
-    ...
+<pre><code class="language-scheme">(define-syntax my-let*
+  (syntax-rules ()
+    ((_ () bodys ...) (let () bodys ...))
+    (
+      (_ ((a1 v1)) bodys ...)
+      (let ((a1 v1)) bodys ...)
+    )
+    (
+      (_ ((a1 v1) (a2 v2) ...) bodys ...)
+      (let ((a1 v1)) (my-let* ((a2 v2) ...) bodys ...))
+    )
+  )
+)
 </code></pre>
 
-<p>后台代码：</p>
+<p>注意，my-let*是可以递归使用的，以及<strong>&hellip;</strong>的用法。</p>
 
-<pre><code class="language-java">ObjectVendorExtension logo = new ObjectVendorExtension(&quot;x-logo&quot;);
-logo.addProperty(new StringVendorExtension(&quot;url&quot;, &quot;https://xxx.svg&quot;));
-logo.addProperty(new StringVendorExtension(&quot;color&quot;, &quot;#090807&quot;));
-
-return new ApiInfoBuilder()
-    .title(&quot;swagger-bootstrap-ui！！&quot;)
-    .extensions(Lists.newArrayList(logo))
-    .description(&quot;&lt;div style='font-size:14px;color:red;'&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&quot;)
-    .termsOfServiceUrl(&quot;http://www.xxx.com/&quot;)
-    .version(&quot;1.0.0&quot;)
-    .build();
+<pre><code class="language-scheme">(define-syntax my-let*
+  (syntax-rules ()
+    (
+      (_ () bodys ...)
+      (let () bodys ...)
+    )
+    (
+      (_ ((a1 v1) ...) bodys ...)
+      (let ()
+       (define a1 v1) ...
+       bodys ...
+      )
+    )
+  )
+)
 </code></pre>
 
-<hr />
-
-<h2 id="内部对象扩展">内部对象扩展</h2>
-
-<p>给Path添加一个扩展属性<html><span style="color:red;font-weight: bold">x-order</span></html>为例</p>
-
-<pre><code class="language-java">@Component
-@Order(Ordered.HIGHEST_PRECEDENCE+100)
-public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
-    @Override
-    public void apply(OperationContext context) {
-        context.operationBuilder().extensions(Lists.newArrayList(new StringVendorExtension(&quot;x-order&quot;,&quot;1&quot;)));
-    }
-
-    @Override
-    public boolean supports(DocumentationType delimiter) {
-        return true;
-    }
-}
-</code></pre>
-
-<p>详细介绍可以<a href="https://www.xiaominfo.com/2019/05/29/springfox-13/#more">参考</a></p>
+<p>这个实现方式与上面的不同，上面的是嵌套let，这里将直接按顺序define内部变量，代码更短。注意此处的<strong>&hellip;</strong>的用法。</p>
 
     </div>
     <div class="article-footer">
@@ -444,7 +407,7 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/11/swagger-vendor/" title="Swagger 如何使用vendorExtensions进行扩展" target="_blank" rel="external">https://lvsq.net/2019/11/swagger-vendor/</a>
+      <a href="https://lvsq.net/2020/01/my-let/" title="自定义 Let*" target="_blank" rel="external">https://lvsq.net/2020/01/my-let/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -476,14 +439,9 @@ public class OperationPositionBulderPlugin implements OperationBuilderPlugin {
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://lvsq.net/2019/11/do-not-touch-history/" title="历史不能碰"><i
+                <a href="https://lvsq.net/2020/01/syntactic-extension-and-modules/" title="Syntactic Extension and Modules in Chez Scheme"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://lvsq.net/about/"
-                    title="About"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">
