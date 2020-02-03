@@ -11,6 +11,24 @@
     
     
     <item>
+      <title>Scheme语define-record-type介绍</title>
+      <link>https://lvsq.net/2020/02/define-record-type/</link>
+      <pubDate>Mon, 03 Feb 2020 14:51:17 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/02/define-record-type/</guid>
+      <description>define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr</description>
+    </item>
+    
+    <item>
+      <title>Chez Scheme Modules</title>
+      <link>https://lvsq.net/2020/01/modules/</link>
+      <pubDate>Fri, 17 Jan 2020 15:07:58 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/01/modules/</guid>
+      <description>Modules 模块用于帮助将程序组织成单独的部分，这些部分通过声明好的接口干净地交互。尽管模块化编程通常可以为多人参加的大型程序开发带来便利，但它也可以</description>
+    </item>
+    
+    <item>
       <title>自定义 Let*</title>
       <link>https://lvsq.net/2020/01/my-let/</link>
       <pubDate>Fri, 17 Jan 2020 10:13:27 +0800</pubDate>

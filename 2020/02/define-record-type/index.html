@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        历史不能碰 - Siquan的网络日志 | AI-Life
+        Scheme语define-record-type介绍 - Siquan的网络日志 | AI-Life
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,35 +23,35 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁" />
+  <meta name="description" content="define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>历史不能碰 - Siquan的网络日志 | AI-Life</title>
+  <title>Scheme语define-record-type介绍 - Siquan的网络日志 | AI-Life</title>
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="历史不能碰" />
-<meta property="og:description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁" />
+  <meta property="og:title" content="Scheme语define-record-type介绍" />
+<meta property="og:description" content="define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/11/do-not-touch-history/" />
-<meta property="article:published_time" content="2019-11-28T12:43:50+08:00" />
-<meta property="article:modified_time" content="2019-11-28T12:43:50+08:00" />
-<meta itemprop="name" content="历史不能碰">
-<meta itemprop="description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁">
+<meta property="og:url" content="https://lvsq.net/2020/02/define-record-type/" />
+<meta property="article:published_time" content="2020-02-03T14:51:17+08:00" />
+<meta property="article:modified_time" content="2020-02-03T14:51:17+08:00" />
+<meta itemprop="name" content="Scheme语define-record-type介绍">
+<meta itemprop="description" content="define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr">
 
 
-<meta itemprop="datePublished" content="2019-11-28T12:43:50&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-28T12:43:50&#43;08:00" />
-<meta itemprop="wordCount" content="189">
+<meta itemprop="datePublished" content="2020-02-03T14:51:17&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-03T14:51:17&#43;08:00" />
+<meta itemprop="wordCount" content="1790">
 
 
 
-<meta itemprop="keywords" content="文史," />
+<meta itemprop="keywords" content="scheme," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="历史不能碰"/>
-<meta name="twitter:description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁"/>
+<meta name="twitter:title" content="Scheme语define-record-type介绍"/>
+<meta name="twitter:description" content="define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -332,24 +332,24 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/11/do-not-touch-history/"
-    >历史不能碰</a
+    href="/2020/02/define-record-type/"
+    >Scheme语define-record-type介绍</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/do-not-touch-history/" class="article-date">
-  <time datetime="2019-11-28 12:43:50 &#43;0800 CST" itemprop="datePublished">2019-11-28</time>
+<a href="https://lvsq.net/2020/02/define-record-type/" class="">
+  <time datetime="2020-02-03 14:51:17 &#43;0800 CST" itemprop="datePublished">2020-02-03</time>
 </a>
 </span><span class="article-category">
   <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/%E6%96%87%E5%8F%B2/"> 文史 </a>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/%E6%96%87%E5%8F%B2/"> 文史 </a>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -358,17 +358,187 @@
 			<span id="busuanzi_value_page_pv">0</span>
 		</span>
 	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/do-not-touch-history/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/define-record-type/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:189字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1790字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:4分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <ol>
-<li>秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁，如平原君广纳异国宾客；苏秦上书于七国；荀子遍游天下者皆可证各国文字并无大乖。</li>
-<li>《史籀篇》文首盖云“太史籀书”，人多误以太史籀所作，如此便望文生义了。太史乃官职，王国维先生引《说文》解释，籀即读，读即籀书。另太史籀书乃周世之成语，绝非人名。</li>
-</ol>
+      
+
+<h3 id="define-record-type">define-record-type</h3>
+
+<p>Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回true的谓词、以及每个字段的访问procedure和针对可变字段的赋值procedure。总的来说，与Java中的POJO类比较相似，不过不用自定义getter和setter方法，这与Kotlin倒为类似，例如：</p>
+
+<pre><code class="language-scheme">(define-record-type point (fields x y))
+</code></pre>
+
+<p>创建了一个名为<strong>point</strong>的record类型，并且有两个字段<strong>x</strong>和<strong>y</strong>，和如下几个定义式（自动生成）：<br></p>
+
+<p>|
+&mdash; | &mdash;
+(make-point x y) |  构造函数
+(point? obj) | 谓词
+(point-x p) | 字段x的访问器
+(point-y p) | 字段y的访问器</p>
+
+<p>默认下，字段是不可变的，但是可以声明为可变的（mutable）。如下定义<strong>point</strong>中，字段x是可变的，但y维持不变：</p>
+
+<pre><code class="language-scheme">(define-record-type point (fields (mutable x) y))
+</code></pre>
+
+<p>当然亦可显式地将字段声明为不可变的：</p>
+
+<pre><code class="language-scheme">(define-record-type point (fields (mutable x) (immutable y)))
+</code></pre>
+
+<p>在这个例子中，define-record-type除了生成了上述的几个定义式之外，还为字段x增加了一个赋值过程：</p>
+
+<p>(point-x-set! p x)</p>
+
+<p>该赋值过程可以用于改变x的内容</p>
+
+<pre><code class="language-scheme">(define p (make-point 36 -17))
+(point-x-set! p (- (point-x p) 12))
+(point-x p) =&gt; 24
+
+</code></pre>
+
+<p>自动生成的几个定义式是允许改变名称的，下面的<strong>point</strong>定义式，其构造函数名为<strong>mkpoint</strong>, 谓词为<strong>ispoint?</strong>，x和y的访问器分别为<strong>x-val</strong>和<strong>y-val</strong>, x的赋值器为<strong>set-x-val!</strong></p>
+
+<pre><code class="language-scheme">(define-record-type (point mkpoint ispoint?)
+  (fields (mutable x x-val set-x-val!)
+          (immutable y y-val)))
+</code></pre>
+
+<p>默认情况下，每次一个record definition创建一个新类型（为方便理解，可以用Java来解释，即对于同一个POJO类new出两个实例，但这两个实例并不能equal），如下所示：</p>
+
+<pre><code class="language-scheme">(define (f p)
+  (define-record-type point (fields x y))
+  (if (eq? p 'make) (make-point 3 4) (point? p)))
+(f (f 'make)) =&gt; #f
+</code></pre>
+
+<p>第一个f的调用即(f &lsquo;make)返回一个point类型的p，将p传递给第二个f，但p是由第一个调用生成的类型，所以point?返回#f。按照SICP的说法，这两个define-record-type并不在一个<strong>环境</strong>中，只是名字一样而已。</p>
+
+<p>默认的生产行为(generative behavior)或许可以由记录定义式中的<strong>nongenerative</strong>子句来重载：</p>
+
+<pre><code class="language-scheme">(define (f p)
+  (define-record-type point (fields x y) (nongenerative))
+  (if (eq? p 'make) (make-point 3 4) (point? p)))
+(f (f 'make)) =&gt; #t
+</code></pre>
+
+<p>以这种方式创建的记录类型仍然不同于由定义出现在程序的不同部分中创建的记录类型，即使这些定义在语法上是相同的：</p>
+
+<pre><code class="language-scheme">(define (f)
+  (define-record-type point (fields x y) (nongenerative))
+  (make-point 3 4))
+
+(define (g p)
+  (define-record-type point (fields x y) (nongenerative))
+  (point? p))
+
+(g (f)) =&gt; #f
+</code></pre>
+
+<p>甚至可以通过在nongenerative子句中包含uid（唯一id）来覆盖它：</p>
+
+<pre><code class="language-scheme">(define (f)
+  (define-record-type point (fields x y)
+    (nongenerative really-the-same-point))
+  (make-point 3 4))
+
+(define (g p)
+  (define-record-type point (fields x y)
+    (nongenerative really-the-same-point))
+  (point? p))
+
+(g (f)) =&gt; #t
+</code></pre>
+
+<p>记录类型可以定义为有<strong>parent</strong>子句的子类型，即一个记录类型可以声明为某一个记录类型的子类型，如果指定了父类型，则子类型将继承父类型所有字段，且子类型的每个实例都被视为父类型的实例，因此可以直接使用父类型的访问器和字段等等。</p>
+
+<pre><code class="language-scheme">(define-record-type point (fields x y))
+(define-record-type cpoint (parent point) (fields color))
+
+(define cp (make-cpoint 3 4 'red))
+(point? (make-cpoint 3 4 'red)) =&gt;  #t
+(cpoint? (make-point 3 4)) =&gt; #f
+
+(define cp (make-cpoint 3 4 'red))
+(point-x cp) =&gt; 3
+(point-y cp) =&gt; 4
+(cpoint-color cp) =&gt; red
+
+</code></pre>
+
+<p>到目前为止，define-record-type定义的默认构造函数接受record包含的字段一样多的参数，其实我们可以重写默认值，这里需要引入<strong>protocol</strong>子句，以下定义将创建一个具有三个字段的点记录：x，y和d，其中d表示距原点的位移。构造函数仍然只接受两个参数，即x和y值，并将d初始化为x和y平方和的平方根。</p>
+
+<pre><code class="language-scheme">(define-record-type point
+  (fields x y d)
+  (protocol
+    (lambda (new)
+      (lambda (x y)
+        (new x y (sqrt (+ (* x x) (* y y))))))))
+
+(define p (make-point 3 4))
+(point-x p) =&gt; 3
+(point-y p) =&gt; 4
+(point-d p) =&gt; 5
+</code></pre>
+
+<p>另外，子类型的构造函数中的参数顺序是不可改变的，即先是父类型构造函数的字段，然后才是子类型的参数，如果需要改变子类型的构造函数的参数顺序该如何呢？</p>
+
+<pre><code class="language-scheme">(define-record-type cpoint
+  (parent point)
+  (fields color)
+  (protocol
+    (lambda (pargs-&gt;new)
+      (lambda (x c y)
+        ((pargs-&gt;new x y) c)))))
+
+(define cp (make-cpoint 3 'red 4))
+(point-x cp) =&gt; 3
+(point-y cp) =&gt; 4
+(point-d cp) =&gt; 5
+(cpoint-color cp) =&gt; red
+
+</code></pre>
+
+<p>最后来看看define-record-type的语法形似：
+&gt; syntax: (define-record-type record-name clause &hellip;)
+&gt; syntax: (define-record-type (record-name constructor pred) clause &hellip;)</p>
+
+<p><strong>Fields clause</strong>语法形式:
+&gt; (fields field-spec &hellip;)</p>
+
+<p>field-spec必须是下面5个中的一个:</p>
+
+<ul>
+<li>field-name</li>
+<li>(immmutable field-name)</li>
+<li>(mutable field-name)</li>
+<li>(immmutable field-name accessor-name)</li>
+<li>(mutable field-name accessor-name mutator-name)</li>
+</ul>
+
+<hr />
+
+<h3 id="define-record-in-chez-scheme">define-record in Chez Scheme</h3>
+
+<p>Chez Scheme依然支持$R^6RS$中传统的record类型的定义，另外还提供一个新的语法，即<strong>define-record</strong>，其语法形式与<strong>define-record-type</strong>一样，所不同的地方在于，<strong>define-record中的字段默认是可变的</strong>，这与$R^6RS$中的record相反，因此，创建一个记录类型时，同时会定义下列过程：</p>
+
+<pre><code class="language-scheme">(define-record point (x y))
+
+(make-point x y) ;;	constructor
+(point? obj) ;;	predicate
+(point-x p) ;;	accessor for field x
+(point-y p) ;;	accessor for field y
+(set-point-x! p obj) ;;	mutator for field x
+(set-point-y! p obj) ;;	mutator for field y
+</code></pre>
 
     </div>
     <div class="article-footer">
@@ -376,7 +546,7 @@
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/11/do-not-touch-history/" title="历史不能碰" target="_blank" rel="external">https://lvsq.net/2019/11/do-not-touch-history/</a>
+      <a href="https://lvsq.net/2020/02/define-record-type/" title="Scheme语define-record-type介绍" target="_blank" rel="external">https://lvsq.net/2020/02/define-record-type/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -408,14 +578,9 @@
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://lvsq.net/2019/11/emacs/" title="Emacs"><i
+                <a href="https://lvsq.net/2020/01/modules/" title="Chez Scheme Modules"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://lvsq.net/2019/11/swagger-vendor/"
-                    title="Swagger 如何使用vendorExtensions进行扩展"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">
