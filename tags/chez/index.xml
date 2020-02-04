@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>chez on Siquan的网络日志 | AI-Life</title>
+    <title>Chez on Siquan的网络日志 | AI-Life</title>
     <link>https://lvsq.net/tags/chez/</link>
-    <description>Recent content in chez on Siquan的网络日志 | AI-Life</description>
+    <description>Recent content in Chez on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 25 Dec 2019 16:47:08 +0800</lastBuildDate>
     
@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Scheme语define-record-type介绍</title>
+      <title>Scheme语法define-record-type介绍</title>
       <link>https://lvsq.net/2020/02/define-record-type/</link>
       <pubDate>Mon, 03 Feb 2020 14:51:17 +0800</pubDate>
       
