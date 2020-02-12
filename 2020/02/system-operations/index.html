@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-02-06T10:54:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-02-06T10:54:14&#43;08:00" />
-<meta itemprop="wordCount" content="15895">
+<meta itemprop="wordCount" content="15883">
 
 
 
@@ -360,7 +360,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/system-operations/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15895字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15883字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:32分 </span>
       </div>
     </div>
@@ -409,7 +409,7 @@
 <p>(set-timer n)</p>
 </blockquote>
 
-<p>n必须为非负整数。当n为非零时，设置计时器启动一个内部计时器，其初始值为n。经过n个tick后，将发生计时器中断，从而导致计时器中断处理程序被调用。tick不是统一的时间单位，而是在很大程度上取决于每个过程调用要完成多少工作。</p>
+<p><em>n</em> 必须为非负整数。当<em>n</em> 为非零时，设置计时器启动一个内部计时器，其初始值为n。经过n个tick后，将发生计时器中断，从而导致计时器中断处理程序被调用。tick不是统一的时间单位，而是在很大程度上取决于每个过程调用要完成多少工作。</p>
 
 <p>当n为零时，设置计时器关闭计时器。</p>
 
@@ -442,7 +442,8 @@
 
 <pre><code class="language-scheme">(environment? (interaction-environment)) ⇒ #t
 (environment? 'interaction-environment) ⇒ #f
-(environment? (copy-environment (scheme-environment))) ⇒ #t (environment? (environment '(prefix (rnrs) $rnrs-))) ⇒ #t
+(environment? (copy-environment (scheme-environment))) ⇒ #t
+(environment? (environment '(prefix (rnrs) $rnrs-))) ⇒ #t
 </code></pre>
 
 <blockquote>
@@ -452,7 +453,7 @@
 <pre><code class="language-scheme">(environment-mutable? (interaction-environment)) ⇒ #t
 (environment-mutable? (scheme-environment)) ⇒ #f
 (environment-mutable? (copy-environment (scheme-environment))) ⇒ #t
-(environment-mutable? (environment ’(prefix (rnrs) $rnrs-))) ⇒ #f
+(environment-mutable? (environment '(prefix (rnrs) $rnrs-))) ⇒ #f
 </code></pre>
 
 <blockquote>
@@ -563,7 +564,7 @@
 <p>(load-program path) |  (load-program path eval-proc)</p>
 </blockquote>
 
-<p>*path*必须是字符串。加载程序读取并求值path指定的文件的内容。<br>
+<p><em>path</em> 必须是字符串。加载程序读取并求值path指定的文件的内容。<br>
 该文件可能包含源代码或目标代码。如果包含源代码，则加载程序会将代码以顶级程序形式包装起来，以便将文件的内容视为RNRS顶级程序（Scheme编程语言，第4版的10.3节）。<br>
 默认情况下，加载程序使用eval求值文件中找到的每个源表达式。如果指定了eval-proc，则装入程序将使用此过程。 eval-proc必须接受一个参数，即要评估的表达式。传递给eval-proc的表达式可能是注释或未注释的值。
 参数source-directorys确定了搜索目录，以搜索未由绝对路径名标识的源文件。</p>
