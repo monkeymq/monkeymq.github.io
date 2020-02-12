@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        系统操作(System Operations in Chez Scheme) - Siquan的网络日志 | AI-Life
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止" />
+  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <title>系统操作(System Operations in Chez Scheme) - Siquan的网络日志 | AI-Life</title>
+  
+
+  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <meta property="og:title" content="系统操作(System Operations in Chez Scheme)" />
+<meta property="og:description" content="异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2020/02/system-operations/" />
+<meta property="article:published_time" content="2020-02-06T10:54:14+08:00" />
+<meta property="article:modified_time" content="2020-02-06T10:54:14+08:00" />
+<meta itemprop="name" content="系统操作(System Operations in Chez Scheme)">
+<meta itemprop="description" content="异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止">
+
+
+<meta itemprop="datePublished" content="2020-02-06T10:54:14&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-06T10:54:14&#43;08:00" />
+<meta itemprop="wordCount" content="15895">
+
+
+
+<meta itemprop="keywords" content="scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="系统操作(System Operations in Chez Scheme)"/>
+<meta name="twitter:description" content="异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  </head>
+  
+
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Siquan</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">函数式编程爱好者, 爱读历史</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">来了就走不了了，哈哈~~
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">12</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
+                    class="tag-list-count">11</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/system-operations/" class="title">系统操作(System Operations in Chez Scheme)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 10:54:14 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/define-record-type/" class="title">Scheme语法define-record-type介绍</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-03 14:51:17 &#43;0800 CST" itemprop="datePublished">2020-02-03</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/01/modules/" class="title">Chez Scheme Modules</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-17 15:07:58 &#43;0800 CST" itemprop="datePublished">2020-01-17</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/01/my-let/" class="title">自定义 Let*</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-17 10:13:27 &#43;0800 CST" itemprop="datePublished">2020-01-17</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/01/syntactic-extension-and-modules/" class="title">Syntactic Extension and Modules in Chez Scheme</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-15 16:00:51 &#43;0800 CST" itemprop="datePublished">2020-01-15</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/02/system-operations/"
+    >系统操作(System Operations in Chez Scheme)</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/02/system-operations/" class="article-date">
+  <time datetime="2020-02-06 10:54:14 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/system-operations/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15895字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:32分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      
+
+<h3 id="异常">异常</h3>
+
+<blockquote>
+<p>(warning who msg irritant &hellip;)</p>
+
+<p>返回：未指定</p>
+</blockquote>
+
+<p>警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止程序继续运行但可能在以后导致更严重问题的情况。<br>
+通常最好是识别程序员已调用的过程，而不是程序员可能不知道的其他过程。 msg必须为字符串，并应描述异常情况。irritant可以是任何Scheme对象，并且应包含可能导致或严重涉及异常情况的值。</p>
+
+<blockquote>
+<p>(assertion-violationf who msg irritant &hellip;) | (errorf who msg irritant &hellip;) | (warningf who msg irritant &hellip;)</p>
+</blockquote>
+
+<p>这些过程类似于<strong>assertion-violation</strong>, <strong>error</strong>, <strong>warning</strong>, 所不同的在于 <em>msg</em> 设定为一个格式字符串</p>
+
+<h3 id="中断">中断</h3>
+
+<p>Chez Scheme允许程序在发生各种事件时控制Scheme系统的操作，这些事件包括键盘中断，由set-timer设置的内部计时器到期，由中断调用引发的断点或者来自存储管理器的请求启动GC。</p>
+
+<p>无论何时<strong>break</strong>被调用，系统都会立即启用中断处理程序</p>
+
+<blockquote>
+<p>(break who msg irritant &hellip;) |  (break who) |  (break)</p>
+</blockquote>
+
+<p>break参数遵循上述errorf的协议。默认的中断处理程序（请参见break-handler）显示一条消息并调用调试器。可以省略格式字符串和对象，在这种情况下，默认中断处理程序发出的消息使用who参数标识中断，但不提供有关中断的更多信息。如果也省略了who参数，则不会生成任何消息。如果调试器正常退出，则默认的中断处理程序将正常返回。</p>
+
+<blockquote>
+<p>break-handler</p>
+</blockquote>
+
+<p>此参数的值必须是一个过程。当前的中断处理程序由break调用，它传递其参数。有关默认中断处理程序的描述，请参见break。以下示例显示了如何禁用breaks。</p>
+
+<pre><code class="language-scheme">(break-handler (lambda args (void)))
+</code></pre>
+
+<blockquote>
+<p>(set-timer n)</p>
+</blockquote>
+
+<p>n必须为非负整数。当n为非零时，设置计时器启动一个内部计时器，其初始值为n。经过n个tick后，将发生计时器中断，从而导致计时器中断处理程序被调用。tick不是统一的时间单位，而是在很大程度上取决于每个过程调用要完成多少工作。</p>
+
+<p>当n为零时，设置计时器关闭计时器。</p>
+
+<p>engine机制建立在计时器中断之上，因此不应与engine共同使用。</p>
+
+<blockquote>
+<p>(register-signal-handler sig procedure)</p>
+</blockquote>
+
+<p>register-signal-handler用于为给定的底层信号建立信号处理程序。 sig必须是标识有效信号的精确整数，过程应接受一个参数。在注册了给定signal的处理程序之后，收到了给定的signal会调用该处理程序。signal编号会传递给该处理程序，从而允许同一处理程序用于不同的信号，同时区分它们。</p>
+
+<p>以这种方式处理的信号类似于键盘中断，因为在将信号传递到进程时不会立即调用处理程序，而是在信号传递后在某个过程调用边界处调用该处理程序。因此，为内存故障，非法指令等建立处理程序通常不是一个好主意，因为导致故障或非法指令的代码将在调用处理程序之前继续执行（可能是错误的）一段时间。</p>
+
+<p>另外，仅在基于Unix的系统上才支持register-signal-handler。</p>
+
+<h3 id="环境">环境</h3>
+
+<p>环境是包含标识符绑定的顶级（first-class）对象。它们类似于模块，但是与模块不同，它们可以在运行时进行操作。环境可以作为eval，expand以及过程的定义，分配或引用顶级值的可选参数。</p>
+
+<p>有几种内置环境，也可以通过复制现有环境或从现有环境中选择的绑定来创建新环境。</p>
+
+<p>环境可以是可变的或不变的。可变的环境可以使用新的绑定进行扩展，可以修改其现有绑定，还可以分配其变量。不变的环境不能以任何这些方式进行修改。</p>
+
+<blockquote>
+<p>联想一下SICP中关于<strong>环境</strong>的内容
+<br></p>
+
+<p>(environment? obj)</p>
+</blockquote>
+
+<pre><code class="language-scheme">(environment? (interaction-environment)) ⇒ #t
+(environment? 'interaction-environment) ⇒ #f
+(environment? (copy-environment (scheme-environment))) ⇒ #t (environment? (environment '(prefix (rnrs) $rnrs-))) ⇒ #t
+</code></pre>
+
+<blockquote>
+<p>(environment-mutable? env)</p>
+</blockquote>
+
+<pre><code class="language-scheme">(environment-mutable? (interaction-environment)) ⇒ #t
+(environment-mutable? (scheme-environment)) ⇒ #f
+(environment-mutable? (copy-environment (scheme-environment))) ⇒ #t
+(environment-mutable? (environment ’(prefix (rnrs) $rnrs-))) ⇒ #f
+</code></pre>
+
+<blockquote>
+<p>(scheme-environment)</p>
+</blockquote>
+
+<p>scheme-environment返回一个包含初始顶级绑定的环境。该环境对应于Scheme模块。此过程返回的环境是不可变的。</p>
+
+<pre><code class="language-scheme">(define cons 3)
+(top-level-value 'cons (scheme-environment)) ⇒ #&lt;procedure cons&gt;
+(set-top-level-value! 'cons 3 (scheme-environment)) ⇒ exception
+</code></pre>
+
+<blockquote>
+<p>(copy-environment env) |  (copy-environment env mutable?) |  (copy-environment env mutable? syms)</p>
+</blockquote>
+
+<p>copy-environment返回env的副本，即包含与<em>env</em> 相同绑定的新环境。<em>mutable?</em> 如果为true，则该environment是可变的，反之则不可变；</p>
+
+<p>从<em>env</em> 复制到新环境的绑定集由<em>syms</em> 确定，其默认值为（environment-symbols env）。每个<em>syms</em> 元素的绑定（如果有）都被复制到新环境中，并且新环境中不存在其他绑定。</p>
+
+<p><strong>在当前的实现中，永远不会收集环境使用的存储空间，因此重复使用复制环境最终将导致系统内存不足。</strong></p>
+
+<pre><code class="language-scheme">(define e (copy-environment (scheme-environment)))
+(eval '(define cons +) e)
+(eval '(cons 3 4) e) ⇒ 7
+(eval '(cons 3 4) (scheme-environment)) ⇒ (3 . 4)
+</code></pre>
+
+<blockquote>
+<p>(environment-symbols env)</p>
+</blockquote>
+
+<p>此过程返回代表环境env中绑定的标识符的符号列表。它主要用于构建要从一种环境复制到另一种环境的符号列表。</p>
+
+<pre><code class="language-scheme">(define listless-environment
+  (copy-environment
+    (scheme-environment)
+    #t
+    (remq 'list (environment-symbols (scheme-environment)))))
+(eval '(let ([x (cons 3 4)]) x) listless-environment) ⇒ (3 . 4)
+(eval '(list 3 4) listless-environment) ⇒ exception
+</code></pre>
+
+<h3 id="编译-求值和加载">编译、求值和加载</h3>
+
+<blockquote>
+<p>(eval obj) |  (eval obj env)</p>
+</blockquote>
+
+<p><strong>eval</strong>将<em>obj</em> 视为表达式的表示形式。它在环境*env*中计算表达式并返回其值。如果未提供任何环境，则默认为由交互环境返回的环境。<br>
+单参数求值是Chez Scheme的扩展。当环境可变时，Chez Scheme还允许obj表示非表达形式，比如一个definition。 Chez Scheme还允许obj作为一个annotation，默认求值程序利用注释将源文件信息合并到错误消息中，并将源文件信息与编译后的代码相关联。</p>
+
+<p>在Chez Scheme中，<strong>eval</strong>实际上是一个包装器，仅将其参数传递给当前求值器（请参阅current-eval）。默认的评估器是<strong>compile</strong>，它通过当前的扩展器（参阅current-expand）扩展表达式，对其进行编译，执行生成的代码，并返回其值。如果存在环境参数<em>env</em> ，则compile将其传递给当前的扩展器，默认情况下为sc-expand。</p>
+
+<blockquote>
+<p>(compile obj) |  (compile obj env)</p>
+</blockquote>
+
+<p><em>obj</em> 可以为Scheme表达式，在指定的环境（或交互环境，如果未提供环境）中使用当前扩展器（current-expand的值）进行扩展），编译为机器代码，然后执行。 compile是current-eval参数的默认值。</p>
+
+<pre><code class="language-scheme">(compile '(cons 1 2)) =&gt; (1 . 2)
+</code></pre>
+
+<blockquote>
+<p>(interpret obj)  | (interpret obj env)</p>
+</blockquote>
+
+<p>解释类似于编译，只是表达式是解释的而不是编译的（the expression is interpreted rather than compiled）。解释可以用作编译的替代品，但有以下警告：</p>
+
+<ul>
+<li>解释后的代码运行速度大大降低</li>
+<li>解释后的代码不会生成检查器信息，因此检查器对于解释的代码不如在编译的代码中有用、</li>
+<li>无法解释外部过程表达式，因此解释器需要为所有外部过程表达式调用编译器（这是透明完成的）</li>
+</ul>
+
+<p>当求值形式运行时间较短时，解释有时比编译更快，因为它避免了在求值之前通过编译完成的某些工作。</p>
+
+<blockquote>
+<p>(load path) | (load path eval-proc)</p>
+</blockquote>
+
+<p><em>path</em> 必须是字符串。 <strong>load</strong>读取并求值<em>path</em> 指定的文件的内容。该文件可能包含源代码或目标代码。默认情况下，<strong>load</strong>使用<strong>eval</strong>求值源文件中找到的每个源表达式。如果指定了<em>eval-proc</em> ，则<strong>load</strong>将使用此过程。 <em>eval-proc</em> 必须接受一个参数，即要求值的表达式。</p>
+
+<p>eval-proc参数有助于实现嵌入的类似于Scheme的语言，并有助于使用用于Scheme程序的替代评估机制。 eval-proc也可以用于其他用途。例如，</p>
+
+<pre><code class="language-scheme">(load &quot;myfile.ss&quot;
+  (lambda (x)
+    (pretty-print
+      (if (annotation? x)
+          (annotation-stripped x)
+          x))
+    (newline)
+(eval x)))
+</code></pre>
+
+<p>对每一个表达式求值之前使用<strong>pretty-print</strong>打印。</p>
+
+<p>参数source-directorys确定了搜索目录，以搜索未由绝对路径名标识的源文件。</p>
+
+<blockquote>
+<p>(load-library path) |  (load-library path eval-proc)</p>
+</blockquote>
+
+<p><strong>load-library</strong>与<strong>load</strong>相同，除了它会将输入文件视为由隐式<strong>＃!r6rs</strong>作为前缀。这有效地禁用了所有<strong>非R6RS</strong>词法语法，除非随后被<strong>＃！chezscheme</strong>覆盖</p>
+
+<blockquote>
+<p>(load-program path) |  (load-program path eval-proc)</p>
+</blockquote>
+
+<p>*path*必须是字符串。加载程序读取并求值path指定的文件的内容。<br>
+该文件可能包含源代码或目标代码。如果包含源代码，则加载程序会将代码以顶级程序形式包装起来，以便将文件的内容视为RNRS顶级程序（Scheme编程语言，第4版的10.3节）。<br>
+默认情况下，加载程序使用eval求值文件中找到的每个源表达式。如果指定了eval-proc，则装入程序将使用此过程。 eval-proc必须接受一个参数，即要评估的表达式。传递给eval-proc的表达式可能是注释或未注释的值。
+参数source-directorys确定了搜索目录，以搜索未由绝对路径名标识的源文件。</p>
+
+<blockquote>
+<p>(load-compiled-from-port input-port)</p>
+</blockquote>
+
+<p><strong>load-compiled-from-port</strong>读取并求值来自<strong>input-port</strong>的对象代码的内容，这些<strong>input-port</strong>是事先由诸如<strong>compile-file, compile-script, compile-library, compile-to-port</strong>创建的<br>
+返回值是最后一个表达式的值，该表达式的编译形式为<strong>input-port</strong>。如果<strong>input-port</strong>为空，则结果值未指定。</p>
+
+<blockquote>
+<p>(compile-file input-filename) |  (compile-file input-filename output-filename)</p>
+</blockquote>
+
+<p><em>input-filename</em> 和<em>output-filename</em> 必须是字符串。<em>input-filename</em> 必须是已存在的可读文件。它必须包含零个或多个源表达式的序列；如果不是这种情况，则编译文件会引发条件类型为＆syntax的异常。</p>
+
+<p>正常求值过程分为两个步骤：编译和执行。 compile-file对整个源文件执行编译过程，从而生成目标文件。随后加载目标文件（请参见load）时，不需要编译过程，并且文件加载通常快几倍。</p>
+
+<blockquote>
+<p>(compile-script input-filename) |  (compile-script input-filename output-filename)</p>
+</blockquote>
+
+<p><strong>compile-script</strong>与<strong>compile-file</strong>类似，不同点在于，它会从源文件复制开头的<strong>#!</strong>行到目标文件，同时该行不会被压缩，尽管参数<strong>compile-compressed</strong>被设置为#t，其他代码会被压缩，这样会保证操作系统可以正确地解释。</p>
+
+<p><strong>compile-script</strong>允许从源脚本创建已编译的脚本文件，以减少脚本加载时间。与源代码脚本一样，可以使用<strong>&ndash;script</strong>命令行选项运行已编译的脚本。</p>
+
+<blockquote>
+<p>(compile-library input-filename) |  (compile-library input-filename oiutput-filename)</p>
+</blockquote>
+
+<p>compile-library与compile-file相同，不同之处在于，它会将输入文件视为由隐式<strong>＃!r6rs</strong>作为前缀。这有效地禁用了所有非R6RS词法语法，除非随后被＃!chezscheme覆盖。</p>
+
+<blockquote>
+<p>(compile-program input-filename) |  (compile-program input-filename output-filename)</p>
+</blockquote>
+
+<p><strong>compile-program</strong>类似于<strong>compile-script</strong>，但不同之处在于，它实现了RNRS顶级程序的语义，而<strong>compile-script</strong>则实现了交互式顶级程序的语义。与通过compile-file或compile-script进行编译相比，生成的已编译程序的运行速度也更快。</p>
+
+<p><strong>compile-program</strong>返回由编译的顶层程序直接调用的库的列表，不包括（rnrs）和（chezscheme）之类的内置库</p>
+
+<blockquote>
+<p>(compile-whole-program input-filename output-filename) | (compile-whole-program input-filename output-filename libs-visible?)</p>
+</blockquote>
+
+<p><strong>compile-whole-program</strong>接受一个文件名作为名称输入，该文件名为顶级程序命名为“ whole program optimization”（wpo）文件，并生成一个包含该程序及其所依赖的每个库的目标文件，前提是需要一个可以找到库的wpo文件。</p>
+
+<p>如果wpo文件找不到所需库，但可以找到该库的目标文件，则该库不会合并到生成的目标文件中。这些库将在运行时加载。 compile-whole-program返回这些库的列表。如果没有这样的库，则生成的目标文件是自包含的，并且compile-whole-program返回空列表。</p>
+
+<p>如果<em>libs-visible?</em> 设置为非false，则库合并到目标文件是可见的（供<strong>environment</strong>和<strong>eval</strong>使用），任何合并到目标文件中并在运行时保留下来的目标文件所要求的库都是可见的。</p>
+
+<p>当generate-wpo-files参数设置为#t时，过程compile-file，compile-program，compile-library，compile-script和compile-whole-library会生成wpo文件以及普通目标文件。
+（默认值为#f）。另外如果传递可选的wpo端口时，compile-port和compile-to-port也会这样做。</p>
+
+<blockquote>
+<p>(compile-whole-library input-filename output-filename)</p>
+</blockquote>
+
+<p><strong>compile-whole-library</strong>类似于<strong>compile-whole-program</strong>，不同之处在于input-filename必须为库指定一个wpo文件，所有库自动显示，并生成一个新的wpo文件（当generate-wpo-files为#t时）以及用于生成的库组合的目标文件。</p>
+
+<blockquote>
+<p>(compile-port input-port output-port) | (compile-port input-port output-port sfd) | (compile-port input-port output-port sfd wpo-port)</p>
+</blockquote>
+
+<p><em>input-port</em> 必须是文本输入端口。<em>out-port</em> 和*wpo-port*（如果存在）必须是二进制输出端口。如果存在<em>sfd</em> ,必须是源文件描述符。</p>
+
+<blockquote>
+<p>(make-boot-file output-filename base-boot-list input-filename &hellip;)</p>
+</blockquote>
+
+<p>所有参数都必须是字符串。</p>
+
+<p><strong>make-boot-file</strong>将引导标头（boot header）写入以<em>output-filename</em> 命名的文件，然后依次写入每个<em>input-filename</em> 的目标代码。如果尚未编译输入文件，make-boot-file将在对其进行编译。</p>
+
+<p>引导文件通过&ndash;boot或-b命令行选项显式加载，或基于可执行文件的名称隐式加载。</p>
+
+<blockquote>
+<p>(make-boot-header output-filename base-boot1 base-boot2&hellip;)</p>
+</blockquote>
+
+<p>该过程已包含在make-boot-file中，并提供了向后兼容性。</p>
+
+<p>(make-boot-header output-filename base-boot1 base-boot2 &hellip;)<br>
+等价于：<br>
+(make-boot-file output-filename ’(base-boot1 base-boot2 &hellip;))<br></p>
+
+<h3 id="源目录和文件">源目录和文件</h3>
+
+<blockquote>
+<p>source-directories</p>
+</blockquote>
+
+<p><strong>source-directories</strong>的值必须是一个字符串列表，每个字符串都命名一个目录路径。当通过load, load-library, load-program, include, visit, or revisit在交互式检查器中发生语法错误或打开源文件时，source-directory确定用于搜索源文件或目标文件的目录集。</p>
+
+<p>默认值为列表（“.”），这意味着仅在当前目录中或相对于当前目录才能找到源文件，除非使用绝对路径命名。</p>
+
+<blockquote>
+<p>(with-source-path who name procedure)</p>
+</blockquote>
+
+<p>过程<strong>with-source-path</strong>依次搜索当前源目录路径，以查找具有指定名称的文件，并在结果上调用过程。如果未找到这样的文件，则引发<strong>&amp;assertion</strong>和<strong>&amp;who</strong>异常，<strong>&amp;who</strong>的值为<em>who</em> 的值</p>
+
+<p>如果<em>name</em> 是绝对路径，或者以./（Windows下是./），或者../（Windows下是..\），或者源目录列表中只包含“.”，或者默认值 &ldquo;&ldquo;，相当于 &ldquo;.&ldquo;，不执行搜索并返回*name*。</p>
+
+<p><em>who</em> 必须是符号，<em>name</em> 必须是字符串，<em>procedure</em> 应接受一个参数。</p>
+
+<p>以下示例假定文件“ pie”存在于目录“ ../spam”中，但不在“ ../ham”或当前目录中。</p>
+
+<pre><code class="language-scheme">(define find-file
+  (lambda (fn)
+	(with-source-path 'find-file fn values)))
+
+(find-file &quot;pie&quot;) ⇒ &quot;pie&quot;
+
+(source-directories '(&quot;.&quot; &quot;../ham&quot;))
+(find-file &quot;pie&quot;) ⇒ exception in find-file: pie not found
+
+(source-directories '(&quot;.&quot; &quot;../spam&quot;))
+(find-file &quot;pie&quot;) ⇒ &quot;../spam/pie&quot;
+
+(source-directories '(&quot;.&quot; &quot;../ham&quot;))
+(find-file &quot;/pie&quot;) ⇒ &quot;/pie&quot;
+
+(source-directories '(&quot;.&quot; &quot;../ham&quot;))
+(find-file &quot;./pie&quot;) ⇒ &quot;./pie&quot;
+
+(source-directories '(&quot;.&quot; &quot;../spam&quot;))
+(find-file &quot;../pie&quot;) ⇒ &quot;../ham/pie&quot;
+</code></pre>
+
+<h3 id="编译器管理">编译器管理</h3>
+
+<blockquote>
+<p>optimize-level</p>
+</blockquote>
+
+<p>该参数可以是0，1，2，3这4个值中的一个。</p>
+
+<p>理论上，此参数控制编译器执行的优化量。 实际上，它只是间接执行此操作，唯一的区别在于优化级别3（编译器生成“不安全”代码）与优化级别0-2（编译器生成“安全”代码）之间。 安全代码会执行完整类型和范围检查，例如，尝试应用非过程，尝试对non-pair的car操作或尝试引用向量的末尾，均会导致 引发异常。 对于不安全的代码，相同的情况可能会导致无效的内存引用，Scheme堆损坏（这可能在以后引起看似无关的问题），系统崩溃或其他不良行为。不安全的代码通常会更快，但是应该谨慎使用优化级别3，并且仅运用在必须尽快运行且经过良好测试的代码中。</p>
+
+<p>尽管编译器为优化0至2级生成了相同的代码，但如果需要，用户定义的宏转换器可以区分不同的级别。</p>
+
+<p>一种使用优化级别的方法是在每个文件上，强制使用eval-when。 例如:</p>
+
+<pre><code>(eval-when (compile) (optimize-level 3))
+</code></pre>
+
+<p>也可以通过&ndash;optimize-level命令行选项设置优化级别。此选项对于通过&ndash;program命令行选项在优化级别3运行RNRS顶层程序特别有用，因为eval-when对RNRS顶层程序无效。</p>
+
+<blockquote>
+<p>($primitive variable) | ($primitive 2 variable) | ($primitive 3 variable)</p>
+</blockquote>
+
+<p><em>variable</em> 必须是一个原始procedure的名字。** $primitive**语法形式允许以单个原始引用的粒度控制优化级别，并且它可以用于访问原始值。</p>
+
+<p>表达式（$primitive variable）可以缩写为<strong>#%variable</strong>。</p>
+
+<pre><code class="language-scheme">(#%car ’(a b c)) ⇒ a
+(let ([car cdr]) (car '(a b c))) ⇒ (b c)
+(let ([car cdr]) (#%car '(a b c))) ⇒ a
+(begin (set! car cdr) (#%car '(a b c))) ⇒ a
+</code></pre>
+
+<blockquote>
+<p>debug-level</p>
+</blockquote>
+
+<p>该参数可以采用0、1、2和3这四个值之一。它用于告诉编译器保留调试信息的重要性，其中0的重要性最低，而3的重要性最高。 默认值是1。从9.0版开始，它仅用于确定在非尾部位置遇到的引起错误的调用是否被视为在尾部位置（因此，导致调用者的帧不出现在堆栈回溯中）。 这发生在低于2的调试级别。</p>
+
+<h3 id="概要分析profiling">概要分析Profiling</h3>
+
+<p>ChezScheme支持两种类型的配置文件：源代码概要分析和块概要分析。</p>
+
+<p>启用源概要分析后，编译器会对生成的代码进行检测，以计算每个源代码表达式的执行次数。 该信息可以HTML格式显示或打包在列表中，以进行任意用户定义的处理。 也可以将其转储到文件中，然后再加载到编译器的概要分析信息数据库中，以用于源代码级优化。</p>
+
+<p>源代码概要分析至少包含下面一些步骤：
+    - 编译代码且开启source profiling
+    - 运行编译后的代码生成源代码概要分析信息，且
+    - 转储概要分析信息</p>
+
+<p>通过将参数compile-profile设置为符号源或布尔值#t，可以启用源概要分析。 可以通过以下方式转储概要分析信息：</p>
+
+<p><strong>profile-dump-html</strong> 以HTML格式显示，以便程序员可以直观地看到使用彩色编码系统执行每个表达式的频率，该系统可以轻松发现“热点”<br>
+<strong>profile-dump-list</strong> 以适合用户定义的后处理的形式;<br>
+<strong>profile-dump</strong> 以适合于通过上述方法之一或某些自定义方式进行离线处理的形式，或<br>
+<strong>profile-dump-data</strong> 以适合加载到编译器数据库中的形式。</p>
+
+<p>由profile-dump-data转储的概要分析信息通过profile-load-data加载到编译器的profiling数据库中。 除非通过profile-dump-data显式转储并通过profile-load-data加载，否则分析信息对编译器不可用。</p>
+
+<p>当使用块概要文件信息进行优化时，步骤是相似的：<br>
+    - 编译代码并开启block profiling
+    - 运行代码生成block-profiling信息
+    - 转储概要分析信息
+    - 加载概要信息，且
+    - 重新编译代码</p>
+
+<p>通过将参数compile-profile设置为符号块或布尔值#t，可以启用块分析。 概要文件信息必须通过profile-dump-data转储，并通过profile-load-data加载。 与源配置文件信息一样，块配置文件信息可以与转储信息的加载过程相同或不同。</p>
+
+<p>对于块优化，要重新编译的代码必须相同。 通常，这意味着所涉及的文件必须未经修改，并且其他任何更改都不会间接影响编译器生成的代码。</p>
+
+<p>出于同样的原因，当要同时使用源概要分析和块概要分析信息进行优化时，必须先收集并加载源信息，然后再运行涉及块概要分析的第一次和第二次编译。 即，必须使用以下步骤：<br>
+    1. 编译代码并起开源代码概要分析
+    2. 运行代码生成source-profiling信息
+    2. 转储source-profiling
+    3. 加载source-profiling
+    3. 重新编译代码，并开启块概要分析
+    4. 运行代码生成block-profiling信息
+    4. 转储block-profiling
+    5. 加载source-和block-profiling
+    5. 重新编译代码</p>
+
+<p>标记每个步骤的数字既指示步骤的顺序，又指示必须在同一计划过程中执行的顺序。 （如果需要，所有步骤都可以在同一Scheme流程中执行。）
+当compile-profile设置为默认值#f时，将禁用源和块分析。</p>
+
+<p>假设文件/tmp/fatfib/fatfib.ss包含以下代码：</p>
+
+<pre><code class="language-scheme">(define fat+
+  (lambda (x y)
+    (if (zero? y)
+        x
+        (fat+ (1+ x) (1- y)))))
+
+(define fatfib
+  (lambda (x)
+	(if (&lt; x 2)
+		1
+		(fat+ (fatfib (1- x)) (fatfib (1- (1- x)))))))
+
+</code></pre>
+
+<p>我们可以像下面这样加载fatfib.ss并且开启概要分析：</p>
+
+<pre><code class="language-scheme">(parameterize ([compile-profile 'source])
+  (load &quot;/tmp/fatfib/fatfib.ss&quot;))
+
+</code></pre>
+
+<p>然后运行代码：</p>
+
+<pre><code class="language-scheme">(fatfib 20) ⇒ 10946
+</code></pre>
+
+<p>运行（或多次运行）之后，转储概要文件为一些html文件集合：
+使用<strong>profile-dump-html</strong></p>
+
+<pre><code class="language-scheme">(profile-dump-html)
+</code></pre>
+
+<p>这将创建一个名为profile.html的文件</p>
+
+<p>在图中，执行最频繁的代码以接近红色的颜色突出显示，而执行最不频繁的代码以接近紫色的颜色突出显示。</p>
+
+<blockquote>
+<p>compile-profile</p>
+</blockquote>
+
+<p>当将此参数设置为符号<strong>source</strong>或布尔值<strong>#t</strong>时，编译器将使用指令对生成的代码进行检测，这些指令对源代码的每个部分执行的次数进行计数。 当设置为符号<strong>block</strong>时，编译器类似地使用指令对生成的代码进行检测，该指令对每个代码块的执行次数进行计数。 当设置为<strong>#f</strong>（默认值）时，编译器不会插入这些指令。</p>
+
+<p>当compile-profile为非false时生成的代码较大且效率较低，因此仅在需要概要分析信息时才应设置此参数。启用概要分析检测后编译的代码的概要文件计数器将无限期保留，即使与它们关联的代码已被垃圾收集器回收。 这样可以得到更完整和准确的概要分析数据，但会导致动态生成或加载代码的程序出现空间泄漏，程序可以通过<strong>profile-release-counters</strong>过程显式地释放计数器，从而避免潜在的空间泄漏。</p>
+
+<blockquote>
+<p>(profile-clear)</p>
+</blockquote>
+
+<p>调用此过程会清空概要分析信息，代码每个部分关联的计数都被置为0</p>
+
+<blockquote>
+<p>(profile-release-counters)</p>
+</blockquote>
+
+<p>调用此过程将丢弃概要分析</p>
+
+<blockquote>
+<p>(profile-dump)</p>
+</blockquote>
+
+<p>此过程将生成自启动或上次调用<strong>profile-clear</strong>以来收集的所有配置文件信息的转储。 它返回一个pair的列表，其中每个pair的car是一个source-object，而cdr是一个精确的非负整数计数。</p>
+
+<p><strong>profile-dump</strong>优于<strong>profile-dump-list</strong>的优点在于，<strong>profile-dump</strong>仅执行最少的处理，并保留完整的源对象，包括其嵌入式源文件描述符。 例如，它可以用于将概要分析信息转储到一台计算机上的fasl文件中，以便在另一台计算机上进行后续处理。</p>
+
+<blockquote>
+<p>(profile-dump-html) | (profile-dump-html prefix) | (profile-dump-html prefix dump)</p>
+</blockquote>
+
+<p>此过程将生成一个或多个HTML文件，包括profile.html（其中包含用颜色编码的摘要信息），以及一个文件source.html，其中每个源文件源都包含用源代码进行颜色编码的副本，如前导中所述： 在本节中。 如果指定了*prefix*，则它必须是字符串，并且在生成的HTML文件的名称之前。 例如，如果前缀为<strong>“ /tmp/”</strong>，则生成的文件将放置在目录/tmp中。 原始概要分析信息是从转储获取的，默认为<strong>profile-dump</strong>返回的值</p>
+
+<blockquote>
+<p>(profile-palette)</p>
+</blockquote>
+
+<p>此参数的值必须是至少三对的非空向量。 每个pair的car是背景色，而cdr是前景（文本）色。 每种颜色都必须是一个字符串，并且每个字符串都应包含HTML层叠样式表（CSS）颜色说明符。 第一组用于未配置的代码，第二对用于未执行的配置的代码。 第三个用于执行频率最低的代码，第四个用于执行频率倒数第二低的代码，以此类推，最后一个用于执行频率最高的代码。 程序员可能希望提供自己的调色板以增强可见性或更改所用颜色的数量。</p>
+
+<p>默认情况下，黑色背景用于未配置文件的代码，灰色背景用于未执行的配置文件的代码。 根据执行频率，紫色到红色的背景颜色用于执行的概要分析代码，而最频繁执行的代码使用红色。</p>
+
+<pre><code class="language-scheme">(profile-palette) ⇒
+#((&quot;#111111&quot; . &quot;white&quot;) (&quot;#607D8B&quot; . &quot;white&quot;)
+    (&quot;#9C27B0&quot; . &quot;black&quot;) (&quot;#673AB7&quot; . &quot;white&quot;)
+    (&quot;#3F51B5&quot; . &quot;white&quot;) (&quot;#2196F3&quot; . &quot;black&quot;)
+    (&quot;#00BCD4&quot; . &quot;black&quot;) (&quot;#4CAF50&quot; . &quot;black&quot;)
+    (&quot;#CDDC39&quot; . &quot;black&quot;) (&quot;#FFEB3B&quot; . &quot;black&quot;)
+    (&quot;#FFC107&quot; . &quot;black&quot;) (&quot;#FF9800&quot; . &quot;black&quot;)
+    (&quot;#F44336&quot; . &quot;white&quot;))
+(profile-palette
+ ; set palette with rainbow colors and black text
+ ; for all but unprofiled or unexecuted code
+  '#((&quot;#000000&quot; . &quot;white&quot;)
+     (&quot;#666666&quot; . &quot;white&quot;)
+     (&quot;#8B00FF&quot; . &quot;black&quot;)
+     (&quot;#6600FF&quot; . &quot;black&quot;)
+     (&quot;#0000FF&quot; . &quot;black&quot;)
+     (&quot;#00FF00&quot; . &quot;black&quot;)
+     (&quot;#FFFF00&quot; . &quot;black&quot;)
+     (&quot;#FF7F00&quot; . &quot;black&quot;)
+     (&quot;#FF0000&quot; . &quot;black&quot;)))  ; red
+
+</code></pre>
+
+<blockquote>
+<p>(profile-line-number-color)</p>
+</blockquote>
+
+<p>此参数的值必须是字符串或#f。 如果是字符串，则该字符串应包含HTML层叠样式表（CSS）颜色说明符。 如果参数设置为字符串，则<strong>profile-dump-html</strong>使用指定的颜色在每个源文件的html呈现中包括行号。 如果参数设置为#f，则不包含行号。</p>
+
+<h3 id="个性化-waiter-customization">个性化（Waiter Customization）</h3>
+
+<blockquote>
+<p>(new-cafe) |  (new-cafe eval-proc)</p>
+</blockquote>
+
+<p>Chez Scheme通过<em>waiter</em> 或read-eval-print循环（REPL）与用户进行交互。 *waiter*在称为caf́e的上下文中运行。 当系统启动时，将用户置于caf́e中并分配<em>waiter</em> 。 <strong>new-cafe</strong>在旧的caf́e之上开启了一个新的Scheme caf́e。
+除了启动<em>waiter</em> 之外，<strong>new-cafe</strong>还设置了caf́e的重置和退出处理程序（请参阅reset-handler和exit-handler）。
+退出caf́e会返回到创建该caf́e的caf́e。从最初的caf́e退出后会完全退出了Scheme。 caf́e可以通过显式调用<strong>exit</strong>或通过接收end-of-file（Unix系统上为“ control-D”）来退出。在前一种情况下，传递给<strong>exit</strong>的任何值都是从<strong>new-cafe</strong>返回的。</p>
+
+<pre><code>&gt; (define x 1)
+&gt; x
+1
+&gt; (new-cafe)
+&gt;&gt; x
+1
+&gt;&gt; (define y 2)
+&gt;&gt; y
+2
+
+&gt;&gt; (exit 1)
+1
+</code></pre>
+
+<p>如果指定了可选的<em>eval-proc</em> 参数，则使用<em>eval-proc</em> 求值从控制台输入的程序。 否则，将使用参数<em>current-eval</em> 的值。 eval-proc必须接受一个参数，即要求值的表达式。</p>
+
+<pre><code class="language-scheme">&gt; (new-cafe (lambda (x) x))
+&gt;&gt; 3
+3
+
+&gt;&gt; (a . (b . (c . ())))
+(a b c)
+
+&gt; (define sum
+	(lambda (ls)
+		(if (null? ls)
+			0
+			(+ (car ls) (sum (cdr ls))))))
+&gt; (new-cafe sum)
+&gt;&gt; (1 2 3)
+6
+</code></pre>
+
+<h3 id="时间和日期">时间和日期</h3>
+
+<p>时间由时间对象表示。 时间对象记录特定时间或持续时间的纳秒和秒，以及标识时间对象性质的<em>time type</em> 。 时间类型是以下符号之一：<br>
+<strong>time-utc:</strong> 从“纪元”1970年1月1日0点0分0秒以来的时间<br>
+<strong>time-monotonic:</strong> 从过去某个任意时间点开始经过的时间，理想情况下无需进行调整。<br>
+<strong>time-duration:</strong> 两个时间的间隔。当作为<strong>current-time</strong>的参数时，其行为与<strong>time-monotonic</strong>类似，但也可以用来表示两个时间对象相减的结果<br>
+<strong>time-process:</strong> 当前进程使用的CPU时间量。<br>
+<strong>time-thread:</strong> 当前线程使用的CPU时间量。 如果未运行线程，或者系统不允许确定单个线程时间，则该时间与<strong>time-process</strong>相同。<br>
+<strong>time-collector-cpu:</strong> 当前进程用于垃圾回收的这部分CPU消耗的时间。<br>
+<strong>time-collector-real:</strong> 当前进程用于垃圾回收的这部分实时消耗的时间<br></p>
+
+<p>日期由日期对象表示。 日期对象记录特定日期的纳秒，秒，分钟，小时，日，月和年，以及标识时区的偏移量。</p>
+
+<blockquote>
+<p>(current-time) |  (current-time time-type)</p>
+</blockquote>
+
+<p><em>time-type</em> 必须是上述的时间对象之一，默认为<strong>time-utc</strong></p>
+
+<pre><code class="language-scheme">(current-time) ⇒ #&lt;time-utc 1198815722.473668000&gt;
+(current-time ’time-process) ⇒ #&lt;time-process 0.120534264&gt;
+</code></pre>
+
+<blockquote>
+<p>(make-time type nsec sec)</p>
+</blockquote>
+
+<p><em>type</em> 必须是上面列出的时间类型符号之一。 <em>nsec</em> 表示纳秒，并且必须是小于$10^9$的精确非负整数。<em>sec</em> 表示秒，并且必须是精确的整数。</p>
+
+<pre><code class="language-scheme">(make-time 'time-utc 787511000 1198783214)
+(make-time 'time-duration 10 5)
+(make-time 'time-duration 10 -5)
+</code></pre>
+
+<blockquote>
+<p>(time? obj)</p>
+
+<pre><code class="language-scheme">(time? (current-time)) ⇒ #t
+(time? (make-time ’time-utc 0 0)) ⇒ #t
+(time? &quot;1400 hours&quot;) ⇒ #f
+</code></pre>
+
+<p>(time-type time)</p>
+</blockquote>
+
+<p>返回<em>time</em> 的时间类型</p>
+
+<blockquote>
+<p>(time-nanosecond time)</p>
+</blockquote>
+
+<p>返回<em>time</em> 的纳秒</p>
+
+<blockquote>
+<p>(time-second time)</p>
+</blockquote>
+
+<p>返回<em>time</em> 的秒</p>
+
+<blockquote>
+<p>(set-time-type! time type) | (set-time-nanosecond! time nsec) | (set-time-second! time sec)</p>
+</blockquote>
+
+<p>每一个过程都会修改时间对象，只改变局部，而其他值则不受影响。 例如，<strong>set-time-nanosecond!</strong> 只更改纳秒时间，而不更改秒或类型。 特别地，当时间对象的类型改变时，值并不会更改。</p>
+
+<blockquote>
+<p>(time=? time1 time2) | (time&lt;? time1 time2) | (time&gt;? time1 time2) | (time&lt;=? time1 time2) | (time&gt;=? time1 time2)</p>
+</blockquote>
+
+<p>时间比较。</p>
+
+<blockquote>
+<p>(copy-time time)</p>
+</blockquote>
+
+<p>复制时间。</p>
+
+<pre><code class="language-scheme">(define t1 (current-time))
+(define t2 (copy-time t1))
+(eq? t2 t1) ⇒ #f
+(eqv? (time-second t2) (time-second t1)) ⇒ #t
+(eqv? (time-nanosecond t2) (time-nanosecond t1)) ⇒ #t
+</code></pre>
+
+<blockquote>
+<p>(time-difference time1 time2 ) | (time-difference! time1 time2 ) | (add-duration time timed) | (add-duration! time timed) | (subtract-duration time timed) | (subtract-duration! time timed)</p>
+</blockquote>
+
+<p>对于<strong>time-difference，time1</strong>和<strong>time2</strong>必须具有相同的时间类型，结果是时间类型为time-duration的时间对象。 对于<strong>add-duration，add-duration！，subtract-duration</strong>和<strong>subtract-duration！</strong>，timed必须具有时间类型time-duration，并且结果是时间类型与时间相同的时间对象。 <strong>time-difference！，add-duration！</strong>和<strong>subtract-duration！</strong> 可能具有破坏性，即每个对象都可能修改并返回其第一个参数，或者可能分配了新的时间对象</p>
+
+<pre><code class="language-scheme">(let ([delay (make-time 'time-duration 0 1)])
+  (let ([t1 (current-time 'time-monotonic)])
+    (sleep delay)
+    (let ([t2 (current-time 'time-monotonic)])
+      (let ([t3 (time-difference t2 t1)])
+        (and
+(eq? (time-type t3) 'time-duration)
+(time&gt;=? t3 delay)
+(time=? (add-duration t1 t3) t2)
+(time=? (subtract-duration t2 t3) t1)))))) ⇒ #t
+</code></pre>
+
+<blockquote>
+<p>(current-date) |  (current-date offset)</p>
+</blockquote>
+
+<p>如上所述，<em>offset</em> 表示UTC以东的时区偏移量（以秒为单位）。 它必须是一个介于-86400到+86400（含）之间的精确整数，并且默认为本地时区偏移量。 可以通过传递零偏移量来获得UTC.offset表示UTC以东以秒为单位的时区偏移量，如上所述。 它必须是一个介于-86400到+86400（含）之间的精确整数，并且默认为本地时区偏移量。 UTC可以通过传递零偏移来获得。</p>
+
+<p>如果未提供<em>offset</em> ，则使用当前时区的offset，以及<strong>date-dst？</strong> 和<strong>date-zone-name</strong>报告有关时区的信息。 如果提供了偏移量，那么<strong>date-dst？</strong> 和结果日期对象上的<strong>date-zone-name</strong>都是<strong>#f</strong>。</p>
+
+<pre><code class="language-scheme">(current-date) ⇒ #&lt;date Thu Dec 27 23:23:20 2007&gt;
+(current-date 0) ⇒ #&lt;date Fri Dec 28 04:23:20 2007&gt;
+(date-zone-name (current-date)) ⇒ &quot;EST&quot; or other system-provided string
+(date-zone-name (current-date 0)) ⇒ #f
+
+</code></pre>
+
+<blockquote>
+<p>(make-date nsec sec min hour day mon year) |  (make-date nsec sec min hour day mon year offset)</p>
+</blockquote>
+
+<p>nsec代表纳秒，并且必须是小于$10^9$的精确非负整数。sec代表秒，并且必须是小于62的精确非负整数。min代表分钟，并且必须是小于60的精确非负整数。hour必须是精确的非负整数 小于24。day必须是一个精确的整数，1≤day≤31。（实际上限可能取决于月份和年份。）mon表示月份必须是一个精确的整数，1≤mon≤12。年必须 是一个精确的整数。 如上所述，它应至少为1970。offset表示UTC以东的时区偏移（以秒为单位）。 它必须是-86400到+86400（含）范围内的精确整数。 可以通过传递零偏移量来指定UTC。</p>
+
+<pre><code class="language-scheme">(make-date 0 0 0 0 1 1 1970 0) ⇒ #&lt;date Thu Jan 1 00:00:00 1970&gt;
+(make-date 0 30 7 9 23 9 2007 -14400) ⇒ #&lt;date Sun Sep 23 09:07:30 2007&gt;
+(date-zone-name (make-date 0 30 7 9 23 9 2007 -14400)) ⇒ #f
+(string? (date-zone-name (make-date 0 30 7 9 23 9 2007))) ⇒ #t
+</code></pre>
+
+<blockquote>
+<p>(date-nanosecond date) | (date-second date) | (date-minute date) | (date-hour date) | (date-day date) | (date-month date) | (date-year date) | (date-zone-offset date)</p>
+</blockquote>
+
+<p>如字面的意思， 返回日期的对应的部分的值</p>
+
+<blockquote>
+<p>(date-week-day date) | (date-year-day date)</p>
+</blockquote>
+
+<p>通过这些过程，可以确定以<em>date</em> 表示的日期是星期几还是每年的某天。 week-day是小于7的精确非负整数，其中0表示星期日，1表示星期一，依此类推。 year-day是小于367的精确非负整数，其中0代表一年的第一天（1月1日），1代表第二天，2代表第三天，依此类推。</p>
+
+<blockquote>
+<p>(time-utc-&gt;date time) |  (time-utc-&gt;date time offset) | (date-&gt;time-utc date)</p>
+</blockquote>
+
+<p>这些过程用于在时间和日期对象之间进行转换。 <strong>time-utc-&gt;date</strong>的时间参数必须具有<strong>time-type utc</strong>，<strong>date-&gt;time-utc</strong>始终返回带有<strong>time-type utc</strong>的时间对象。</p>
+
+<p>对于<strong>time-utc-&gt;date</strong>，<em>offset</em> 表示UTC以东的秒数中的时区偏移，如本节开头所述。 它必须是一个介于-86400到+86400（含）之间的精确整数，并且默认为本地时区偏移量。 UTC可以通过传递零偏移来获得。</p>
+
+<blockquote>
+<p>(date-and-time) |  (date-and-time date)</p>
+</blockquote>
+
+<p>字符串始终采用以下示例所示的格式，长度始终为24。</p>
+
+<pre><code class="language-scheme">(date-and-time) ⇒ &quot;Fri Jul 13 13:13:13 2001&quot;
+
+(defined (make-date 0 0 0 0 1 1 2007 0))
+(date-and-time d) ⇒ &quot;Mon Jan 01 00:00:00 2007&quot;
+</code></pre>
+
+<blockquote>
+<p>(sleep time)</p>
+</blockquote>
+
+<p><em>time</em> 必须是类型为<strong>time-duration</strong>的时间对象。 <em>sleep</em> 导致调用线程在大约由时间对象指示的时间量内暂停操作，除非该进程收到中断睡眠操作的信号。 实际睡眠时间取决于系统时钟的粒度以及系统运行其他线程和进程的繁忙程度。</p>
+
+<h3 id="时间和统计">时间和统计</h3>
+
+<blockquote>
+<p>(time expr)
+<strong>time</strong>求值<em>expr</em> ，并且作为副作用，打印（到console-output端口）cpu时间量，实时时间量，分配的字节数以及与求值<em>expr</em> 相关的收集开销。</p>
+
+<pre><code class="language-scheme">&gt; (time (collect))
+(time (collect))
+    1 collection
+    1 ms elapsed cpu time, including 1 ms collecting
+    1 ms elapsed real time, including 1 ms collecting
+    160 bytes allocated, including 8184 bytes reclaimed
+</code></pre>
+
+<p>(cpu-time)</p>
+</blockquote>
+
+<p>返回：自系统启动以来消耗的cpu时间量。</p>
+
+<p>该量以毫秒为单位。 该数量包括“system”时间和“user”时间，即代表进程在内核中花费的时间以及在进程本身中花费的时间。</p>
+
+<blockquote>
+<p>(real-time)</p>
+</blockquote>
+
+<p>返回：自系统启动以来经过的实时时间</p>
+
+<p>以毫秒为单位的时间总量</p>
+
+<blockquote>
+<p>(bytes-allocated) | (bytes-allocated g)</p>
+</blockquote>
+
+<p>返回：当前分配的字节数</p>
+
+<p>如果提供了<em>g</em> ，则<strong>bytes-allocated</strong>返回指定generation中当前为Scheme对象分配的字节数。 <em>g</em> 必须为非负精确整数，且不得大于最大非静态generation，即，<strong>collect-maximum-generation</strong>返回的值或符号为<strong>static</strong>。 如果未提供<em>g</em> ，则<strong>bytes-allocated</strong>返回所有generation中分配的字节总数。</p>
+
+<blockquote>
+<p>(initial-bytes-allocated)</p>
+</blockquote>
+
+<p>返回：加载启动文件后分配的总字节数</p>
+
+<blockquote>
+<p>(bytes-deallocated)</p>
+</blockquote>
+
+<p>返回：垃圾回收器释放的总字节数</p>
+
+<p>通过将（<strong>bytes-deallocated</strong>）和（<strong>bytes-allocated</strong>）相加并减去（<strong>initial-bytes-allocated</strong>），可以获得当前进程分配的总字节数（无论是否仍在使用中）。</p>
+
+<blockquote>
+<p>(current-memory-bytes)</p>
+</blockquote>
+
+<p>返回：当前分配的字节总数，包括开销.</p>
+
+<p><strong>current-memory-bytes</strong>返回堆的总大小（以字节为单位），不仅包括Scheme对象占用的字节，还包括各种形式的开销（包括碎片和保留但当前不占用的内存），因此，它是操作系统中当前进程的堆内存量的准确度量值</p>
+
+<blockquote>
+<p>(maximum-memory-bytes)</p>
+</blockquote>
+
+<p>返回：分配过的最大字节数，包括开销</p>
+
+<blockquote>
+<p>(reset-maximum-memory-bytes!)</p>
+</blockquote>
+
+<p>将堆内存的最大记录值重置为当前堆大小</p>
+
+<blockquote>
+<p>(collections)</p>
+</blockquote>
+
+<p>返回：到目前为止的垃圾回收次数</p>
+
+<blockquote>
+<p>(statistics)</p>
+</blockquote>
+
+<p>返回：包含当前统计信息的sstats记录</p>
+
+<p><strong>statistics</strong>将各种时间和分配统计信息打包在一起，形成一个<strong>sstats</strong>记录。 <strong>sstats</strong>记录具有以下字段：</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>cpu,</strong></td>
+<td>消耗的cpu时间</td>
+</tr>
+
+<tr>
+<td><strong>real,</strong></td>
+<td>经过的时间</td>
+</tr>
+
+<tr>
+<td><strong>bytes,</strong></td>
+<td>分配的字节数</td>
+</tr>
+
+<tr>
+<td><strong>gc-count,</strong></td>
+<td>gc次数</td>
+</tr>
+
+<tr>
+<td><strong>gc-real,</strong></td>
+<td>gc经历的时间</td>
+</tr>
+
+<tr>
+<td><strong>gc-bytes,</strong></td>
+<td>gc回收的字节数</td>
+</tr>
+</tbody>
+</table>
+
+<p>所有值都是从系统启动开始算</p>
+
+<p><strong>statistics</strong>可以像如下定义：</p>
+
+<pre><code class="language-scheme">(define statistics
+  (lambda ()
+    (make-sstats
+      (current-time ’time-thread)
+      (current-time ’time-monotonic)
+      (- (+ (bytes-allocated) (bytes-deallocated))
+         (initial-bytes-allocated))
+      (collections)
+      (current-time ’time-collector-cpu)
+      (current-time ’time-collector-real)
+      (bytes-deallocated))))
+</code></pre>
+
+<blockquote>
+<p>(make-sstats cpu real bytes gc-count gc-cpu gc-real gc-bytes)
+返回：sstats记录</p>
+
+<p>(sstats-cpu s) | (sstats-real s) | (sstats-bytes s) | (sstats-gc-count s) | (sstats-gc-cpu s) | (sstats-gc-real s) | (sstats-gc-bytes s)</p>
+</blockquote>
+
+<p>返回：<em>s</em> 对应的部分的值</p>
+
+<blockquote>
+<p>(set-sstats-cpu! s new-value) | (set-sstats-real! s new-value) | (set-sstats-bytes! s new-value) | (set-sstats-gc-count! s new-value) | (set-sstats-gc-cpu! s new-value) | (set-sstats-gc-real! s new-value) | (set-sstats-gc-bytes! s new-value)</p>
+</blockquote>
+
+<p>设置对应部分的值</p>
+
+<blockquote>
+<p>(sstats-difference s1 s2)</p>
+</blockquote>
+
+<p>比较两个sstats</p>
+
+<blockquote>
+<p>enable-object-counts</p>
+</blockquote>
+
+<p><strong>enable-object-counts</strong>的值是一个布尔值，它确定收集器在运行时是否记录对象计数，从而确定过程对象计数返回的<strong>object-counts</strong>是否准确。 由于启用对象计数会增加收集的开销，因此默认情况下该参数设置为#f。</p>
+
+<blockquote>
+<p>(object-counts)</p>
+</blockquote>
+
+<p>过程object-countsx返回一个嵌套的关联列表，该列表表示为一个或多个世代中至少有一个活动实例的每个堆分配的原始类型和记录类型分配的对象计数和字节。 （堆分配的基本类型包括，例如，pair和向量，但不包括，例如，fixnum或字符。）仅当enable-object-countsxx为#t时，收集器才会收集对象计数。</p>
+
+<p>object-countsx返回的关联列表具有以下结构：
+    <em>((type (generation count . bytes) &hellip;) &hellip;)</em></p>
+
+<p>*type*是原始类型的名称，以符号（例如，对）表示，或者是record-type描述符（rtd）。 generation是介于0和（collect-maximum-generation）的值（包含在内）或表示静态生成的符号static之间的非负固定编号。 *count*和字节是非负的fixnum。</p>
+
+<pre><code class="language-scheme">(collect-request-handler void)
+(enable-object-counts #t)
+(define-record-type frob (fields x))
+(define x (make-frob (make-frob #f)))
+(collect 3 3)
+(cdr (assoc 3
+       (cdr (assoc (record-type-descriptor frob)
+              (object-counts)))))  =&gt; (2. 16)
+</code></pre>
+
+<h3 id="成本中心-cost-centers">成本中心 Cost Centers</h3>
+
+<p>成本中心用于在求值选定的代码段时跟踪分配的字节，执行的指令和/或经过的CPU时间。 成本中心是通过过程<strong>make-cost-center</strong>创建的，而成本是通过<strong>with-cost-center</strong>过程进行跟踪的。</p>
+
+<p>仅为此目的代码跟踪分配和指令计数。 该工具由两个参数控制：<strong>generate-allocation-counts</strong>和<strong>generate-instruction-counts</strong>。 默认情况下禁用检测。 内置程序没有检测，解释代码或非Scheme代码也没有。 仅当过程<strong>with-cost-center</strong>的可选参数*timed?*有值且不为false时才会跟踪经历的时间</p>
+
+<p><strong>with-cost-center</strong>过程即使在使用同一成本中心重新输入，在多个线程中同时使用并通过继续调用退出或重新输入一次或多次后，也要遵循上述注意事项来准确跟踪成本。</p>
+
+<blockquote>
+<p>generate-allocation-counts</p>
+</blockquote>
+
+<p>当此参数为true时，编译器会在生成的代码的每个分配点插入一小段指令，以跟踪发生的分配量。此参数最初为false。</p>
+
+<blockquote>
+<p>generate-instruction-counts</p>
+</blockquote>
+
+<p>当此参数为true时，编译器将在生成的代码的每个块中插入简短的指令序列，以跟踪该块执行的指令数。 此参数最初为false。</p>
+
+<blockquote>
+<p>(make-cost-center)</p>
+</blockquote>
+
+<p>返回: 新的成本中心</p>
+
+<blockquote>
+<p>(with-cost-center cost-center thunk) | (with-cost-center timed? cost-center thunk)</p>
+</blockquote>
+
+<p><em>thunk</em> 必须是一个接受零参数的过程。 <strong>with-cost-center</strong>调用不带参数的<em>thunk</em> 并返回其值。 它还可以动态计算分配的字节数，执行的指令以及在计算<em>thunk</em> 调用时所经过的cpu时间，并将跟踪的成本添加到成本中心记录中。</p>
+
+<p>如上所述，仅对于将参数<em>generate-allocation-counts</em> 设置为true的编译的代码跟踪分配计数，并且仅对将<em>generate-instruction-counts</em> 设置为true的编译的代码跟踪指令计数。 仅在提供<em>timed?</em> 且不为false的情况下，才会跟踪cpu时间，其中包括在已测量的代码，未测量代码和非Scheme代码中花费的cpu时间。</p>
+
+<blockquote>
+<p>(cost-center-instruction-count cost-center)</p>
+</blockquote>
+
+<p>返回：成本中心跟踪的指令数</p>
+
+<blockquote>
+<p>(cost-center-allocation-count cost-center)</p>
+</blockquote>
+
+<p>返回：成本中心跟踪的已分配字节数</p>
+
+<blockquote>
+<p>(cost-center-time cost-center)</p>
+</blockquote>
+
+<p>返回：成本中心跟踪的CPU时间</p>
+
+<blockquote>
+<p>(reset-cost-center! cost-center)</p>
+</blockquote>
+
+<p>此过程将成本中心记录的成本重置为零。</p>
+
+<h3 id="参数">参数</h3>
+
+<p>本节介绍了用于创建和操作参数的机制。 可以使用<strong>make-parameter</strong>方便地创建新参数。 但是，除了它们的行为外，没有什么能将参数与其他过程区分开。 如果调用参数时必须采取比通过<strong>make-parameter</strong>机制容易容纳的更为复杂的动作，则可以直接使用<strong>case-lambda</strong>定义该参数</p>
+
+<blockquote>
+<p>(make-parameter object) |  (make-parameter object procudure)</p>
+</blockquote>
+
+<p>make-parameter接受一个或两个参数。 第一个参数是内部变量的初始值，第二个参数（如果存在）是应用于初始值和所有后续值的过滤器。 过滤器应接受一个参数。 如果该值不合适，则过滤器应引发异常或将值转换为更合适的形式。</p>
+
+<p>例如，print-length的默认定义如下：</p>
+
+<pre><code class="language-scheme">(define print-length
+  (make-parameter
+    #f
+    (lambda (x)
+      (unless (or (not x) (and (fixnum? x) (fx&gt;= x 0)))
+        (assertion-violationf ’print-length
+          &quot;~s is not a positive fixnum or #f&quot;
+	x)) x)))
+
+(print-length) ⇒ #f
+(print-length 3)
+(print-length) ⇒ 3
+(format&quot;~s&quot;’(123456)) ⇒ &quot;(123...)&quot;
+(print-length #f)
+(format&quot;~s&quot;’(123456)) ⇒ &quot;(123456)&quot;
+</code></pre>
+
+<p><strong>make-parameter</strong>的定义使用<strong>case-lambda</strong>很简单：</p>
+
+<pre><code class="language-scheme">(define make-parameter
+  (case-lambda
+    [(init guard)
+     (let ([v (guard init)])
+       (case-lambda
+         [() v]
+         [(u) (set! v (guard u))]))]
+    [(init)
+     (make-parameter init (lambda (x) x))]))
+</code></pre>
+
+<blockquote>
+<p>(parameterize ((param expr) &hellip;) body1 body2 &hellip;)</p>
+</blockquote>
+
+<p>使用语法形式<strong>parameterize</strong>，可以以类似于普通变量的<strong>fluid-let</strong>的方式更改参数的值。 在计算body时，将每个<em>param</em> 设置为相应的<em>expr</em> 的值。</p>
+
+<pre><code class="language-scheme">(define test
+  (make-parameter 0))
+(test) ⇒ 0
+(test 1)
+(test) ⇒ 1 (parameterize ([test 2])
+(test)) ⇒ 2
+(test) ⇒ 1 (parameterize ([test 2])
+(test 3)
+(test)) ⇒ 3
+(test) ⇒ 1
+(define k (lambda (x) x)) (begin (set! k (call/cc k))
+	’k) ⇒ k
+(parameterize ([test 2])
+  (test (call/cc k))
+  (test)) ⇒ k
+(test) ⇒ 1
+(k3) ⇒3
+(test) ⇒ 1
+</code></pre>
+
+<h3 id="虚拟寄存器virtual-registers">虚拟寄存器Virtual registers</h3>
+
+<p>编译器支持一组有限的<em>虚拟寄存器</em> ，以供需要高速，全局和可变存储位置的程序使用。 引用或分配虚拟寄存器可能比访问可分配的局部变量或全局变量更快，并且访问时永远不会比它们更慢，而且这样做的代码序列通常更小。 分配可能会显著加快，因为不需要跟踪从虚拟寄存器到年轻对象的指针，因为可能存在于较早一世代中的可变位置。 在系统的线程版本上，虚拟寄存器是“每个线程”的，因此可以以比线程参数低廉的方式用作thread-local存储。</p>
+
+<p>该接口包含三个过程：<strong>virtual-register-count</strong>（返回虚拟寄存器的数量），<strong>set-virtual-register!</strong>（设置指定的虚拟寄存器的值）和<strong>virtual-register</strong>（获取指定虚拟寄存器的值）。</p>
+
+<p>虚拟寄存器由小于虚拟寄存器数量的非负fixnum索引指定。 为了获得<strong>set-virtual-register!</strong>和<strong>virtual-register</strong>的最佳性能，索引应该是直接嵌入在调用中的常量（或者可以通过对调用的优化来传播）。 为了避免将这些常量放在源代码中，程序员应考虑使用标识符宏为虚拟寄存器命名，例如：</p>
+
+<pre><code class="language-scheme">(define-syntax current-state
+  (identifier-syntax
+    [id (virtual-register 0)]
+    [(set! id e) (set-virtual-register! 0 e)]))
+
+(set! current-state 'start)
+current-state ⇒ start
+</code></pre>
+
+<p>虚拟寄存器必须被视为应用程序级资源，即，打算由多个应用程序使用的库通常不应使用虚拟寄存器，以避免与应用程序使用寄存器冲突。</p>
+
+<blockquote>
+<p>(virtual-register-count)</p>
+</blockquote>
+
+<p>从9.0版开始，虚拟寄存器的数量设置为16。除非通过源重新编译Chez Scheme，否则无法更改。</p>
+
+<blockquote>
+<p>(set-virtual-register! k x)</p>
+</blockquote>
+
+<p><strong>set-virtual-register!</strong>将<em>x</em> 存储在虚拟寄存器<em>k</em> 中。 <em>k</em> 必须是小于（<strong>virtual-register-count</strong>）的值的非负fixnum。</p>
+
+<blockquote>
+<p>(virtual-register k)</p>
+</blockquote>
+
+<p><strong>virtual-register</strong>返回最后一次存储在虚拟寄存器<em>k</em> 中的值（在当前线程上）。</p>
+
+<h3 id="环境查询和设置environmental-queries-and-settings">环境查询和设置Environmental Queries and Settings</h3>
+
+<blockquote>
+<p>(scheme-version)</p>
+</blockquote>
+
+<p>Chez Scheme的版本</p>
+
+<blockquote>
+<p>(threaded?)</p>
+</blockquote>
+
+<p>返回：#t（如果在系统为线程版本），否则返回#f</p>
+
+<blockquote>
+<p>(get-process-id)</p>
+</blockquote>
+
+<p>返回：当前进程的PID</p>
+
+<blockquote>
+<p>(getenv key)</p>
+</blockquote>
+
+<p>返回：环境中<em>key</em> 的值，或 <strong>#f</strong></p>
+
+<pre><code class="language-scheme">(getenv &quot;HOME&quot;) ⇒ &quot;/u/freddy&quot;
+</code></pre>
+
+<blockquote>
+<p>(putenv key value)</p>
+</blockquote>
+
+<p><em>key</em> 和 <em>value</em> 必须是字符串</p>
+
+<pre><code class="language-scheme">(putenv &quot;SCHEME&quot; &quot;rocks!&quot;)
+(getenv &quot;SCHEME&quot;) ⇒ &quot;rocks!&quot;
+</code></pre>
+
+<blockquote>
+<p>(get-registry key)</p>
+</blockquote>
+
+<p>返回：<em>key</em> 的注册表值，或者<strong>#f</strong></p>
+
+<blockquote>
+<p>(put-registry! key val) | (remove-registry! key)</p>
+</blockquote>
+
+<p><em>key</em> 和 <em>value</em> 必须是字符串</p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2020/02/system-operations/" title="系统操作(System Operations in Chez Scheme)" target="_blank" rel="external">https://lvsq.net/2020/02/system-operations/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">Siquan</span><small class="ml-1x">函数式编程爱好者, 爱读历史</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2020/02/define-record-type/" title="Scheme语法define-record-type介绍"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        
+        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+            data-target="#donateModal"><span>赏</span></button>
+        
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content donate">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="modal-body">
+                <div class="donate-box">
+                    <div class="donate-head">
+                        <p>感谢您的支持,我会继续努力的!</p>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                    <div class="donate-footer">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
+                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
+                                    微信支付</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2019  -
+    2020
+    <div class="publishby">
+      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/erlang.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/scheme.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/java.min.js"></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
+<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/lvsq.net\/',
+            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
+
+  </body>
+</html>
