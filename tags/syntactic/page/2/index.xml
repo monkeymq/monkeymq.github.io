@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>syntactic on Siquan的网络日志 | AI-Life</title>
+    <link>https://lvsq.net/tags/syntactic/</link>
+    <description>Recent content in syntactic on Siquan的网络日志 | AI-Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 Jan 2020 16:00:51 +0800</lastBuildDate>
+    
+        <atom:link href="https://lvsq.net/tags/syntactic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacs</title>
+      <link>https://lvsq.net/2019/11/emacs/</link>
+      <pubDate>Wed, 27 Nov 2019 20:58:09 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/11/emacs/</guid>
+      <description>M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查</description>
+    </item>
+    
+  </channel>
+</rss>

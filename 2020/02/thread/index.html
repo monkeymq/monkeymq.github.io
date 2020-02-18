@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        线程（Thread System in Chez Scheme） - Siquan的网络日志 | AI-Life
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
+  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <title>线程（Thread System in Chez Scheme） - Siquan的网络日志 | AI-Life</title>
+  
+
+  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <meta property="og:title" content="线程（Thread System in Chez Scheme）" />
+<meta property="og:description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2020/02/thread/" />
+<meta property="article:published_time" content="2020-02-17T15:18:39+08:00" />
+<meta property="article:modified_time" content="2020-02-17T15:18:39+08:00" />
+<meta itemprop="name" content="线程（Thread System in Chez Scheme）">
+<meta itemprop="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程">
+
+
+<meta itemprop="datePublished" content="2020-02-17T15:18:39&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-17T15:18:39&#43;08:00" />
+<meta itemprop="wordCount" content="5744">
+
+
+
+<meta itemprop="keywords" content="thread,scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="线程（Thread System in Chez Scheme）"/>
+<meta name="twitter:description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  </head>
+  
+
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Siquan</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">函数式编程爱好者, 爱读历史</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">来了就走不了了，哈哈~~
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">14</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
+                    class="tag-list-count">13</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/thread/" class="tag-list-link">thread</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/thread/" class="title">线程（Thread System in Chez Scheme）</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-17 15:18:39 &#43;0800 CST" itemprop="datePublished">2020-02-17</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/storage-management/" class="title">存储管理(Storage Management in Chez Scheme)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-12 16:18:53 &#43;0800 CST" itemprop="datePublished">2020-02-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/system-operations/" class="title">系统操作(System Operations in Chez Scheme)</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-06 10:54:14 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/02/define-record-type/" class="title">Scheme语法define-record-type介绍</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-02-03 14:51:17 &#43;0800 CST" itemprop="datePublished">2020-02-03</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/01/modules/" class="title">Chez Scheme Modules</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-01-17 15:07:58 &#43;0800 CST" itemprop="datePublished">2020-01-17</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/02/thread/"
+    >线程（Thread System in Chez Scheme）</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/02/thread/" class="article-date">
+  <time datetime="2020-02-17 15:18:39 &#43;0800 CST" itemprop="datePublished">2020-02-17</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/thread/"> thread </a>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5744字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      
+
+<p>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。</p>
+
+<p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如<strong>+</strong>和<strong>sqrt</strong>之类的数字运算符以及诸如<strong>append</strong>和<strong>map</strong>之类的非破坏性的高级原生操作。</p>
+
+<p>简单的变动运算符（例如set-car！，vector-set！和record字段变动器）是线程安全的。 同样，对局部变量的分配，包括（未导出的）库和顶级程序变量的分配也是线程安全的。</p>
+
+<p>大多数I/O操作应被视为具有破坏性，因为它们可能会修改端口的内部结构。</p>
+
+<p>使用没有进行合适的同步策略的非线程安全的运算符可能会破坏它们所操作的对象。 这种损坏可能导致错误的行为，内存故障，甚至导致系统中止的不可恢复的错误。</p>
+
+<h3 id="线程创建">线程创建</h3>
+
+<blockquote>
+<p>(fork-thread thunk)</p>
+</blockquote>
+
+<p><em>thunk</em> 必须是一个接受0个参数的过程。</p>
+
+<p><strong>fork-thread</strong>在一个新线程中调用*thunk*，并返回一个线程对象。</p>
+
+<p>除了打印它外，<strong>fork-thread</strong>返回的线程对象无法执行任何操作。</p>
+
+<p>除了使用<strong>fork-thread</strong>以外，可通过外部代码来创建的线程必须在触及任何Scheme数据或调用任何Scheme过程之前调用<strong>Sactivate_thread</strong></p>
+
+<blockquote>
+<p>(thread? obj)</p>
+</blockquote>
+
+<p>返回：如果<em>obj</em> 是一个线程对象，返回#t,否则返回#f</p>
+
+<blockquote>
+<p>(get-thread-id)</p>
+</blockquote>
+
+<p>返回：当前线程的id</p>
+
+<p>线程id是由线程分配的线程号，并且与<strong>get-process-id</strong>返回的进程id没有关系，进程id在所有线程中都是相同的。</p>
+
+<h3 id="互斥锁">互斥锁</h3>
+
+<blockquote>
+<p>(make-mutex)</p>
+</blockquote>
+
+<p>返回：一个新的互斥锁对象</p>
+
+<blockquote>
+<p>(mutex? obj)</p>
+</blockquote>
+
+<p>返回：如果<em>obj</em> 是互斥锁，返回#t</p>
+
+<blockquote>
+<p>(mutex-acquire mutex) |  (mutex-acquire mutex block?)</p>
+</blockquote>
+
+<p>*mutex*必须是一个互斥锁。</p>
+
+<p><strong>mutex-acquire</strong>获取由<em>mutex</em> 标识的互斥锁。可选的bool参数<em>block？</em> 默认为#t，指定线程是否应阻塞等待互斥锁。<em>block？</em> 如果省略或为true，则线程将阻塞，直到获取了互斥锁为止，并返回未指定的值。</p>
+
+<p>如果<em>block？</em> 为false并且互斥锁当前已属于其他线程，当前线程并不会阻塞，而是，<strong>mutex-acquire</strong>立即返回值<strong>#f</strong>，以指示互斥锁不可用。 如果<em>block？</em> 为false并且成功获取了互斥锁，<strong>mutex-acquire</strong>返回#t。</p>
+
+<p>互斥锁在Posix线程术语中是递归的，这意味着调用线程可以使用互斥锁获取（重新）获取它已经拥有的互斥锁（注：锁是可以重入的）。 在这种情况下，释放互斥锁需要执行相等数量的<strong>mutex-release</strong>。</p>
+
+<blockquote>
+<p>(mutex-release mutex)</p>
+</blockquote>
+
+<p>*mutex*必须是一个互斥锁。</p>
+
+<p><strong>mutex-release</strong>释放由<em>mutex</em> 标识的互斥锁。 如果<em>mutex</em> 不属于调用线程（即释放别人的互斥锁），则会导致无法预料的行为。</p>
+
+<blockquote>
+<p>(with-mutex mutex body1 body2 &hellip;)</p>
+</blockquote>
+
+<p><strong>with-mutex</strong>计算表达式<em>mutex</em> ，其必须可以计算为一个互斥锁，获取锁，并计算<em>body1 body2 &hellip;</em> ,然后释放锁。无论body是正常返回还是通过控制操作（即可能由于错误而抛到continuation）释放互斥量，这都会导致<strong>with-mutex</strong>形式的非本地退出。如果控制随后通过continuation调用返回到body，则将重新获取互斥锁。</p>
+
+<p>与直接使用<strong>mutex-acquire</strong>和<strong>mutex-release</strong>相比，使用<strong>with-mutex</strong>通常更方便，更安全。</p>
+
+<h3 id="条件">条件</h3>
+
+<blockquote>
+<p>(make-condition)</p>
+</blockquote>
+
+<p>返回：一个新的条件对象</p>
+
+<blockquote>
+<p>(thread-condition? obj)</p>
+</blockquote>
+
+<p>返回：如果<em>obj</em> 是条件对象，返回#t</p>
+
+<blockquote>
+<p>(condition-wait cond mutex) |  (condition-wait cond mutex timeout)</p>
+</blockquote>
+
+<p>返回：如果调用线程被条件唤醒返回#t，如果调用线程超时等待返回#f</p>
+
+<p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或<strong>#f</strong>的时间记录，表示没有超时。 默认为<strong>#f</strong>。</p>
+
+<p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的*timeout*时长。在调用condition-wait时，调用线程必须已获取互斥锁*mutex*。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
+
+<blockquote>
+<p>(condition-signal cond)</p>
+</blockquote>
+
+<p><em>cond</em> 必须是一个条件对象。</p>
+
+<p><strong>condition-signal</strong>释放所有等待<em>cond</em> 标识的条件对象的线程的其中一个。</p>
+
+<blockquote>
+<p>(condition-broadcast cond)</p>
+</blockquote>
+
+<p><em>cond</em> 必须是一个条件对象。</p>
+
+<p><strong>condition-broadcast</strong>释放所有等待<em>cond</em> 标识的条件对象的线程</p>
+
+<h3 id="锁">锁</h3>
+
+<p>锁比互斥锁更原生，但是更加灵活和有效。</p>
+
+<p>只要锁在进程共享的内存中分配，它们还可以独立于线程系统使用（包括在Chez Scheme的非线程版本中）以在分离的Scheme进程中执行同步操作。<br>
+锁只是一个字长的整数，即<strong>iptr</strong>或<strong>uptr</strong>外部类型，其中包含目标计算机的本机字节序，可能是使用<strong>define-ftype</strong>定义的大结构的一部分。必须在驻留于Scheme堆外部的内存中显式分配它，并在适当时显式释放。当仅涉及线程时（即，当不涉及多个进程时），可以通过<strong>foreign-alloc</strong>分配内存。 当涉及多个进程时，应在进程共享的某个区域中分配该锁。</p>
+
+<p>使用<strong>ftype-init-lock!</strong> 初始化后，进程或线程可以尝试通过<strong>ftype-lock!</strong>或<strong>ftype-spin-lock!</strong>锁定<em>lock</em> 。一旦锁已被锁定并且在解锁之前，即使通过最近锁定它的进程或线程，再一次尝试锁定该锁也会失败。 任何进程或线程可以使用<strong>ftype-unlock!</strong>来解锁lock，而不仅仅是通过最近锁定锁的进程或线程来解锁。</p>
+
+<p>锁机制提供的结构很少，并且分配和使用中的错误可能导致内存错误，死锁和其他问题。 因此，通常建议仅将锁用作更高级别抽象的一部分，以确保按规范方式使用锁。</p>
+
+<pre><code class="language-scheme">(define lock
+  (make-ftype-pointer uptr
+    (foreign-alloc (ftype-sizeof uptr))))
+
+(ftype-init-lock! uptr () lock)
+(ftype-lock! uptr () lock) ⇒ #t
+(ftype-lock! uptr () lock) ⇒ #f
+(ftype-unlock! uptr () lock)
+(ftype-spin-lock! uptr () lock)
+(ftype-lock! uptr () lock) ⇒ #f
+(ftype-unlock! uptr () lock)
+</code></pre>
+
+<blockquote>
+<p>(ftype-init-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-init-lock! ftype-name (a &hellip;) fptr-expr index)</p>
+
+<p>(ftype-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-lock! ftype-name (a &hellip;) fptr-expr index)</p>
+
+<p>(ftype-spin-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-spin-lock! ftype-name (a &hellip;) fptr-expr index)</p>
+
+<p>(ftype-unlock! ftype-name (a &hellip;) fptr-expr) |  (ftype-unlock! ftype-name (a &hellip;) fptr-expr index)</p>
+</blockquote>
+
+<p>它们每个的语法都类似于<strong>ftype-set!</strong>，尽管带有隐式的<em>val-expr</em> 。 特别是，对<em>fptr-expr</em> 和访问器<em>a &hellip;</em> 的限制和处理是相似的，但有一个重要的限制：最后一个访问器所指定的字段（该格式在其上进行操作）必须是一个字长的整数，即 ，<strong>iptr，uptr</strong>或具有本地字节序的等效项。</p>
+
+<p><strong>ftype-init-lock!</strong>应该在使用任何其他运算符之前用于初始化锁； 如果不这样做，则其他操作符的行为是不确定的。</p>
+
+<p><strong>ftype-lock!</strong> 可用于加锁。如果发现在操作时锁已解锁，则将其锁定并返回#t；如果发现该锁已加锁，则返回#f且不更改该锁。</p>
+
+<p><strong>ftype-spin-lock!</strong> 也可以用来加锁。 如果在操作时发现该锁已解锁，则将其锁定并返回； 如果发现该锁已锁定，它将一直等待直到锁被解锁，然后再锁定并返回。如果没有其他进程或者线程来释放该锁，该操作不会返回且不能以正常的方式（包括GC）中断。也不保证公平，因此即使其他进程正在主动锁定和释放该锁，进程也可能无限期挂起。</p>
+
+<p><strong>ftype-unlock!</strong> 用于解锁。如果发现锁已被锁定，则将其解锁并返回。 否则，它将返回而不更改锁。</p>
+
+<h3 id="原子操作locked-increment-and-decrement">原子操作Locked increment and decrement</h3>
+
+<p>当需要原子递增或递减时，可以使用此处描述的锁定操作。</p>
+
+<blockquote>
+<p>(ftype-locked-incr! ftype-name (a &hellip;) fptr-expr) |  (ftype-locked-incr! ftype-name (a &hellip;) fptr-expr index)</p>
+</blockquote>
+
+<p>返回：如果更新的值为0，则为#t，否则为#f</p>
+
+<blockquote>
+<p>(ftype-locked-decr! ftype-name (a &hellip;) fptr-expr) |  (ftype-locked-decr! ftype-name (a &hellip;) fptr-expr index)</p>
+</blockquote>
+
+<p>返回：如果更新的值为0，则为#t，否则为#f</p>
+
+<p>它们每个的语法都类似于<strong>ftype-set!</strong>，尽管带有隐式的<em>val-expr</em> 。 特别是，对<em>fptr-expr</em> 和访问器<em>a &hellip;</em> 的限制和处理是相似的，但有一个重要的限制：最后一个访问器所指定的字段（该格式在其上进行操作）必须是一个字长的整数，即 ，<strong>iptr，uptr</strong>或具有本地字节序的等效项。</p>
+
+<p><strong>ftype-locked-incr!</strong> 自动读取指定字段的值，将值加1，然后将新值写回该字段。 同样，<strong>ftype-locked-decr!</strong> 原子读取指定字段的值，从该值中减去1，然后将新值写回到该字段中。 如果新值为0，则两者都返回#t，否则返回#f。</p>
+
+<h3 id="引用计数">引用计数</h3>
+
+<p>在Scheme堆之外管理内存的应用程序可以利用Scheme存储管理系统通过<em>ftype guardians</em> 执行引用计数。 在引用计数的内存管理系统中，每个对象都保存着指向它的指针计数。 当创建一个新的指针时，该计数增加；而在删除指针时，该计数减小。 当计数达到零时，不再需要该对象，并且可以将其占用的内存用于其他目的。</p>
+
+<blockquote>
+<p>(ftype-guardian ftype-name)</p>
+</blockquote>
+
+<p><em>ftype-name</em> 必须命名一个ftype。 ftype的第一个基本字段（或在unions的情况下为第一个基本字段）必须是具有本地尾数的字长整数（iptr或uptr）。 假定此字段保存引用计数。</p>
+
+<p>返回新的ftype guardian <em>g</em> ，可以使用其注册<em>ftype-name</em> 类型（或<em>ftype-nam</em> e的某些子类型）的ftype-pointer。 通过使用ftype指针作为参数调用<em>g</em> ，可以向<em>g</em> 注册ftype指针。</p>
+
+<p>ftype guardian不会像普通的guardian那样自动保护其注册的ftype指针免遭回收。而是，对于每个通过普通（非弱，非监护人指针）变得不可访问的已注册的ftype指针，guardian会减少ftype指针指向的对象的引用计数。如果引用计数值为0，则ftype指针将保留并可以从guardian中检索。 但是，如果生成的引用计数值非零，则不会保留ftype指针。假设回收器外部的代码正确维护了引用计数，则从ftype guardian检索的对象（通过不带参数的调用）将确保具有0引用计数。回收器使用等效的<strong>ftype-locked-decr!</strong>来减少引用计数，以支持由多个进程共享的内存中的非Scheme对象。在这样的系统中，程序本身应使用<strong>ftype-locked-incr!</strong> 和<strong>ftype-locked-decr!</strong> 或非Scheme等效项（例如，第4.8节中所述C语言的scheme.h中的 LOCKED_INCR和LOCKED_DECR宏）来维护引用计数。</p>
+
+<p>下面的示例为ftype对象定义了一个简单的ftype和一个分配器，该对象释放以前分配的且不再可访问的ftype对象。</p>
+
+<pre><code class="language-scheme">module (A make-A free-dropped-As)
+  (define-ftype A
+    (struct
+      [refcount uptr]
+      [data int]))
+  (define g (ftype-guardian A))
+  (define free-dropped-As
+    (lambda ()
+      (let ([a (g)])
+        (when a
+          (printf &quot;freeing ~s\n&quot; (ftype-ref A (data) a))
+          (foreign-free (ftype-pointer-address a))
+          (free-dropped-As)))))
+  (define make-A
+    (lambda (n)
+      (free-dropped-As)
+      (let ([a (make-ftype-pointer A (foreign-alloc (ftype-sizeof A)))])
+        (ftype-set! A (refcount) a 1)
+        (ftype-set! A (data) a n)
+        (g a)
+        a))))
+</code></pre>
+
+<p>我们可以通过分配，丢弃并立即回收指向A的ftype指针进行测试。</p>
+
+<pre><code class="language-scheme">&gt; (do ([i 10 (fx- i 1)])
+      ((fx= i 0))
+(make-A i)
+    (collect))
+freeing 10
+freeing 9
+freeing 8
+freeing 7
+freeing 6
+freeing 5
+freeing 4
+freeing 3
+freeing 2
+&gt; (free-dropped-As)
+freeing 1
+</code></pre>
+
+<p>由ftype guardian保护的对象可能包含指向其他对象的指针，这些其他对象的引用计数也应在分配包含对象时增加，并在释放包含对象时减少。</p>
+
+<h3 id="线程参数">线程参数</h3>
+
+<blockquote>
+<p>(make-thread-parameter object) |  (make-thread-parameter object procedure)</p>
+</blockquote>
+
+<p>创建线程参数后，将在每个当前线程和将来的线程中放置一个单独的位置，以保存参数的内部状态变量的值。 （当该参数变得不可访问时，存储管理器可以消除该位置。）一个线程中对线程参数的更改不会被其他任何线程看到。</p>
+
+<p>创建新线程时（请参阅<strong>fork-thread</strong>），每个线程参数的当前值（而非位置）都由新线程从派生线程继承。 类似地，当第一次激活通过其他方式创建的线程时（请参见4.8节中的<strong>Sactivate_thread</strong>），每个线程参数的当前值（而非位置）都由新线程从主（原始）线程继承。</p>
+
+<p>大多数内置参数是线程参数，但有些是全局的。 在他们定义的地方已经标注了是线程的还是全局的。 在非线程版本的Chez Scheme中，内置全局参数和线程参数之间没有区别。</p>
+
+<h3 id="i-o-缓冲区">I/O 缓冲区</h3>
+
+<p>Chez Scheme为提高效率而缓冲文件I/O操作，但是缓冲的I/O不是线程安全的。 两个线程并发地读写同一个缓冲端口可能会破坏该端口，从而导致缓冲区溢出，并最终导致无效的内存引用。</p>
+
+<p>当以缓冲模式<strong>none</strong>打开时，可以禁用二进制输出端口上的缓冲。 但是，由于需要支持先行（lookahead），因此无法完全禁用输入端口上的缓冲，并且由于要在字符和字节之间进行转换的代码转换器有时需要先行输入，因此无法完全禁用文本端口（甚至是文本输出端口）上的缓冲。</p>
+
+<p>因此，除非在二进制输出端口开启缓冲模式为<strong>none</strong>的特殊情况下，否则两个线程绝不应该并发地读写同一个端口。替代方法包括指定一个线程为给定端口执行所有I / O，和为每个线程提供通用端口包装程序，仅在获取互斥量后才将请求转发到端口。</p>
+
+<p>初始的控制台以及当前的输入和输出端口以及transcript端口都是线程安全的，因此多个线程向控制台打印错误和/或调试消息是安全的。即使在同一行内，输出也可能是交错的，但是端口不会损坏。 这些端口的线程安全性是通过为每个I/O操作获取一个互斥锁的高成本来实现的。</p>
+
+<h3 id="实例-有界队列">实例：有界队列</h3>
+
+<p>以下代码摘自文章“A Scheme for native threads<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>”，它使用许多线程系统功能实现了有界队列。 有界队列具有固定数量的可用插槽。 当队列已满时尝试入队会导致调用线程阻塞。 尝试从空队列中出队会导致调用线程阻塞。</p>
+
+<pre><code class="language-scheme">(define-record-type bq
+  (fields
+    (immutable data)
+    (mutable head)
+    (mutable tail)
+    (immutable mutex)
+    (immutable ready)
+    (immutable room))
+  (protocol
+    (lambda (new)
+      (lambda (bound)
+        (new (make-vector bound) 0 0 (make-mutex)
+          (make-condition) (make-condition))))))
+
+(define dequeue!
+  (lambda (q)
+    (with-mutex (bq-mutex q)
+      (let loop ()
+        (let ([head (bq-head q)])
+          (cond
+            [(= head (bq-tail q))
+             (condition-wait (bq-ready q) (bq-mutex q))
+             (loop)]
+            [else
+             (bq-head-set! q (incr q head))
+             (condition-signal (bq-room q))
+             (vector-ref (bq-data q) head)]))))))
+
+(define enqueue!
+  (lambda (item q)
+    (with-mutex (bq-mutex q)
+      (let loop ()
+        (let* ([tail (bq-tail q)] [tail^ (incr q tail)])
+          (cond
+            [(= tail^ (bq-head q))
+             (condition-wait (bq-room q) (bq-mutex q))
+             (loop)]
+			 [else
+             (vector-set! (bq-data q) tail item)
+             (bq-tail-set! q tail^)
+             (condition-signal (bq-ready q))]))))))
+
+(define incr
+  (lambda (q i)
+    (modulo (+ i 1) (vector-length (bq-data q)))))
+
+</code></pre>
+
+<p>下面的代码演示了有界队列在一组线程中的应用，这些线程分别扮演数据的消费者和生产者。</p>
+
+<pre><code class="language-scheme">(define job-queue)
+(define die? #f)
+
+(define make-job
+  (let ([count 0])
+    (define fib
+      (lambda (n)
+	    (if (&lt; n 2)
+		  n
+          (+ (fib (- n 2)) (fib (- n 1))))))
+    (lambda (n)
+      (set! count (+ count 1))
+      (printf &quot;Adding job #~s = (lambda () (fib ~s))\n&quot; count n)
+      (cons count (lambda () (fib n))))))
+
+(define make-producer
+  (lambda (n)
+    (rec producer
+      (lambda ()
+        (printf &quot;producer ~s posting a job\n&quot; n)
+        (enqueue! (make-job (+ 20 (random 10))) job-queue)
+        (if die?
+            (printf &quot;producer ~s dying\n&quot; n)
+            (producer))))))
+
+
+(define make-consumer
+  (lambda (n)
+    (rec consumer
+      (lambda ()
+        (printf &quot;consumer ~s looking for a job~%&quot; n)
+        (let ([job (dequeue! job-queue)])
+          (if die?
+              (printf &quot;consumer ~s dying\n&quot; n)
+              (begin
+                (printf &quot;consumer ~s executing job #~s~%&quot; n (car job))
+                (printf &quot;consumer ~s computed:  ~s~%&quot; n ((cdr job)))
+                (consumer))))))))
+
+
+
+(define (bq-test np nc)
+  (set! job-queue (make-bq (max nc np)))
+  (do ([np np (- np 1)])
+      ((&lt;= np 0))
+      (fork-thread (make-producer np)))
+  (do ([nc nc (- nc 1)])
+      ((&lt;= nc 0))
+      (fork-thread (make-consumer nc))))
+
+
+</code></pre>
+
+<p>这是示例程序运行后的可能的前几行输出：</p>
+
+<pre><code class="language-scheme">&gt; (begin
+    (bq-test 3 4)
+    (system &quot;sleep 3&quot;)
+    (set! die? #t))
+producer 3 posting a job
+Adding job #1 = (lambda () (fib 29))
+producer 3 posting a job
+Adding job #2 = (lambda () (fib 26))
+producer 3 posting a job
+Adding job #3 = (lambda () (fib 22))
+producer 3 posting a job
+Adding job #4 = (lambda () (fib 21))
+producer 2 posting a job
+Adding job #5 = (lambda () (fib 29))
+producer 1 posting a job
+Adding job #6 = (lambda () (fib 29))
+consumer 4 looking for a job
+producer 3 posting a job
+Adding job #7 = (lambda () (fib 24))
+consumer 4 executing job #1
+consumer 3 looking for a job
+producer 2 posting a job
+Adding job #8 = (lambda () (fib 26))
+consumer 3 executing job #2
+consumer 3 computed:  121393
+consumer 3 looking for a job
+producer 1 posting a job
+Adding job #9 = (lambda () (fib 26))
+...
+</code></pre>
+
+<p>在“A Scheme for native threads<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">R. Kent Dybvig. A Scheme for native threads. In Symposium in Honor of Mitchell Wand, August 2009. <a href="http://www.ccs.neu.edu/events/wand-symposium/">http://www.ccs.neu.edu/events/wand-symposium/</a>.
+ <a class="footnote-return" href="#fnref:1">↩</a></li>
+</ol>
+</div>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2020/02/thread/" title="线程（Thread System in Chez Scheme）" target="_blank" rel="external">https://lvsq.net/2020/02/thread/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">Siquan</span><small class="ml-1x">函数式编程爱好者, 爱读历史</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2020/02/storage-management/" title="存储管理(Storage Management in Chez Scheme)"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        
+        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+            data-target="#donateModal"><span>赏</span></button>
+        
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content donate">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="modal-body">
+                <div class="donate-box">
+                    <div class="donate-head">
+                        <p>感谢您的支持,我会继续努力的!</p>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                    <div class="donate-footer">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
+                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
+                                    微信支付</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2019  -
+    2020
+    <div class="publishby">
+      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/erlang.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/scheme.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/java.min.js"></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
+<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/lvsq.net\/',
+            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
+
+  </body>
+</html>

@@ -4,42 +4,56 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/scheme/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://lvsq.net/tags/scheme/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/scheme/</loc>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://lvsq.net/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://lvsq.net/tags/</loc>
-    <lastmod>2020-02-12T16:18:53+08:00</lastmod>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/thread/</loc>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2020/02/thread/</loc>
+    <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
