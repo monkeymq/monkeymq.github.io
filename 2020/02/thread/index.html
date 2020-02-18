@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-02-17T15:18:39&#43;08:00" />
 <meta itemprop="dateModified" content="2020-02-17T15:18:39&#43;08:00" />
-<meta itemprop="wordCount" content="5744">
+<meta itemprop="wordCount" content="5732">
 
 
 
@@ -365,7 +365,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5744字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5732字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </div>
     </div>
@@ -428,7 +428,7 @@
 <p>(mutex-acquire mutex) |  (mutex-acquire mutex block?)</p>
 </blockquote>
 
-<p>*mutex*必须是一个互斥锁。</p>
+<p><em>mutex</em> 必须是一个互斥锁。</p>
 
 <p><strong>mutex-acquire</strong>获取由<em>mutex</em> 标识的互斥锁。可选的bool参数<em>block？</em> 默认为#t，指定线程是否应阻塞等待互斥锁。<em>block？</em> 如果省略或为true，则线程将阻塞，直到获取了互斥锁为止，并返回未指定的值。</p>
 
@@ -440,7 +440,7 @@
 <p>(mutex-release mutex)</p>
 </blockquote>
 
-<p>*mutex*必须是一个互斥锁。</p>
+<p><em>mutex</em> 必须是一个互斥锁。</p>
 
 <p><strong>mutex-release</strong>释放由<em>mutex</em> 标识的互斥锁。 如果<em>mutex</em> 不属于调用线程（即释放别人的互斥锁），则会导致无法预料的行为。</p>
 
