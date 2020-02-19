@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-02-17T15:18:39&#43;08:00" />
 <meta itemprop="dateModified" content="2020-02-17T15:18:39&#43;08:00" />
-<meta itemprop="wordCount" content="5732">
+<meta itemprop="wordCount" content="5728">
 
 
 
@@ -365,7 +365,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5732字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5728字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </div>
     </div>
@@ -390,7 +390,7 @@
 
 <p><em>thunk</em> 必须是一个接受0个参数的过程。</p>
 
-<p><strong>fork-thread</strong>在一个新线程中调用*thunk*，并返回一个线程对象。</p>
+<p><strong>fork-thread</strong>在一个新线程中调用<em>thunk</em> ，并返回一个线程对象。</p>
 
 <p>除了打印它外，<strong>fork-thread</strong>返回的线程对象无法执行任何操作。</p>
 
@@ -474,7 +474,7 @@
 
 <p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或<strong>#f</strong>的时间记录，表示没有超时。 默认为<strong>#f</strong>。</p>
 
-<p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的*timeout*时长。在调用condition-wait时，调用线程必须已获取互斥锁*mutex*。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
+<p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的*timeout*时长。在调用condition-wait时，调用线程必须已获取互斥锁<em>mutex</em> 。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
 
 <blockquote>
 <p>(condition-signal cond)</p>
