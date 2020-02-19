@@ -5,10 +5,19 @@
     <link>https://lvsq.net/</link>
     <description>Recent content on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 17 Feb 2020 15:18:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 14:23:39 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>兼容性（Compatibility Features in Chez Scheme）</title>
+      <link>https://lvsq.net/2020/02/compatibility/</link>
+      <pubDate>Tue, 18 Feb 2020 14:23:39 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/02/compatibility/</guid>
+      <description>本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可</description>
+    </item>
     
     <item>
       <title>线程（Thread System in Chez Scheme）</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/11/swagger-vendor/</guid>
       <description>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq</description>
-    </item>
-    
-    <item>
-      <title>历史不能碰</title>
-      <link>https://lvsq.net/2019/11/do-not-touch-history/</link>
-      <pubDate>Thu, 28 Nov 2019 12:43:50 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/11/do-not-touch-history/</guid>
-      <description>秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁</description>
     </item>
     
   </channel>
