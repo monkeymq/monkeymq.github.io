@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>Swagger 如何使用vendorExtensions进行扩展</title>
+      <link>https://lvsq.net/2019/11/swagger-vendor/</link>
+      <pubDate>Fri, 29 Nov 2019 10:21:12 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/11/swagger-vendor/</guid>
+      <description>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq</description>
+    </item>
+    
+    <item>
       <title>历史不能碰</title>
       <link>https://lvsq.net/2019/11/do-not-touch-history/</link>
       <pubDate>Thu, 28 Nov 2019 12:43:50 +0800</pubDate>

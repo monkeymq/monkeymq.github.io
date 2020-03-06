@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Emacs - Siquan的网络日志 | AI-Life
+        Scheme实现一个FIFO队列 - Siquan的网络日志 | AI-Life
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,35 +23,35 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查" />
+  <meta name="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Emacs - Siquan的网络日志 | AI-Life</title>
+  <title>Scheme实现一个FIFO队列 - Siquan的网络日志 | AI-Life</title>
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Emacs" />
-<meta property="og:description" content="M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查" />
+  <meta property="og:title" content="Scheme实现一个FIFO队列" />
+<meta property="og:description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/11/emacs/" />
-<meta property="article:published_time" content="2019-11-27T20:58:09+08:00" />
-<meta property="article:modified_time" content="2019-11-27T20:58:09+08:00" />
-<meta itemprop="name" content="Emacs">
-<meta itemprop="description" content="M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查">
+<meta property="og:url" content="https://lvsq.net/2020/03/fifo-queue/" />
+<meta property="article:published_time" content="2020-03-06T17:35:49+08:00" />
+<meta property="article:modified_time" content="2020-03-06T17:35:49+08:00" />
+<meta itemprop="name" content="Scheme实现一个FIFO队列">
+<meta itemprop="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个">
 
 
-<meta itemprop="datePublished" content="2019-11-27T20:58:09&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-27T20:58:09&#43;08:00" />
-<meta itemprop="wordCount" content="627">
+<meta itemprop="datePublished" content="2020-03-06T17:35:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-06T17:35:49&#43;08:00" />
+<meta itemprop="wordCount" content="542">
 
 
 
-<meta itemprop="keywords" content="emacs," />
+<meta itemprop="keywords" content="scheme," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Emacs"/>
-<meta name="twitter:description" content="M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查"/>
+<meta name="twitter:title" content="Scheme实现一个FIFO队列"/>
+<meta name="twitter:description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -336,24 +336,24 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/11/emacs/"
-    >Emacs</a
+    href="/2020/03/fifo-queue/"
+    >Scheme实现一个FIFO队列</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/emacs/" class="article-date">
-  <time datetime="2019-11-27 20:58:09 &#43;0800 CST" itemprop="datePublished">2019-11-27</time>
+<a href="https://lvsq.net/2020/03/fifo-queue/" class="article-date">
+  <time datetime="2020-03-06 17:35:49 &#43;0800 CST" itemprop="datePublished">2020-03-06</time>
 </a>
 </span><span class="article-category">
   <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/tool/"> tool </a>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/emacs/"> emacs </a>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -362,242 +362,92 @@
 			<span id="busuanzi_value_page_pv">0</span>
 		</span>
 	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/emacs/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fifo-queue/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:627字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:542字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
+      <p>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。</p>
 
-<h2 id="m-alt-option">M -&gt; Alt(option)</h2>
+<p>队列可以看成是由下面一组操作定义的结构：</p>
 
-<h2 id="s-shift">S -&gt; Shift</h2>
+<ul>
+<li>构造函数</li>
+</ul>
 
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>用途</th>
-</tr>
-</thead>
+<p>(make-queue)<br>
+返回一个空队列</p>
 
-<tbody>
-<tr>
-<td>M-v</td>
-<td>上（后）一屏</td>
-</tr>
+<ul>
+<li>选择函数</li>
+</ul>
 
-<tr>
-<td>C-v</td>
-<td>下（前）一屏</td>
-</tr>
+<p>(empty-queue? <em>&lt;queue&gt;</em> )<br>
+检查队列是否为空<br>
+(front-queue <em>&lt;queue&gt;</em> )<br>
+返回最早进入队列的数据，其不会修改队列<br>
+(length-queue <em>&lt;queue&gt;</em> )<br>
+返回队列长度</p>
 
-<tr>
-<td>C-l</td>
-<td>重绘屏幕，将光标所在行置于屏幕中央</td>
-</tr>
+<ul>
+<li>改变函数</li>
+</ul>
 
-<tr>
-<td>C-u(M-num)</td>
-<td>重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符</td>
-</tr>
+<p>(insert-queue! <em>&lt;queue&gt; &lt;item&gt;</em> )<br>
+将数据插入末端<br>
+(delete-queue! <em>&lt;queue&gt;</em> )<br>
+删除列头的数据</p>
 
-<tr>
-<td>C-x C-f <file></td>
-<td>查找或者新建一个文件</td>
-</tr>
+<pre><code class="language-scheme">(module FIFO-QUEUE
+    (make-queue empty-queue? front-queue insert-queue! delete-queue! length-queue)
+    (define front-ptr (lambda (q) (caar q)))
+    (define set-front-ptr! (lambda (q item) (set-car! (car q) item)))
+    (define rear-ptr (lambda (q) (cdar q)))
+    (define set-rear-ptr! (lambda (q item) (set-cdr! (car q) item)))
 
-<tr>
-<td>C-x C-b</td>
-<td>列出缓冲区。 C-x 1 关闭缓冲区列表</td>
-</tr>
+    (define make-queue (lambda () (cons (cons '() '()) 0)))
+    (define empty-queue? (lambda (q) (null? (front-ptr q))))
+    (define front-queue (lambda (q) (if (empty-queue? q) (error &quot;FRONT called with an empty queue&quot; q) (car (front-ptr q)))))
+    (define (insert-queue! q item)
+        (let ((new-pair (cons item '())))
+            (if
+                (empty-queue? q)
+                (begin (set-front-ptr! q new-pair) (set-rear-ptr! q new-pair) (set-cdr! q (+ 1 (cdr q))) q)
+                (begin (set-cdr! (rear-ptr q) new-pair) (set-rear-ptr! q new-pair) (set-cdr! q ( + 1 (cdr q))) q)
+            )
+        )
+    )
+    (define delete-queue!
+        (lambda (q)
+            (if
+                (empty-queue? q)
+                (error &quot;DELETE! called with an empty queue&quot; q)
+                (begin (set-front-ptr! q (cdr (front-ptr q))) (set-cdr! q (- (cdr q) 1)) q)
+            )
+        )
+    )
+    (define length-queue (lambda (q) (cdr q)))
+)
 
-<tr>
-<td>C-x C-q</td>
-<td>开启或者关闭buffer的只读模式</td>
-</tr>
+</code></pre>
 
-<tr>
-<td>C-x C-s</td>
-<td>保存当前文件</td>
-</tr>
+<p>前4个过程是用于内部的帮助函数，队列维护两个指针，一个指向列头（<strong>front-ptr</strong>）,一个指向列尾（<strong>rear-ptr</strong>），这样可以弥补原生的set-car!和set-cdr!的不足。</p>
 
-<tr>
-<td>C-x s</td>
-<td>保存所有文件</td>
-</tr>
+<pre><code class="language-scheme">&gt; (load &quot;/path/to/FIFO-QUEUE.scm&quot;) ;;加载FIFO-QUEUE模块
+&gt; (import FIFO-QUEUE)
+&gt; (define q (make-queue))
+&gt; (insert-queue! q 1) ;; (((1) 1) . 1), 最后一个数字1表示队列长度, 在队列有删除或者插入时，及时修改该值，为了在取队列长度时减小开销，否则要遍历一次才行
+&gt; (insert-queue! q 2) ;; (((1 2) 2) . 2)
+&gt; (insert-queue! q 3) ;; (((1 2 3) 3) . 3)
+&gt; (insert-queue! q 4) ;; (((1 2 3 4) 4) . 4)
+&gt; (delete-queue! q) ;; (((2 3 4) 4) . 3)
+&gt; (delete-queue! q) ;; (((3 4) 4) . 2)
+&gt; (front-queue q) ;; 3
+&gt; (length-queue q) ;; 2
 
-<tr>
-<td>C-x h</td>
-<td>全选</td>
-</tr>
-
-<tr>
-<td>M-w</td>
-<td>复制</td>
-</tr>
-
-<tr>
-<td>C-y</td>
-<td>粘贴</td>
-</tr>
-
-<tr>
-<td>C-w</td>
-<td>剪切</td>
-</tr>
-
-<tr>
-<td>C-s</td>
-<td>往前搜索</td>
-</tr>
-
-<tr>
-<td>C-r</td>
-<td>往后搜索. DEL 也可以往后搜索，</td>
-</tr>
-
-<tr>
-<td>C-/</td>
-<td>undo</td>
-</tr>
-
-<tr>
-<td>M-x calendar</td>
-<td>打开日历。按 q 退出。【g d 到指定日期】【. 到今日（不居中）】【&gt; 前一个月】【&lt; 后一个月】</td>
-</tr>
-
-<tr>
-<td>M-x *-mode</td>
-<td>选择Major mode</td>
-</tr>
-
-<tr>
-<td>M-x shell</td>
-<td>运行一个shell</td>
-</tr>
-
-<tr>
-<td>M-x eshell</td>
-<td>运行一个eshell</td>
-</tr>
-
-<tr>
-<td>C-a</td>
-<td>移到行首</td>
-</tr>
-
-<tr>
-<td>C-a C-k、C-S-backspace</td>
-<td>删除整行</td>
-</tr>
-
-<tr>
-<td>C-u 5 C-S-backspace、M-5 C-S-backspace</td>
-<td>删除后5行，不加数字则删除4行（默认），如果数字为负数，则往前删</td>
-</tr>
-
-<tr>
-<td>C-g</td>
-<td>停止当前的命令</td>
-</tr>
-
-<tr>
-<td>C-k</td>
-<td>删除从光标位置到行尾所有字符</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="org-mode">Org-Mode</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>用途</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>C-c .</td>
-<td>插入时间</td>
-</tr>
-
-<tr>
-<td>C-c C-e</td>
-<td>导出其它格式</td>
-</tr>
-
-<tr>
-<td>C-c C-s</td>
-<td>在标题下面插入一个带有“==SCHEDULED==”关键字的时间戳。</td>
-</tr>
-
-<tr>
-<td>C-c C-d</td>
-<td>在标题下面插入一个带有“==DEADLINE==”关键字的时间戳</td>
-</tr>
-
-<tr>
-<td>C-c C-t</td>
-<td>将当前项的状态在（unmarked）-&gt;TODO-&gt;DONE 之间循环切换</td>
-</tr>
-
-<tr>
-<td>M-RET</td>
-<td>插入一个同级标题</td>
-</tr>
-
-<tr>
-<td>M-LEFT/RIGHT</td>
-<td>将当前的标题提升/降低一个等级</td>
-</tr>
-
-<tr>
-<td>C-c C-c</td>
-<td>插入标签tag。 光标在标题中</td>
-</tr>
-
-<tr>
-<td>C-c C-q</td>
-<td>插入标签tag。光标在任意位置</td>
-</tr>
-
-<tr>
-<td>C-c ,</td>
-<td>设置当前标题的优先级,’A‘、’B‘和’C‘。’A‘是最高级别，如不指定，’B‘是默认的</td>
-</tr>
-
-<tr>
-<td>C-c </td>
-<td>查找标签tag</td>
-</tr>
-
-<tr>
-<td>S-Tab</td>
-<td>展开所有标题</td>
-</tr>
-
-<tr>
-<td>Tab</td>
-<td>展开光标所在标题</td>
-</tr>
-
-<tr>
-<td>C-c C-l</td>
-<td>编辑链接</td>
-</tr>
-
-<tr>
-<td>C-c C-o</td>
-<td>打开链接</td>
-</tr>
-</tbody>
-</table>
+</code></pre>
 
     </div>
     <div class="article-footer">
@@ -605,7 +455,7 @@
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/11/emacs/" title="Emacs" target="_blank" rel="external">https://lvsq.net/2019/11/emacs/</a>
+      <a href="https://lvsq.net/2020/03/fifo-queue/" title="Scheme实现一个FIFO队列" target="_blank" rel="external">https://lvsq.net/2020/03/fifo-queue/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -636,10 +486,10 @@
 </div><nav class="bar bar-footer clearfix" data-stick-bottom>
     <div class="bar-inner">
         <ul class="pager pull-left">
-            <li class="next">
-                <a href="https://lvsq.net/2019/11/do-not-touch-history/"
-                    title="历史不能碰"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            <li class="prev">
+                <a href="https://lvsq.net/2020/02/compatibility/" title="兼容性（Compatibility Features in Chez Scheme）"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             
             <li class="toggle-toc">
