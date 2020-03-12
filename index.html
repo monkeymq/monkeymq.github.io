@@ -37,7 +37,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lvsq.net/" />
 
-<meta property="og:updated_time" content="2020-03-06T17:35:49+08:00" />
+<meta property="og:updated_time" content="2020-03-12T10:38:55+08:00" />
 <meta itemprop="name" content="Siquan的网络日志 | AI-Life">
 <meta itemprop="description" content="">
 
@@ -156,6 +156,7 @@
     <div class="widget-body">
         <ul class="category-list">
             <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">16</span></li>
@@ -187,6 +188,10 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/functional/" class="tag-list-link">functional</a><span
                     class="tag-list-count">1</span></li>
             
             
@@ -257,6 +262,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/03/fifo-queue/" class="title">Scheme实现一个FIFO队列</a>
                     </p>
                     <p class="item-date">
@@ -294,16 +309,6 @@
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/02/system-operations/" class="title">系统操作(System Operations in Chez Scheme)</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-02-06 10:54:14 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
-                    </p>
-                </div>
-            </li>
         </ul>
     </div>
 </div>
@@ -328,6 +333,41 @@
         <h1 itemprop="name">
   <a
     class="article-title"
+    href="/2020/03/fp-in-go/"
+    >使用Golang进行函数式编程</a
+  >
+</h1>
+
+      </div>
+      <div class="article-entry text-muted" itemprop="description">为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违</div>
+      <p class="article-meta"><span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/03/fp-in-go/" class="">
+  <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/golang/"> golang </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/functional/"> functional </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fp-in-go/#comments" class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2687字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:6分 </span>
+      </p>
+    </article>
+    <article
+      class="article article-type-page"
+      itemscope
+      itemtype="http://schema.org/BlogPosting"
+    >
+      <div class="article-header">
+        <h1 itemprop="name">
+  <a
+    class="article-title"
     href="/2020/03/fifo-queue/"
     >Scheme实现一个FIFO队列</a
   >
@@ -337,7 +377,7 @@
       <div class="article-entry text-muted" itemprop="description">闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个</div>
       <p class="article-meta"><span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2020/03/fifo-queue/" class="article-date">
+<a href="https://lvsq.net/2020/03/fifo-queue/" class="">
   <time datetime="2020-03-06 17:35:49 &#43;0800 CST" itemprop="datePublished">2020-03-06</time>
 </a>
 </span><span class="article-category">
@@ -634,41 +674,6 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/syntactic-extension-and-modules/#comments" class="article-comment-link">评论</a></span>
 		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:368字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2020/01/boxes-in-chez/"
-    >Chez Scheme中Boxes介绍</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">Chez Scheme中有一种Boxes结构，它是一个*单元素*对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2020/01/boxes-in-chez/" class="">
-  <time datetime="2020-01-03 14:44:33 &#43;0800 CST" itemprop="datePublished">2020-01-03</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/boxes-in-chez/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:677字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </p>
     </article></div>
   

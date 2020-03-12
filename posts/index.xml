@@ -5,10 +5,19 @@
     <link>https://lvsq.net/posts/</link>
     <description>Recent content in Posts on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 06 Mar 2020 17:35:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2020 10:38:55 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用Golang进行函数式编程</title>
+      <link>https://lvsq.net/2020/03/fp-in-go/</link>
+      <pubDate>Thu, 12 Mar 2020 10:38:55 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/03/fp-in-go/</guid>
+      <description>为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违</description>
+    </item>
     
     <item>
       <title>Scheme实现一个FIFO队列</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/count-coins/</guid>
       <description>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://lvsq.net/about/</link>
-      <pubDate>Tue, 03 Dec 2019 09:06:26 +0800</pubDate>
-      
-      <guid>https://lvsq.net/about/</guid>
-      <description>生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。 学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过</description>
     </item>
     
   </channel>

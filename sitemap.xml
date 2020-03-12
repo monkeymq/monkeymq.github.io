@@ -4,14 +4,49 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2020-03-06T17:35:49+08:00</lastmod>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/functional/</loc>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/golang/</loc>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2020-03-06T17:35:49+08:00</lastmod>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2020/03/fp-in-go/</loc>
+    <lastmod>2020-03-12T10:38:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -32,20 +67,6 @@
   
   <url>
     <loc>https://lvsq.net/2020/03/fifo-queue/</loc>
-    <lastmod>2020-03-06T17:35:49+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2020-03-06T17:35:49+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
     <lastmod>2020-03-06T17:35:49+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
