@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>无重复字符的最长子串-Scheme实现</title>
+      <link>https://lvsq.net/2020/03/longest-substr/</link>
+      <pubDate>Thu, 12 Mar 2020 18:02:45 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/03/longest-substr/</guid>
+      <description>实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;rdquo;abbabcx&amp;rdquo;,其最长无重复字符的子</description>
+    </item>
+    
+    <item>
       <title>使用Golang进行函数式编程</title>
       <link>https://lvsq.net/2020/03/fp-in-go/</link>
       <pubDate>Thu, 12 Mar 2020 10:38:55 +0800</pubDate>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/leetcode-2/</guid>
       <description>本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result</description>
-    </item>
-    
-    <item>
-      <title>钱币组合问题</title>
-      <link>https://lvsq.net/2019/12/count-coins/</link>
-      <pubDate>Fri, 13 Dec 2019 15:11:35 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/count-coins/</guid>
-      <description>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发</description>
     </item>
     
   </channel>

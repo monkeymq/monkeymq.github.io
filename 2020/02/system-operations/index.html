@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-02-06T10:54:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-02-06T10:54:14&#43;08:00" />
-<meta itemprop="wordCount" content="15883">
+<meta itemprop="wordCount" content="15873">
 
 
 
@@ -166,8 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">3</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">16</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">17</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
         </ul>
@@ -228,7 +228,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
-                    class="tag-list-count">15</span></li>
+                    class="tag-list-count">16</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -270,6 +270,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/03/longest-substr/" class="title">无重复字符的最长子串-Scheme实现</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
                     </p>
                     <p class="item-date">
@@ -304,16 +314,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-02-17 15:18:39 &#43;0800 CST" itemprop="datePublished">2020-02-17</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/02/storage-management/" class="title">存储管理(Storage Management in Chez Scheme)</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-02-12 16:18:53 &#43;0800 CST" itemprop="datePublished">2020-02-12</time>
                     </p>
                 </div>
             </li>
@@ -369,7 +369,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/system-operations/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15883字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15873字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:32分 </span>
       </div>
     </div>
@@ -749,10 +749,13 @@
 
 <p>启用源概要分析后，编译器会对生成的代码进行检测，以计算每个源代码表达式的执行次数。 该信息可以HTML格式显示或打包在列表中，以进行任意用户定义的处理。 也可以将其转储到文件中，然后再加载到编译器的概要分析信息数据库中，以用于源代码级优化。</p>
 
-<p>源代码概要分析至少包含下面一些步骤：
-    - 编译代码且开启source profiling
-    - 运行编译后的代码生成源代码概要分析信息，且
-    - 转储概要分析信息</p>
+<p>源代码概要分析至少包含下面一些步骤：</p>
+
+<ul>
+<li>编译代码且开启source profiling</li>
+<li>运行编译后的代码生成源代码概要分析信息，且</li>
+<li>转储概要分析信息</li>
+</ul>
 
 <p>通过将参数compile-profile设置为符号源或布尔值#t，可以启用源概要分析。 可以通过以下方式转储概要分析信息：</p>
 
@@ -763,27 +766,32 @@
 
 <p>由profile-dump-data转储的概要分析信息通过profile-load-data加载到编译器的profiling数据库中。 除非通过profile-dump-data显式转储并通过profile-load-data加载，否则分析信息对编译器不可用。</p>
 
-<p>当使用块概要文件信息进行优化时，步骤是相似的：<br>
-    - 编译代码并开启block profiling
-    - 运行代码生成block-profiling信息
-    - 转储概要分析信息
-    - 加载概要信息，且
-    - 重新编译代码</p>
+<p>当使用块概要文件信息进行优化时，步骤是相似的：<br></p>
+
+<ul>
+<li>编译代码并开启block profiling</li>
+<li>运行代码生成block-profiling信息</li>
+<li>转储概要分析信息</li>
+<li>加载概要信息，且</li>
+<li>重新编译代码</li>
+</ul>
 
 <p>通过将参数compile-profile设置为符号块或布尔值#t，可以启用块分析。 概要文件信息必须通过profile-dump-data转储，并通过profile-load-data加载。 与源配置文件信息一样，块配置文件信息可以与转储信息的加载过程相同或不同。</p>
 
 <p>对于块优化，要重新编译的代码必须相同。 通常，这意味着所涉及的文件必须未经修改，并且其他任何更改都不会间接影响编译器生成的代码。</p>
 
-<p>出于同样的原因，当要同时使用源概要分析和块概要分析信息进行优化时，必须先收集并加载源信息，然后再运行涉及块概要分析的第一次和第二次编译。 即，必须使用以下步骤：<br>
-    1. 编译代码并起开源代码概要分析
-    2. 运行代码生成source-profiling信息
-    2. 转储source-profiling
-    3. 加载source-profiling
-    3. 重新编译代码，并开启块概要分析
-    4. 运行代码生成block-profiling信息
-    4. 转储block-profiling
-    5. 加载source-和block-profiling
-    5. 重新编译代码</p>
+<p>出于同样的原因，当要同时使用源概要分析和块概要分析信息进行优化时，必须先收集并加载源信息，然后再运行涉及块概要分析的第一次和第二次编译。 即，必须使用以下步骤：<br></p>
+
+<pre><code>1. 编译代码并起开源代码概要分析
+2. 运行代码生成source-profiling信息
+2. 转储source-profiling
+3. 加载source-profiling
+3. 重新编译代码，并开启块概要分析
+4. 运行代码生成block-profiling信息
+4. 转储block-profiling
+5. 加载source-和block-profiling
+5. 重新编译代码
+</code></pre>
 
 <p>标记每个步骤的数字既指示步骤的顺序，又指示必须在同一计划过程中执行的顺序。 （如果需要，所有步骤都可以在同一Scheme流程中执行。）
 当compile-profile设置为默认值#f时，将禁用源和块分析。</p>
@@ -858,7 +866,7 @@
 <p>(profile-dump-html) | (profile-dump-html prefix) | (profile-dump-html prefix dump)</p>
 </blockquote>
 
-<p>此过程将生成一个或多个HTML文件，包括profile.html（其中包含用颜色编码的摘要信息），以及一个文件source.html，其中每个源文件源都包含用源代码进行颜色编码的副本，如前导中所述： 在本节中。 如果指定了*prefix*，则它必须是字符串，并且在生成的HTML文件的名称之前。 例如，如果前缀为<strong>“ /tmp/”</strong>，则生成的文件将放置在目录/tmp中。 原始概要分析信息是从转储获取的，默认为<strong>profile-dump</strong>返回的值</p>
+<p>此过程将生成一个或多个HTML文件，包括profile.html（其中包含用颜色编码的摘要信息），以及一个文件source.html，其中每个源文件源都包含用源代码进行颜色编码的副本，如前导中所述： 在本节中。 如果指定了<em>prefix</em> ，则它必须是字符串，并且在生成的HTML文件的名称之前。 例如，如果前缀为<strong>“ /tmp/”</strong>，则生成的文件将放置在目录/tmp中。 原始概要分析信息是从转储获取的，默认为<strong>profile-dump</strong>返回的值</p>
 
 <blockquote>
 <p>(profile-palette)</p>
@@ -1120,7 +1128,11 @@
     1 ms elapsed real time, including 1 ms collecting
     160 bytes allocated, including 8184 bytes reclaimed
 </code></pre>
+</blockquote>
 
+<hr />
+
+<blockquote>
 <p>(cpu-time)</p>
 </blockquote>
 

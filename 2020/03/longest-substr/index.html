@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Siquan的网络日志 | AI-Life</title>
+        无重复字符的最长子串-Scheme实现 - Siquan的网络日志 | AI-Life
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,28 +23,35 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;rdquo;abbabcx&amp;rdquo;,其最长无重复字符的子" />
   <meta name="generator" content="Hugo 0.59.1 with theme pure" />
-  <title>Siquan的网络日志 | AI-Life</title>
+  <title>无重复字符的最长子串-Scheme实现 - Siquan的网络日志 | AI-Life</title>
   
 
-  <link rel="alternate" type="application/rss+xml" href="https://lvsq.net/index.xml" title="Siquan的网络日志 | AI-Life" />
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Siquan的网络日志 | AI-Life" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/" />
+  <meta property="og:title" content="无重复字符的最长子串-Scheme实现" />
+<meta property="og:description" content="实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&rdquo;abbabcx&rdquo;,其最长无重复字符的子" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2020/03/longest-substr/" />
+<meta property="article:published_time" content="2020-03-12T18:02:45+08:00" />
+<meta property="article:modified_time" content="2020-03-12T18:02:45+08:00" />
+<meta itemprop="name" content="无重复字符的最长子串-Scheme实现">
+<meta itemprop="description" content="实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&rdquo;abbabcx&rdquo;,其最长无重复字符的子">
 
-<meta property="og:updated_time" content="2020-03-12T18:02:45+08:00" />
-<meta itemprop="name" content="Siquan的网络日志 | AI-Life">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-03-12T18:02:45&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-12T18:02:45&#43;08:00" />
+<meta itemprop="wordCount" content="960">
+
+
+
+<meta itemprop="keywords" content="scheme," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Siquan的网络日志 | AI-Life"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="无重复字符的最长子串-Scheme实现"/>
+<meta name="twitter:description" content="实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&rdquo;abbabcx&rdquo;,其最长无重复字符的子"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -59,7 +67,7 @@
   </head>
   
 
-  <body class="main-center main-center main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
     <div class="slimContent">
       <div class="navbar-header">
         <div class="profile-block text-center">
@@ -317,203 +325,291 @@
 
     
     
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
 
-<main class="main" role="main">
-  
-  <div class="content article-list">
-    
-    
-    
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/12/count-coins/"
-    >钱币组合问题</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/12/count-coins/" class="">
-  <time datetime="2019-12-13 15:11:35 &#43;0800 CST" itemprop="datePublished">2019-12-13</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> Scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/scheme/"> Scheme </a>
-    <a class="article-tag-link" href="/tags/sicp/"> SICP </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/count-coins/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:406字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/about/"
-    >About</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。 学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/about/" class="">
-  <time datetime="2019-12-03 09:06:26 &#43;0800 CST" itemprop="datePublished">2019-12-03</time>
-</a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/about/"> about </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/about/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:146字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/11/swagger-vendor/"
-    >Swagger 如何使用vendorExtensions进行扩展</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&rdq</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/swagger-vendor/" class="">
-  <time datetime="2019-11-29 10:21:12 &#43;0800 CST" itemprop="datePublished">2019-11-29</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/tool/"> tool </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/swagger/"> swagger </a>
-    <a class="article-tag-link" href="/tags/vendorextensions/"> vendorExtensions </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/swagger-vendor/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:598字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/11/do-not-touch-history/"
-    >历史不能碰</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/do-not-touch-history/" class="">
-  <time datetime="2019-11-28 12:43:50 &#43;0800 CST" itemprop="datePublished">2019-11-28</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/%E6%96%87%E5%8F%B2/"> 文史 </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/%E6%96%87%E5%8F%B2/"> 文史 </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/do-not-touch-history/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:189字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/11/emacs/"
-    >Emacs</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/emacs/" class="">
-  <time datetime="2019-11-27 20:58:09 &#43;0800 CST" itemprop="datePublished">2019-11-27</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/tool/"> tool </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/emacs/"> emacs </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/emacs/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:627字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
-      </p>
-    </article></div>
-  
-<nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-    <ul class="pager pull-left"><li class="prev">
-        <a href="/page/2/">
-          <i class="icon icon-angle-left"></i>
-          
-        </a>
-      </li>
-    </ul>
-    <div class="total-article bar-right">
-      Page:3/3
-    </div>
+    </nav>
   </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/03/longest-substr/"
+    >无重复字符的最长子串-Scheme实现</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/03/longest-substr/" class="article-date">
+  <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/leetcode/"> leetcode </a>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/longest-substr/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:960字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      
+
+<h3 id="实现">实现</h3>
+
+<p>下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&rdquo;abbabcx&rdquo;,其最长无重复字符的子串为&rdquo;abcx&rdquo;，长度4，详细描述可访问<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a></p>
+
+<pre><code class="language-scheme">(let*
+    (
+        [s &quot;abbabcx&quot;]
+        [arr-index 0]
+        [ans 0]
+        [d -1]
+        [vec (make-vector 128 -1)]
+        [keep-last-position (lambda (c pos-in-s) (vector-set! vec c pos-in-s))]
+        [scan (lambda (c pos-in-s)
+            (let*
+                ([previous-pos (vector-ref vec c)] [len 0])
+                (begin
+                    (when
+                        (and (&gt;= previous-pos 0) (&gt; previous-pos d))
+                        (set! d previous-pos)
+                    )
+                    (set! len (- pos-in-s d))
+                    (keep-last-position c pos-in-s)
+                    (when (&gt; len ans) (set! ans len))
+                )
+            )
+        )]
+    )
+
+    (
+        string-for-each
+            (lambda (e) (scan (char-&gt;integer e) arr-index) (set! arr-index (+ arr-index 1)))
+            s
+    )
+    ans
+)
+</code></pre>
+
+<p><strong>实现的思路为：</strong></p>
+
+<p>由于字符可以有ASCII码表示，故可以用一个长度为128的向量<strong>vec</strong>来保存每个字符在给定的字符串中出现的最后一次的位置。维护一个变量<strong>d</strong>来记录最近一次出现重复的字符的起始位置。
+如果：</p>
+
+<ol>
+<li>判断某字符是否重复：<br>
+1.1 某字符第一次出现，执行第2步<br>
+1.2 某字符非第一次出现，如果该字符上次出现的位置，在<strong>d</strong>之后，则将<strong>d</strong>设置为该字符上次出现的位置。由于之前的最大长度已经由<strong>ans</strong>保存，所以只需要计算剩下的子串的长度能不能大于<strong>ans</strong>，这就是为什么<strong>d</strong>记录最近一次出现重复的字符串的起始位置就好了<br></li>
+<li>计算当前位置和<strong>d</strong>的长度<strong>len</strong></li>
+<li>保存其位置到<strong>vec</strong></li>
+<li>如果<strong>len</strong>大于<strong>ans</strong>，改变<strong>ans</strong>为<strong>len</strong></li>
+</ol>
+
+<p>这种实现只需遍历一遍就可以计算出结果，性能非常棒。当然暴力计算或者滑动窗口也可以实现该功能，只是需要多次遍历，性能比不上。</p>
+
+<h3 id="概要分析">概要分析</h3>
+
+<p>上文说到性能问题，拿点数据出来证明一下吧。</p>
+
+<p>将上面的代码稍微改造一下，作为一个definition，并保存在longest_substr.ss文件中，</p>
+
+<pre><code class="language-scheme">(define longest-substr
+    (lambda (str)
+        (let*
+            (
+                [s str]
+                [arr-index 0]
+                [ans 0]
+                [d -1]
+                [vec (make-vector 128 -1)]
+                [keep-last-position (lambda (c pos-in-s) (vector-set! vec c pos-in-s))]
+                [scan (lambda (c pos-in-s)
+                    (let*
+                        ([previous-pos (vector-ref vec c)] [len 0])
+                        (begin
+                            (when
+                                (and (&gt;= previous-pos 0) (&gt; previous-pos d))
+                                (set! d previous-pos)
+                            )
+                            (set! len (- pos-in-s d))
+                            (keep-last-position c pos-in-s)
+                            (when (&gt; len ans) (set! ans len))
+                        )
+                    )
+                )]
+            )
+
+            (
+                string-for-each
+                    (lambda (e) (scan (char-&gt;integer e) arr-index) (set! arr-index (+ arr-index 1)))
+                    s
+            )
+            ans
+        )
+    )
+)
+</code></pre>
+
+<p>Chez Scheme提供了一个概要分析工具，非常好用，来试用一下：
+<img src="/images/longest.png" alt="" /></p>
+
+<p>生成的html可以非常直观的看到该函数的执行情况
+<img src="/images/profile_longest.png" alt="" /></p>
+
+<p>字符串越长，执行次数越多，执行时间是多少呢？选一个上面例子中最长的字符串来看看：</p>
+
+<pre><code class="language-scheme">&gt; (time (longest-substr &quot;abcabcxsfsdfw232sdfssdfsdfsdfsf1234567890&quot;))
+(time (longest-substr &quot;abcabcxsfsdfw232sdfssdfsdfsdfsf1234567890&quot;))
+    no collections
+    0.000003672s elapsed cpu time
+    0.000002000s elapsed real time
+    1792 bytes allocated
+12
+&gt;
+
+</code></pre>
+
+<p>消耗的CPU时间0.000003672s，可以说非常短了，且分配的内存仅仅1792个字节。超乎寻常的性能，我想应该有两个方面原因：</p>
+
+<ol>
+<li>算法</li>
+<li>Scheme 和 Chez Scheme</li>
+</ol>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2020/03/longest-substr/" title="无重复字符的最长子串-Scheme实现" target="_blank" rel="external">https://lvsq.net/2020/03/longest-substr/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">Siquan</span><small class="ml-1x">历史及函数式编程爱好者</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2020/03/fp-in-go/" title="使用Golang进行函数式编程"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        
+        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+            data-target="#donateModal"><span>赏</span></button>
+        
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter"
+                data-mobile-sites="wechat,twitter"></div>
+        </div>
+    </div>
 </nav>
 
+
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content donate">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="modal-body">
+                <div class="donate-box">
+                    <div class="donate-head">
+                        <p>感谢您的支持,我会继续努力的!</p>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                    <div class="donate-footer">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
+                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
+                                    微信支付</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -595,6 +691,22 @@
     });
 </script>
 
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
 
   </body>
 </html>
