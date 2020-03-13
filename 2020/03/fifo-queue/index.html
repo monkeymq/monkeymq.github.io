@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-03-06T17:35:49&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-06T17:35:49&#43;08:00" />
-<meta itemprop="wordCount" content="542">
+<meta itemprop="wordCount" content="583">
 
 
 
@@ -369,7 +369,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fifo-queue/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:542字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:583字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
@@ -405,38 +405,51 @@
 (delete-queue! <em>&lt;queue&gt;</em> )<br>
 删除列头的数据</p>
 
-<pre><code class="language-scheme">(module FIFO-QUEUE
-    (make-queue empty-queue? front-queue insert-queue! delete-queue! length-queue)
-    (define front-ptr (lambda (q) (caar q)))
-    (define set-front-ptr! (lambda (q item) (set-car! (car q) item)))
-    (define rear-ptr (lambda (q) (cdar q)))
-    (define set-rear-ptr! (lambda (q item) (set-cdr! (car q) item)))
+<ul>
+<li><p>打印函数
+(print-queue <em>&lt;queue&gt;</em>)</p>
 
-    (define make-queue (lambda () (cons (cons '() '()) 0)))
-    (define empty-queue? (lambda (q) (null? (front-ptr q))))
-    (define front-queue (lambda (q) (if (empty-queue? q) (error &quot;FRONT called with an empty queue&quot; q) (car (front-ptr q)))))
-    (define (insert-queue! q item)
-        (let ((new-pair (cons item '())))
-            (if
-                (empty-queue? q)
-                (begin (set-front-ptr! q new-pair) (set-rear-ptr! q new-pair) (set-cdr! q (+ 1 (cdr q))) q)
-                (begin (set-cdr! (rear-ptr q) new-pair) (set-rear-ptr! q new-pair) (set-cdr! q ( + 1 (cdr q))) q)
-            )
+<pre><code class="language-scheme">(module FIFO-QUEUE
+(make-queue empty-queue? front-queue insert-queue! delete-queue! length-queue)
+(define front-ptr (lambda (q) (caar q)))
+(define set-front-ptr! (lambda (q item) (set-car! (car q) item)))
+(module FIFO-QUEUE
+(make-queue empty-queue? front-queue insert-queue! delete-queue! length-queue print-queue)
+(define front-ptr (lambda (q) (caar q)))
+(define set-front-ptr! (lambda (q item) (set-car! (car q) item)))
+(define rear-ptr (lambda (q) (cdar q)))
+(define set-rear-ptr! (lambda (q item) (set-cdr! (car q) item)))
+
+(define make-queue (lambda () (cons (cons '() '()) 0)))
+(define empty-queue? (lambda (q) (null? (front-ptr q))))
+(define front-queue (lambda (q) (if (empty-queue? q) (error &quot;FRONT called with an empty queue&quot; q) (car (front-ptr q)))))
+(define (insert-queue! q item)
+    (let ((new-pair (cons item '())))
+        (if
+            (empty-queue? q)
+            (begin (set-front-ptr! q new-pair) (set-rear-ptr! q new-pair) (set-cdr! q (+ 1 (cdr q))) q)
+            (begin (set-cdr! (rear-ptr q) new-pair) (set-rear-ptr! q new-pair) (set-cdr! q ( + 1 (cdr q))) q)
         )
     )
-    (define delete-queue!
-        (lambda (q)
-            (if
-                (empty-queue? q)
-                (error &quot;DELETE! called with an empty queue&quot; q)
-                (begin (set-front-ptr! q (cdr (front-ptr q))) (set-cdr! q (- (cdr q) 1)) q)
-            )
+)
+(define delete-queue!
+    (lambda (q)
+        (if 
+            (empty-queue? q)
+            (error &quot;DELETE! called with an empty queue&quot; q)
+            (begin (set-front-ptr! q (cdr (front-ptr q))) (set-cdr! q (- (cdr q) 1)) q)
         )
     )
-    (define length-queue (lambda (q) (cdr q)))
+)
+(define length-queue (lambda (q) (cdr q)))
+(define print-queue (lambda (q)
+    (if (empty-queue? q) '() (front-ptr q))
+))
 )
 
-</code></pre>
+
+</code></pre></li>
+</ul>
 
 <p>前4个过程是用于内部的帮助函数，队列维护两个指针，一个指向列头（<strong>front-ptr</strong>）,一个指向列尾（<strong>rear-ptr</strong>），这样可以弥补原生的set-car!和set-cdr!的不足。</p>
 
