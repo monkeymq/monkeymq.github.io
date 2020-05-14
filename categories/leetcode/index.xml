@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>LeetCode on Siquan的网络日志 | AI-Life</title>
+    <title>leetcode on Siquan的网络日志 | AI-Life</title>
     <link>https://lvsq.net/categories/leetcode/</link>
-    <description>Recent content in LeetCode on Siquan的网络日志 | AI-Life</description>
+    <description>Recent content in leetcode on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 12 Mar 2020 18:02:45 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[译]BEAM vs JVM</title>
+      <link>https://lvsq.net/2020/05/beam-vs-jvm/</link>
+      <pubDate>Thu, 14 May 2020 10:13:25 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/05/beam-vs-jvm/</guid>
+      <description>本文翻译自：Optimising for Concurrency: Comparing and contrasting the BEAM and JVM virtual machines 作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件</description>
+    </item>
     
     <item>
       <title>无重复字符的最长子串-Scheme实现</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/jgossip/</guid>
       <description>Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些</description>
-    </item>
-    
-    <item>
-      <title>两数相加</title>
-      <link>https://lvsq.net/2019/12/leetcode-2/</link>
-      <pubDate>Tue, 17 Dec 2019 20:00:31 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/leetcode-2/</guid>
-      <description>本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result</description>
     </item>
     
   </channel>
