@@ -5,10 +5,19 @@
     <link>https://lvsq.net/categories/</link>
     <description>Recent content in Categories on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 14 May 2020 10:13:25 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2020 15:41:35 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jgossip - gossip协议的开源实现</title>
+      <link>https://lvsq.net/2019/12/jgossip/</link>
+      <pubDate>Thu, 19 Dec 2019 16:07:31 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/jgossip/</guid>
+      <description>Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些</description>
+    </item>
     
     <item>
       <title>两数相加</title>

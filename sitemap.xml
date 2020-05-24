@@ -3,14 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lvsq.net/2020/05/beam-vs-jvm/</loc>
-    <lastmod>2020-05-14T10:13:25+08:00</lastmod>
+    <loc>https://lvsq.net/categories/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/</loc>
+    <loc>https://lvsq.net/categories/erlang/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/scheme/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/scheme/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2020/05/n-queens/</loc>
+    <lastmod>2020-05-23T15:41:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2020/05/beam-vs-jvm/</loc>
     <lastmod>2020-05-14T10:13:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -24,49 +73,7 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/erlang/</loc>
-    <lastmod>2020-05-14T10:13:25+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2020-05-14T10:13:25+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2020-05-14T10:13:25+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
-    <lastmod>2020-05-14T10:13:25+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/categories/leetcode/</loc>
-    <lastmod>2020-03-12T18:02:45+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/scheme/</loc>
-    <lastmod>2020-03-12T18:02:45+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/scheme/</loc>
     <lastmod>2020-03-12T18:02:45+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -220,14 +227,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/chez/</loc>
+    <loc>https://lvsq.net/tags/chez/</loc>
     <lastmod>2019-12-25T16:47:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/chez/</loc>
+    <loc>https://lvsq.net/categories/chez/</loc>
     <lastmod>2019-12-25T16:47:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
