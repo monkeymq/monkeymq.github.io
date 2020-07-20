@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-07-20T14:57:29&#43;08:00" />
 <meta itemprop="dateModified" content="2020-07-20T14:57:29&#43;08:00" />
-<meta itemprop="wordCount" content="395">
+<meta itemprop="wordCount" content="391">
 
 
 
@@ -379,7 +379,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/quick-sort-in-cl/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:395字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:391字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -406,7 +406,7 @@
             (len (list-length lst))
             (st (lambda (l pk)   ;; st函数实现上述第2步
                     (let ((left nil) (right nil))
-                        (dolist (each l) (if (&lt; each pk) (setf left (cons each left)) (setf right (cons each right))))
+                        (dolist (each l) (if (&lt; each pk) (push each left) (push each right)))
                         (values left right)
                     )
                 )
