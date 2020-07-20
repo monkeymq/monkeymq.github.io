@@ -44,7 +44,7 @@
 
 <meta itemprop="datePublished" content="2020-07-20T14:57:29&#43;08:00" />
 <meta itemprop="dateModified" content="2020-07-20T14:57:29&#43;08:00" />
-<meta itemprop="wordCount" content="391">
+<meta itemprop="wordCount" content="471">
 
 
 
@@ -379,7 +379,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/07/quick-sort-in-cl/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:391字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:471字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
@@ -422,6 +422,32 @@
 
 
 (quickSort '(1 2 6 3 5 4))  =&gt; (1 2 3 4 5 6)
+</code></pre>
+
+<p>st函数可以用宏来实现：</p>
+
+<pre><code class="language-lisp">(defmacro st (lst pk)
+    (let ((gslist (gensym)))
+        `(let ((,gslist ,lst))
+            (let ((left nil) (right nil))
+                (dolist (each ,gslist) (if (&lt; each ,pk) (push each left) (push each right)))
+                (values left right)
+            )
+        )
+    )
+)
+(defun quickSort (lst)
+    (let
+        (
+            (len (list-length lst))
+        )
+        (if
+            (&lt; len 2)
+            lst
+            (multiple-value-bind (l r) (st (cdr lst) (car lst)) (append (quickSort l) (cons (car lst) (quickSort r))))
+        )
+    )
+)
 </code></pre>
 
     </div>
