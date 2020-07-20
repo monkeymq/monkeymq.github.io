@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lisp on Siquan的网络日志 | AI-Life</title>
+    <link>https://lvsq.net/tags/lisp/</link>
+    <description>Recent content in lisp on Siquan的网络日志 | AI-Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 20 Jul 2020 14:57:29 +0800</lastBuildDate>
+    
+        <atom:link href="https://lvsq.net/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Recursive Bindings in Chez Scheme</title>
+      <link>https://lvsq.net/2019/12/recursive-bindings/</link>
+      <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/recursive-bindings/</guid>
+      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述： (rec</description>
+    </item>
+    
+    <item>
+      <title>Jgossip - gossip协议的开源实现</title>
+      <link>https://lvsq.net/2019/12/jgossip/</link>
+      <pubDate>Thu, 19 Dec 2019 16:07:31 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/jgossip/</guid>
+      <description>Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些</description>
+    </item>
+    
+    <item>
+      <title>两数相加</title>
+      <link>https://lvsq.net/2019/12/leetcode-2/</link>
+      <pubDate>Tue, 17 Dec 2019 20:00:31 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/leetcode-2/</guid>
+      <description>本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result</description>
+    </item>
+    
+    <item>
+      <title>钱币组合问题</title>
+      <link>https://lvsq.net/2019/12/count-coins/</link>
+      <pubDate>Fri, 13 Dec 2019 15:11:35 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/count-coins/</guid>
+      <description>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://lvsq.net/about/</link>
+      <pubDate>Tue, 03 Dec 2019 09:06:26 +0800</pubDate>
+      
+      <guid>https://lvsq.net/about/</guid>
+      <description>生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。 学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过</description>
+    </item>
+    
+    <item>
+      <title>Swagger 如何使用vendorExtensions进行扩展</title>
+      <link>https://lvsq.net/2019/11/swagger-vendor/</link>
+      <pubDate>Fri, 29 Nov 2019 10:21:12 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/11/swagger-vendor/</guid>
+      <description>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq</description>
+    </item>
+    
+    <item>
+      <title>历史不能碰</title>
+      <link>https://lvsq.net/2019/11/do-not-touch-history/</link>
+      <pubDate>Thu, 28 Nov 2019 12:43:50 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/11/do-not-touch-history/</guid>
+      <description>秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁</description>
+    </item>
+    
+    <item>
+      <title>Emacs</title>
+      <link>https://lvsq.net/2019/11/emacs/</link>
+      <pubDate>Wed, 27 Nov 2019 20:58:09 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/11/emacs/</guid>
+      <description>M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查</description>
+    </item>
+    
+  </channel>
+</rss>

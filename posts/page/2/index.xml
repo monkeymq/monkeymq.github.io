@@ -5,10 +5,19 @@
     <link>https://lvsq.net/posts/</link>
     <description>Recent content in Posts on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 23 May 2020 15:41:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 14:57:29 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Recursive Bindings in Chez Scheme</title>
+      <link>https://lvsq.net/2019/12/recursive-bindings/</link>
+      <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/recursive-bindings/</guid>
+      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述： (rec</description>
+    </item>
     
     <item>
       <title>Jgossip - gossip协议的开源实现</title>

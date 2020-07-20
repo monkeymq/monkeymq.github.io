@@ -5,10 +5,19 @@
     <link>https://lvsq.net/tags/</link>
     <description>Recent content in Tags on Siquan的网络日志 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 23 May 2020 15:41:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 14:57:29 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>快速排序（Lisp版本）</title>
+      <link>https://lvsq.net/2020/07/quick-sort-in-cl/</link>
+      <pubDate>Mon, 20 Jul 2020 14:57:29 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/07/quick-sort-in-cl/</guid>
+      <description>快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为： 设定一个分界值，通常为第一个元素； 遍历列表，将所有小于</description>
+    </item>
     
     <item>
       <title>从“八皇后”到amb</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/fluid-binding/</guid>
       <description>Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫流式绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描</description>
-    </item>
-    
-    <item>
-      <title>Recursive Bindings in Chez Scheme</title>
-      <link>https://lvsq.net/2019/12/recursive-bindings/</link>
-      <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/recursive-bindings/</guid>
-      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述： (rec</description>
     </item>
     
   </channel>
