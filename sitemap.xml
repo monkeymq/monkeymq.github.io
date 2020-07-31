@@ -10,13 +10,6 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/lisp/</loc>
-    <lastmod>2020-07-20T14:57:29+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/categories/lisp/</loc>
     <lastmod>2020-07-20T14:57:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -24,14 +17,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/posts/</loc>
+    <loc>https://lvsq.net/tags/lisp/</loc>
     <lastmod>2020-07-20T14:57:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/</loc>
+    <loc>https://lvsq.net/posts/</loc>
     <lastmod>2020-07-20T14:57:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -52,6 +45,13 @@
   </url>
   
   <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2020-07-20T14:57:29+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://lvsq.net/categories/erlang/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -59,14 +59,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/scheme/</loc>
+    <loc>https://lvsq.net/categories/scheme/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/categories/scheme/</loc>
+    <loc>https://lvsq.net/tags/scheme/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
