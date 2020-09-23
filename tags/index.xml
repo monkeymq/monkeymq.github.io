@@ -5,10 +5,19 @@
     <link>https://lvsq.net/tags/</link>
     <description>Recent content in Tags on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 20 Jul 2020 14:57:29 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2020 11:24:24 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Lexical Scoping and Dynamic Scoping</title>
+      <link>https://lvsq.net/2020/09/lexical-dynamic-scoping/</link>
+      <pubDate>Wed, 23 Sep 2020 11:24:24 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/09/lexical-dynamic-scoping/</guid>
+      <description>我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的</description>
+    </item>
     
     <item>
       <title>快速排序（Lisp版本）</title>
@@ -34,7 +43,7 @@
       <pubDate>Thu, 14 May 2020 10:13:25 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/05/beam-vs-jvm/</guid>
-      <description>本文翻译自：Optimising for Concurrency: Comparing and contrasting the BEAM and JVM virtual machines 作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件</description>
+      <description>作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是：1）Erlang编程语言的语义，并在其上实现</description>
     </item>
     
     <item>
@@ -43,7 +52,7 @@
       <pubDate>Thu, 12 Mar 2020 18:02:45 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/03/longest-substr/</guid>
-      <description>实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;rdquo;abbabcx&amp;rdquo;,其最长无重复字符的子</description>
+      <description>实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;quot;abbabcx&amp;rdquo;,其最长无重复字符的子串</description>
     </item>
     
     <item>
@@ -61,7 +70,7 @@
       <pubDate>Fri, 06 Mar 2020 17:35:49 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/03/fifo-queue/</guid>
-      <description>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个</description>
+      <description>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make</description>
     </item>
     
     <item>
@@ -142,7 +151,7 @@
       <pubDate>Fri, 03 Jan 2020 14:44:33 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/01/boxes-in-chez/</guid>
-      <description>Chez Scheme中有一种Boxes结构，它是一个*单元素*对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据</description>
+      <description>Chez Scheme中有一种Boxes结构，它是一个单元素对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据结构</description>
     </item>
     
     <item>
@@ -151,7 +160,7 @@
       <pubDate>Mon, 30 Dec 2019 16:27:27 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/12/operations-on-objects/</guid>
-      <description>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) *n*是一个非负整数，且小于等于*list</description>
+      <description>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &amp;#39;(a b c)) ⇒ #f (atom? &amp;#39;(3 . 4)) ⇒ #f (atom? &amp;#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度</description>
     </item>
     
     <item>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/think/</guid>
       <description>易经曰：通其变，使民不倦。引颜师古注：此易下系之辞也，言通物之变，胡能乐其器用，不解倦也。不才私度其意，白话言之：人物一理，应明其格，顺其兴</description>
-    </item>
-    
-    <item>
-      <title>Fluid Binding in Chez Scheme</title>
-      <link>https://lvsq.net/2019/12/fluid-binding/</link>
-      <pubDate>Tue, 24 Dec 2019 16:43:57 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/fluid-binding/</guid>
-      <description>Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫流式绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描</description>
     </item>
     
   </channel>

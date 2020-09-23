@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>钱币组合问题 - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2019-12-13T15:11:35+08:00" />
 <meta itemprop="name" content="钱币组合问题">
 <meta itemprop="description" content="最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发">
-
-
-<meta itemprop="datePublished" content="2019-12-13T15:11:35&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-13T15:11:35&#43;08:00" />
+<meta itemprop="datePublished" content="2019-12-13T15:11:35+08:00" />
+<meta itemprop="dateModified" content="2019-12-13T15:11:35+08:00" />
 <meta itemprop="wordCount" content="406">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -385,60 +392,47 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
-
-<p>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发。</p>
-
-<hr />
-
+      <p>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发。</p>
+<hr>
 <h3 id="问题描述">问题描述</h3>
-
 <p>假设我们已经有足够多的1分，2分，5分钱币，任意给定金额比如1元，问有多少种组合方式？ 换言之，$$1x+2y+5z = 100$$ 求x,y,z的解有多少个</p>
-
-<hr />
-
+<hr>
 <h3 id="思路">思路</h3>
-
 <p>组合方式的总和应为：</p>
-
 <ol>
-<li><p>任意扣去一种钱币比如1分，1元采用2分，5分两种钱币的组合数，再加上：</p></li>
-
-<li><p>总额为（1元-1分），采用1分，2分，5分三种钱币的组合数；</p></li>
+<li>
+<p>任意扣去一种钱币比如1分，1元采用2分，5分两种钱币的组合数，再加上：</p>
+</li>
+<li>
+<p>总额为（1元-1分），采用1分，2分，5分三种钱币的组合数；</p>
+</li>
 </ol>
-
 <p><em>很明显这可以很容易用递归实现</em></p>
-
-<hr />
-
+<hr>
 <p>稍作一点解释：</p>
-
 <p>a. 上面两步的意思是：不带1分的组合数 + 带1分的组合数 = 全部的组合数； 这是显而易见的</p>
-
 <p>b. 上述第2步，（1元-1分）的意思是：这样可以保证任意一种组合方式再加1分都等于1元，保证至少有1个1分的钱币</p>
-
-<pre><code class="language-lisp">(letrec 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(letrec 
     [
-        (A (lambda (n d) (if (= 0 (mod n d)) 1 0))) 
+        (A (lambda (n d) (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">mod</span> n d)) <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>))) 
         (B (lambda (n d) 
                 (cond
-                    [(not (pair? d)) 0]
+                    [(<span style="color:#a6e22e">not</span> (pair? d)) 0]
                     [(null? d) 0] 
-                    [(= 0 n) 1] 
-                    [(&gt; 0 n) 0]
-                    [(= 1 (length d)) (A n (car d))]
+                    [(<span style="color:#a6e22e">=</span> <span style="color:#ae81ff">0</span> n) 1] 
+                    [(<span style="color:#a6e22e">&gt;</span> <span style="color:#ae81ff">0</span> n) 0]
+                    [(<span style="color:#a6e22e">=</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">length</span> d)) (A n (<span style="color:#a6e22e">car</span> d))]
                     [else 
-                        ( + (B n (cdr d)) (B (- n (car d)) d))
+                        ( <span style="color:#a6e22e">+</span> (B n (<span style="color:#a6e22e">cdr</span> d)) (B (<span style="color:#a6e22e">-</span> n (<span style="color:#a6e22e">car</span> d)) d))
                     ]
                 )
             )
         )
     ]
 
-    [B 100 '(1 2 5)]
+    [B <span style="color:#ae81ff">100</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">5</span>)]
 )
-</code></pre>
-
+</code></pre></div>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">

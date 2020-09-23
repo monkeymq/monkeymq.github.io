@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Fluid Keyword Bindings fluid-let-syntax 语法: fluid-let-syntax ((keyword expr) &amp;hellip;) form1 form2 &amp;hellip;) fluid-let-syntax与标准let语法相似，不同之处在于Fluid-let-syntax在其body扩" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>Syntactic Extension and Modules in Chez Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2020-01-15T16:00:51+08:00" />
 <meta itemprop="name" content="Syntactic Extension and Modules in Chez Scheme">
 <meta itemprop="description" content="Fluid Keyword Bindings fluid-let-syntax 语法: fluid-let-syntax ((keyword expr) &hellip;) form1 form2 &hellip;) fluid-let-syntax与标准let语法相似，不同之处在于Fluid-let-syntax在其body扩">
-
-
-<meta itemprop="datePublished" content="2020-01-15T16:00:51&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-15T16:00:51&#43;08:00" />
+<meta itemprop="datePublished" content="2020-01-15T16:00:51+08:00" />
+<meta itemprop="dateModified" content="2020-01-15T16:00:51+08:00" />
 <meta itemprop="wordCount" content="368">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -385,38 +392,29 @@
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
-
-<h2 id="fluid-keyword-bindings">Fluid Keyword Bindings</h2>
-
+      <h2 id="fluid-keyword-bindings">Fluid Keyword Bindings</h2>
 <h3 id="fluid-let-syntax">fluid-let-syntax</h3>
-
 <blockquote>
 <p>语法: fluid-let-syntax ((keyword expr) &hellip;) form1 form2 &hellip;)
 <strong>fluid-let-syntax</strong>与标准<strong>let</strong>语法相似，不同之处在于Fluid-let-syntax在其body扩展期间会暂时更改keyword的现有绑定，而不是引入keyword的新绑定。也就是说，在扩展form1 form2 &hellip;的过程中，每个keyword的可见范围（或顶级）将会<strong>临时</strong>替换为新的绑定关系。</p>
 </blockquote>
-
-<pre><code class="language-scheme">(let ([f (lambda (x) (+ x 1))])
-  (let-syntax
-    ([g (syntax-rules () [(_ x) (f x)])])
-    (let-syntax ([f (syntax-rules () [(_ x) x])])
-      (g 1)  =&gt; 2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (+ x <span style="color:#ae81ff">1</span>))])
+  (<span style="color:#a6e22e">let-syntax</span>
+    ([g (<span style="color:#66d9ef">syntax-rules </span>() [(<span style="color:#a6e22e">_</span> x) (<span style="color:#a6e22e">f</span> x)])])
+    (<span style="color:#66d9ef">let-syntax </span>([f (<span style="color:#66d9ef">syntax-rules </span>() [(<span style="color:#a6e22e">_</span> x) x])])
+      (<span style="color:#a6e22e">g</span> <span style="color:#ae81ff">1</span>)  <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">2</span>
     )
   )
 )
-</code></pre>
-
-<pre><code class="language-scheme">(let ([f (lambda (x) (+ x 1))])
-  (let-syntax
-    ([g (syntax-rules () [(_ x) (f x)])])
-    (fluid-let-syntax ([f (syntax-rules () [(_ x) x])])
-      (g 1)  =&gt; 1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (+ x <span style="color:#ae81ff">1</span>))])
+  (<span style="color:#a6e22e">let-syntax</span>
+    ([g (<span style="color:#66d9ef">syntax-rules </span>() [(<span style="color:#a6e22e">_</span> x) (<span style="color:#a6e22e">f</span> x)])])
+    (<span style="color:#a6e22e">fluid-let-syntax</span> ([f (<span style="color:#66d9ef">syntax-rules </span>() [(<span style="color:#a6e22e">_</span> x) x])])
+      (<span style="color:#a6e22e">g</span> <span style="color:#ae81ff">1</span>)  <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">1</span>
     )
   )
 )
-</code></pre>
-
-<p>对比上述两段代码，可知：两个表达式基本相同的，除了前者采用内部let-synctax语法，第二个采用fluid-let-syntax语法。在第一个表达式中，(g 1)扩展中的出现的<strong>f</strong>引用的是let-bound的变量<strong>f</strong>，而第二个表达式，<strong>f</strong>引用的是由fluid-let-syntax绑定的<strong>f</strong></p>
+</code></pre></div><p>对比上述两段代码，可知：两个表达式基本相同的，除了前者采用内部let-synctax语法，第二个采用fluid-let-syntax语法。在第一个表达式中，(g 1)扩展中的出现的<strong>f</strong>引用的是let-bound的变量<strong>f</strong>，而第二个表达式，<strong>f</strong>引用的是由fluid-let-syntax绑定的<strong>f</strong></p>
 
     </div>
     <div class="article-footer">

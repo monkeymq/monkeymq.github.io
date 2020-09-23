@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>线程（Thread System in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,11 +40,9 @@
 <meta property="article:modified_time" content="2020-02-17T15:18:39+08:00" />
 <meta itemprop="name" content="线程（Thread System in Chez Scheme）">
 <meta itemprop="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程">
-
-
-<meta itemprop="datePublished" content="2020-02-17T15:18:39&#43;08:00" />
-<meta itemprop="dateModified" content="2020-02-17T15:18:39&#43;08:00" />
-<meta itemprop="wordCount" content="5728">
+<meta itemprop="datePublished" content="2020-02-17T15:18:39+08:00" />
+<meta itemprop="dateModified" content="2020-02-17T15:18:39+08:00" />
+<meta itemprop="wordCount" content="5752">
 
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -380,429 +387,328 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5728字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5752字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
-
-<p>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。</p>
-
+      <p>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。</p>
 <p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如<strong>+</strong>和<strong>sqrt</strong>之类的数字运算符以及诸如<strong>append</strong>和<strong>map</strong>之类的非破坏性的高级原生操作。</p>
-
 <p>简单的变动运算符（例如set-car！，vector-set！和record字段变动器）是线程安全的。 同样，对局部变量的分配，包括（未导出的）库和顶级程序变量的分配也是线程安全的。</p>
-
 <p>大多数I/O操作应被视为具有破坏性，因为它们可能会修改端口的内部结构。</p>
-
 <p>使用没有进行合适的同步策略的非线程安全的运算符可能会破坏它们所操作的对象。 这种损坏可能导致错误的行为，内存故障，甚至导致系统中止的不可恢复的错误。</p>
-
 <h3 id="线程创建">线程创建</h3>
-
 <blockquote>
 <p>(fork-thread thunk)</p>
 </blockquote>
-
 <p><em>thunk</em> 必须是一个接受0个参数的过程。</p>
-
 <p><strong>fork-thread</strong>在一个新线程中调用<em>thunk</em> ，并返回一个线程对象。</p>
-
 <p>除了打印它外，<strong>fork-thread</strong>返回的线程对象无法执行任何操作。</p>
-
 <p>除了使用<strong>fork-thread</strong>以外，可通过外部代码来创建的线程必须在触及任何Scheme数据或调用任何Scheme过程之前调用<strong>Sactivate_thread</strong></p>
-
 <blockquote>
 <p>(thread? obj)</p>
 </blockquote>
-
 <p>返回：如果<em>obj</em> 是一个线程对象，返回#t,否则返回#f</p>
-
 <blockquote>
 <p>(get-thread-id)</p>
 </blockquote>
-
 <p>返回：当前线程的id</p>
-
 <p>线程id是由线程分配的线程号，并且与<strong>get-process-id</strong>返回的进程id没有关系，进程id在所有线程中都是相同的。</p>
-
 <h3 id="互斥锁">互斥锁</h3>
-
 <blockquote>
 <p>(make-mutex)</p>
 </blockquote>
-
 <p>返回：一个新的互斥锁对象</p>
-
 <blockquote>
 <p>(mutex? obj)</p>
 </blockquote>
-
 <p>返回：如果<em>obj</em> 是互斥锁，返回#t</p>
-
 <blockquote>
 <p>(mutex-acquire mutex) |  (mutex-acquire mutex block?)</p>
 </blockquote>
-
 <p><em>mutex</em> 必须是一个互斥锁。</p>
-
 <p><strong>mutex-acquire</strong>获取由<em>mutex</em> 标识的互斥锁。可选的bool参数<em>block？</em> 默认为#t，指定线程是否应阻塞等待互斥锁。<em>block？</em> 如果省略或为true，则线程将阻塞，直到获取了互斥锁为止，并返回未指定的值。</p>
-
-<p>如果<em>block？</em> 为false并且互斥锁当前已属于其他线程，当前线程并不会阻塞，而是，<strong>mutex-acquire</strong>立即返回值<strong>#f</strong>，以指示互斥锁不可用。 如果<em>block？</em> 为false并且成功获取了互斥锁，<strong>mutex-acquire</strong>返回#t。</p>
-
+<p>如果<em>block？</em> 为false并且互斥锁当前已属于其他线程，当前线程并不会阻塞，而是，<strong>mutex-acquire</strong>立即返回值**#f**，以指示互斥锁不可用。 如果*block？* 为false并且成功获取了互斥锁，**mutex-acquire**返回#t。</p>
 <p>互斥锁在Posix线程术语中是递归的，这意味着调用线程可以使用互斥锁获取（重新）获取它已经拥有的互斥锁（注：锁是可以重入的）。 在这种情况下，释放互斥锁需要执行相等数量的<strong>mutex-release</strong>。</p>
-
 <blockquote>
 <p>(mutex-release mutex)</p>
 </blockquote>
-
 <p><em>mutex</em> 必须是一个互斥锁。</p>
-
 <p><strong>mutex-release</strong>释放由<em>mutex</em> 标识的互斥锁。 如果<em>mutex</em> 不属于调用线程（即释放别人的互斥锁），则会导致无法预料的行为。</p>
-
 <blockquote>
 <p>(with-mutex mutex body1 body2 &hellip;)</p>
 </blockquote>
-
 <p><strong>with-mutex</strong>计算表达式<em>mutex</em> ，其必须可以计算为一个互斥锁，获取锁，并计算<em>body1 body2 &hellip;</em> ,然后释放锁。无论body是正常返回还是通过控制操作（即可能由于错误而抛到continuation）释放互斥量，这都会导致<strong>with-mutex</strong>形式的非本地退出。如果控制随后通过continuation调用返回到body，则将重新获取互斥锁。</p>
-
 <p>与直接使用<strong>mutex-acquire</strong>和<strong>mutex-release</strong>相比，使用<strong>with-mutex</strong>通常更方便，更安全。</p>
-
 <h3 id="条件">条件</h3>
-
 <blockquote>
 <p>(make-condition)</p>
 </blockquote>
-
 <p>返回：一个新的条件对象</p>
-
 <blockquote>
 <p>(thread-condition? obj)</p>
 </blockquote>
-
 <p>返回：如果<em>obj</em> 是条件对象，返回#t</p>
-
 <blockquote>
 <p>(condition-wait cond mutex) |  (condition-wait cond mutex timeout)</p>
 </blockquote>
-
 <p>返回：如果调用线程被条件唤醒返回#t，如果调用线程超时等待返回#f</p>
-
-<p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或<strong>#f</strong>的时间记录，表示没有超时。 默认为<strong>#f</strong>。</p>
-
-<p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的*timeout*时长。在调用condition-wait时，调用线程必须已获取互斥锁<em>mutex</em> 。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
-
+<p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或**#f**的时间记录，表示没有超时。 默认为**#f**。</p>
+<p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的<em>timeout</em>时长。在调用condition-wait时，调用线程必须已获取互斥锁<em>mutex</em> 。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
 <blockquote>
 <p>(condition-signal cond)</p>
 </blockquote>
-
 <p><em>cond</em> 必须是一个条件对象。</p>
-
 <p><strong>condition-signal</strong>释放所有等待<em>cond</em> 标识的条件对象的线程的其中一个。</p>
-
 <blockquote>
 <p>(condition-broadcast cond)</p>
 </blockquote>
-
 <p><em>cond</em> 必须是一个条件对象。</p>
-
 <p><strong>condition-broadcast</strong>释放所有等待<em>cond</em> 标识的条件对象的线程</p>
-
 <h3 id="锁">锁</h3>
-
 <p>锁比互斥锁更原生，但是更加灵活和有效。</p>
-
-<p>只要锁在进程共享的内存中分配，它们还可以独立于线程系统使用（包括在Chez Scheme的非线程版本中）以在分离的Scheme进程中执行同步操作。<br>
+<p>只要锁在进程共享的内存中分配，它们还可以独立于线程系统使用（包括在Chez Scheme的非线程版本中）以在分离的Scheme进程中执行同步操作。<!-- raw HTML omitted -->
 锁只是一个字长的整数，即<strong>iptr</strong>或<strong>uptr</strong>外部类型，其中包含目标计算机的本机字节序，可能是使用<strong>define-ftype</strong>定义的大结构的一部分。必须在驻留于Scheme堆外部的内存中显式分配它，并在适当时显式释放。当仅涉及线程时（即，当不涉及多个进程时），可以通过<strong>foreign-alloc</strong>分配内存。 当涉及多个进程时，应在进程共享的某个区域中分配该锁。</p>
-
-<p>使用<strong>ftype-init-lock!</strong> 初始化后，进程或线程可以尝试通过<strong>ftype-lock!</strong>或<strong>ftype-spin-lock!</strong>锁定<em>lock</em> 。一旦锁已被锁定并且在解锁之前，即使通过最近锁定它的进程或线程，再一次尝试锁定该锁也会失败。 任何进程或线程可以使用<strong>ftype-unlock!</strong>来解锁lock，而不仅仅是通过最近锁定锁的进程或线程来解锁。</p>
-
+<p>使用<strong>ftype-init-lock!</strong> 初始化后，进程或线程可以尝试通过**ftype-lock!<strong>或</strong>ftype-spin-lock!<strong>锁定<em>lock</em> 。一旦锁已被锁定并且在解锁之前，即使通过最近锁定它的进程或线程，再一次尝试锁定该锁也会失败。 任何进程或线程可以使用</strong>ftype-unlock!**来解锁lock，而不仅仅是通过最近锁定锁的进程或线程来解锁。</p>
 <p>锁机制提供的结构很少，并且分配和使用中的错误可能导致内存错误，死锁和其他问题。 因此，通常建议仅将锁用作更高级别抽象的一部分，以确保按规范方式使用锁。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>lock
+  (<span style="color:#a6e22e">make-ftype-pointer</span> uptr
+    (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> uptr))))
 
-<pre><code class="language-scheme">(define lock
-  (make-ftype-pointer uptr
-    (foreign-alloc (ftype-sizeof uptr))))
-
-(ftype-init-lock! uptr () lock)
-(ftype-lock! uptr () lock) ⇒ #t
-(ftype-lock! uptr () lock) ⇒ #f
-(ftype-unlock! uptr () lock)
-(ftype-spin-lock! uptr () lock)
-(ftype-lock! uptr () lock) ⇒ #f
-(ftype-unlock! uptr () lock)
-</code></pre>
-
-<blockquote>
+(<span style="color:#a6e22e">ftype-init-lock!</span> uptr () lock)
+(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
+(<span style="color:#a6e22e">ftype-spin-lock!</span> uptr () lock)
+(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
+</code></pre></div><blockquote>
 <p>(ftype-init-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-init-lock! ftype-name (a &hellip;) fptr-expr index)</p>
-
+</blockquote>
+<blockquote>
 <p>(ftype-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-lock! ftype-name (a &hellip;) fptr-expr index)</p>
-
+</blockquote>
+<blockquote>
 <p>(ftype-spin-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-spin-lock! ftype-name (a &hellip;) fptr-expr index)</p>
-
+</blockquote>
+<blockquote>
 <p>(ftype-unlock! ftype-name (a &hellip;) fptr-expr) |  (ftype-unlock! ftype-name (a &hellip;) fptr-expr index)</p>
 </blockquote>
-
 <p>它们每个的语法都类似于<strong>ftype-set!</strong>，尽管带有隐式的<em>val-expr</em> 。 特别是，对<em>fptr-expr</em> 和访问器<em>a &hellip;</em> 的限制和处理是相似的，但有一个重要的限制：最后一个访问器所指定的字段（该格式在其上进行操作）必须是一个字长的整数，即 ，<strong>iptr，uptr</strong>或具有本地字节序的等效项。</p>
-
-<p><strong>ftype-init-lock!</strong>应该在使用任何其他运算符之前用于初始化锁； 如果不这样做，则其他操作符的行为是不确定的。</p>
-
+<p>**ftype-init-lock!**应该在使用任何其他运算符之前用于初始化锁； 如果不这样做，则其他操作符的行为是不确定的。</p>
 <p><strong>ftype-lock!</strong> 可用于加锁。如果发现在操作时锁已解锁，则将其锁定并返回#t；如果发现该锁已加锁，则返回#f且不更改该锁。</p>
-
 <p><strong>ftype-spin-lock!</strong> 也可以用来加锁。 如果在操作时发现该锁已解锁，则将其锁定并返回； 如果发现该锁已锁定，它将一直等待直到锁被解锁，然后再锁定并返回。如果没有其他进程或者线程来释放该锁，该操作不会返回且不能以正常的方式（包括GC）中断。也不保证公平，因此即使其他进程正在主动锁定和释放该锁，进程也可能无限期挂起。</p>
-
 <p><strong>ftype-unlock!</strong> 用于解锁。如果发现锁已被锁定，则将其解锁并返回。 否则，它将返回而不更改锁。</p>
-
 <h3 id="原子操作locked-increment-and-decrement">原子操作Locked increment and decrement</h3>
-
 <p>当需要原子递增或递减时，可以使用此处描述的锁定操作。</p>
-
 <blockquote>
 <p>(ftype-locked-incr! ftype-name (a &hellip;) fptr-expr) |  (ftype-locked-incr! ftype-name (a &hellip;) fptr-expr index)</p>
 </blockquote>
-
 <p>返回：如果更新的值为0，则为#t，否则为#f</p>
-
 <blockquote>
 <p>(ftype-locked-decr! ftype-name (a &hellip;) fptr-expr) |  (ftype-locked-decr! ftype-name (a &hellip;) fptr-expr index)</p>
 </blockquote>
-
 <p>返回：如果更新的值为0，则为#t，否则为#f</p>
-
 <p>它们每个的语法都类似于<strong>ftype-set!</strong>，尽管带有隐式的<em>val-expr</em> 。 特别是，对<em>fptr-expr</em> 和访问器<em>a &hellip;</em> 的限制和处理是相似的，但有一个重要的限制：最后一个访问器所指定的字段（该格式在其上进行操作）必须是一个字长的整数，即 ，<strong>iptr，uptr</strong>或具有本地字节序的等效项。</p>
-
 <p><strong>ftype-locked-incr!</strong> 自动读取指定字段的值，将值加1，然后将新值写回该字段。 同样，<strong>ftype-locked-decr!</strong> 原子读取指定字段的值，从该值中减去1，然后将新值写回到该字段中。 如果新值为0，则两者都返回#t，否则返回#f。</p>
-
 <h3 id="引用计数">引用计数</h3>
-
 <p>在Scheme堆之外管理内存的应用程序可以利用Scheme存储管理系统通过<em>ftype guardians</em> 执行引用计数。 在引用计数的内存管理系统中，每个对象都保存着指向它的指针计数。 当创建一个新的指针时，该计数增加；而在删除指针时，该计数减小。 当计数达到零时，不再需要该对象，并且可以将其占用的内存用于其他目的。</p>
-
 <blockquote>
 <p>(ftype-guardian ftype-name)</p>
 </blockquote>
-
 <p><em>ftype-name</em> 必须命名一个ftype。 ftype的第一个基本字段（或在unions的情况下为第一个基本字段）必须是具有本地尾数的字长整数（iptr或uptr）。 假定此字段保存引用计数。</p>
-
 <p>返回新的ftype guardian <em>g</em> ，可以使用其注册<em>ftype-name</em> 类型（或<em>ftype-nam</em> e的某些子类型）的ftype-pointer。 通过使用ftype指针作为参数调用<em>g</em> ，可以向<em>g</em> 注册ftype指针。</p>
-
-<p>ftype guardian不会像普通的guardian那样自动保护其注册的ftype指针免遭回收。而是，对于每个通过普通（非弱，非监护人指针）变得不可访问的已注册的ftype指针，guardian会减少ftype指针指向的对象的引用计数。如果引用计数值为0，则ftype指针将保留并可以从guardian中检索。 但是，如果生成的引用计数值非零，则不会保留ftype指针。假设回收器外部的代码正确维护了引用计数，则从ftype guardian检索的对象（通过不带参数的调用）将确保具有0引用计数。回收器使用等效的<strong>ftype-locked-decr!</strong>来减少引用计数，以支持由多个进程共享的内存中的非Scheme对象。在这样的系统中，程序本身应使用<strong>ftype-locked-incr!</strong> 和<strong>ftype-locked-decr!</strong> 或非Scheme等效项（例如，第4.8节中所述C语言的scheme.h中的 LOCKED_INCR和LOCKED_DECR宏）来维护引用计数。</p>
-
+<p>ftype guardian不会像普通的guardian那样自动保护其注册的ftype指针免遭回收。而是，对于每个通过普通（非弱，非监护人指针）变得不可访问的已注册的ftype指针，guardian会减少ftype指针指向的对象的引用计数。如果引用计数值为0，则ftype指针将保留并可以从guardian中检索。 但是，如果生成的引用计数值非零，则不会保留ftype指针。假设回收器外部的代码正确维护了引用计数，则从ftype guardian检索的对象（通过不带参数的调用）将确保具有0引用计数。回收器使用等效的<strong>ftype-locked-decr!<strong>来减少引用计数，以支持由多个进程共享的内存中的非Scheme对象。在这样的系统中，程序本身应使用</strong>ftype-locked-incr!</strong> 和<strong>ftype-locked-decr!</strong> 或非Scheme等效项（例如，第4.8节中所述C语言的scheme.h中的 LOCKED_INCR和LOCKED_DECR宏）来维护引用计数。</p>
 <p>下面的示例为ftype对象定义了一个简单的ftype和一个分配器，该对象释放以前分配的且不再可访问的ftype对象。</p>
-
-<pre><code class="language-scheme">module (A make-A free-dropped-As)
-  (define-ftype A
-    (struct
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">module (<span style="color:#a6e22e">A</span> make-A free-dropped-As)
+  (<span style="color:#a6e22e">define-ftype</span> A
+    (<span style="color:#a6e22e">struct</span>
       [refcount uptr]
       [data int]))
-  (define g (ftype-guardian A))
-  (define free-dropped-As
-    (lambda ()
-      (let ([a (g)])
-        (when a
-          (printf &quot;freeing ~s\n&quot; (ftype-ref A (data) a))
-          (foreign-free (ftype-pointer-address a))
-          (free-dropped-As)))))
-  (define make-A
-    (lambda (n)
-      (free-dropped-As)
-      (let ([a (make-ftype-pointer A (foreign-alloc (ftype-sizeof A)))])
-        (ftype-set! A (refcount) a 1)
-        (ftype-set! A (data) a n)
-        (g a)
+  (<span style="color:#66d9ef">define </span>g (<span style="color:#a6e22e">ftype-guardian</span> A))
+  (<span style="color:#66d9ef">define </span>free-dropped-As
+    (<span style="color:#66d9ef">lambda </span>()
+      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">g</span>)])
+        (<span style="color:#a6e22e">when</span> a
+          (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;freeing ~s\n&#34;</span> (<span style="color:#a6e22e">ftype-ref</span> A (<span style="color:#a6e22e">data</span>) a))
+          (<span style="color:#a6e22e">foreign-free</span> (<span style="color:#a6e22e">ftype-pointer-address</span> a))
+          (<span style="color:#a6e22e">free-dropped-As</span>)))))
+  (<span style="color:#66d9ef">define </span>make-A
+    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+      (<span style="color:#a6e22e">free-dropped-As</span>)
+      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">make-ftype-pointer</span> A (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> A)))])
+        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">refcount</span>) a <span style="color:#ae81ff">1</span>)
+        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">data</span>) a n)
+        (<span style="color:#a6e22e">g</span> a)
         a))))
-</code></pre>
-
-<p>我们可以通过分配，丢弃并立即回收指向A的ftype指针进行测试。</p>
-
-<pre><code class="language-scheme">&gt; (do ([i 10 (fx- i 1)])
-      ((fx= i 0))
-(make-A i)
-    (collect))
-freeing 10
-freeing 9
-freeing 8
-freeing 7
-freeing 6
-freeing 5
-freeing 4
-freeing 3
-freeing 2
-&gt; (free-dropped-As)
-freeing 1
-</code></pre>
-
-<p>由ftype guardian保护的对象可能包含指向其他对象的指针，这些其他对象的引用计数也应在分配包含对象时增加，并在释放包含对象时减少。</p>
-
+</code></pre></div><p>我们可以通过分配，丢弃并立即回收指向A的ftype指针进行测试。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#66d9ef">do </span>([i <span style="color:#ae81ff">10</span> (<span style="color:#a6e22e">fx-</span> i <span style="color:#ae81ff">1</span>)])
+      ((<span style="color:#a6e22e">fx=</span> i <span style="color:#ae81ff">0</span>))
+(<span style="color:#a6e22e">make-A</span> i)
+    (<span style="color:#a6e22e">collect</span>))
+freeing <span style="color:#ae81ff">10</span>
+freeing <span style="color:#ae81ff">9</span>
+freeing <span style="color:#ae81ff">8</span>
+freeing <span style="color:#ae81ff">7</span>
+freeing <span style="color:#ae81ff">6</span>
+freeing <span style="color:#ae81ff">5</span>
+freeing <span style="color:#ae81ff">4</span>
+freeing <span style="color:#ae81ff">3</span>
+freeing <span style="color:#ae81ff">2</span>
+&gt; (<span style="color:#a6e22e">free-dropped-As</span>)
+freeing <span style="color:#ae81ff">1</span>
+</code></pre></div><p>由ftype guardian保护的对象可能包含指向其他对象的指针，这些其他对象的引用计数也应在分配包含对象时增加，并在释放包含对象时减少。</p>
 <h3 id="线程参数">线程参数</h3>
-
 <blockquote>
 <p>(make-thread-parameter object) |  (make-thread-parameter object procedure)</p>
 </blockquote>
-
 <p>创建线程参数后，将在每个当前线程和将来的线程中放置一个单独的位置，以保存参数的内部状态变量的值。 （当该参数变得不可访问时，存储管理器可以消除该位置。）一个线程中对线程参数的更改不会被其他任何线程看到。</p>
-
 <p>创建新线程时（请参阅<strong>fork-thread</strong>），每个线程参数的当前值（而非位置）都由新线程从派生线程继承。 类似地，当第一次激活通过其他方式创建的线程时（请参见4.8节中的<strong>Sactivate_thread</strong>），每个线程参数的当前值（而非位置）都由新线程从主（原始）线程继承。</p>
-
 <p>大多数内置参数是线程参数，但有些是全局的。 在他们定义的地方已经标注了是线程的还是全局的。 在非线程版本的Chez Scheme中，内置全局参数和线程参数之间没有区别。</p>
-
-<h3 id="i-o-缓冲区">I/O 缓冲区</h3>
-
+<h3 id="io-缓冲区">I/O 缓冲区</h3>
 <p>Chez Scheme为提高效率而缓冲文件I/O操作，但是缓冲的I/O不是线程安全的。 两个线程并发地读写同一个缓冲端口可能会破坏该端口，从而导致缓冲区溢出，并最终导致无效的内存引用。</p>
-
 <p>当以缓冲模式<strong>none</strong>打开时，可以禁用二进制输出端口上的缓冲。 但是，由于需要支持先行（lookahead），因此无法完全禁用输入端口上的缓冲，并且由于要在字符和字节之间进行转换的代码转换器有时需要先行输入，因此无法完全禁用文本端口（甚至是文本输出端口）上的缓冲。</p>
-
 <p>因此，除非在二进制输出端口开启缓冲模式为<strong>none</strong>的特殊情况下，否则两个线程绝不应该并发地读写同一个端口。替代方法包括指定一个线程为给定端口执行所有I / O，和为每个线程提供通用端口包装程序，仅在获取互斥量后才将请求转发到端口。</p>
-
 <p>初始的控制台以及当前的输入和输出端口以及transcript端口都是线程安全的，因此多个线程向控制台打印错误和/或调试消息是安全的。即使在同一行内，输出也可能是交错的，但是端口不会损坏。 这些端口的线程安全性是通过为每个I/O操作获取一个互斥锁的高成本来实现的。</p>
+<h3 id="实例有界队列">实例：有界队列</h3>
+<p>以下代码摘自文章“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”，它使用许多线程系统功能实现了有界队列。 有界队列具有固定数量的可用插槽。 当队列已满时尝试入队会导致调用线程阻塞。 尝试从空队列中出队会导致调用线程阻塞。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> bq
+  (<span style="color:#a6e22e">fields</span>
+    (<span style="color:#a6e22e">immutable</span> data)
+    (<span style="color:#a6e22e">mutable</span> head)
+    (<span style="color:#a6e22e">mutable</span> tail)
+    (<span style="color:#a6e22e">immutable</span> mutex)
+    (<span style="color:#a6e22e">immutable</span> ready)
+    (<span style="color:#a6e22e">immutable</span> room))
+  (<span style="color:#a6e22e">protocol</span>
+    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span>)
+      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">bound</span>)
+        (<span style="color:#a6e22e">new</span> (make-vector bound) <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">make-mutex</span>)
+          (<span style="color:#a6e22e">make-condition</span>) (<span style="color:#a6e22e">make-condition</span>))))))
 
-<h3 id="实例-有界队列">实例：有界队列</h3>
-
-<p>以下代码摘自文章“A Scheme for native threads<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>”，它使用许多线程系统功能实现了有界队列。 有界队列具有固定数量的可用插槽。 当队列已满时尝试入队会导致调用线程阻塞。 尝试从空队列中出队会导致调用线程阻塞。</p>
-
-<pre><code class="language-scheme">(define-record-type bq
-  (fields
-    (immutable data)
-    (mutable head)
-    (mutable tail)
-    (immutable mutex)
-    (immutable ready)
-    (immutable room))
-  (protocol
-    (lambda (new)
-      (lambda (bound)
-        (new (make-vector bound) 0 0 (make-mutex)
-          (make-condition) (make-condition))))))
-
-(define dequeue!
-  (lambda (q)
-    (with-mutex (bq-mutex q)
-      (let loop ()
-        (let ([head (bq-head q)])
-          (cond
-            [(= head (bq-tail q))
-             (condition-wait (bq-ready q) (bq-mutex q))
-             (loop)]
+(<span style="color:#66d9ef">define </span>dequeue!
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
+    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
+      (<span style="color:#66d9ef">let </span>loop ()
+        (<span style="color:#66d9ef">let </span>([head (<span style="color:#a6e22e">bq-head</span> q)])
+          (<span style="color:#a6e22e">cond</span>
+            [(= head (<span style="color:#a6e22e">bq-tail</span> q))
+             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-ready</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
+             (<span style="color:#a6e22e">loop</span>)]
             [else
-             (bq-head-set! q (incr q head))
-             (condition-signal (bq-room q))
-             (vector-ref (bq-data q) head)]))))))
+             (<span style="color:#a6e22e">bq-head-set!</span> q (<span style="color:#a6e22e">incr</span> q head))
+             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-room</span> q))
+             (vector-ref (<span style="color:#a6e22e">bq-data</span> q) head)]))))))
 
-(define enqueue!
-  (lambda (item q)
-    (with-mutex (bq-mutex q)
-      (let loop ()
-        (let* ([tail (bq-tail q)] [tail^ (incr q tail)])
-          (cond
-            [(= tail^ (bq-head q))
-             (condition-wait (bq-room q) (bq-mutex q))
-             (loop)]
+(<span style="color:#66d9ef">define </span>enqueue!
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">item</span> q)
+    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
+      (<span style="color:#66d9ef">let </span>loop ()
+        (<span style="color:#66d9ef">let* </span>([tail (<span style="color:#a6e22e">bq-tail</span> q)] [tail^ (<span style="color:#a6e22e">incr</span> q tail)])
+          (<span style="color:#a6e22e">cond</span>
+            [(= tail^ (<span style="color:#a6e22e">bq-head</span> q))
+             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-room</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
+             (<span style="color:#a6e22e">loop</span>)]
 			 [else
-             (vector-set! (bq-data q) tail item)
-             (bq-tail-set! q tail^)
-             (condition-signal (bq-ready q))]))))))
+             (vector-set! (<span style="color:#a6e22e">bq-data</span> q) tail item)
+             (<span style="color:#a6e22e">bq-tail-set!</span> q tail^)
+             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-ready</span> q))]))))))
 
-(define incr
-  (lambda (q i)
-    (modulo (+ i 1) (vector-length (bq-data q)))))
+(<span style="color:#66d9ef">define </span>incr
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> i)
+    (modulo (+ i <span style="color:#ae81ff">1</span>) (vector-length (<span style="color:#a6e22e">bq-data</span> q)))))
 
-</code></pre>
+</code></pre></div><p>下面的代码演示了有界队列在一组线程中的应用，这些线程分别扮演数据的消费者和生产者。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>job-queue)
+(<span style="color:#66d9ef">define </span>die? <span style="color:#66d9ef">#f</span>)
 
-<p>下面的代码演示了有界队列在一组线程中的应用，这些线程分别扮演数据的消费者和生产者。</p>
-
-<pre><code class="language-scheme">(define job-queue)
-(define die? #f)
-
-(define make-job
-  (let ([count 0])
-    (define fib
-      (lambda (n)
-	    (if (&lt; n 2)
+(<span style="color:#66d9ef">define </span>make-job
+  (<span style="color:#66d9ef">let </span>([count <span style="color:#ae81ff">0</span>])
+    (<span style="color:#66d9ef">define </span>fib
+      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+	    (<span style="color:#66d9ef">if </span>(&lt; n <span style="color:#ae81ff">2</span>)
 		  n
-          (+ (fib (- n 2)) (fib (- n 1))))))
-    (lambda (n)
-      (set! count (+ count 1))
-      (printf &quot;Adding job #~s = (lambda () (fib ~s))\n&quot; count n)
-      (cons count (lambda () (fib n))))))
+          (+ (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">2</span>)) (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">1</span>))))))
+    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+      (<span style="color:#66d9ef">set! </span>count (+ count <span style="color:#ae81ff">1</span>))
+      (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;Adding job #~s = (lambda () (fib ~s))\n&#34;</span> count n)
+      (cons count (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> n))))))
 
-(define make-producer
-  (lambda (n)
-    (rec producer
-      (lambda ()
-        (printf &quot;producer ~s posting a job\n&quot; n)
-        (enqueue! (make-job (+ 20 (random 10))) job-queue)
-        (if die?
-            (printf &quot;producer ~s dying\n&quot; n)
-            (producer))))))
-
-
-(define make-consumer
-  (lambda (n)
-    (rec consumer
-      (lambda ()
-        (printf &quot;consumer ~s looking for a job~%&quot; n)
-        (let ([job (dequeue! job-queue)])
-          (if die?
-              (printf &quot;consumer ~s dying\n&quot; n)
-              (begin
-                (printf &quot;consumer ~s executing job #~s~%&quot; n (car job))
-                (printf &quot;consumer ~s computed:  ~s~%&quot; n ((cdr job)))
-                (consumer))))))))
+(<span style="color:#66d9ef">define </span>make-producer
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+    (<span style="color:#a6e22e">rec</span> producer
+      (<span style="color:#66d9ef">lambda </span>()
+        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s posting a job\n&#34;</span> n)
+        (<span style="color:#a6e22e">enqueue!</span> (<span style="color:#a6e22e">make-job</span> (+ <span style="color:#ae81ff">20</span> (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">10</span>))) job-queue)
+        (<span style="color:#66d9ef">if </span>die?
+            (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s dying\n&#34;</span> n)
+            (<span style="color:#a6e22e">producer</span>))))))
 
 
+(<span style="color:#66d9ef">define </span>make-consumer
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+    (<span style="color:#a6e22e">rec</span> consumer
+      (<span style="color:#66d9ef">lambda </span>()
+        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s looking for a job~%&#34;</span> n)
+        (<span style="color:#66d9ef">let </span>([job (<span style="color:#a6e22e">dequeue!</span> job-queue)])
+          (<span style="color:#66d9ef">if </span>die?
+              (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s dying\n&#34;</span> n)
+              (<span style="color:#a6e22e">begin</span>
+                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s executing job #~s~%&#34;</span> n (car job))
+                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s computed:  ~s~%&#34;</span> n ((cdr job)))
+                (<span style="color:#a6e22e">consumer</span>))))))))
 
-(define (bq-test np nc)
-  (set! job-queue (make-bq (max nc np)))
-  (do ([np np (- np 1)])
-      ((&lt;= np 0))
-      (fork-thread (make-producer np)))
-  (do ([nc nc (- nc 1)])
-      ((&lt;= nc 0))
-      (fork-thread (make-consumer nc))))
 
 
-</code></pre>
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">bq-test</span> np nc)
+  (<span style="color:#66d9ef">set! </span>job-queue (<span style="color:#a6e22e">make-bq</span> (max nc np)))
+  (<span style="color:#66d9ef">do </span>([np np (- np <span style="color:#ae81ff">1</span>)])
+      ((&lt;= np <span style="color:#ae81ff">0</span>))
+      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-producer</span> np)))
+  (<span style="color:#66d9ef">do </span>([nc nc (- nc <span style="color:#ae81ff">1</span>)])
+      ((&lt;= nc <span style="color:#ae81ff">0</span>))
+      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-consumer</span> nc))))
 
-<p>这是示例程序运行后的可能的前几行输出：</p>
 
-<pre><code class="language-scheme">&gt; (begin
-    (bq-test 3 4)
-    (system &quot;sleep 3&quot;)
-    (set! die? #t))
-producer 3 posting a job
-Adding job #1 = (lambda () (fib 29))
-producer 3 posting a job
-Adding job #2 = (lambda () (fib 26))
-producer 3 posting a job
-Adding job #3 = (lambda () (fib 22))
-producer 3 posting a job
-Adding job #4 = (lambda () (fib 21))
-producer 2 posting a job
-Adding job #5 = (lambda () (fib 29))
-producer 1 posting a job
-Adding job #6 = (lambda () (fib 29))
-consumer 4 looking for a job
-producer 3 posting a job
-Adding job #7 = (lambda () (fib 24))
-consumer 4 executing job #1
-consumer 3 looking for a job
-producer 2 posting a job
-Adding job #8 = (lambda () (fib 26))
-consumer 3 executing job #2
-consumer 3 computed:  121393
-consumer 3 looking for a job
-producer 1 posting a job
-Adding job #9 = (lambda () (fib 26))
-...
-</code></pre>
-
-<p>在“A Scheme for native threads<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
-<div class="footnotes">
-
-<hr />
-
+</code></pre></div><p>这是示例程序运行后的可能的前几行输出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#a6e22e">begin</span>
+    (<span style="color:#a6e22e">bq-test</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
+    (<span style="color:#a6e22e">system</span> <span style="color:#e6db74">&#34;sleep 3&#34;</span>)
+    (<span style="color:#66d9ef">set! </span>die? <span style="color:#66d9ef">#t</span>))
+producer <span style="color:#ae81ff">3</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+producer <span style="color:#ae81ff">3</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+producer <span style="color:#ae81ff">3</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">3</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">22</span>))
+producer <span style="color:#ae81ff">3</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">4</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">21</span>))
+producer <span style="color:#ae81ff">2</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">5</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+producer <span style="color:#ae81ff">1</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">6</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+consumer <span style="color:#ae81ff">4</span> looking for a job
+producer <span style="color:#ae81ff">3</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">7</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">24</span>))
+consumer <span style="color:#ae81ff">4</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span>
+consumer <span style="color:#ae81ff">3</span> looking for a job
+producer <span style="color:#ae81ff">2</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">8</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+consumer <span style="color:#ae81ff">3</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span>
+consumer <span style="color:#ae81ff">3</span> computed:  <span style="color:#ae81ff">121393</span>
+consumer <span style="color:#ae81ff">3</span> looking for a job
+producer <span style="color:#ae81ff">1</span> posting a job
+Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">9</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+<span style="color:#f92672">...</span>
+</code></pre></div><p>在“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">R. Kent Dybvig. A Scheme for native threads. In Symposium in Honor of Mitchell Wand, August 2009. <a href="http://www.ccs.neu.edu/events/wand-symposium/">http://www.ccs.neu.edu/events/wand-symposium/</a>.
- <a class="footnote-return" href="#fnref:1">↩</a></li>
+<li id="fn:1" role="doc-endnote">
+<p>R. Kent Dybvig. A Scheme for native threads. In Symposium in Honor of Mitchell Wand, August 2009. <a href="http://www.ccs.neu.edu/events/wand-symposium/">http://www.ccs.neu.edu/events/wand-symposium/</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
     </div>
     <div class="article-footer">

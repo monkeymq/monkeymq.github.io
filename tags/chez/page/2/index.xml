@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chez on 思泉笔谈 | AI-Life</title>
+    <title>chez on 思泉笔谈 | AI-Life</title>
     <link>https://lvsq.net/tags/chez/</link>
-    <description>Recent content in Chez on 思泉笔谈 | AI-Life</description>
+    <description>Recent content in chez on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 25 Dec 2019 16:47:08 +0800</lastBuildDate>
     
@@ -11,12 +11,21 @@
     
     
     <item>
+      <title>Fluid Binding in Chez Scheme</title>
+      <link>https://lvsq.net/2019/12/fluid-binding/</link>
+      <pubDate>Tue, 24 Dec 2019 16:43:57 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/fluid-binding/</guid>
+      <description>Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫流式绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描</description>
+    </item>
+    
+    <item>
       <title>Recursive Bindings in Chez Scheme</title>
       <link>https://lvsq.net/2019/12/recursive-bindings/</link>
       <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/12/recursive-bindings/</guid>
-      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述： (rec</description>
+      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述：(</description>
     </item>
     
     <item>
@@ -61,7 +70,7 @@
       <pubDate>Fri, 29 Nov 2019 10:21:12 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/11/swagger-vendor/</guid>
-      <description>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;rdq</description>
+      <description>Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;quo</description>
     </item>
     
     <item>

@@ -23,7 +23,7 @@
   
   
   
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>思泉笔谈 | AI-Life</title>
   
 
@@ -36,11 +36,9 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lvsq.net/" />
-
-<meta property="og:updated_time" content="2020-07-20T14:57:29+08:00" />
+<meta property="og:updated_time" content="2020-09-23T11:24:24+08:00" />
 <meta itemprop="name" content="思泉笔谈 | AI-Life">
 <meta itemprop="description" content="">
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="思泉笔谈 | AI-Life"/>
 <meta name="twitter:description" content=""/>
@@ -160,7 +158,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -213,6 +212,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -231,6 +234,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -272,6 +279,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -309,16 +326,6 @@
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
         </ul>
     </div>
 </div>
@@ -342,7 +349,44 @@
       <div class="article-header">
         <h1 itemprop="name">
   <a
-    class="article-date"
+    class="article-title"
+    href="/2020/09/lexical-dynamic-scoping/"
+    >Lexical Scoping and Dynamic Scoping</a
+  >
+</h1>
+
+      </div>
+      <div class="article-entry text-muted" itemprop="description">我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的</div>
+      <p class="article-meta"><span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="">
+  <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/lisp/"> lisp </a>
+  <a class="article-category-link" href="/categories/pl/"> pl </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/lexical/"> lexical </a>
+    <a class="article-tag-link" href="/tags/scoping/"> scoping </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/09/lexical-dynamic-scoping/#comments" class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1921字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:4分 </span>
+      </p>
+    </article>
+    <article
+      class="article article-type-page"
+      itemscope
+      itemtype="http://schema.org/BlogPosting"
+    >
+      <div class="article-header">
+        <h1 itemprop="name">
+  <a
+    class="article-title"
     href="/2020/07/quick-sort-in-cl/"
     >快速排序（Lisp版本）</a
   >
@@ -401,7 +445,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/n-queens/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4444字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4453字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:9分 </span>
       </p>
     </article>
@@ -420,7 +464,7 @@
 </h1>
 
       </div>
-      <div class="article-entry text-muted" itemprop="description">本文翻译自：Optimising for Concurrency: Comparing and contrasting the BEAM and JVM virtual machines 作者是 Francesco Cesarini &amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件</div>
+      <div class="article-entry text-muted" itemprop="description">作者是 Francesco Cesarini &amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是：1）Erlang编程语言的语义，并在其上实现</div>
       <p class="article-meta"><span class="article-date">
   <i class="icon icon-calendar-check"></i>
 <a href="https://lvsq.net/2020/05/beam-vs-jvm/" class="">
@@ -436,7 +480,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/beam-vs-jvm/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5741字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5714字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </p>
     </article>
@@ -455,7 +499,7 @@
 </h1>
 
       </div>
-      <div class="article-entry text-muted" itemprop="description">实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&rdquo;abbabcx&rdquo;,其最长无重复字符的子</div>
+      <div class="article-entry text-muted" itemprop="description">实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&quot;abbabcx&rdquo;,其最长无重复字符的子串</div>
       <p class="article-meta"><span class="article-date">
   <i class="icon icon-calendar-check"></i>
 <a href="https://lvsq.net/2020/03/longest-substr/" class="">
@@ -472,7 +516,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/longest-substr/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:960字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:962字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </p>
     </article>
@@ -507,7 +551,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fp-in-go/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2693字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2688字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:6分 </span>
       </p>
     </article>
@@ -526,7 +570,7 @@
 </h1>
 
       </div>
-      <div class="article-entry text-muted" itemprop="description">闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个</div>
+      <div class="article-entry text-muted" itemprop="description">闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make</div>
       <p class="article-meta"><span class="article-date">
   <i class="icon icon-calendar-check"></i>
 <a href="https://lvsq.net/2020/03/fifo-queue/" class="">
@@ -542,7 +586,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fifo-queue/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:560字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:607字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </p>
     </article>
@@ -577,7 +621,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/compatibility/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4742字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4768字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:10分 </span>
       </p>
     </article>
@@ -613,7 +657,7 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5728字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5752字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </p>
     </article>
@@ -648,43 +692,8 @@
   </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/storage-management/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:7640字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:7668字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:16分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2020/02/system-operations/"
-    >系统操作(System Operations in Chez Scheme)</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2020/02/system-operations/" class="article-date">
-  <time datetime="2020-02-06 10:54:14 &#43;0800 CST" itemprop="datePublished">2020-02-06</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/system-operations/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:15873字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:32分 </span>
       </p>
     </article></div>
   

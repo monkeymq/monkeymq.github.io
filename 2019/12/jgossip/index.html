@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>Jgossip - gossip协议的开源实现 - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2019-12-19T16:07:31+08:00" />
 <meta itemprop="name" content="Jgossip - gossip协议的开源实现">
 <meta itemprop="description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些">
-
-
-<meta itemprop="datePublished" content="2019-12-19T16:07:31&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-19T16:07:31&#43;08:00" />
+<meta itemprop="datePublished" content="2019-12-19T16:07:31+08:00" />
+<meta itemprop="dateModified" content="2019-12-19T16:07:31+08:00" />
 <meta itemprop="wordCount" content="256">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -386,63 +393,54 @@
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p><a href="http://en.wikipedia.org/wiki/Gossip_protocol">Gossip</a>是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些时间，动手写了一个，目前已经在公司内部运行了几年，效果良好，并且已经开源在Github上，以飨各位。</p>
-
-<hr />
-
+<hr>
 <p>特点：</p>
-
 <ul>
-<li>API简洁</li>
-
-<li><p>支持3种事件：</p>
-
+<li>
+<p>API简洁</p>
+</li>
+<li>
+<p>支持3种事件：</p>
 <ol>
 <li>UP</li>
 <li>DOWN</li>
 <li>JOIN</li>
-</ol></li>
-
-<li><p>基于<a href="http://vertx.io/">Vert.X</a></p></li>
+</ol>
+</li>
+<li>
+<p>基于<a href="http://vertx.io/">Vert.X</a></p>
+</li>
 </ul>
-
 <p>引入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
+  <span style="color:#f92672">&lt;groupId&gt;</span>net.lvsq<span style="color:#f92672">&lt;/groupId&gt;</span>
+  <span style="color:#f92672">&lt;artifactId&gt;</span>jgossip<span style="color:#f92672">&lt;/artifactId&gt;</span>
+  <span style="color:#f92672">&lt;version&gt;</span>1.3.2<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+</code></pre></div><p>一个简单的例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> gossip_port <span style="color:#f92672">=</span> 60001<span style="color:#f92672">;</span>
+String cluster <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gossip_cluster&#34;</span><span style="color:#f92672">;</span>
 
-<pre><code class="language-xml">&lt;dependency&gt;
-  &lt;groupId&gt;net.lvsq&lt;/groupId&gt;
-  &lt;artifactId&gt;jgossip&lt;/artifactId&gt;
-  &lt;version&gt;1.3.2&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+GossipSettings settings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipSettings<span style="color:#f92672">();</span>
+settings<span style="color:#f92672">.</span><span style="color:#a6e22e">setGossipInterval</span><span style="color:#f92672">(</span>1000<span style="color:#f92672">);</span>
 
-<p>一个简单的例子：</p>
+<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+    String myIpAddress <span style="color:#f92672">=</span> InetAddress<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalHost</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHostAddress</span><span style="color:#f92672">();</span>
+    List<span style="color:#f92672">&lt;</span>SeedMember<span style="color:#f92672">&gt;</span> seedNodes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+    SeedMember seed <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SeedMember<span style="color:#f92672">();</span>
+    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setCluster</span><span style="color:#f92672">(</span>cluster<span style="color:#f92672">);</span>
+    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setIpAddress</span><span style="color:#f92672">(</span>myIpAddress<span style="color:#f92672">);</span>
+    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setPort</span><span style="color:#f92672">(</span>60001<span style="color:#f92672">);</span>
+    seedNodes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>seed<span style="color:#f92672">);</span>
 
-<pre><code class="language-java">int gossip_port = 60001;
-String cluster = &quot;gossip_cluster&quot;;
+    gossipService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipService<span style="color:#f92672">(</span>cluster<span style="color:#f92672">,</span> myIpAddress<span style="color:#f92672">,</span> gossip_port<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> seedNodes<span style="color:#f92672">,</span> settings<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>member<span style="color:#f92672">,</span> state<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;member:&#34;</span> <span style="color:#f92672">+</span> member <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;  state: &#34;</span> <span style="color:#f92672">+</span> state<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+gossipService<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
 
-GossipSettings settings = new GossipSettings();
-settings.setGossipInterval(1000);
-
-try {
-    String myIpAddress = InetAddress.getLocalHost().getHostAddress();
-    List&lt;SeedMember&gt; seedNodes = new ArrayList&lt;&gt;();
-    SeedMember seed = new SeedMember();
-    seed.setCluster(cluster);
-    seed.setIpAddress(myIpAddress);
-    seed.setPort(60001);
-    seedNodes.add(seed);
-
-    gossipService = new GossipService(cluster, myIpAddress, gossip_port, null, seedNodes, settings, (member, state) -&gt;System.out.println(&quot;member:&quot; + member + &quot;  state: &quot; + state));
-} catch (Exception e) {
-    e.printStackTrace();
-}
-gossipService.start();
-
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>详细介绍请看 =&gt; <a href="https://github.com/monkeymq/jgossip">项目地址</a></p>
-
 <p>欢迎大家fork， 如果觉得好请start ~~~</p>
 
     </div>

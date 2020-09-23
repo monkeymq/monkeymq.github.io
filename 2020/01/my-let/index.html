@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>自定义 Let* - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,11 +40,9 @@
 <meta property="article:modified_time" content="2020-01-17T10:13:27+08:00" />
 <meta itemprop="name" content="自定义 Let*">
 <meta itemprop="description" content="实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_">
-
-
-<meta itemprop="datePublished" content="2020-01-17T10:13:27&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-17T10:13:27&#43;08:00" />
-<meta itemprop="wordCount" content="219">
+<meta itemprop="datePublished" content="2020-01-17T10:13:27+08:00" />
+<meta itemprop="dateModified" content="2020-01-17T10:13:27+08:00" />
+<meta itemprop="wordCount" content="227">
 
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -379,50 +386,43 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/my-let/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:219字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:227字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。</p>
-
-<hr />
-
-<pre><code class="language-scheme">(define-syntax my-let*
-  (syntax-rules ()
-    ((_ () bodys ...) (let () bodys ...))
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>my-let*
+  (<span style="color:#66d9ef">syntax-rules </span>()
+    ((<span style="color:#a6e22e">_</span> () bodys <span style="color:#f92672">...</span>) (<span style="color:#66d9ef">let </span>() bodys <span style="color:#f92672">...</span>))
     (
-      (_ ((a1 v1)) bodys ...)
-      (let ((a1 v1)) bodys ...)
+      (<span style="color:#a6e22e">_</span> ((<span style="color:#a6e22e">a1</span> v1)) bodys <span style="color:#f92672">...</span>)
+      (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">a1</span> v1)) bodys <span style="color:#f92672">...</span>)
     )
     (
-      (_ ((a1 v1) (a2 v2) ...) bodys ...)
-      (let ((a1 v1)) (my-let* ((a2 v2) ...) bodys ...))
+      (<span style="color:#a6e22e">_</span> ((<span style="color:#a6e22e">a1</span> v1) (<span style="color:#a6e22e">a2</span> v2) <span style="color:#f92672">...</span>) bodys <span style="color:#f92672">...</span>)
+      (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">a1</span> v1)) (<span style="color:#a6e22e">my-let*</span> ((<span style="color:#a6e22e">a2</span> v2) <span style="color:#f92672">...</span>) bodys <span style="color:#f92672">...</span>))
     )
   )
 )
-</code></pre>
-
-<p>注意，my-let*是可以递归使用的，以及<strong>&hellip;</strong>的用法。</p>
-
-<pre><code class="language-scheme">(define-syntax my-let*
-  (syntax-rules ()
+</code></pre></div><p>注意，my-let*是可以递归使用的，以及**&hellip;**的用法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>my-let*
+  (<span style="color:#66d9ef">syntax-rules </span>()
     (
-      (_ () bodys ...)
-      (let () bodys ...)
+      (<span style="color:#a6e22e">_</span> () bodys <span style="color:#f92672">...</span>)
+      (<span style="color:#66d9ef">let </span>() bodys <span style="color:#f92672">...</span>)
     )
     (
-      (_ ((a1 v1) ...) bodys ...)
-      (let ()
-       (define a1 v1) ...
-       bodys ...
+      (<span style="color:#a6e22e">_</span> ((<span style="color:#a6e22e">a1</span> v1) <span style="color:#f92672">...</span>) bodys <span style="color:#f92672">...</span>)
+      (<span style="color:#66d9ef">let </span>()
+       (<span style="color:#66d9ef">define </span>a1 v1) <span style="color:#f92672">...</span>
+       bodys <span style="color:#f92672">...</span>
       )
     )
   )
 )
-</code></pre>
-
-<p>这个实现方式与上面的不同，上面的是嵌套let，这里将直接按顺序define内部变量，代码更短。注意此处的<strong>&hellip;</strong>的用法。</p>
+</code></pre></div><p>这个实现方式与上面的不同，上面的是嵌套let，这里将直接按顺序define内部变量，代码更短。注意此处的**&hellip;**的用法。</p>
 
     </div>
     <div class="article-footer">

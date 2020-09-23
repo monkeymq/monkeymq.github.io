@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>从“八皇后”到amb - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,11 +40,9 @@
 <meta property="article:modified_time" content="2020-05-23T15:41:35+08:00" />
 <meta itemprop="name" content="从“八皇后”到amb">
 <meta itemprop="description" content="讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出">
-
-
-<meta itemprop="datePublished" content="2020-05-23T15:41:35&#43;08:00" />
-<meta itemprop="dateModified" content="2020-05-23T15:41:35&#43;08:00" />
-<meta itemprop="wordCount" content="4444">
+<meta itemprop="datePublished" content="2020-05-23T15:41:35+08:00" />
+<meta itemprop="dateModified" content="2020-05-23T15:41:35+08:00" />
+<meta itemprop="wordCount" content="4453">
 
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -380,206 +387,162 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/n-queens/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4444字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4453字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:9分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
+      <p>讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出了一个关于<strong>八皇后</strong>的题目，这是计算机科学中经典的问题，当年上学时曾绞尽脑汁仍然云山雾罩，不得其解。如今再次相遇，岂能再坐壁上观？！更何况手边已有趁手的兵器。试看Erlang的实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erlang" data-lang="erlang">-module(queens).
+-export([queens<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>]).
 
-<p>讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出了一个关于<strong>八皇后</strong>的题目，这是计算机科学中经典的问题，当年上学时曾绞尽脑汁仍然云山雾罩，不得其解。如今再次相遇，岂能再坐壁上观？！更何况手边已有趁手的兵器。试看Erlang的实现：</p>
+<span style="color:#a6e22e">queens</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">-&gt;</span> [[]];
+<span style="color:#a6e22e">queens</span>(N) <span style="color:#f92672">-&gt;</span>
+    [[Row | Columns] || Columns <span style="color:#f92672">&lt;-</span> queens(N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>),
+        Row <span style="color:#f92672">&lt;-</span> lists:<span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>) <span style="color:#f92672">--</span> Columns,
+        safe(Row, Columns, <span style="color:#ae81ff">1</span>)].
 
-<pre><code class="language-erlang">-module(queens).
--export([queens/1]).
-
-queens(0) -&gt; [[]];
-queens(N) -&gt;
-    [[Row | Columns] || Columns &lt;- queens(N - 1),
-        Row &lt;- lists:seq(1, 8) -- Columns,
-        safe(Row, Columns, 1)].
-
-safe(_Row, [], _N) -&gt; true;
-safe(Row, [Column | Columns], N) -&gt;
-    (Row /= Column + N) andalso (Row /= Column - N) andalso safe(Row, Columns, (N + 1)).
-</code></pre>
-
-<p>从头至尾10行代码，如果不是为了使代码美观，6行足矣（这还包括了<em>-module</em> 和<em>-export</em> 两行声明语法，与算法本身无关的代码）。如此简短尽然可以清晰地实现复杂的<strong>八皇后</strong>问题，如果采用命令式程序语言得写多少行？本文的重点不在于比较这个，Erlang是一门非常强大的语言，对于我来说Erlang好比探春，但是Scheme才是林黛玉呀，所以毫不迟疑用Scheme来实现：</p>
-
-<pre><code class="language-scheme">(define (accumulate op initial sequence)
-    (if (null? sequence) initial (op (car sequence) (accumulate op initial (cdr sequence))))
+<span style="color:#a6e22e">safe</span>(_Row, [], _N) <span style="color:#f92672">-&gt;</span> true;
+<span style="color:#a6e22e">safe</span>(Row, [Column | Columns], N) <span style="color:#f92672">-&gt;</span>
+    (Row <span style="color:#f92672">/=</span> Column <span style="color:#f92672">+</span> N) <span style="color:#f92672">andalso</span> (Row <span style="color:#f92672">/=</span> Column <span style="color:#f92672">-</span> N) <span style="color:#f92672">andalso</span> safe(Row, Columns, (N <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)).
+</code></pre></div><p>从头至尾10行代码，如果不是为了使代码美观，6行足矣（这还包括了*-module* 和*-export* 两行声明语法，与算法本身无关的代码）。如此简短尽然可以清晰地实现复杂的**八皇后**问题，如果采用命令式程序语言得写多少行？本文的重点不在于比较这个，Erlang是一门非常强大的语言，对于我来说Erlang好比探春，但是Scheme才是林黛玉呀，所以毫不迟疑用Scheme来实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">accumulate</span> op initial sequence)
+    (<span style="color:#66d9ef">if </span>(null? sequence) initial (<span style="color:#a6e22e">op</span> (car sequence) (<span style="color:#a6e22e">accumulate</span> op initial (cdr sequence))))
 )
 
-(define (enumerate-interval low high)
-    (if (&gt; low high) '() (cons low (enumerate-interval (+ low 1) high)))
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">enumerate-interval</span> low high)
+    (<span style="color:#66d9ef">if </span>(&gt; low high) <span style="color:#f92672">&#39;</span>() (cons low (<span style="color:#a6e22e">enumerate-interval</span> (+ low <span style="color:#ae81ff">1</span>) high)))
 )
 
-(define (flatmap proc seq)
-    (accumulate append '() (map proc seq))
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">flatmap</span> proc seq)
+    (<span style="color:#a6e22e">accumulate</span> append <span style="color:#f92672">&#39;</span>() (map proc seq))
 )
 
-(define empty-board '())
-(define (safe? k position)
-    (let loop ([new-queen (car position)] [rest-queens (cdr position)] [i 1])
-        (if (null? rest-queens) #t
-            (let ([rest-current-queen (car rest-queens)])
-                (if
-                    (or
+(<span style="color:#66d9ef">define </span>empty-board <span style="color:#f92672">&#39;</span>())
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">safe?</span> k position)
+    (<span style="color:#66d9ef">let </span>loop ([new-queen (car position)] [rest-queens (cdr position)] [i <span style="color:#ae81ff">1</span>])
+        (<span style="color:#66d9ef">if </span>(null? rest-queens) <span style="color:#66d9ef">#t</span>
+            (<span style="color:#66d9ef">let </span>([rest-current-queen (car rest-queens)])
+                (<span style="color:#a6e22e">if</span>
+                    (<span style="color:#a6e22e">or</span>
                         (= new-queen rest-current-queen)
                         (= new-queen (+ rest-current-queen i))
                         (= new-queen (- rest-current-queen i))
-                    ) #f
-                    (loop new-queen (cdr rest-queens) (+ i 1))
+                    ) <span style="color:#66d9ef">#f</span>
+                    (<span style="color:#a6e22e">loop</span> new-queen (cdr rest-queens) (+ i <span style="color:#ae81ff">1</span>))
                 )
             )
         )
     )
 )
-(define (adjoin-position new-row k rest-of-queens)
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">adjoin-position</span> new-row k rest-of-queens)
     (cons new-row rest-of-queens)
 )
 
-(define (queens board-size)
-    (define (queen-cols k)
-        (if (= k 0)
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">queens</span> board-size)
+    (<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">queen-cols</span> k)
+        (<span style="color:#66d9ef">if </span>(= k <span style="color:#ae81ff">0</span>)
             (list empty-board)
-            (filter
-                (lambda (position) (safe? k position))                   ;过滤无效的解
-                (flatmap
-                    (lambda (rest-of-queens)
-                        (map (lambda (new-row)                           ;扩充（k-1）个皇后的每一个解，给每个解都增加第k个皇后
-                            (adjoin-position new-row k rest-of-queens))
-                            (enumerate-interval 1 board-size)
+            (<span style="color:#a6e22e">filter</span>
+                (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">position</span>) (<span style="color:#a6e22e">safe?</span> k position))                   <span style="color:#75715e">;过滤无效的解</span>
+                (<span style="color:#a6e22e">flatmap</span>
+                    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">rest-of-queens</span>)
+                        (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-row</span>)                           <span style="color:#75715e">;扩充（k-1）个皇后的每一个解，给每个解都增加第k个皇后</span>
+                            (<span style="color:#a6e22e">adjoin-position</span> new-row k rest-of-queens))
+                            (<span style="color:#a6e22e">enumerate-interval</span> <span style="color:#ae81ff">1</span> board-size)
                         )
                     )
-                    (queen-cols (- k 1))                                 ;前（k-1）个有效的皇后，虽然是太虚幻境，但可以认为是事实
+                    (<span style="color:#a6e22e">queen-cols</span> (- k <span style="color:#ae81ff">1</span>))                                 <span style="color:#75715e">;前（k-1）个有效的皇后，虽然是太虚幻境，但可以认为是事实</span>
                 )
             )
         )
     )
-    (queen-cols board-size)
+    (<span style="color:#a6e22e">queen-cols</span> board-size)
 )
-</code></pre>
-
-<p>Scheme版本比Erlang版本代码增加了不少，原因在于其没有<em>模式匹配</em> 和<em>列表推导</em> 这两大利器，不过我更喜欢Scheme强大的表现力，可以随心所欲地构造我需要的一切，而且S-表达式看起来十分优美自然。Scheme版本实际上解决了<strong>n-皇后</strong>，更进一步了。</p>
-
+</code></pre></div><p>Scheme版本比Erlang版本代码增加了不少，原因在于其没有<em>模式匹配</em> 和<em>列表推导</em> 这两大利器，不过我更喜欢Scheme强大的表现力，可以随心所欲地构造我需要的一切，而且S-表达式看起来十分优美自然。Scheme版本实际上解决了<strong>n-皇后</strong>，更进一步了。</p>
 <p>事情到这里并没有结束，原因在于我刚开始实现Scheme版本的八皇后时，选择翻译Erlang代码，最终失败了！一番挣扎之后，意识到该问题属于非确定性计算，猛然想起《SICP》中有一节专门介绍了此种计算，也即本文的主角——<strong>amb</strong></p>
-
-<hr />
-
+<hr>
 <h3 id="非确定性计算">非确定性计算</h3>
-
 <p>amb这个名字源于<em>ambiguous</em> ,其含义并不是很好理解。一番披肝沥胆之后，终于窥到了一些门径，趁机厘清很多知识点。我将尽力平铺直述，简要的介绍这种强大且十分有用的武器。</p>
-
 <p>首先，我们来观察一个问题：</p>
-
 <blockquote>
 <p>假设有两个数组，数组中都是一些正整数，比如l1 = [1 2 3 4 5], l2 = [3 4 6 7 8]，我们分别从l1和l2中各取一个数字，相加之后，如果是素数，则满足要求。怎么办呢？</p>
 </blockquote>
-
 <p>对于这个简单的问题，相信难不倒大家，采用回溯算法轻易就解决了，这里只是想引出“非确定性计算”的概念。非确定性计算和流处理类似，对于“生成和检测式”的应用特别有价值，它往往只<strong>描述问题，但没有描述问题的解决方法</strong>，这句话很有意思，如果暂时没有理解不用着急，继续往下看。</p>
-
 <p>对于非确定性计算，首先需要明确的一点是，表达式是允许存在多个值的，比如上面的问题的解至少有(1 4),(2 3)两个解吧。</p>
-
 <p>有一件很有教益的事情，那就是非确定性计算和流处理对于时间的不同看法。流处理利用了惰性求值，这会给我们一种错觉，仿佛所有可能的结果的出现没有时间顺序；对于非确定性的求值，一个表达式是对一个可能的世界的探索，每一个值都由一次选择所确定，某些选择会走入死胡同，而另一些会得到有用的值，所以非确定性计算给我们的感觉是，时间是有分支的。程序当中会保存所有可能的不同执行历史，在遇到一个死胡同时，总是可以回到以前的选择点，并沿着另一个分支继续下去。</p>
-
 <p>下面将要实现的非确定性求值器称为——<strong>amb求值器</strong></p>
-
 <h3 id="amb求值器">amb求值器</h3>
-
 <p>假设目前已经扩充了Scheme以支持非确定性计算，引入了一种新的称为amb的新形式，表达式 $(amb &lt;e_1&gt; &lt;e_2&gt; &hellip; &lt;e_n&gt;)$ 会“有歧义地”返回n个表达式之一的值，比如：</p>
-
-<pre><code class="language-scheme">(list (amb 1 2 3) (amb 'a 'b))
-</code></pre>
-
-<p>可以有如下6个可能的值：<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(list (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) (<span style="color:#a6e22e">amb</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</code></pre></div><p>可以有如下6个可能的值：<!-- raw HTML omitted -->
 (1 a)  (1 b)  (2 a)  (2 b)  (3 a)  (3 b)</p>
-
 <p>对于没有选项的amb，即(amb) ——视为没有可接收值的表达式，这将导致求值“fail”。</p>
-
 <p>amb求值器在每个选择点，总是选择第一个可能性，如果选择的结果失败，那么求值器自动地<strong>回溯</strong>到最近的选择点，去尝试下一个可能性。如果它用完了所以的可能性，则自动退回到上一个选择点，并从那里继续（这个“继续”很有意思，后文会看到，“继续”不但是结论，还是其实现的方式，一语双关）下去。从这个过程可以看出，这是一种<em>深度优先</em> 算法。</p>
-
 <h4 id="逻辑谜题">逻辑谜题</h4>
-
 <p>在讨论amb求值器的实现之前，先看一道逻辑谜题：</p>
-
 <blockquote>
 <p>曹操、孙权、刘备、袁绍、马超5人住在一栋5层的楼房里面，每人住一层。曹操不住顶层，孙权不住底层，刘备不住顶层也不住底层，袁绍比刘备高一层，马超与刘备不在相邻的楼层，刘备与孙权也不在相邻的楼层，请问他们各住在哪一层？</p>
 </blockquote>
-
 <p>在没有amb时，代码怎么写呢？恐怕不容易吧。但是现在有了amb求值器，瞬间美好了：</p>
-
-<pre><code class="language-scheme">(define (multiple-dwelling)
-    (let (
-            [caocao (amb 1 2 3 4 5)]
-            [sunquan (amb 1 2 3 4 5)]
-            [liubei (amb 1 2 3 4 5)]
-            [yuanshao (amb 1 2 3 4 5)]
-            [machao (amb 1 2 3 4 5)]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">multiple-dwelling</span>)
+    (<span style="color:#66d9ef">let </span>(
+            [caocao (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>)]
+            [sunquan (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>)]
+            [liubei (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>)]
+            [yuanshao (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>)]
+            [machao (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>)]
         )
-        (require (distinct? (list caocao sunquan liubei yuanshao machao)))
-        (require (not (= caocao 5)))
-        (require (not (= sunquan 1)))
-        (require (not (= liubei 5)))
-        (require (not (= liubei 1)))
-        (require (&gt; yuanshao liubei))
-        (require (not (= (abs (- machao liubei)) 1))
-        (require (not (= (abs (- sunquan liubei)) 1))
-        (list (list 'caocao caocao) (list 'sunquan sunquan) (list 'liubei liubei)
-            (list 'yuanshao yuanshao) (list 'machao machao))
+        (<span style="color:#a6e22e">require</span> (<span style="color:#a6e22e">distinct?</span> (list caocao sunquan liubei yuanshao machao)))
+        (<span style="color:#a6e22e">require</span> (not (= caocao <span style="color:#ae81ff">5</span>)))
+        (<span style="color:#a6e22e">require</span> (not (= sunquan <span style="color:#ae81ff">1</span>)))
+        (<span style="color:#a6e22e">require</span> (not (= liubei <span style="color:#ae81ff">5</span>)))
+        (<span style="color:#a6e22e">require</span> (not (= liubei <span style="color:#ae81ff">1</span>)))
+        (<span style="color:#a6e22e">require</span> (&gt; yuanshao liubei))
+        (<span style="color:#a6e22e">require</span> (not (= (abs (- machao liubei)) <span style="color:#ae81ff">1</span>))
+        (<span style="color:#a6e22e">require</span> (not (= (abs (- sunquan liubei)) <span style="color:#ae81ff">1</span>))
+        (list (list <span style="color:#e6db74">&#39;caocao</span> caocao) (list <span style="color:#e6db74">&#39;sunquan</span> sunquan) (list <span style="color:#e6db74">&#39;liubei</span> liubei)
+            (list <span style="color:#e6db74">&#39;yuanshao</span> yuanshao) (list <span style="color:#e6db74">&#39;machao</span> machao))
     )
 )
-</code></pre>
-
-<p>上述代码只是描述问题的关系，即各个require部分（先不考虑性能问题。还记得上文提到的“<strong>描述问题，但没有描述问题的解决方法</strong>”吗？），并没有添加什么“处理逻辑”，但是会产生下面结果：</p>
-
+</code></pre></div><p>上述代码只是描述问题的关系，即各个require部分（先不考虑性能问题。还记得上文提到的“<strong>描述问题，但没有描述问题的解决方法</strong>”吗？），并没有添加什么“处理逻辑”，但是会产生下面结果：</p>
 <p>((caocao 3) (sunquan 2) (liubei 4) (yuanshao 5) (machao 1))</p>
-
 <p>居然得到了谜题的解，这是什么魔法？？？</p>
-
 <p>amb轻而易举地解决了这种需要大量回溯的问题。</p>
-
 <h4 id="实现">实现</h4>
-
 <p>现在该谈一谈神奇的amb如何实现了吧。前文已经多次提到过，amb求值的过程可能会不断的回溯，这势必导致程序流程的跳转，程序跳转该怎么办呢？函数式语言可没有break,continue之类的语法，因为根本不需要，那么函数式语言有啥？答案是continuation(翻译成继续，或者延续都可以。还记得“一语双关”吗？)</p>
-
 <p>Scheme内置了这个强大的控制抽象，过程名为：<strong>call-with-current-continuation</strong>， 名字略长，不过一般都是用其缩写：<strong>call/cc</strong>。囿于篇幅，本文不打算介绍continuation，如果想详细了解它，请自行搜索。</p>
-
 <p>常规求值器的执行过程有一个参数：执行环境env。amb求值器的执行过程有三个参数，除了执行环境env之外，还有两个continuation过程（一个成功延续、一个失败延续）。对一个表达式进行求值，结束后会调用这两个continuation过程之一：如果此次求值得到了一个结果，则调用成功延续；如果结果是遇到了死胡同，则调用失败延续。</p>
-
 <p>成功延续的工作是：接受一个值，并将计算进行去下，与这个值一起，成功延续过程还将得到一个另一个失败延续，如果使用该值时遇到了死胡同，则需要调用这个失败延续。</p>
-
 <p>失败延续的工作是：试探非确定性过程的另一个分支。非确定性计算的最关键的特征，在于表达式可以表示于不同可能性之间的选择。</p>
-
 <p>我承认有点烧脑，但还算清晰，让递归在脑海中奔涌吧。</p>
-
 <p>利用宏来简化amb的构造，代码参考<a href="https://docs.huihoo.com/homepage/shredderyin/wiki/SchemeAmb.html">这里</a>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>amb-fail <span style="color:#e6db74">&#39;*</span>)
+(<span style="color:#66d9ef">define </span>initialize-amb-fail
+    (<span style="color:#66d9ef">lambda </span>()
+        (<span style="color:#66d9ef">set! </span>amb-fail
+            (<span style="color:#66d9ef">lambda </span>()
+                (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;amb tree exhausted&#34;</span>)))))
+(<span style="color:#a6e22e">initialize-amb-fail</span>)
 
-<pre><code class="language-scheme">(define amb-fail '*)
-(define initialize-amb-fail
-    (lambda ()
-        (set! amb-fail
-            (lambda ()
-                (error &quot;amb tree exhausted&quot;)))))
-(initialize-amb-fail)
-
-(define-syntax amb
-    (syntax-rules ()
-        ((amb alt ...)
-            (let ((prev-amb-fail amb-fail))                             ;保存前一个选择点
-                (call/cc
-                    (lambda (sk)                                        ;对于整个amb表达式构造一个sk的contnuation
-                        (call/cc
-                            (lambda (fk)                                ;对于每一个amb的选项构造一个fk的continuation
-                                (set! amb-fail                          ;先把amb-fail设置为一个函数，该函数可将amb-fail恢复到进入amb前的值
-                                    (lambda ()
-                                        (set! amb-fail prev-amb-fail)
-                                        (fk 'fail))
+(<span style="color:#66d9ef">define-syntax </span>amb
+    (<span style="color:#66d9ef">syntax-rules </span>()
+        ((<span style="color:#a6e22e">amb</span> alt <span style="color:#f92672">...</span>)
+            (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">prev-amb-fail</span> amb-fail))                             <span style="color:#75715e">;保存前一个选择点</span>
+                (<span style="color:#a6e22e">call/cc</span>
+                    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">sk</span>)                                        <span style="color:#75715e">;对于整个amb表达式构造一个sk的contnuation</span>
+                        (<span style="color:#a6e22e">call/cc</span>
+                            (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">fk</span>)                                <span style="color:#75715e">;对于每一个amb的选项构造一个fk的continuation</span>
+                                (<span style="color:#66d9ef">set! </span>amb-fail                          <span style="color:#75715e">;先把amb-fail设置为一个函数，该函数可将amb-fail恢复到进入amb前的值</span>
+                                    (<span style="color:#66d9ef">lambda </span>()
+                                        (<span style="color:#66d9ef">set! </span>amb-fail prev-amb-fail)
+                                        (<span style="color:#a6e22e">fk</span> <span style="color:#e6db74">&#39;fail</span>))
                                 )
-                                (sk alt)                                ;立即返回自己的分支的值,从而引起amb表达式中途返回。注意，每一个分支执行时都会引起 amb 立即返回。后面的分支都还没有执行！
+                                (<span style="color:#a6e22e">sk</span> alt)                                <span style="color:#75715e">;立即返回自己的分支的值,从而引起amb表达式中途返回。注意，每一个分支执行时都会引起 amb 立即返回。后面的分支都还没有执行！</span>
                             )
-                        ) ...
+                        ) <span style="color:#f92672">...</span>
 
-                        (prev-amb-fail)
+                        (<span style="color:#a6e22e">prev-amb-fail</span>)
                     )
                 )
             )
@@ -587,92 +550,70 @@ safe(Row, [Column | Columns], N) -&gt;
     )
 )
 
-</code></pre>
-
-<p>第一个选项（也可以叫分支）会被立即返回，后面的暂时不执行。假设该值被认为是“无效的（比如应用该值后，执行到(amb)了）”，则执行(prev-amb-fail)，而prev-amb-fail在进入amb的时候被绑定到了amb-fail， 不过amb-fail已被设置成了一个函数：</p>
-
-<pre><code class="language-scheme">(lambda ()
-    (set! amb-fail prev-amb-fail)
-    (fk 'fail))
-</code></pre>
-
-<p>它先把amb-fail设置成prev-amb-fail,也就是进入（amb alt &hellip;）之前的值， 然后用(fk &lsquo;fail)返回&rsquo;fail到分支的continuation，即可以执行下一个分支（下一个选项）了。</p>
-
+</code></pre></div><p>第一个选项（也可以叫分支）会被立即返回，后面的暂时不执行。假设该值被认为是“无效的（比如应用该值后，执行到(amb)了）”，则执行(prev-amb-fail)，而prev-amb-fail在进入amb的时候被绑定到了amb-fail， 不过amb-fail已被设置成了一个函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">lambda </span>()
+    (<span style="color:#66d9ef">set! </span>amb-fail prev-amb-fail)
+    (<span style="color:#a6e22e">fk</span> <span style="color:#e6db74">&#39;fail</span>))
+</code></pre></div><p>它先把amb-fail设置成prev-amb-fail,也就是进入（amb alt &hellip;）之前的值， 然后用(fk &lsquo;fail)返回&rsquo;fail到分支的continuation，即可以执行下一个分支（下一个选项）了。</p>
 <p>十分精巧的程序！！！</p>
-
 <p>上述的amb每次只能返回一个结果，如果需要返回所有有效的结果，可以用下面定义的宏：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>bag-of
+    (<span style="color:#66d9ef">syntax-rules </span>()
+        ((<span style="color:#a6e22e">bag-of</span> e)
+            (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">prev-amb-fail</span> amb-fail) (<span style="color:#a6e22e">results</span> <span style="color:#f92672">&#39;</span>()))
+                (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">call/cc</span>
+                        (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">k</span>)
+                            (<span style="color:#66d9ef">set! </span>amb-fail (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">k</span> <span style="color:#66d9ef">#f</span>)))                  <span style="color:#75715e">;&lt;-----+</span>
+                            (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">v</span> e))             <span style="color:#75715e">;amb-fail will be modified by e   |</span>
+                                (<span style="color:#66d9ef">set! </span>results (cons v results))                       <span style="color:#75715e">;|</span>
+                                (<span style="color:#a6e22e">k</span> <span style="color:#66d9ef">#t</span>))))                                             <span style="color:#75715e">;|</span>
+                    (<span style="color:#a6e22e">amb-fail</span>))                        <span style="color:#75715e">;so this amb-fail may not be ---+</span>
+                (<span style="color:#66d9ef">set! </span>amb-fail prev-amb-fail)
+                (<span style="color:#a6e22e">reverse!</span> results)))))
 
-<pre><code class="language-scheme">(define-syntax bag-of
-    (syntax-rules ()
-        ((bag-of e)
-            (let ((prev-amb-fail amb-fail) (results '()))
-                (if (call/cc
-                        (lambda (k)
-                            (set! amb-fail (lambda () (k #f)))                  ;&lt;-----+
-                            (let ((v e))             ;amb-fail will be modified by e   |
-                                (set! results (cons v results))                       ;|
-                                (k #t))))                                             ;|
-                    (amb-fail))                        ;so this amb-fail may not be ---+
-                (set! amb-fail prev-amb-fail)
-                (reverse! results)))))
 
-
-(bag-of (let ([a (amb 1 2 3)] [b (amb 0 -1 2)])
-    (if (= (+ a b) 1) (list a b) (amb))
-)) ;结果为：((1 0) (2 -1))
-</code></pre>
-
-<h4 id="回到n-皇后问题">回到n-皇后问题</h4>
-
+(<span style="color:#a6e22e">bag-of</span> (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>)] [b (<span style="color:#a6e22e">amb</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">-1</span> <span style="color:#ae81ff">2</span>)])
+    (<span style="color:#66d9ef">if </span>(= (+ a b) <span style="color:#ae81ff">1</span>) (list a b) (<span style="color:#a6e22e">amb</span>))
+)) <span style="color:#75715e">;结果为：((1 0) (2 -1))</span>
+</code></pre></div><h4 id="回到n-皇后问题">回到n-皇后问题</h4>
 <p>到目前为止，我已手握amb这把利器，是时候重构一下n-皇后问题了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>number-between
+  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">lo</span> hi)
+    (<span style="color:#66d9ef">let </span>loop ((<span style="color:#a6e22e">i</span> lo))
+      (<span style="color:#66d9ef">if </span>(&gt; i hi) (<span style="color:#a6e22e">amb</span>)
+          (<span style="color:#a6e22e">amb</span> i (<span style="color:#a6e22e">loop</span> (+ i <span style="color:#ae81ff">1</span>)))))))  <span style="color:#75715e">; (amb 1 (amb 2 (amb 3 ... )))</span>
 
-<pre><code class="language-scheme">(define number-between
-  (lambda (lo hi)
-    (let loop ((i lo))
-      (if (&gt; i hi) (amb)
-          (amb i (loop (+ i 1)))))))  ; (amb 1 (amb 2 (amb 3 ... )))
-
-(define (n-queens n)
-    (call/cc
-        (lambda (return)
-            (let add-queen ([i 0] [result '()])
-                (when (&lt; i n)                                                       ;最多摆几个皇后
-                    (let ([new-queen (number-between 1 n)])
-                        (if
-                            (safe? n (append (list new-queen) result))              ;新加入的皇后必须是有效的
-                            (add-queen (+ i 1) (append (list new-queen) result))
-                            (amb))
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">n-queens</span> n)
+    (<span style="color:#a6e22e">call/cc</span>
+        (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">return</span>)
+            (<span style="color:#66d9ef">let </span>add-queen ([i <span style="color:#ae81ff">0</span>] [result <span style="color:#f92672">&#39;</span>()])
+                (<span style="color:#a6e22e">when</span> (&lt; i n)                                                       <span style="color:#75715e">;最多摆几个皇后</span>
+                    (<span style="color:#66d9ef">let </span>([new-queen (<span style="color:#a6e22e">number-between</span> <span style="color:#ae81ff">1</span> n)])
+                        (<span style="color:#a6e22e">if</span>
+                            (<span style="color:#a6e22e">safe?</span> n (append (list new-queen) result))              <span style="color:#75715e">;新加入的皇后必须是有效的</span>
+                            (<span style="color:#a6e22e">add-queen</span> (+ i <span style="color:#ae81ff">1</span>) (append (list new-queen) result))
+                            (<span style="color:#a6e22e">amb</span>))
                     )
                 )
-                (return result)
+                (<span style="color:#a6e22e">return</span> result)
             )
         )
     )
 )
 
-(bag-of (n-queens 8))  ;8个皇后的所有解
+(<span style="color:#a6e22e">bag-of</span> (<span style="color:#a6e22e">n-queens</span> <span style="color:#ae81ff">8</span>))  <span style="color:#75715e">;8个皇后的所有解</span>
 
-</code></pre>
-
-<p>该版本比之前的Scheme版本的实现改进了很多，现在只需要描述一下我的问题的关系即可，程序会自动选择所有正确的值，无需关心计算机内部到底发生了什么。在面对很多逻辑问题时，我们可以很轻松地解决了。</p>
-
+</code></pre></div><p>该版本比之前的Scheme版本的实现改进了很多，现在只需要描述一下我的问题的关系即可，程序会自动选择所有正确的值，无需关心计算机内部到底发生了什么。在面对很多逻辑问题时，我们可以很轻松地解决了。</p>
 <p>也许有人会问，如果采用命令式语言来处理的话，可能几个嵌套的循环也能达到相同的结果，如此大费周章的介绍这个叫amb的技术，到底有什么价值呢？ 那就来聊一聊。</p>
-
 <h3 id="有什么意义">有什么意义？</h3>
-
 <p>在谈论意义之前，容许我提一个问题</p>
-
 <blockquote>
 <p>为什么SQL语言要设计成这样？与命令式语言如此的不同？</p>
 </blockquote>
-
 <p>首先需要明确的一点是，<strong>计算机科学处理的是命令式（怎样做）的知识，而数学处理的是说明式（是什么）的知识。</strong> 事实上，人类不可能只面临其中一种问题，程序设计中一个重要的分支就是逻辑程序设计，有很多问题或者数据之间存在着关联关系，难以观测到结论，描述它们的关系很简单，但是直接告诉计算机如何去做却不那么容易，或许我们可以为若干此类问题编写命令式代码，但是不可能对所有这样的问题都编写代码，显然信息之间的关系是多种多样的，那么代码就需要相应的变化，往往修改这样的代码是很困难的， 甚至需要重新设计并编码。另一方面，如果程序设计可以处理说明式的知识，岂不是大大减轻了程序员的工作了呢？函数式语言的设计是基于lambda理论，围绕着数学函数值的计算组织起来的，依靠其强大的表现力，在处理逻辑问题上更加得心应手，可以化繁为简。</p>
-
 <p>说到这里，是不是觉得，保存在数据库中的数据之间存在着种种联系呢？SQL正是描述了这种关系，我们只需要告诉数据库我们需要什么数据（select）, 数据在什么位置（from）, 哪些是有意义的（where）就行了，并不需要告诉数据库该如何具体操作，数据库可以根据我们的描述（SQL）就能够准确的返回结果，这真是关于非确定性计算的一个极好的例子，此时我们总该明白为什么数据库叫做<strong>关系型数据库</strong> 了吧。我们不妨设想一下，如果不采用描述的方式来查询数据，程序员们该怎么做？还能够轻易的查找到需要的数据吗？</p>
-
 <p>刚才我提出的问题，想必此刻应该有答案了。</p>
-
-<p><br><br><br></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
     <div class="article-footer">

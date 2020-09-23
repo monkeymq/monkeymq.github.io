@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为： 设定一个分界值，通常为第一个元素； 遍历列表，将所有小于" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>快速排序（Lisp版本） - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2020-07-20T14:57:29+08:00" />
 <meta itemprop="name" content="快速排序（Lisp版本）">
 <meta itemprop="description" content="快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为： 设定一个分界值，通常为第一个元素； 遍历列表，将所有小于">
-
-
-<meta itemprop="datePublished" content="2020-07-20T14:57:29&#43;08:00" />
-<meta itemprop="dateModified" content="2020-07-20T14:57:29&#43;08:00" />
+<meta itemprop="datePublished" content="2020-07-20T14:57:29+08:00" />
+<meta itemprop="dateModified" content="2020-07-20T14:57:29+08:00" />
 <meta itemprop="wordCount" content="471">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -385,71 +392,68 @@
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为：</p>
-
 <ol>
-<li><p>设定一个分界值，通常为第一个元素；</p></li>
-
-<li><p>遍历列表，将所有小于分界值的元素集中到列表的左侧，所有大于或等于分界值的元素集中到右侧；</p></li>
-
-<li><p>分别对左侧和右侧的元素进行快排；</p></li>
-
-<li><p>重复上述的步骤，排序完成；</p></li>
+<li>
+<p>设定一个分界值，通常为第一个元素；</p>
+</li>
+<li>
+<p>遍历列表，将所有小于分界值的元素集中到列表的左侧，所有大于或等于分界值的元素集中到右侧；</p>
+</li>
+<li>
+<p>分别对左侧和右侧的元素进行快排；</p>
+</li>
+<li>
+<p>重复上述的步骤，排序完成；</p>
+</li>
 </ol>
-
 <p>在平均状况下，排序n个元素需要$O(nlog n)$复杂度，最坏情况下需要$O(n^2)$,但一般很少出现这种情况。</p>
-
 <p>从算法的原理可以看出，需要多次执行重复的操作，自然采用递归可以减少很多代码，若问递归技术哪家强？首屈一指Lisp,下面给出CL版本的快排实现（简易版本，只支持数字类型的列表，其他类型的排序只需增加一个比较函数即可，本文不扩展）：</p>
-
-<pre><code class="language-lisp">(defun quickSort (lst)
-    (let
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defun quickSort (lst)
+    (<span style="color:#66d9ef">let</span>
         (
-            (len (list-length lst))
-            (st (lambda (l pk)   ;; st函数实现上述第2步
-                    (let ((left nil) (right nil))
-                        (dolist (each l) (if (&lt; each pk) (push each left) (push each right)))
-                        (values left right)
+            (len (<span style="color:#a6e22e">list-length</span> lst))
+            (st (lambda (l pk)   <span style="color:#75715e">;; st函数实现上述第2步</span>
+                    (<span style="color:#66d9ef">let</span> ((left <span style="color:#66d9ef">nil</span>) (right <span style="color:#66d9ef">nil</span>))
+                        (dolist (each l) (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> each pk) (push each left) (push each right)))
+                        (<span style="color:#a6e22e">values</span> left right)
                     )
                 )
             )
         )
-        (if
-            (&lt; len 2)
+        (<span style="color:#66d9ef">if</span>
+            (<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>)
             lst
-            (multiple-value-bind (l r) (st (cdr lst) (car lst)) (append (quickSort l) (cons (car lst) (quickSort r))))
+            (multiple-value-bind (l r) (st (<span style="color:#a6e22e">cdr</span> lst) (<span style="color:#a6e22e">car</span> lst)) (<span style="color:#a6e22e">append</span> (quickSort l) (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">car</span> lst) (quickSort r))))
         )
     )
 )
 
 
-(quickSort '(1 2 6 3 5 4))  =&gt; (1 2 3 4 5 6)
-</code></pre>
-
-<p>st函数可以用宏来实现：</p>
-
-<pre><code class="language-lisp">(defmacro st (lst pk)
-    (let ((gslist (gensym)))
-        `(let ((,gslist ,lst))
-            (let ((left nil) (right nil))
-                (dolist (each ,gslist) (if (&lt; each ,pk) (push each left) (push each right)))
-                (values left right)
+(quickSort <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">4</span>))  =&gt; (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>)
+</code></pre></div><p>st函数可以用宏来实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defmacro st (lst pk)
+    (<span style="color:#66d9ef">let</span> ((gslist (<span style="color:#a6e22e">gensym</span>)))
+        <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let</span> ((<span style="color:#f92672">,</span>gslist <span style="color:#f92672">,</span>lst))
+            (<span style="color:#66d9ef">let</span> ((left <span style="color:#66d9ef">nil</span>) (right <span style="color:#66d9ef">nil</span>))
+                (dolist (each <span style="color:#f92672">,</span>gslist) (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> each <span style="color:#f92672">,</span>pk) (push each left) (push each right)))
+                (<span style="color:#a6e22e">values</span> left right)
             )
         )
     )
 )
 (defun quickSort (lst)
-    (let
+    (<span style="color:#66d9ef">let</span>
         (
-            (len (list-length lst))
+            (len (<span style="color:#a6e22e">list-length</span> lst))
         )
-        (if
-            (&lt; len 2)
+        (<span style="color:#66d9ef">if</span>
+            (<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>)
             lst
-            (multiple-value-bind (l r) (st (cdr lst) (car lst)) (append (quickSort l) (cons (car lst) (quickSort r))))
+            (multiple-value-bind (l r) (st (<span style="color:#a6e22e">cdr</span> lst) (<span style="color:#a6e22e">car</span> lst)) (<span style="color:#a6e22e">append</span> (quickSort l) (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">car</span> lst) (quickSort r))))
         )
     )
 )
-</code></pre>
-
+</code></pre></div>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">
@@ -491,6 +495,11 @@
                 <a href="https://lvsq.net/2020/05/n-queens/" title="从“八皇后”到amb"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/"
+                    title="Lexical Scoping and Dynamic Scoping"><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">

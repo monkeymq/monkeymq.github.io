@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>使用Golang进行函数式编程 - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,11 +40,9 @@
 <meta property="article:modified_time" content="2020-03-12T10:38:55+08:00" />
 <meta itemprop="name" content="使用Golang进行函数式编程">
 <meta itemprop="description" content="为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违">
-
-
-<meta itemprop="datePublished" content="2020-03-12T10:38:55&#43;08:00" />
-<meta itemprop="dateModified" content="2020-03-12T10:38:55&#43;08:00" />
-<meta itemprop="wordCount" content="2693">
+<meta itemprop="datePublished" content="2020-03-12T10:38:55+08:00" />
+<meta itemprop="dateModified" content="2020-03-12T10:38:55+08:00" />
+<meta itemprop="wordCount" content="2688">
 
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -379,232 +386,159 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/fp-in-go/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2693字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2688字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:6分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      
-
-<p><img src="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2020/02/functional-programming-in-go.png?w=730&amp;ssl=1" alt="Golang" /></p>
-
+      <p><img src="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2020/02/functional-programming-in-go.png?w=730&amp;ssl=1" alt="Golang"></p>
 <p>为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违反函数式编程规则，就可以快速调试应用程序。当函数被隔离时，您不必处理影响输出的隐藏状态的更改。</p>
-
 <p>软件工程师兼作者<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">Eric Elliot</a>定义了以下函数编程。</p>
-
 <blockquote>
 <p><em>函数式编程是通过组合纯函数，避免共享状态，可变数据和副作用来构建软件的过程。函数式编程是声明性的，而不是命令性的，应用程序状态通过纯函数流动。与面向对象的编程相反，后者通常将应用程序状态与对象中的方法共享并放置在对象中。</em></p>
 </blockquote>
-
 <p>我将更进一步：函数式编程（如面向对象和过程式编程）代表着范式的转变。它在编写代码时采用了独特的思维方式，并引入了一套全新的规则。</p>
-
 <h3 id="4个重要概念">4个重要概念</h3>
-
 <p>要完全掌握函数式编程，必须首先了解以下相关概念。</p>
-
 <ol>
 <li>纯函数和幂等</li>
 <li>副作用</li>
 <li>函数构成</li>
 <li>共享状态和不变数据</li>
 </ol>
-
 <p>让我们快速回顾一下。</p>
-
 <h4 id="纯函数和幂等">纯函数和幂等</h4>
-
 <p>如果给纯函数提供相同的输入，则它总是会返回相同的输出。此属性也称为幂等。幂等意味着函数应始终返回相同的输出，而与调用次数无关。</p>
-
 <h4 id="副作用">副作用</h4>
-
 <p>纯函数不能有任何副作用。换句话说，您的函数无法与外部环境进行交互。</p>
-
 <p>例如，函数式编程将API调用视为副作用。为什么？因为API调用被认为是不受您直接控制的外部环境。一个API可能有几个不一致的地方，例如超时或失败，或者甚至可能返回意外的值。它不适合纯函数的定义，因为每次调用API时都需要一致的结果。</p>
-
 <p>其他常见的副作用包括：</p>
-
 <ul>
 <li>数据变化</li>
 <li>DOM操作</li>
-<li>请求有冲突的数据，例如当前时间<font color="#FF4500">time.Now()</font></li>
+<li>请求有冲突的数据，例如当前时间<!-- raw HTML omitted -->time.Now()<!-- raw HTML omitted --></li>
 </ul>
-
 <h4 id="函数构成">函数构成</h4>
-
 <p>函数构成的基本思想很简单：将两个纯函数组合在一起以创建一个新函数。这意味着为相同输入产生相同输出的概念在这里仍然适用。因此，从简单的纯函数开始创建更高级的函数很重要。</p>
-
 <h4 id="共享状态和不变数据">共享状态和不变数据</h4>
-
 <p>函数式编程的目的是创建不保持状态的函数。共享状态尤其会在纯函数中引入副作用或可变性问题，使它们变得不纯粹。</p>
-
 <p>但是，并非所有状态都不好。有时，必须有一个状态才能解决特定的软件问题。函数式编程的目的是使状态可见和显式，以消除任何副作用。程序使用不可变数据结构从纯函数中派生新数据。这样，就不需要可能引起副作用的可变数据。</p>
-
-<hr />
-
+<hr>
 <p>现在我们已经涵盖了基础，让我们定义一些在Go中编写功能代码时要遵循的规则。</p>
-
 <h3 id="功能编程规则">功能编程规则</h3>
-
 <p>如前所述，函数式编程是一种范例。因此，很难为这种编程风格定义确切的规则。也不一定总是遵循这些规则。有时，您确实需要依赖拥有状态的功能。</p>
-
 <p>但是，为了尽可能严格地遵循函数式编程范例，我建议坚持以下准则。</p>
-
 <ul>
 <li>没有可变数据以避免副作用</li>
 <li>无状态（或者隐式状态，例如循环计数器）</li>
 <li>给变量赋值后请勿修改</li>
 <li>避免副作用，例如API调用</li>
 </ul>
-
 <p>我们在函数式编程中经常遇到的一个好的“副作用”是强大的模块化。函数式编程不是自上而下地进行软件工程，而是鼓励自下而上的编程风格。首先定义模块，把将来可能使用的同类纯函数组合起来。接下来，开始编写那些小的，无状态的独立函数，以创建您的第一个模块。</p>
-
 <p>实质上我们是在创建黑匣子。稍后，我们将按照自下而上的方式将各个块捆绑在一起。这使您可以建立强大的测试基础，尤其是可以验证纯函数正确性的单元测试。</p>
-
 <p>一旦您可以信任您的模块，就可以将模块捆绑在一起了。开发过程中的这一步还涉及编写集成测试，以确保两个组件的正确集成。</p>
-
 <h3 id="5个示例">5个示例</h3>
-
 <p>为了更全面地描述Go函数编程的工作原理，让我们探索五个基本示例。</p>
-
-<p>1) 更新字符串</p>
-
+<ol>
+<li>更新字符串</li>
+</ol>
 <p>这是纯函数的最简单示例。通常，当您要更新字符串时，请执行以下操作。</p>
-
-<pre><code class="language-go">	name：= &quot;first name&quot;
-	name：= name + &quot;last name&quot;
-</code></pre>
-
-<p>上面的代码片段不符合函数式编程的规则，因为不能在函数内修改变量。因此，我们应该重写代码段，以便每个值都具有自己的变量。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">：</span>= <span style="color:#e6db74">&#34;first name&#34;</span>
+	<span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">：</span>= <span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;last name&#34;</span>
+</code></pre></div><p>上面的代码片段不符合函数式编程的规则，因为不能在函数内修改变量。因此，我们应该重写代码段，以便每个值都具有自己的变量。</p>
 <p>下面的代码段中的代码更具可读性。</p>
-
-<pre><code class="language-go">	firstname := &quot;first&quot;
-	lastname := &quot;last&quot;
-	fullname := firstname + &quot; &quot; + lastname
-</code></pre>
-
-<p>在查看非函数式代码段时，我们必须浏览程序以确定最新状态，才可以找到<font color="#FF4500">name</font>变量的结果值。这需要更多的精力和时间来了解该功能的作用。</p>
-
-<p>2) 避免更新数组</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">firstname</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;first&#34;</span>
+	<span style="color:#a6e22e">lastname</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;last&#34;</span>
+	<span style="color:#a6e22e">fullname</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">firstname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastname</span>
+</code></pre></div><p>在查看非函数式代码段时，我们必须浏览程序以确定最新状态，才可以找到<!-- raw HTML omitted -->name<!-- raw HTML omitted -->变量的结果值。这需要更多的精力和时间来了解该功能的作用。</p>
+<ol start="2">
+<li>避免更新数组</li>
+</ol>
 <p>如前所述，函数式编程的目的是使用不变数据通过纯函数得出新的不变数据状态。我们可以在每次需要更新数组时创建一个新数组来实现</p>
-
 <p>在非函数式编程中，更新数组如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">names</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;Tom&#34;</span>, <span style="color:#e6db74">&#34;Ben&#34;</span>}
 
-<pre><code class="language-go">	names := [3]string{&quot;Tom&quot;, &quot;Ben&quot;}
-
-	// Add Lucas to the array
-	names[2] = &quot;Lucas&quot;
-</code></pre>
-
-<p>让我们根据功能编程范例进行尝试。</p>
-
-<pre><code class="language-go">	names := []string{&quot;Tom&quot;, &quot;Ben&quot;}
-	allNames := append(names, &quot;Lucas&quot;)
-</code></pre>
-
-<p>3) 避免更新map</p>
-
+	<span style="color:#75715e">// Add Lucas to the array
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">names</span>[<span style="color:#ae81ff">2</span>] = <span style="color:#e6db74">&#34;Lucas&#34;</span>
+</code></pre></div><p>让我们根据功能编程范例进行尝试。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">names</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;Tom&#34;</span>, <span style="color:#e6db74">&#34;Ben&#34;</span>}
+	<span style="color:#a6e22e">allNames</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">names</span>, <span style="color:#e6db74">&#34;Lucas&#34;</span>)
+</code></pre></div><ol start="3">
+<li>避免更新map</li>
+</ol>
 <p>这是函数编程的极端示例。想象一下，我们有一个带有字符串类型的键和整数类型的值的map。该map包含我们仍然留在家中的水果数量。但是，我们刚购买了苹果，并希望将其添加到列表中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">fruits</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{<span style="color:#e6db74">&#34;bananas&#34;</span>: <span style="color:#ae81ff">11</span>}
 
-<pre><code class="language-go">	fruits := map[string]int{&quot;bananas&quot;: 11}
+	<span style="color:#75715e">// Buy five apples
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fruits</span>[<span style="color:#e6db74">&#34;apples&#34;</span>] = <span style="color:#ae81ff">5</span>
+</code></pre></div><p>我们可以在功能编程范例下完成相同的功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">fruits</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{<span style="color:#e6db74">&#34;bananas&#34;</span>: <span style="color:#ae81ff">11</span>}
+    <span style="color:#a6e22e">newFruits</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>{<span style="color:#e6db74">&#34;apples&#34;</span>: <span style="color:#ae81ff">5</span>}
 
-	// Buy five apples
-	fruits[&quot;apples&quot;] = 5
-</code></pre>
-
-<p>我们可以在功能编程范例下完成相同的功能。</p>
-
-<pre><code class="language-go">	fruits := map[string]int{&quot;bananas&quot;: 11}
-    newFruits := map[string]int{&quot;apples&quot;: 5}
-
-    allFruits := make(map[string]int, len(fruits) + len(newFruits))
+    <span style="color:#a6e22e">allFruits</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">fruits</span>) <span style="color:#f92672">+</span> len(<span style="color:#a6e22e">newFruits</span>))
 
 
-    for k, v := range fruits {
-        allFruits[k] = v
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">fruits</span> {
+        <span style="color:#a6e22e">allFruits</span>[<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">v</span>
     }
 
 
-    for k, v := range newFruits {
-        allFruits[k] = v
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">newFruits</span> {
+        <span style="color:#a6e22e">allFruits</span>[<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">v</span>
     }
-</code></pre>
-
-<p>由于我们不想修改原始map，因此代码会遍历两个map，并将值添加到新map。这样，数据保持不变。</p>
-
+</code></pre></div><p>由于我们不想修改原始map，因此代码会遍历两个map，并将值添加到新map。这样，数据保持不变。</p>
 <p>正如您可能通过代码的长度可以看出的那样，此代码段的性能比对map进行简单的可变更新要差得多，因为我们要遍历两个map。这是您为代码性能交换更好的代码质量的时间。</p>
-
-<p>4) 高阶函数和柯里化</p>
-
+<ol start="4">
+<li>高阶函数和柯里化</li>
+</ol>
 <p>大多数程序员在他们的代码中通常不会使用高阶函数，但是在函数式编程中柯里化很方便。</p>
-
 <p>假设我们有一个简单的函数，将两个整数相加。尽管这已经是一个纯粹的功能，但我们希望详细说明该示例，以展示如何通过curring创建更高级的功能。</p>
-
 <p>在这种情况下，我们只能接受一个参数。接下来，该函数返回另一个函数作为闭包。因为该函数返回一个闭包，所以它将记住外部范围，该范围包含初始输入参数。</p>
-
-<pre><code class="language-go">	func add （x int）func （y int）int {
-		return func（y int）int {
-			return x + y
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add</span> <span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#66d9ef">func</span> <span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#66d9ef">int</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">func</span><span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#66d9ef">int</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>
 		}
 	}
-</code></pre>
+</code></pre></div><p>现在，让我们尝试currying并创建更多高级纯函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+		<span style="color:#75715e">// Create more variations
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">add10</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">10</span>)
+		<span style="color:#a6e22e">add20</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">20</span>)
 
-<p>现在，让我们尝试currying并创建更多高级纯函数。</p>
+		<span style="color:#75715e">// Currying
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">add10</span>(<span style="color:#ae81ff">1</span>)) <span style="color:#75715e">// 11
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">add20</span>(<span style="color:#ae81ff">1</span>)) <span style="color:#75715e">// 21
+</span><span style="color:#75715e"></span>}
 
-<pre><code class="language-go">	func main() {
-		// Create more variations
-		add10 := add(10)
-		add20 := add(20)
-
-		// Currying
-		fmt.Println(add10(1)) // 11
-		fmt.Println(add20(1)) // 21
-}
-
-</code></pre>
-
-<p>这种方法在函数式编程中很常见，尽管您通常不会在范式之外看到它。</p>
-
-<p>5) 递归</p>
-
+</code></pre></div><p>这种方法在函数式编程中很常见，尽管您通常不会在范式之外看到它。</p>
+<ol start="5">
+<li>递归</li>
+</ol>
 <p>递归是一种通常用于规避循环使用的软件模式。因为循环始终保持内部状态以明确循环在哪一轮，所以我们不能在函数式编程范式下使用循环。</p>
-
 <p>例如，下面的代码片段尝试计算数字的阶乘。阶乘是一个整数与其下所有整数的乘积。因此，阶乘4等于24（= 4 * 3 * 2 * 1）。</p>
-
 <p>通常，您将为此使用循环。</p>
-
-<pre><code class="language-go">	func factorial(fac int) int {
-		result := 1
-		for ; fac &gt; 0; fac-- {
-			result *= fac
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">factorial</span>(<span style="color:#a6e22e">fac</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+		<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">for</span> ; <span style="color:#a6e22e">fac</span> &gt; <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">fac</span><span style="color:#f92672">--</span> {
+			<span style="color:#a6e22e">result</span> <span style="color:#f92672">*=</span> <span style="color:#a6e22e">fac</span>
 		}
-		return result
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 	}
-</code></pre>
-
-<p>为了在函数式编程范例中完成此任务，我们需要使用递归。换句话说，我们将一遍又一遍地调用相同的函数，直到达到阶乘的最低整数为止。</p>
-
-<pre><code class="language-go">	func calculateFactorial(fac int) int {
-		if fac == 0 {
-			return 1
+</code></pre></div><p>为了在函数式编程范例中完成此任务，我们需要使用递归。换句话说，我们将一遍又一遍地调用相同的函数，直到达到阶乘的最低整数为止。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">calculateFactorial</span>(<span style="color:#a6e22e">fac</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">fac</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
 		}
-		return fac * calculateFactorial(fac - 1)
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fac</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">calculateFactorial</span>(<span style="color:#a6e22e">fac</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
 	}
-</code></pre>
-
-<h3 id="结论">结论</h3>
-
+</code></pre></div><h3 id="结论">结论</h3>
 <p>让我们总结一下我们从函数式编程中学到的知识：</p>
-
 <ul>
 <li>尽管Golang支持函数式编程，但它并非为此目的而设计的，如缺少Map，Filter和Reduce函数。</li>
 <li>函数式编程提高了代码的可读性，因为函数是纯粹的，因此易于理解</li>
 <li>纯函数更易于测试，因为没有内部状态会改变输出</li>
 </ul>
-
-<p><br><br><br></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>原文在此:   <a href="https://blog.logrocket.com/functional-programming-in-go/">https://blog.logrocket.com/functional-programming-in-go/</a></p>
 
     </div>

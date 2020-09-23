@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。 学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>About - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2019-12-03T09:06:26+08:00" />
 <meta itemprop="name" content="About">
 <meta itemprop="description" content="生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。 学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过">
-
-
-<meta itemprop="datePublished" content="2019-12-03T09:06:26&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-03T09:06:26&#43;08:00" />
+<meta itemprop="datePublished" content="2019-12-03T09:06:26+08:00" />
+<meta itemprop="dateModified" content="2019-12-03T09:06:26+08:00" />
 <meta itemprop="wordCount" content="258">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -382,24 +389,14 @@
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>生于僻壤之乡，幸赖民风酣淳,稻花香中逐戏，松风竹影与我入眠。</p>
-
 <p>学无所长，怕读文章，与父母之意大悖。年少好游，使气任侠，蒙父母乡民垂爱，宥我之过不甚苛责。</p>
-
 <p>后离家求学，常念家乡山水，几度梦回故园。</p>
-
 <p>如今已过而立，尝思往事，有悔有誉，傲骨尚在不愿长揖，当窗读书月影横斜。人间多少繁华事，我挑西帘看晚霞。</p>
-
-<p><br></p>
-
-<hr />
-
+<!-- raw HTML omitted -->
+<hr>
 <p>爱读史书及黄酒，尝捧黄册佐酒，快哉乐哉。</p>
-
 <p>为谋生计，身傍编程一技，近几岁尤好FP及高性能系统之设计与实现。深受《T.L.S》之影响，读过《S.I.C.P》，《T.S.P.L》等皇皇巨著，业余以写Scheme和Erlang为乐。</p>
-
-<p><br>
-<br>
-<br></p>
+<!-- raw HTML omitted -->
 
     </div>
     <div class="article-footer">

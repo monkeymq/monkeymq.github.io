@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result" />
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
   <title>两数相加 - 思泉笔谈 | AI-Life</title>
   
 
@@ -40,10 +40,8 @@
 <meta property="article:modified_time" content="2019-12-17T20:00:31+08:00" />
 <meta itemprop="name" content="两数相加">
 <meta itemprop="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result">
-
-
-<meta itemprop="datePublished" content="2019-12-17T20:00:31&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-17T20:00:31&#43;08:00" />
+<meta itemprop="datePublished" content="2019-12-17T20:00:31+08:00" />
+<meta itemprop="dateModified" content="2019-12-17T20:00:31+08:00" />
 <meta itemprop="wordCount" content="594">
 
 
@@ -168,7 +166,8 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
@@ -221,6 +220,10 @@
                     class="tag-list-count">1</span></li>
             
             
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
                     class="tag-list-count">1</span></li>
             
@@ -239,6 +242,10 @@
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
                     class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
@@ -280,6 +287,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
                     </p>
                     <p class="item-date">
@@ -314,16 +331,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/03/fp-in-go/" class="title">使用Golang进行函数式编程</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-03-12 10:38:55 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
                     </p>
                 </div>
             </li>
@@ -386,123 +393,113 @@
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>本文在于解答LeetCode中的第二题，问题的描述可参见 <a href="https://leetcode-cn.com/problems/add-two-numbers/">两数相加</a></p>
-
 <p>Golang的实现：</p>
-
-<pre><code class="language-go">/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-    result := &amp;ListNode{}
-    nodes := []*ListNode{}
-    var carry = 0
-    for {
-        node, c := add(l1, l2, carry)
-        carry = c
-        if node != nil {
-            nodes = append(nodes, node)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Definition for singly-linked list.
+</span><span style="color:#75715e"> * type ListNode struct {
+</span><span style="color:#75715e"> *     Val int
+</span><span style="color:#75715e"> *     Next *ListNode
+</span><span style="color:#75715e"> * }
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addTwoNumbers</span>(<span style="color:#a6e22e">l1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">l2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
+    <span style="color:#a6e22e">nodes</span> <span style="color:#f92672">:=</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>{}
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> {
+        <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">l1</span>, <span style="color:#a6e22e">l2</span>, <span style="color:#a6e22e">carry</span>)
+        <span style="color:#a6e22e">carry</span> = <span style="color:#a6e22e">c</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+            <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#a6e22e">node</span>)
             
-            if l1 != nil &amp;&amp; l1.Next != nil {
-                l1 = l1.Next
-            } else {
-                l1 = nil
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l1</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">l1</span> = <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span>
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">l1</span> = <span style="color:#66d9ef">nil</span>
             }
 
-            if l2 != nil &amp;&amp; l2.Next != nil {
-                l2 = l2.Next
-            } else {
-                l2 = nil
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">l2</span> = <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span>
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">l2</span> = <span style="color:#66d9ef">nil</span>
             }
 
-            if carry &gt; 0 &amp;&amp; (l1 == nil &amp;&amp; l2 == nil) {
-                nodes = append(nodes, &amp;ListNode{Val:carry})
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">carry</span> &gt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">l1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
+                <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span>:<span style="color:#a6e22e">carry</span>})
             }
             
-        } else {
-            break
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">break</span>
         }
     }
 
-    for i, n := range nodes{
-        if i == 0 {
-            result = n
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nodes</span>{
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+            <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">n</span>
         }
-        if i + 1 &lt; len(nodes) {
-            n.Next = nodes[i + 1]
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> &lt; len(<span style="color:#a6e22e">nodes</span>) {
+            <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
         }
     }
         
-    return result
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 }
 
-func add (n1 *ListNode, n2 *ListNode, carry int) (*ListNode, int) {
-    node := &amp;ListNode{}
-    if (n1 == nil &amp;&amp; n2 == nil) {
-        return nil, 0
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">n2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">carry</span> <span style="color:#66d9ef">int</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#ae81ff">0</span>
     }
-    if n1 == nil {
-        n1 = &amp;ListNode{Val : 0}
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">n1</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
     }
-    if n2 == nil {
-        n2 = &amp;ListNode{Val : 0}
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">n2</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
     }
 
-    sum := n1.Val + n2.Val + carry
-    carry = 0
-     if sum &gt; 9 {
-        carry = 1
-        sum = sum - 10
+    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">n1</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n2</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">carry</span>
+    <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
+     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">sum</span> &gt; <span style="color:#ae81ff">9</span> {
+        <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">1</span>
+        <span style="color:#a6e22e">sum</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>
     }
-    node.Val = sum
-    return node, carry
+    <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Val</span> = <span style="color:#a6e22e">sum</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">carry</span>
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>下面提供Scheme版本的实现【(1 0) + (9 1 2) = (0 2 2)】，为了简单起见，与题目要求稍有不同，这里采用list，而不是题目要求的链表，但实际上应是一样的。比较之下可以看出，相对而言，Scheme语言的实现更加简短优雅，得益于其强大的表达能力</p>
-
-<pre><code class="language-lisp">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
 (letrec (
     [Polishing
         (lambda (l num)
-            (if (eq? num 0) l (Polishing (append l '(0)) (- num 1)))
+            (<span style="color:#66d9ef">if</span> (eq? num <span style="color:#ae81ff">0</span>) l (Polishing (<span style="color:#a6e22e">append</span> l <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">0</span>)) (<span style="color:#a6e22e">-</span> num <span style="color:#ae81ff">1</span>)))
         )
     ]
     [Align
         (lambda (l1 l2)
-            (let ([len1 (length l1)] [len2 (length l2)]) 
-                (if [eq? len1 len2] [list l1 l2] 
-                    [if (&gt; len1 len2) (list l1 (Polishing l2 (- len1 len2))) 
-                        (list (Polishing l1 (- len2 len1)) l2)]))
+            (<span style="color:#66d9ef">let</span> ([len1 (<span style="color:#a6e22e">length</span> l1)] [len2 (<span style="color:#a6e22e">length</span> l2)]) 
+                (<span style="color:#66d9ef">if</span> [eq? len1 len2] [list l1 l2] 
+                    [if (<span style="color:#a6e22e">&gt;</span> len1 len2) (<span style="color:#a6e22e">list</span> l1 (Polishing l2 (<span style="color:#a6e22e">-</span> len1 len2))) 
+                        (<span style="color:#a6e22e">list</span> (Polishing l1 (<span style="color:#a6e22e">-</span> len2 len1)) l2)]))
         )
     ]
     [Add
         (lambda (l1 l2) 
-            (let ([ l (Align l1 l2)]) 
-                (Carry (map (lambda (x y) (+ x y)) (car l) (cadr l)) 0)  
+            (<span style="color:#66d9ef">let</span> ([ l (Align l1 l2)]) 
+                (Carry (<span style="color:#a6e22e">map</span> (lambda (x y) (<span style="color:#a6e22e">+</span> x y)) (<span style="color:#a6e22e">car</span> l) (<span style="color:#a6e22e">cadr</span> l)) <span style="color:#ae81ff">0</span>)  
             )
         )
     ]
     [Carry 
         (lambda (l c)
-            (if (null? l) 
-                (if [eq? c 0] '() [cons c l]) 
-                (cons (mod ( + (car l) c ) 10) (Carry (cdr l) (quotient ( + (car l) c) 10)))
+            (<span style="color:#66d9ef">if</span> (null? l) 
+                (<span style="color:#66d9ef">if</span> [eq? c 0] <span style="color:#f92672">&#39;</span>() [cons c l]) 
+                (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">mod</span> ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c ) <span style="color:#ae81ff">10</span>) (Carry (<span style="color:#a6e22e">cdr</span> l) (quotient ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c) <span style="color:#ae81ff">10</span>)))
             )
         )  
     ]) 
-(Add '(1 0) '(9 1 2)))
-</code></pre>
-
-<hr />
-
+(Add <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">9</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)))
+</code></pre></div><hr>
 <p>Golang版本和Scheme版本的实现思路不相同，简要描述一下后者：</p>
-
 <ul>
 <li>(1 0) + (9 1 2), 先进行补位：</li>
 <li>(1 0 0) + (9 1 2), 按顺序相加，得：</li>
