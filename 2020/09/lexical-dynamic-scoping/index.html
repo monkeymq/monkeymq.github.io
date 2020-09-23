@@ -424,7 +424,7 @@
 (<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;X = ~d &#34;</span> x)
 (<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">100</span>)) (<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;Inner X is ~d &#34;</span> x))
 </code></pre></div><p>(defvar x 1)定义了x，值为1，但是这个x属于自由变量，处于动态作用域，因为Lisp自动将全局变量即由defvar、defparameter、special定义的变量自动声明为动态作用域。
-x对于(lambda (y) (* x y))来说是“ **自由** ”的，它可不会在意x绑定为2或者任何其他值，因为(let ((x 2)) &hellip;)中指定的x已经不是(lambda &hellip;)的参数了。</p>
+x对于(lambda (y) (* x y))来说是“ **自由** ” 的，它可不会在意x绑定为2或者任何其他值，因为(let ((x 2)) &hellip;)中指定的x已经不是(lambda &hellip;)的参数了。</p>
 <p>所以当我们执行(funcall f 3) 时，其结果不像词法作用域那样等于6，而是3</p>
 <p>(format t &ldquo;X = ~d &quot; x) 依然输出： X = 1</p>
 <p>(let ((x 100)) (format t &ldquo;Inner X is ~d &quot; x)) 输出为：Inner X is 100。 等等，这里的x为什么又是100了？ 还记得上文提到的<em>环境</em> 吗？！</p>
