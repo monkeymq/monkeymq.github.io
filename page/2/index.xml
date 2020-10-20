@@ -5,10 +5,19 @@
     <link>https://lvsq.net/</link>
     <description>Recent content on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 23 Sep 2020 11:24:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2020 10:49:13 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>继学录</title>
+      <link>https://lvsq.net/2019/12/think/</link>
+      <pubDate>Tue, 24 Dec 2019 17:24:01 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/think/</guid>
+      <description>易经曰：通其变，使民不倦。引颜师古注：此易下系之辞也，言通物之变，胡能乐其器用，不解倦也。不才私度其意，白话言之：人物一理，应明其格，顺其兴</description>
+    </item>
     
     <item>
       <title>Fluid Binding in Chez Scheme</title>

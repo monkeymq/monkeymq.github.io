@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        历史不能碰 - 思泉笔谈 | AI-Life
+        [基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642) - 思泉笔谈 | AI-Life
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,33 +23,33 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁" />
+  <meta name="description" content="MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且运行" />
   <meta name="generator" content="Hugo 0.74.3 with theme pure" />
-  <title>历史不能碰 - 思泉笔谈 | AI-Life</title>
+  <title>[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642) - 思泉笔谈 | AI-Life</title>
   
 
   <link rel="stylesheet" href="https://lvsq.net/css/style.css">
   <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="历史不能碰" />
-<meta property="og:description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁" />
+  <meta property="og:title" content="[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)" />
+<meta property="og:description" content="MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且运行" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/11/do-not-touch-history/" />
-<meta property="article:published_time" content="2019-11-28T12:43:50+08:00" />
-<meta property="article:modified_time" content="2019-11-28T12:43:50+08:00" />
-<meta itemprop="name" content="历史不能碰">
-<meta itemprop="description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁">
-<meta itemprop="datePublished" content="2019-11-28T12:43:50+08:00" />
-<meta itemprop="dateModified" content="2019-11-28T12:43:50+08:00" />
-<meta itemprop="wordCount" content="189">
+<meta property="og:url" content="https://lvsq.net/2020/10/rebuilding-racket/" />
+<meta property="article:published_time" content="2020-10-20T10:49:13+08:00" />
+<meta property="article:modified_time" content="2020-10-20T10:49:13+08:00" />
+<meta itemprop="name" content="[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)">
+<meta itemprop="description" content="MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且运行">
+<meta itemprop="datePublished" content="2020-10-20T10:49:13+08:00" />
+<meta itemprop="dateModified" content="2020-10-20T10:49:13+08:00" />
+<meta itemprop="wordCount" content="394">
 
 
 
-<meta itemprop="keywords" content="文史," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="历史不能碰"/>
-<meta name="twitter:description" content="秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁"/>
+<meta name="twitter:title" content="[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)"/>
+<meta name="twitter:description" content="MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且运行"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -358,25 +358,18 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/11/do-not-touch-history/"
-    >历史不能碰</a
+    href="/2020/10/rebuilding-racket/"
+    >[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/11/do-not-touch-history/" class="article-date">
-  <time datetime="2019-11-28 12:43:50 &#43;0800 CST" itemprop="datePublished">2019-11-28</time>
+<a href="https://lvsq.net/2020/10/rebuilding-racket/" class="article-date">
+  <time datetime="2020-10-20 10:49:13 &#43;0800 CST" itemprop="datePublished">2020-10-20</time>
 </a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/%E6%96%87%E5%8F%B2/"> 文史 </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/%E6%96%87%E5%8F%B2/"> 文史 </a>
-  </span>
+</span>
 
 	<span class="article-read hidden-xs">
 	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
@@ -384,17 +377,26 @@
 			<span id="busuanzi_value_page_pv">0</span>
 		</span>
 	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/do-not-touch-history/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/10/rebuilding-racket/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:189字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:394字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <ol>
-<li>秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁，如平原君广纳异国宾客；苏秦上书于七国；荀子遍游天下者皆可证各国文字并无大乖。</li>
-<li>《史籀篇》文首盖云“太史籀书”，人多误以太史籀所作，如此便望文生义了。太史乃官职，王国维先生引《说文》解释，籀即读，读即籀书。另太史籀书乃周世之成语，绝非人名。</li>
-</ol>
+      <p>MATTHEW FLATT, University of Utah,<!-- raw HTML omitted -->
+USACANER DERICI, Indiana University, USA<!-- raw HTML omitted -->
+R. KENT DYBVIG, Cisco Systems, Inc., USA<!-- raw HTML omitted -->
+ANDREW W. KEEP, Cisco Systems, Inc., USA<!-- raw HTML omitted -->
+GUSTAVO E. MASSACCESI, Universidad de Buenos Aires, Argentina<!-- raw HTML omitted -->
+SARAH SPALL, Indiana University, USA<!-- raw HTML omitted -->
+SAM TOBIN-HOCHSTADT, Indiana University, USA<!-- raw HTML omitted -->
+JON ZEPPIERI, independent researcher, USA<!-- raw HTML omitted --></p>
+<hr>
+<p><strong>概要</strong></p>
+<p>我们在Chez Scheme上重建了Racket，并且运行良好——只要对Chez Scheme进行一些修补，就可以运行DrRacket。Racket发行版可以自行构建，并且几乎所有核心​​的Racket测试套件都可以通过。尽管仍有一些工作可以提高端到端的性能，但最终的实现还是不错的。我们评估的最不可预测的部分是，Racket和Chez Scheme之间的不同将变得多大，以及我们如何处理这些不同。我们希望Racket CS成为主要的Racket实现，并且我们鼓励其他语言实现者将Chez Scheme视为目标虚拟机。</p>
+<hr>
+<p>该文详细地介绍了Racket CS是如何构建的，以及与Chez Scheme之间的差异，完整内容见(<a href="https://dl.acm.org/doi/epdf/10.1145/3341642">https://dl.acm.org/doi/epdf/10.1145/3341642</a>)或者点击标题</p>
 
     </div>
     <div class="article-footer">
@@ -402,7 +404,7 @@
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/11/do-not-touch-history/" title="历史不能碰" target="_blank" rel="external">https://lvsq.net/2019/11/do-not-touch-history/</a>
+      <a href="https://lvsq.net/2020/10/rebuilding-racket/" title="[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)" target="_blank" rel="external">https://lvsq.net/2020/10/rebuilding-racket/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -434,14 +436,9 @@
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://lvsq.net/2019/11/emacs/" title="Emacs"><i
+                <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" title="Lexical Scoping and Dynamic Scoping"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://lvsq.net/2019/11/swagger-vendor/"
-                    title="Swagger 如何使用vendorExtensions进行扩展"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">
