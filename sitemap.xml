@@ -3,7 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://lvsq.net/categories/</loc>
+    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/chez/</loc>
+    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/pl/</loc>
+    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/racket/</loc>
+    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -19,13 +54,6 @@
   <url>
     <loc>https://lvsq.net/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -60,13 +88,6 @@
   
   <url>
     <loc>https://lvsq.net/tags/scoping/</loc>
-    <lastmod>2020-09-23T11:24:24+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
     <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -278,13 +299,6 @@
   <url>
     <loc>https://lvsq.net/2019/12/engine-in-scheme/</loc>
     <lastmod>2019-12-27T10:30:09+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/chez/</loc>
-    <lastmod>2019-12-25T16:47:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
