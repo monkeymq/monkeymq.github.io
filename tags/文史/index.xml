@@ -11,12 +11,12 @@
     
     
     <item>
-      <title>[基于Chez Scheme重建Racket](https://dl.acm.org/doi/epdf/10.1145/3341642)</title>
+      <title>基于Chez Scheme重建Racket</title>
       <link>https://lvsq.net/2020/10/rebuilding-racket/</link>
       <pubDate>Tue, 20 Oct 2020 10:49:13 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/10/rebuilding-racket/</guid>
-      <description>MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且运行</description>
+      <description>作者 MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且</description>
     </item>
     
     <item>
