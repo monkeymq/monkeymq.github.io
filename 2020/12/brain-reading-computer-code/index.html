@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        对大脑而言，阅读计算机代码与阅读语言不同 - 思泉笔谈 | AI-Life
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <title>对大脑而言，阅读计算机代码与阅读语言不同 - 思泉笔谈 | AI-Life</title>
+  
+
+  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
+  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <meta property="og:title" content="对大脑而言，阅读计算机代码与阅读语言不同" />
+<meta property="og:description" content="神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lvsq.net/2020/12/brain-reading-computer-code/" />
+<meta property="article:published_time" content="2020-12-16T09:05:44+08:00" />
+<meta property="article:modified_time" content="2020-12-16T09:05:44+08:00" />
+<meta itemprop="name" content="对大脑而言，阅读计算机代码与阅读语言不同">
+<meta itemprop="description" content="神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15">
+<meta itemprop="datePublished" content="2020-12-16T09:05:44+08:00" />
+<meta itemprop="dateModified" content="2020-12-16T09:05:44+08:00" />
+<meta itemprop="wordCount" content="1760">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="对大脑而言，阅读计算机代码与阅读语言不同"/>
+<meta name="twitter:description" content="神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  </head>
+  
+
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">此处会记录一些我的心得，如果有错误欢迎留言斧正，如果对你有所启发或者帮助，那么我会感觉我做了一件伟大的事情
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/erlang/" class="category-list-link">erlang</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/erlang/" class="tag-list-link">erlang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/functional/" class="tag-list-link">functional</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/pl/" class="tag-list-link">pl</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
+                    class="tag-list-count">17</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/thread/" class="tag-list-link">thread</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/12/brain-reading-computer-code/" class="title">对大脑而言，阅读计算机代码与阅读语言不同</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-12-16 09:05:44 &#43;0800 CST" itemprop="datePublished">2020-12-16</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/10/rebuilding-racket/" class="title">基于Chez Scheme重建Racket</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-10-20 10:49:13 &#43;0800 CST" itemprop="datePublished">2020-10-20</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/" class="title">Lexical Scoping and Dynamic Scoping</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-09-23 11:24:24 &#43;0800 CST" itemprop="datePublished">2020-09-23</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/07/quick-sort-in-cl/" class="title">快速排序（Lisp版本）</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-20 14:57:29 &#43;0800 CST" itemprop="datePublished">2020-07-20</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2020/05/n-queens/" class="title">从“八皇后”到amb</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-05-23 15:41:35 &#43;0800 CST" itemprop="datePublished">2020-05-23</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/12/brain-reading-computer-code/"
+    >对大脑而言，阅读计算机代码与阅读语言不同</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/12/brain-reading-computer-code/" class="article-date">
+  <time datetime="2020-12-16 09:05:44 &#43;0800 CST" itemprop="datePublished">2020-12-16</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/science/"> science </a>
+</span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/12/brain-reading-computer-code/#comments"
+            class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1760字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:4分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。</p>
+<p>安妮·特拉夫顿 | 麻省理工学院新闻办公室
+发布日期：2020年12月15日</p>
+<hr>
+<p>在某些方面，学习计算机编程与学习新语言相似。它需要学习新的符号和术语，必须正确组织这些符号和术语以指导计算机该怎么做。计算机代码还必须足够清晰，以便其他程序员可以阅读和理解。</p>
+<p>尽管存在这些相似之处，麻省理工学院的神经科学家发现，阅读计算机代码并不能激活与语言处理有关的大脑区域。取而代之的是，它激活了一个称为多需求网络的分布式网络，该网络也被招募用于解决复杂的认知任务，例如解决数学问题或填字游戏。</p>
+<p>但是，尽管阅读计算机代码会激活多需求网络，但与数学或逻辑问题相比，它似乎更多地依赖于网络的不同部分，这表明编码也不能精确地复制数学的认知需求。</p>
+<p>“理解计算机代码似乎是自己的事。它与语言不同，数学与逻辑也不相同。”麻省理工学院研究生，该研究的主要作者安娜·伊凡诺娃（Anna Ivanova）说。</p>
+<p>Evelina Fedorenko，Frederick A.和Carole J. Middleton职业发展神经科学副教授，麦戈文脑科学研究所的成员，是该论文的高级作者，该论文今天发表在eLife上。麻省理工学院计算机科学与人工智能实验室和塔夫茨大学的研究人员也参与了这项研究。</p>
+<h3 id="语言与认知">语言与认知</h3>
+<p>Fedorenko研究的主要重点是语言与其他认知功能之间的关系。特别是，她一直在研究其他功能是否依赖于大脑的语言网络（包括Broca区域和大脑左半球的其他区域）的问题。在先前的工作中，她的实验室表明，音乐和数学似乎并未激活该语言网络。</p>
+<p>“在这里，我们有兴趣探索语言和计算机编程之间的关系，部分原因是计算机编程是一个新发明，我们知道不可能有任何硬连线机制使我们成为优秀的程序员，”伊万诺娃说。</p>
+<p>她说，关于大脑如何学习编码，存在两种思想流派。有人认为，要精通编程，就必须精通数学。另一个建议认为，由于编码和语言之间的相似性，语言技能可能更相关。为了阐明这一问题，研究人员着手研究在阅读计算机代码时大脑活动模式是否会与语言相关的大脑活动重叠。</p>
+<p>研究人员在本研究中重点关注以可读性着称的两种编程语言——Python和ScratchJr。ScratchJr这是一种专为5岁及5岁以上儿童设计的可视化编程语言。研究对象均为精通测试语言的年轻人。当程序员躺在功能磁共振（fMRI）扫描仪中时，研究人员向他们展示了代码片段，并要求他们预测代码将产生什么动作。</p>
+<p>研究人员几乎看不到大脑语言区域对代码的反应。相反，他们发现编码任务主要激活了所谓的多需求网络。这个网络的活动遍布整个大脑的额叶和顶叶，通常是为需要同时记住许多信息的任务而招募的，它负责我们执行各种心理任务的能力。</p>
+<p>伊万诺娃说：“它所做的几乎所有在认知上都具有挑战性的事情，使您难以思考。”</p>
+<p>先前的研究表明，数学和逻辑问题似乎主要取决于左半球的多个需求区域，而涉及空间导航的任务比右半球更多地激活右半球。麻省理工学院的研究小组发现，读取计算机代码似乎可以激活多需求网络的左侧和右侧，而ScratchJr激活右侧的程度要比左侧高一些。这一发现违背了数学和编码依赖相同大脑机制的假设。</p>
+<h3 id="经验的影响">经验的影响</h3>
+<p>研究人员说，尽管他们没有发现任何似乎专门用于编程的区域，但是这种具有特殊脑活动的区域可能会在具有更多编码经验的人中发展。</p>
+<p>Fedorenko说：“如果您聘用了以30年或40年的特定语言编写代码的专业程序员的人，您可能会开始看到某些专业化知识，或者是多个需求系统某些部分的结晶”，Fedorenko说。“对于那些熟悉编码并且可以有效地完成这些任务，但经验相对有限的人来说，似乎您还看不到任何专业化知识。”</p>
+<p>约翰·霍普金斯大学的一组研究人员在同一期eLife上发表的一篇伴随论文中也报告说，解决代码问题可以激活多需求网络而不是语言区域。</p>
+<p>研究结果表明，对于编码应该以基于数学的技能还是基于语言的技能进行教授，尚无定论。研究人员说，部分原因是因为学习编程可能会同时依赖语言和多种需求系统，即使—一旦学会了编程，就不会依赖语言区域。</p>
+<p>伊万诺娃说：“两个阵营都宣称，它必须与数学结合在一起，必须与语言结合在一起。”
+“但是看来，计算机科学教育者将不得不开发自己的方法来最有效地教授代码。”</p>
+<p>全文完。</p>
+<hr>
+<p>如果您想看原文，可以访问：<a href="https://news.mit.edu/2020/brain-reading-computer-code-1215">链接</a></p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://lvsq.net/2020/12/brain-reading-computer-code/" title="对大脑而言，阅读计算机代码与阅读语言不同" target="_blank" rel="external">https://lvsq.net/2020/12/brain-reading-computer-code/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">思泉</span><small class="ml-1x">历史及函数式编程爱好者</small></a></h3>
+        <div>爱生活，与天地往来, ailife.dev</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://lvsq.net/2020/10/rebuilding-racket/" title="基于Chez Scheme重建Racket"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        
+        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+            data-target="#donateModal"><span>赏</span></button>
+        
+        <div class="bar-right">
+            <div class="share-component" data-sites="wechat,twitter,douban,google"
+                data-mobile-sites="wechat,twitter,douban"></div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content donate">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="modal-body">
+                <div class="donate-box">
+                    <div class="donate-head">
+                        <p>感谢您的支持,我会继续努力的!</p>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+                            <div class="donate-payimg">
+                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
+                                    alt="扫码支持" title="扫一扫" />
+                            </div>
+                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
+                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                    <div class="donate-footer">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
+                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
+                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
+                                    微信支付</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2019  -
+    2020
+    <div class="publishby">
+      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
+       base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/javascript.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/go.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/erlang.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/scheme.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/java.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/lisp.min.js"></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
+<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/lvsq.net\/',
+            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '7b6f34c867f37fdfb75e',
+        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
+        repo: 'monkeymq.github.io',
+        owner: 'monkeymq',
+        admin: ['monkeymq'],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('comments');
+</script>
+
+  </body>
+</html>

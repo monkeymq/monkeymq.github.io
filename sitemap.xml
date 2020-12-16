@@ -4,7 +4,35 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
+    <lastmod>2020-12-16T09:05:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2020-12-16T09:05:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/science/</loc>
+    <lastmod>2020-12-16T09:05:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2020/12/brain-reading-computer-code/</loc>
+    <lastmod>2020-12-16T09:05:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2020-12-16T09:05:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -18,13 +46,6 @@
   
   <url>
     <loc>https://lvsq.net/tags/pl/</loc>
-    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/posts/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -46,13 +67,6 @@
   
   <url>
     <loc>https://lvsq.net/2020/10/rebuilding-racket/</loc>
-    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

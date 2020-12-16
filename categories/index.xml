@@ -5,10 +5,19 @@
     <link>https://lvsq.net/categories/</link>
     <description>Recent content in Categories on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 20 Oct 2020 10:49:13 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 Dec 2020 09:05:44 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>对大脑而言，阅读计算机代码与阅读语言不同</title>
+      <link>https://lvsq.net/2020/12/brain-reading-computer-code/</link>
+      <pubDate>Wed, 16 Dec 2020 09:05:44 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/12/brain-reading-computer-code/</guid>
+      <description>神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15</description>
+    </item>
     
     <item>
       <title>基于Chez Scheme重建Racket</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2019/12/engine-in-scheme/</guid>
       <description>Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun</description>
-    </item>
-    
-    <item>
-      <title>Chez Scheme中的case扩展</title>
-      <link>https://lvsq.net/2019/12/case-in-chez-scheme/</link>
-      <pubDate>Wed, 25 Dec 2019 16:47:08 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/case-in-chez-scheme/</guid>
-      <description>case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem</description>
     </item>
     
   </channel>
