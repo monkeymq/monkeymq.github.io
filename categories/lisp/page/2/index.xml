@@ -5,10 +5,19 @@
     <link>https://lvsq.net/categories/lisp/</link>
     <description>Recent content in lisp on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 23 Sep 2020 11:24:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 May 2021 18:09:35 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/lisp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Engine in Scheme</title>
+      <link>https://lvsq.net/2019/12/engine-in-scheme/</link>
+      <pubDate>Fri, 27 Dec 2019 10:30:09 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2019/12/engine-in-scheme/</guid>
+      <description>Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun</description>
+    </item>
     
     <item>
       <title>Chez Scheme中的case扩展</title>
