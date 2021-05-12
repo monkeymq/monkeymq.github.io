@@ -436,7 +436,7 @@
 </ol>
 <p>很显然，使用<strong>双指针</strong>算法，时间复杂度降低到了$O(n)$。</p>
 <h3 id="racket-版本">Racket 版本</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;batter solution</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;better solution</span>
 (define/contract (max-area-pair-pointer height) (-&gt; (listof exact-integer?) exact-integer?)
     (define (area n1 n2)
         (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
