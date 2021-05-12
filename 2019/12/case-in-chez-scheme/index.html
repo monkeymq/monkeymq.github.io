@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem" />
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
   <title>Chez Scheme中的case扩展 - 思泉笔谈 | AI-Life</title>
   
 
@@ -35,19 +35,15 @@
   <meta property="og:title" content="Chez Scheme中的case扩展" />
 <meta property="og:description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/12/case-in-chez-scheme/" />
-<meta property="article:published_time" content="2019-12-25T16:47:08+08:00" />
-<meta property="article:modified_time" content="2019-12-25T16:47:08+08:00" />
+<meta property="og:url" content="https://lvsq.net/2019/12/case-in-chez-scheme/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-12-25T16:47:08&#43;08:00" />
+<meta property="article:modified_time" content="2019-12-25T16:47:08&#43;08:00" />
+
 <meta itemprop="name" content="Chez Scheme中的case扩展">
-<meta itemprop="description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem">
-<meta itemprop="datePublished" content="2019-12-25T16:47:08+08:00" />
-<meta itemprop="dateModified" content="2019-12-25T16:47:08+08:00" />
-<meta itemprop="wordCount" content="757">
-
-
-
-<meta itemprop="keywords" content="chez,scheme," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem"><meta itemprop="datePublished" content="2019-12-25T16:47:08&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-25T16:47:08&#43;08:00" />
+<meta itemprop="wordCount" content="756">
+<meta itemprop="keywords" content="chez,scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Chez Scheme中的case扩展"/>
 <meta name="twitter:description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem"/>
 
@@ -394,7 +390,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/case-in-chez-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:757字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:756字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
@@ -429,7 +425,7 @@
 
 </code></pre></div><p>上面的例子定义了一个函数p，接收一个参数x</p>
 <ul>
-<li>如果x为字符串&quot;abc&quot;或者&quot;def&rdquo;，则返回1；</li>
+<li>如果x为字符串&quot;abc&quot;或者&quot;def&quot;，则返回1；</li>
 <li>如果x为列表((a b c)，则返回two</li>
 <li>其他情况返回#f</li>
 </ul>

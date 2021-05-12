@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
   <title>线程（Thread System in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -35,19 +35,15 @@
   <meta property="og:title" content="线程（Thread System in Chez Scheme）" />
 <meta property="og:description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2020/02/thread/" />
-<meta property="article:published_time" content="2020-02-17T15:18:39+08:00" />
-<meta property="article:modified_time" content="2020-02-17T15:18:39+08:00" />
+<meta property="og:url" content="https://lvsq.net/2020/02/thread/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-02-17T15:18:39&#43;08:00" />
+<meta property="article:modified_time" content="2020-02-17T15:18:39&#43;08:00" />
+
 <meta itemprop="name" content="线程（Thread System in Chez Scheme）">
-<meta itemprop="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程">
-<meta itemprop="datePublished" content="2020-02-17T15:18:39+08:00" />
-<meta itemprop="dateModified" content="2020-02-17T15:18:39+08:00" />
-<meta itemprop="wordCount" content="5752">
-
-
-
-<meta itemprop="keywords" content="thread,scheme," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程"><meta itemprop="datePublished" content="2020-02-17T15:18:39&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-17T15:18:39&#43;08:00" />
+<meta itemprop="wordCount" content="5768">
+<meta itemprop="keywords" content="thread,scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程（Thread System in Chez Scheme）"/>
 <meta name="twitter:description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程"/>
 
@@ -393,13 +389,13 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5752字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5768字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。</p>
-<p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如<strong>+</strong>和<strong>sqrt</strong>之类的数字运算符以及诸如<strong>append</strong>和<strong>map</strong>之类的非破坏性的高级原生操作。</p>
+<p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如**+**和**sqrt**之类的数字运算符以及诸如**append**和**map**之类的非破坏性的高级原生操作。</p>
 <p>简单的变动运算符（例如set-car！，vector-set！和record字段变动器）是线程安全的。 同样，对局部变量的分配，包括（未导出的）库和顶级程序变量的分配也是线程安全的。</p>
 <p>大多数I/O操作应被视为具有破坏性，因为它们可能会修改端口的内部结构。</p>
 <p>使用没有进行合适的同步策略的非线程安全的运算符可能会破坏它们所操作的对象。 这种损坏可能导致错误的行为，内存故障，甚至导致系统中止的不可恢复的错误。</p>

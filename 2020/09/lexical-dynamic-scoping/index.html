@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的" />
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
   <title>Lexical Scoping and Dynamic Scoping - 思泉笔谈 | AI-Life</title>
   
 
@@ -35,19 +35,15 @@
   <meta property="og:title" content="Lexical Scoping and Dynamic Scoping" />
 <meta property="og:description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2020/09/lexical-dynamic-scoping/" />
-<meta property="article:published_time" content="2020-09-23T11:24:24+08:00" />
-<meta property="article:modified_time" content="2020-09-23T11:24:24+08:00" />
+<meta property="og:url" content="https://lvsq.net/2020/09/lexical-dynamic-scoping/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-09-23T11:24:24&#43;08:00" />
+<meta property="article:modified_time" content="2020-09-23T11:24:24&#43;08:00" />
+
 <meta itemprop="name" content="Lexical Scoping and Dynamic Scoping">
-<meta itemprop="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的">
-<meta itemprop="datePublished" content="2020-09-23T11:24:24+08:00" />
-<meta itemprop="dateModified" content="2020-09-23T11:24:24+08:00" />
-<meta itemprop="wordCount" content="1918">
-
-
-
-<meta itemprop="keywords" content="lexical,scoping," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"><meta itemprop="datePublished" content="2020-09-23T11:24:24&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-23T11:24:24&#43;08:00" />
+<meta itemprop="wordCount" content="1917">
+<meta itemprop="keywords" content="lexical,scoping," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Lexical Scoping and Dynamic Scoping"/>
 <meta name="twitter:description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"/>
 
@@ -394,7 +390,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/09/lexical-dynamic-scoping/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1918字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1917字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:4分 </span>
       </div>
     </div>
@@ -402,7 +398,7 @@
       <p>我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的计算机语言Java, Python, C等等几乎一致采用Lexical Scoping,程序员没有机会察觉到异样，从而掩盖了还有其他作用域的事实，许多教科书也很配合地一笔带过，当然还有一种可能是您已经洞察了不同作用域的差异和内涵，自觉地规避了问题。我衷心的希望所有程序员都是第二种可能。</p>
 <p>本文将浅显地描述两种作用域的特点及差异，希望可以解释地清楚一点，如果读完之后您更加模糊了，请记住，这并非我的本意。</p>
 <p>在计算机编程中，名称绑定的作用域（名称与实体的关联，比如变量）是程序中名称绑定有效的部分，也就是说，该名称可以被引用到一个实体。程序的其他部分，名称可能指向不同的实体（它可能具有不同的绑定），或者根本什么都没有（它可能是未绑定的）。作用域也称为实体的<strong>可见性</strong>， 尤其在较早的技术文献中可见，这是从所引用的实体的角度出发，而非引用的名称。</p>
-<p>术语&rdquo;<strong>scope</strong>&ldquo;也用于指代程序中有效的名称绑定的那部分集合，更加正确的称呼应该是<em>上下文</em> 或者 <em>环境</em></p>
+<p>术语&quot;<strong>scope</strong>&ldquo;也用于指代程序中有效的名称绑定的那部分集合，更加正确的称呼应该是<em>上下文</em> 或者 <em>环境</em></p>
 <hr>
 <h3 id="lexical-scoping">Lexical Scoping</h3>
 <p>词法作用域，某些书中也叫静态作用域，其在编写代码时或者说定义时就确定的，通过文本（源代码）就可以观察到名称与实体的关联，程序运行时会在距离被调用代码最近的环境中去查找绑定，如果存在多个环境，在优先从最里面一层的环境查找。</p>

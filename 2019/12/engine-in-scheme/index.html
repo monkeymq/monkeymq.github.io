@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
   <title>Engine in Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -35,19 +35,15 @@
   <meta property="og:title" content="Engine in Scheme" />
 <meta property="og:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/12/engine-in-scheme/" />
-<meta property="article:published_time" content="2019-12-27T10:30:09+08:00" />
-<meta property="article:modified_time" content="2019-12-27T10:30:09+08:00" />
+<meta property="og:url" content="https://lvsq.net/2019/12/engine-in-scheme/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-12-27T10:30:09&#43;08:00" />
+<meta property="article:modified_time" content="2019-12-27T10:30:09&#43;08:00" />
+
 <meta itemprop="name" content="Engine in Scheme">
-<meta itemprop="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun">
-<meta itemprop="datePublished" content="2019-12-27T10:30:09+08:00" />
-<meta itemprop="dateModified" content="2019-12-27T10:30:09+08:00" />
-<meta itemprop="wordCount" content="1231">
-
-
-
-<meta itemprop="keywords" content="engine,scheme," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"><meta itemprop="datePublished" content="2019-12-27T10:30:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-27T10:30:09&#43;08:00" />
+<meta itemprop="wordCount" content="1225">
+<meta itemprop="keywords" content="engine,scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Engine in Scheme"/>
 <meta name="twitter:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"/>
 
@@ -393,7 +389,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/engine-in-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1231字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1225字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
       </div>
     </div>
@@ -492,7 +488,7 @@
            (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fibonacci</span> x))))
   <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">2</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span>)
 
-</code></pre></div><p>这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数&rsquo;(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！</p>
+</code></pre></div><p>这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数'(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！</p>
 
     </div>
     <div class="article-footer">
