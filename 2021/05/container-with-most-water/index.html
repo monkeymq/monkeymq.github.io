@@ -42,7 +42,7 @@
 <meta itemprop="name" content="【盛最多水的容器】问题的求解">
 <meta itemprop="description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在"><meta itemprop="datePublished" content="2021-05-11T18:09:35&#43;08:00" />
 <meta itemprop="dateModified" content="2021-05-11T18:09:35&#43;08:00" />
-<meta itemprop="wordCount" content="1377">
+<meta itemprop="wordCount" content="1267">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="【盛最多水的容器】问题的求解"/>
 <meta name="twitter:description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在"/>
@@ -386,7 +386,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/05/container-with-most-water/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1377字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1267字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
       </div>
     </div>
@@ -492,7 +492,7 @@
 <thead>
 <tr>
 <th>size</th>
-<th>Racket(8.0)</th>
+<th>Racket(8.0 CS)</th>
 <th>Rust(1.50.0)</th>
 </tr>
 </thead>
@@ -500,26 +500,22 @@
 <tr>
 <td>100000</td>
 <td>49ms</td>
-<td>50ms</td>
+<td>60ms</td>
 </tr>
 <tr>
 <td>1000000</td>
 <td>560ms</td>
-<td>50ms</td>
+<td>550ms</td>
 </tr>
 <tr>
 <td>10000000</td>
 <td>5s</td>
-<td>50ms</td>
+<td>5.6s</td>
 </tr>
 </tbody>
 </table>
-<p>两个版本的实现都未使用编译器优化,Racket在10万级别是与Rust的执行效率在伯仲之间，在百万级别时有10倍的差距，但也在可接受的范围，使用了CS编译器的Racket真是突飞猛进。Rust在千万级别时表现依旧强悍，执行时间非常稳定，性能果然如官方所描述的，由于我的Rust经验并不是很多，或许有更好的写法。两个版本的差距，我想可能在于三个方面：</p>
-<ol>
-<li>Rust拥有指针,而Racket没有</li>
-<li>Racket的实现存在大量数据拷贝，占用了很多时间和内存</li>
-<li>Rust版本没有计算编译时间</li>
-</ol>
+<p>两个版本的实现均未使用编译器优化,令人意外的是Racket的执行效率与Rust几乎没有差别，使用了CS编译器的Racket真是突飞猛进。
+由于我的Rust经验并不是很多，或许有更好的写法。从测试可以看到Racket至少在CPU密集型应用中可堪大用。</p>
 
     </div>
     <div class="article-footer">
