@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出" />
-  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
   <title>从“八皇后”到amb - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="从“八皇后”到amb">
 <meta itemprop="description" content="讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出"><meta itemprop="datePublished" content="2020-05-23T15:41:35&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-23T15:41:35&#43;08:00" />
-<meta itemprop="wordCount" content="4453">
+<meta itemprop="wordCount" content="4457">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="从“八皇后”到amb"/>
 <meta name="twitter:description" content="讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出"/>
@@ -389,7 +389,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/n-queens/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4453字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4457字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:9分 </span>
       </div>
     </div>
@@ -407,7 +407,7 @@
 <span style="color:#a6e22e">safe</span>(_Row, [], _N) <span style="color:#f92672">-&gt;</span> true;
 <span style="color:#a6e22e">safe</span>(Row, [Column | Columns], N) <span style="color:#f92672">-&gt;</span>
     (Row <span style="color:#f92672">/=</span> Column <span style="color:#f92672">+</span> N) <span style="color:#f92672">andalso</span> (Row <span style="color:#f92672">/=</span> Column <span style="color:#f92672">-</span> N) <span style="color:#f92672">andalso</span> safe(Row, Columns, (N <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)).
-</code></pre></div><p>从头至尾10行代码，如果不是为了使代码美观，6行足矣（这还包括了*-module* 和*-export* 两行声明语法，与算法本身无关的代码）。如此简短尽然可以清晰地实现复杂的**八皇后**问题，如果采用命令式程序语言得写多少行？本文的重点不在于比较这个，Erlang是一门非常强大的语言，对于我来说Erlang好比探春，但是Scheme才是林黛玉呀，所以毫不迟疑用Scheme来实现：</p>
+</code></pre></div><p>从头至尾10行代码，如果不是为了使代码美观，6行足矣（这还包括了**-module** 和**-export** 两行声明语法，与算法本身无关的代码）。如此简短尽然可以清晰地实现复杂的**八皇后** 问题，如果采用命令式程序语言得写多少行？本文的重点不在于比较这个，Erlang是一门非常强大的语言，对于我来说Erlang好比探春，但是Scheme才是林黛玉呀，所以毫不迟疑用Scheme来实现：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">accumulate</span> op initial sequence)
     (<span style="color:#66d9ef">if </span>(null? sequence) initial (<span style="color:#a6e22e">op</span> (car sequence) (<span style="color:#a6e22e">accumulate</span> op initial (cdr sequence))))
 )
