@@ -5,10 +5,19 @@
     <link>https://lvsq.net/</link>
     <description>Recent content on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 11 May 2021 18:09:35 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Jul 2021 11:00:25 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Racket Modules</title>
+      <link>https://lvsq.net/2021/07/racket-modules/</link>
+      <pubDate>Thu, 08 Jul 2021 11:00:25 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2021/07/racket-modules/</guid>
+      <description>模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以</description>
+    </item>
     
     <item>
       <title>【盛最多水的容器】问题的求解</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2020/01/boxes-in-chez/</guid>
       <description>Chez Scheme中有一种Boxes结构，它是一个单元素对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据结构</description>
-    </item>
-    
-    <item>
-      <title>Scheme/Chez Scheme 对象操作</title>
-      <link>https://lvsq.net/2019/12/operations-on-objects/</link>
-      <pubDate>Mon, 30 Dec 2019 16:27:27 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2019/12/operations-on-objects/</guid>
-      <description>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &amp;#39;(a b c)) ⇒ #f (atom? &amp;#39;(3 . 4)) ⇒ #f (atom? &amp;#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度</description>
     </item>
     
   </channel>

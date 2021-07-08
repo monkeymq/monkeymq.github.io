@@ -4,7 +4,56 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/module/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/racket/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/racket/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2021/07/racket-modules/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2021-07-08T11:00:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,28 +73,7 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/racket/</loc>
-    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/2021/05/container-with-most-water/</loc>
-    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -74,13 +102,6 @@
   
   <url>
     <loc>https://lvsq.net/tags/pl/</loc>
-    <lastmod>2020-10-20T10:49:13+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -271,13 +292,6 @@
   <url>
     <loc>https://lvsq.net/2020/01/my-let/</loc>
     <lastmod>2020-01-17T10:13:27+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/module/</loc>
-    <lastmod>2020-01-15T16:00:51+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
