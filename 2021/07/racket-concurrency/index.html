@@ -444,7 +444,7 @@
 (define threads
   (<span style="color:#a6e22e">map</span> make-thread <span style="color:#f92672">&#39;</span>(A B C)))
 (for-each thread-wait threads)
-</code></pre></div><p>或者使用call-with-semaphore，不用显示的释放信号量</p>
+</code></pre></div><p>或者使用call-with-semaphore，不用显式地释放信号量</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define output-semaphore (make-semaphore <span style="color:#ae81ff">1</span>))
 (define (make-thread name)
   (thread (lambda ()
