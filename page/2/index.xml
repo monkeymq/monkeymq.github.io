@@ -5,10 +5,19 @@
     <link>https://lvsq.net/</link>
     <description>Recent content on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Jul 2021 11:00:25 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Jul 2021 13:47:13 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chez Scheme中Boxes介绍</title>
+      <link>https://lvsq.net/2020/01/boxes-in-chez/</link>
+      <pubDate>Fri, 03 Jan 2020 14:44:33 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/01/boxes-in-chez/</guid>
+      <description>Chez Scheme中有一种Boxes结构，它是一个单元素对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据结构</description>
+    </item>
     
     <item>
       <title>Scheme/Chez Scheme 对象操作</title>
