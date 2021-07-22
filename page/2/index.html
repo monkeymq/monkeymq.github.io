@@ -159,7 +159,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">3</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">3</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">4</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">5</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
@@ -234,7 +234,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/racket/" class="tag-list-link">racket</a><span
-                    class="tag-list-count">2</span></li>
+                    class="tag-list-count">3</span></li>
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
@@ -288,6 +288,16 @@
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://lvsq.net/2021/07/racket-time-improvement/" class="title">改进Racket的time函数</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
                     </p>
                     <p class="item-date">
@@ -325,16 +335,6 @@
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2020/10/rebuilding-racket/" class="title">基于Chez Scheme重建Racket</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2020-10-20 10:49:13 &#43;0800 CST" itemprop="datePublished">2020-10-20</time>
-                    </p>
-                </div>
-            </li>
         </ul>
     </div>
 </div>
@@ -350,6 +350,42 @@
     
     
     
+    <article
+      class="article article-type-page"
+      itemscope
+      itemtype="http://schema.org/BlogPosting"
+    >
+      <div class="article-header">
+        <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/03/longest-substr/"
+    >无重复字符的最长子串-Scheme实现</a
+  >
+</h1>
+
+      </div>
+      <div class="article-entry text-muted" itemprop="description">实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&quot;abbabcx&quot;,其最长无重复字符的子串为</div>
+      <p class="article-meta"><span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://lvsq.net/2020/03/longest-substr/" class="">
+  <time datetime="2020-03-12 18:02:45 &#43;0800 CST" itemprop="datePublished">2020-03-12</time>
+</a>
+</span><span class="article-category">
+  <i class="icon icon-folder"></i>
+  <a class="article-category-link" href="/categories/leetcode/"> leetcode </a>
+  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/longest-substr/#comments" class="article-comment-link">评论</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:960字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+      </p>
+    </article>
     <article
       class="article article-type-page"
       itemscope
@@ -663,42 +699,6 @@
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/my-let/#comments" class="article-comment-link">评论</a></span>
 		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:227字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
-      </p>
-    </article>
-    <article
-      class="article article-type-page"
-      itemscope
-      itemtype="http://schema.org/BlogPosting"
-    >
-      <div class="article-header">
-        <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2020/01/syntactic-extension-and-modules/"
-    >Syntactic Extension and Modules in Chez Scheme</a
-  >
-</h1>
-
-      </div>
-      <div class="article-entry text-muted" itemprop="description">Fluid Keyword Bindings fluid-let-syntax 语法: fluid-let-syntax ((keyword expr) &hellip;) form1 form2 &hellip;) fluid-let-syntax与标准let语法相似，不同之处在于Fluid-let-syntax在其body扩</div>
-      <p class="article-meta"><span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2020/01/syntactic-extension-and-modules/" class="">
-  <time datetime="2020-01-15 16:00:51 &#43;0800 CST" itemprop="datePublished">2020-01-15</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/module/"> module </a>
-    <a class="article-tag-link" href="/tags/syntactic/"> syntactic </a>
-  </span>
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/syntactic-extension-and-modules/#comments" class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:368字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
       </p>
     </article></div>

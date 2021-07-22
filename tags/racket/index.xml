@@ -5,10 +5,19 @@
     <link>https://lvsq.net/tags/racket/</link>
     <description>Recent content in racket on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Jul 2021 13:47:13 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 22 Jul 2021 11:34:29 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/racket/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>改进Racket的time函数</title>
+      <link>https://lvsq.net/2021/07/racket-time-improvement/</link>
+      <pubDate>Thu, 22 Jul 2021 11:34:29 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2021/07/racket-time-improvement/</guid>
+      <description>Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配</description>
+    </item>
     
     <item>
       <title>Racket 并发与同步</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2020/01/my-let/</guid>
       <description>实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_</description>
-    </item>
-    
-    <item>
-      <title>Syntactic Extension and Modules in Chez Scheme</title>
-      <link>https://lvsq.net/2020/01/syntactic-extension-and-modules/</link>
-      <pubDate>Wed, 15 Jan 2020 16:00:51 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/01/syntactic-extension-and-modules/</guid>
-      <description>Fluid Keyword Bindings fluid-let-syntax 语法: fluid-let-syntax ((keyword expr) &amp;hellip;) form1 form2 &amp;hellip;) fluid-let-syntax与标准let语法相似，不同之处在于Fluid-let-syntax在其body扩</description>
     </item>
     
   </channel>
