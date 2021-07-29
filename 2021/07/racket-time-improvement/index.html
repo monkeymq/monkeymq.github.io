@@ -42,7 +42,7 @@
 <meta itemprop="name" content="改进Racket的time函数">
 <meta itemprop="description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配"><meta itemprop="datePublished" content="2021-07-22T11:34:29&#43;08:00" />
 <meta itemprop="dateModified" content="2021-07-22T11:34:29&#43;08:00" />
-<meta itemprop="wordCount" content="978">
+<meta itemprop="wordCount" content="982">
 <meta itemprop="keywords" content="racket," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="改进Racket的time函数"/>
 <meta name="twitter:description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配"/>
@@ -392,7 +392,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/racket-time-improvement/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:978字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:982字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
@@ -407,10 +407,13 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define (time2 proc lst)
     (<span style="color:#66d9ef">let</span> ([mem-before (current-memory-use <span style="color:#e6db74">&#39;cumulative</span>)])
         (let-values ([(r cpu-time real-time gc-time) (time-apply proc lst)])
-            (<span style="color:#a6e22e">values</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~ams elapsed cpu time&#34;</span> cpu-time)
+            (<span style="color:#66d9ef">let</span> ([mem-now (current-memory-use <span style="color:#e6db74">&#39;cumulative</span>)])
+                (<span style="color:#a6e22e">values</span>
+                    r
+                    (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~ams elapsed cpu time&#34;</span> cpu-time)
                     (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~ams elapsed real time&#34;</span> real-time)
                     (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~ams elapsed gc time&#34;</span> gc-time)
-                    (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~a bytes allocated&#34;</span> (<span style="color:#a6e22e">-</span> (current-memory-use <span style="color:#e6db74">&#39;cumulative</span>) mem-before))))))
+                    (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~a bytes allocated&#34;</span> (<span style="color:#a6e22e">-</span> mem-now mem-before)))))))
 
 
 <span style="color:#a6e22e">&gt;</span> (time2 <span style="color:#a6e22e">make-list</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">10000000</span> <span style="color:#ae81ff">0</span>))
@@ -424,7 +427,7 @@
 <span style="color:#e6db74">&#34;0ms elapsed cpu time&#34;</span>
 <span style="color:#e6db74">&#34;0ms elapsed real time&#34;</span>
 <span style="color:#e6db74">&#34;0ms elapsed gc time&#34;</span>
-<span style="color:#e6db74">&#34;12480 bytes allocated&#34;</span>
+<span style="color:#e6db74">&#34;10544 bytes allocated&#34;</span>
 
 </code></pre></div><p>分配的字节数不会非常精确，比如没有考虑多线程的情况，不过在REPL中倒是可以使用，基本上不会有太大的偏差。</p>
 <p><strong>current-memory-use和custodian</strong></p>
