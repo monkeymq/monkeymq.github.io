@@ -5,10 +5,19 @@
     <link>https://lvsq.net/categories/</link>
     <description>Recent content in Categories on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 22 Jul 2021 11:34:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Aug 2021 14:31:04 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自定义 Let*</title>
+      <link>https://lvsq.net/2020/01/my-let/</link>
+      <pubDate>Fri, 17 Jan 2020 10:13:27 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/01/my-let/</guid>
+      <description>实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_</description>
+    </item>
     
     <item>
       <title>Syntactic Extension and Modules in Chez Scheme</title>

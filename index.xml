@@ -5,10 +5,19 @@
     <link>https://lvsq.net/</link>
     <description>Recent content on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 22 Jul 2021 11:34:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Aug 2021 14:31:04 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>不到70行代码，用Racket实现wc命令</title>
+      <link>https://lvsq.net/2021/08/racket-wc/</link>
+      <pubDate>Mon, 09 Aug 2021 14:31:04 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2021/08/racket-wc/</guid>
+      <description>Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需60多行</description>
+    </item>
     
     <item>
       <title>改进Racket的time函数</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2020/01/modules/</guid>
       <description>Modules 模块用于帮助将程序组织成单独的部分，这些部分通过声明好的接口干净地交互。尽管模块化编程通常可以为多人参加的大型程序开发带来便利，但它也可以</description>
-    </item>
-    
-    <item>
-      <title>自定义 Let*</title>
-      <link>https://lvsq.net/2020/01/my-let/</link>
-      <pubDate>Fri, 17 Jan 2020 10:13:27 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/01/my-let/</guid>
-      <description>实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。 (define-syntax my-let* (syntax-rules () ((_ () bodys ...) (let () bodys ...)) ( (_ ((a1 v1)) bodys ...) (let ((a1 v1)) bodys ...) ) ( (_</description>
     </item>
     
   </channel>
