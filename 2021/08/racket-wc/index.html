@@ -42,7 +42,7 @@
 <meta itemprop="name" content="不到60行代码，用Racket实现wc命令">
 <meta itemprop="description" content="Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需50多行"><meta itemprop="datePublished" content="2021-08-09T14:31:04&#43;08:00" />
 <meta itemprop="dateModified" content="2021-08-09T14:31:04&#43;08:00" />
-<meta itemprop="wordCount" content="449">
+<meta itemprop="wordCount" content="806">
 <meta itemprop="keywords" content="racket," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="不到60行代码，用Racket实现wc命令"/>
 <meta name="twitter:description" content="Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需50多行"/>
@@ -392,8 +392,8 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/racket-wc/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:449字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:1分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:806字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
@@ -478,7 +478,60 @@ usage: r-wc [ &lt;option&gt; ... ] [&lt;file&gt;] ...
  Multiple single-letter switches can be combined after
  one `-`. For example, `-h-` is the same as `-h --`.
 
-</code></pre>
+</code></pre><hr>
+<p>上面的程序执行效率不是很好，主要表现在读取文件，和解析每一行时，占用的时间和内存太大。Racket提供了一个特性<strong>Sequences</strong> ，它可以与<strong>for</strong> 形式一样遍历数据结果，但是效率却高很多，因此可以使用Sequences来重构我们的程序，将上文的两个函数<em>scan-file</em> 和<em>parse-line</em> 修改为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define (scan-file f)
+    (thread (lambda ()
+        (define bytes <span style="color:#ae81ff">0</span>)
+        (define lines <span style="color:#ae81ff">0</span>)
+        (define words <span style="color:#ae81ff">0</span>)
+        (call-with-input-file f
+            (lambda (in)
+                (for ([a-line (in-bytes-lines in)])
+                    (let-values (((w b) (parse-line-seq a-line)))
+                        (set! bytes (<span style="color:#a6e22e">+</span> bytes b))
+                        (set! lines (add1 lines))
+                        (set! words (<span style="color:#a6e22e">+</span> words w))))
+                (channel-put re-chan (<span style="color:#a6e22e">list</span> lines words bytes f)))))))
+
+(define (parse-line a-line)
+    (define pre-char <span style="color:#e6db74">#\a</span>)
+    (define w <span style="color:#ae81ff">0</span>)
+    (define b <span style="color:#ae81ff">0</span>)
+    (<span style="color:#66d9ef">if</span> (null? a-line) (<span style="color:#a6e22e">values</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>)
+        (for ([c (in-bytes a-line)])
+             (case c
+                [(<span style="color:#e6db74">#\space</span>) (unless (char-whitespace? pre-char) (set! w (add1 w))) (set! b (add1 b))]
+                [else (set! b (add1 b))])
+             (set! pre-char c)))
+    (<span style="color:#a6e22e">values</span> (add1 w) (add1 b)))
+</code></pre></div><p>两个版本对比一下(文件大小100MB)：</p>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th>Old version</th>
+<th>Sequences version</th>
+<th>wc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>4.6s</td>
+<td>0.8s</td>
+<td>0.4s</td>
+</tr>
+<tr>
+<td>峰值内存</td>
+<td>132M</td>
+<td>115M</td>
+<td>1M</td>
+</tr>
+</tbody>
+</table>
+<p>经过Sequences重构之后，执行时间有了巨大的提升，并且最大内存使用量也有所减少，不过与wc还是有不少差距。希望有一天能够找到超越wc的方法。</p>
+
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">
