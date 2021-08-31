@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>两数相加 - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2019/12/leetcode-2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-17T20:00:31&#43;08:00" />
-<meta property="article:modified_time" content="2019-12-17T20:00:31&#43;08:00" />
+<meta property="article:published_time" content="2019-12-17T20:00:31+08:00" />
+<meta property="article:modified_time" content="2019-12-17T20:00:31+08:00" />
 
 <meta itemprop="name" content="两数相加">
-<meta itemprop="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result"><meta itemprop="datePublished" content="2019-12-17T20:00:31&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-17T20:00:31&#43;08:00" />
+<meta itemprop="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result"><meta itemprop="datePublished" content="2019-12-17T20:00:31+08:00" />
+<meta itemprop="dateModified" content="2019-12-17T20:00:31+08:00" />
 <meta itemprop="wordCount" content="594">
 <meta itemprop="keywords" content="Scheme,leetcode," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="两数相加"/>
@@ -400,7 +400,7 @@
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>本文在于解答LeetCode中的第二题，问题的描述可参见 <a href="https://leetcode-cn.com/problems/add-two-numbers/">两数相加</a></p>
 <p>Golang的实现：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/**
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/**
 </span><span style="color:#75715e"> * Definition for singly-linked list.
 </span><span style="color:#75715e"> * type ListNode struct {
 </span><span style="color:#75715e"> *     Val int
@@ -473,7 +473,7 @@
 }
 </code></pre></div><hr>
 <p>下面提供Scheme版本的实现【(1 0) + (9 1 2) = (0 2 2)】，为了简单起见，与题目要求稍有不同，这里采用list，而不是题目要求的链表，但实际上应是一样的。比较之下可以看出，相对而言，Scheme语言的实现更加简短优雅，得益于其强大的表达能力</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
 (letrec (
     [Polishing
         (lambda (l num)

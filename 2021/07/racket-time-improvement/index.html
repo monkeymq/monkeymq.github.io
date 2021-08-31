@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>改进Racket的time函数 - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,13 +36,13 @@
 <meta property="og:description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2021/07/racket-time-improvement/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-22T11:34:29&#43;08:00" />
-<meta property="article:modified_time" content="2021-07-22T11:34:29&#43;08:00" />
+<meta property="article:published_time" content="2021-07-22T11:34:29+08:00" />
+<meta property="article:modified_time" content="2021-07-22T11:34:29+08:00" />
 
 <meta itemprop="name" content="改进Racket的time函数">
-<meta itemprop="description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配"><meta itemprop="datePublished" content="2021-07-22T11:34:29&#43;08:00" />
-<meta itemprop="dateModified" content="2021-07-22T11:34:29&#43;08:00" />
-<meta itemprop="wordCount" content="982">
+<meta itemprop="description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配"><meta itemprop="datePublished" content="2021-07-22T11:34:29+08:00" />
+<meta itemprop="dateModified" content="2021-07-22T11:34:29+08:00" />
+<meta itemprop="wordCount" content="1005">
 <meta itemprop="keywords" content="racket," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="改进Racket的time函数"/>
 <meta name="twitter:description" content="Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配"/>
@@ -392,8 +392,8 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/racket-time-improvement/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:982字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:2分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1005字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
@@ -404,7 +404,7 @@
 <p><em>0.201678000s elapsed real time, including 0.183665000s collecting</em></p>
 <p><em>160012160 bytes allocated, including 113015168 bytes reclaimed</em></p>
 <p>一下是改进的time函数，名字叫time2:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define (time2 proc lst)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define (time2 proc lst)
     (<span style="color:#66d9ef">let</span> ([mem-before (current-memory-use <span style="color:#e6db74">&#39;cumulative</span>)])
         (let-values ([(r cpu-time real-time gc-time) (time-apply proc lst)])
             (<span style="color:#66d9ef">let</span> ([mem-now (current-memory-use <span style="color:#e6db74">&#39;cumulative</span>)])
@@ -440,7 +440,7 @@
 <p><strong>custodian</strong> 可以用来管理一组线程、文件流端口、TCP端口、TCP监听器、UDP sockets、字节转换器、place。当线程或者端口等等被创建时，它就置于(current-custodian)的监护之下，除了root custodian, 每一个custodian都处于其父级的custodian的管理之下，这样就形成了一个层次结构。</p>
 <p>当一个custodian被( custodian-shutdown-all )关闭时，它会立即且强制终结其下管理的线程、端口等等。</p>
 <p>custodian在很多场景中很有用，比如用于释放资源：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
 
 
 (define done-chan (make-channel))
@@ -469,12 +469,14 @@
 
 </code></pre></div><p>这段代码创建了一个custodian， 并启动了两个线程，线程由这个custodian管理（(parameterize ([current-custodian my-cust]))）。一个线程每隔3秒钟打印一个“Hello”，永不停止。另一个线程等待<em>done-chan</em> 消息，如果有消息，则关闭custodian, 同时关闭这个custodian下的两个线程，也就释放了资源。</p>
 <p>custodian还可以用来限制内存的使用量：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
 (custodian-limit-memory
    (current-custodian) (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1024</span>))
 
 (define x (make-bytes (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1024</span>)))
 </code></pre></div><p>运行这段代码，会提示out of memory（在REPL无效）。</p>
+<hr>
+<p>欢迎加入<strong>Racket 隐修会</strong> ：731859928</p>
 
     </div>
     <div class="article-footer">

@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>Scheme实现一个FIFO队列 - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2020/03/fifo-queue/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-03-06T17:35:49&#43;08:00" />
-<meta property="article:modified_time" content="2020-03-06T17:35:49&#43;08:00" />
+<meta property="article:published_time" content="2020-03-06T17:35:49+08:00" />
+<meta property="article:modified_time" content="2020-03-06T17:35:49+08:00" />
 
 <meta itemprop="name" content="Scheme实现一个FIFO队列">
-<meta itemprop="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make"><meta itemprop="datePublished" content="2020-03-06T17:35:49&#43;08:00" />
-<meta itemprop="dateModified" content="2020-03-06T17:35:49&#43;08:00" />
+<meta itemprop="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make"><meta itemprop="datePublished" content="2020-03-06T17:35:49+08:00" />
+<meta itemprop="dateModified" content="2020-03-06T17:35:49+08:00" />
 <meta itemprop="wordCount" content="607">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Scheme实现一个FIFO队列"/>
@@ -424,7 +424,7 @@
 <li>打印函数</li>
 </ul>
 <p>(print-queue <em>&lt;queue&gt;</em>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> FIFO-QUEUE
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> FIFO-QUEUE
     (<span style="color:#a6e22e">make-queue</span> empty-queue? front-queue insert-queue! delete-queue! length-queue print-queue)
     (<span style="color:#66d9ef">define </span>front-ptr (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (caar q)))
     (<span style="color:#66d9ef">define </span>set-front-ptr! (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> item) (set-car! (car q) item)))
@@ -460,7 +460,7 @@
 
 
 </code></pre></div><p>前4个过程是用于内部的帮助函数，队列维护两个指针，一个指向列头（<strong>front-ptr</strong>）,一个指向列尾（<strong>rear-ptr</strong>），这样可以弥补原生的set-car!和set-cdr!的不足。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (load <span style="color:#e6db74">&#34;/path/to/FIFO-QUEUE.scm&#34;</span>) <span style="color:#75715e">;;加载FIFO-QUEUE模块</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (load <span style="color:#e6db74">&#34;/path/to/FIFO-QUEUE.scm&#34;</span>) <span style="color:#75715e">;;加载FIFO-QUEUE模块</span>
 &gt; (<span style="color:#a6e22e">import</span> FIFO-QUEUE)
 &gt; (<span style="color:#66d9ef">define </span>q (<span style="color:#a6e22e">make-queue</span>))
 &gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">1</span>) <span style="color:#75715e">;; (((1) 1) . 1), 最后一个数字1表示队列长度, 在队列有删除或者插入时，及时修改该值，为了在取队列长度时减小开销，否则要遍历一次才行</span>

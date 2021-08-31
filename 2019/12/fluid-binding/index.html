@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>Fluid Binding in Chez Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2019/12/fluid-binding/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-24T16:43:57&#43;08:00" />
-<meta property="article:modified_time" content="2019-12-24T16:43:57&#43;08:00" />
+<meta property="article:published_time" content="2019-12-24T16:43:57+08:00" />
+<meta property="article:modified_time" content="2019-12-24T16:43:57+08:00" />
 
 <meta itemprop="name" content="Fluid Binding in Chez Scheme">
-<meta itemprop="description" content="Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描"><meta itemprop="datePublished" content="2019-12-24T16:43:57&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-24T16:43:57&#43;08:00" />
+<meta itemprop="description" content="Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描"><meta itemprop="datePublished" content="2019-12-24T16:43:57+08:00" />
+<meta itemprop="dateModified" content="2019-12-24T16:43:57+08:00" />
 <meta itemprop="wordCount" content="488">
 <meta itemprop="keywords" content="fluid-let,Scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fluid Binding in Chez Scheme"/>
@@ -407,7 +407,7 @@
 <p>该Binding的作用类似局部变量，与<strong>set!</strong> 比较相似。由<strong>fluid-let</strong>定义的变量必须已绑定到顶层(top level)或者封闭的lambda内或者其他形式的绑定，这很关键！</p>
 <hr>
 <p>请看代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
   (+ (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#ae81ff">5</span>]) x)
 	x)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">8</span>
 </code></pre></div><p>先定义变量x=3，然后在加法操作当中临时将x的值改为5，最后结果为8，如果将<strong>fluid-let</strong>中的x换个名字，比如y，将如何呢？<!-- raw HTML omitted -->
@@ -418,11 +418,11 @@
 <p>y没有绑定，是的，y即没有在顶层中被定义，也未在某个lambda中或者任何其他形式，这里只能是x</p>
 <hr>
 <p>再学习下两个例子，加深印象：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
   (<span style="color:#66d9ef">letrec </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (cons x y))])
 	(<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>]) (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;c</span>))
 )) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> c)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
   (<span style="color:#a6e22e">call/cc</span>
     (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">k</span>)
        (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>])

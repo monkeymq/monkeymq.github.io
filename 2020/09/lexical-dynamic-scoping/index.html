@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>Lexical Scoping and Dynamic Scoping - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2020/09/lexical-dynamic-scoping/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-09-23T11:24:24&#43;08:00" />
-<meta property="article:modified_time" content="2020-09-23T11:24:24&#43;08:00" />
+<meta property="article:published_time" content="2020-09-23T11:24:24+08:00" />
+<meta property="article:modified_time" content="2020-09-23T11:24:24+08:00" />
 
 <meta itemprop="name" content="Lexical Scoping and Dynamic Scoping">
-<meta itemprop="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"><meta itemprop="datePublished" content="2020-09-23T11:24:24&#43;08:00" />
-<meta itemprop="dateModified" content="2020-09-23T11:24:24&#43;08:00" />
+<meta itemprop="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"><meta itemprop="datePublished" content="2020-09-23T11:24:24+08:00" />
+<meta itemprop="dateModified" content="2020-09-23T11:24:24+08:00" />
 <meta itemprop="wordCount" content="1917">
 <meta itemprop="keywords" content="lexical,scoping," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Lexical Scoping and Dynamic Scoping"/>
@@ -407,7 +407,7 @@
 <h3 id="lexical-scoping">Lexical Scoping</h3>
 <p>词法作用域，某些书中也叫静态作用域，其在编写代码时或者说定义时就确定的，通过文本（源代码）就可以观察到名称与实体的关联，程序运行时会在距离被调用代码最近的环境中去查找绑定，如果存在多个环境，在优先从最里面一层的环境查找。</p>
 <p>来看一个例子：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(setf x <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">;; bind x to 1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(setf x <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">;; bind x to 1</span>
 (<span style="color:#66d9ef">setq</span> f
     (<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">2</span>))                <span style="color:#75715e">;; bind x to 2</span>
         (lambda (y) (<span style="color:#a6e22e">*</span> x y))))
@@ -421,7 +421,7 @@
 <p>动态作用域曾经让很多人深恶痛绝，以至于不愿意再提起它。早期的Lisp普遍使用了动态作用域，并带来了非常严重的问题，这也是Lisp Machine被Unix打败的除了商业因素之外的重要原因，Lisp至今未成为主流语言就不难理解了，尽管Lisp的语法最精炼、最优美，还具有最强悍的宏系统，还是世界上第一个使用GC的语言&hellip;</p>
 <p>庆幸的是，Scheme, Common Lisp等Lisp方言已经都是用了Lexial Scoping（局部变量。所以某些时候我们可以把Lexical Scoping和Local Variable等价）, 我们无需再为一些莫名其妙的问题而烦恼，珍惜生命，不是吗？ 不过Scheme, Common Lisp还是保留了动态作用域的操作，Scheme可以参考<a href="https://lvsq.net/2019/12/fluid-binding/">Fluid Binding</a>, Common Lisp的动态作用域将在后文举例说明，尽管如此，我们无需为这个保留担忧，因为基本上我们很少需要使用到这个功能。</p>
 <p>所谓dynamic scoping就是说，在函数定义中存在了“<strong>自由变量</strong>”（free variable）, 会在运行时随着函数的“调用位置”不同而发生变化，还是用上面的例子来说明，但是稍作变化：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defvar x <span style="color:#ae81ff">1</span>)                    <span style="color:#75715e">;; bind x to 1, x is a free variable</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defvar x <span style="color:#ae81ff">1</span>)                    <span style="color:#75715e">;; bind x to 1, x is a free variable</span>
 (<span style="color:#66d9ef">setq</span> f
     (<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">2</span>))                <span style="color:#75715e">;; bind x to 2</span>
         (lambda (y) (<span style="color:#a6e22e">*</span> x y))))
@@ -435,7 +435,7 @@ x对于(lambda (y) (* x y))来说是“ **自由** ” 的，它可不会在意x
 <p>(format t &ldquo;X = ~d &quot; x) 依然输出： X = 1</p>
 <p>(let ((x 100)) (format t &ldquo;Inner X is ~d &quot; x)) 输出为：Inner X is 100。 等等，这里的x为什么又是100了？ 还记得上文提到的<em>环境</em> 吗？！</p>
 <p>如果将函数f放到不同的位置执行会发生什么？ 上面(funcall f 3)是在顶层执行的，我们换到let中执行会怎么样？</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">2</span>)) (<span style="color:#a6e22e">funcall</span> f <span style="color:#ae81ff">3</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">2</span>)) (<span style="color:#a6e22e">funcall</span> f <span style="color:#ae81ff">3</span>))
 </code></pre></div><p>这次居然返回6，而不是3了。</p>
 <p>看到问题了吗？函数f的行为，会随着调用位置的一个名叫x的变量的值的不同而变化。虽然都叫x，但并不是同一个变量，只是名字相同而已。顺带提一句，现在可以理解Java中namespace的用处了吧。</p>
 <hr>

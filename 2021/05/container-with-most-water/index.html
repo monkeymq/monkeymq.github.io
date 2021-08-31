@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&amp;hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>【盛最多水的容器】问题的求解 - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2021/05/container-with-most-water/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-11T18:09:35&#43;08:00" />
-<meta property="article:modified_time" content="2021-05-11T18:09:35&#43;08:00" />
+<meta property="article:published_time" content="2021-05-11T18:09:35+08:00" />
+<meta property="article:modified_time" content="2021-05-11T18:09:35+08:00" />
 
 <meta itemprop="name" content="【盛最多水的容器】问题的求解">
-<meta itemprop="description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在"><meta itemprop="datePublished" content="2021-05-11T18:09:35&#43;08:00" />
-<meta itemprop="dateModified" content="2021-05-11T18:09:35&#43;08:00" />
+<meta itemprop="description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在"><meta itemprop="datePublished" content="2021-05-11T18:09:35+08:00" />
+<meta itemprop="dateModified" content="2021-05-11T18:09:35+08:00" />
 <meta itemprop="wordCount" content="1267">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="【盛最多水的容器】问题的求解"/>
@@ -404,7 +404,7 @@
 </blockquote>
 <p>更详细的描述请访问：https://leetcode-cn.com/problems/container-with-most-water/</p>
 <p>首先可以想到的最简单的方法，就是暴力求解，将所有的面积都计算出来，取最大值即可。下面给出(Racket)[https://racket-lang.org/]的代码，得益于函数式语言和S表达式强大的表现力，代码可以很短：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define/contract (max-area height) (-&gt; (listof exact-integer?) exact-integer?)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define/contract (max-area height) (-&gt; (listof exact-integer?) exact-integer?)
     (define len (<span style="color:#a6e22e">length</span> height))
     (cond
         ((<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>)
@@ -419,7 +419,7 @@
         (foldl <span style="color:#a6e22e">max</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">map</span> (lambda (i h) (area <span style="color:#a6e22e">first</span> (<span style="color:#a6e22e">list</span> i h))) (range <span style="color:#ae81ff">2</span> (add1 (<span style="color:#a6e22e">length</span> height)) ) (<span style="color:#a6e22e">cdr</span> height)))))
 
 </code></pre></div><p>上述解法虽然正确，但是效率很低, 如果有10000个整数，即n=10000，其执行时间超过了2秒：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
 
 =&gt; cpu time: <span style="color:#ae81ff">2387</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">2466</span> gc time: <span style="color:#ae81ff">137</span>
 </code></pre></div><p>那么有更好的解决方法吗？</p>
@@ -436,7 +436,7 @@
 </ol>
 <p>很显然，使用<strong>双指针</strong>算法，时间复杂度降低到了$O(n)$。</p>
 <h3 id="racket-版本">Racket 版本</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;better solution</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;better solution</span>
 (define/contract (max-area-pair-pointer height) (-&gt; (listof exact-integer?) exact-integer?)
     (define (area n1 n2)
         (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
@@ -453,12 +453,12 @@
                                 (loop (<span style="color:#a6e22e">cdr</span> h) (<span style="color:#a6e22e">cdr</span> hindex) rheight rindex (<span style="color:#a6e22e">max</span> maxa a)))
                                 ))))))
 </code></pre></div><p>如果使用这个方法计算10000个整数的面积，执行时间只需1毫秒，而且不需要GC（对照暴力破解版本，2+秒）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area-pair-pointer (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area-pair-pointer (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
 
 =&gt; cpu time: <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">1</span> gc time: <span style="color:#ae81ff">0</span>
 </code></pre></div><h3 id="rust版本">Rust版本</h3>
 <p>同时提供一个Rust版本的实现，</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::cmp::{max, min};
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::cmp::{max, min};
 
 <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">HeightType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">i64</span>;
 

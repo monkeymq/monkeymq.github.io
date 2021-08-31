@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &amp;#39;(a b c)) ⇒ #f (atom? &amp;#39;(3 . 4)) ⇒ #f (atom? &amp;#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度" />
-  <meta name="generator" content="Hugo 0.84.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
   <title>Scheme/Chez Scheme 对象操作 - 思泉笔谈 | AI-Life</title>
   
 
@@ -36,12 +36,12 @@
 <meta property="og:description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://lvsq.net/2019/12/operations-on-objects/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-30T16:27:27&#43;08:00" />
-<meta property="article:modified_time" content="2019-12-30T16:27:27&#43;08:00" />
+<meta property="article:published_time" content="2019-12-30T16:27:27+08:00" />
+<meta property="article:modified_time" content="2019-12-30T16:27:27+08:00" />
 
 <meta itemprop="name" content="Scheme/Chez Scheme 对象操作">
-<meta itemprop="description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度"><meta itemprop="datePublished" content="2019-12-30T16:27:27&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-30T16:27:27&#43;08:00" />
+<meta itemprop="description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度"><meta itemprop="datePublished" content="2019-12-30T16:27:27+08:00" />
+<meta itemprop="dateModified" content="2019-12-30T16:27:27+08:00" />
 <meta itemprop="wordCount" content="1477">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Scheme/Chez Scheme 对象操作"/>
@@ -400,14 +400,14 @@
       <h3 id="pairs-and-lists">Pairs and Lists</h3>
 <h4 id="atom">atom?</h4>
 <p>atom? 相当于 (lambda (x) (not (pair? x)))</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
 (<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
 (<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
 (<span style="color:#a6e22e">atom?</span> <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
 </code></pre></div><h4 id="list-headchez">list-head(Chez)</h4>
 <p>用法：(list-head list n) <!-- raw HTML omitted -->
 <em>n</em>是一个非负整数，且小于等于<em>list</em>的长度；<strong>list-head</strong>和Scheme标准过程<strong>list-tail</strong>可能会同时使用来切割一个list，不同点在于，<strong>list-tail</strong>不会分配内存而只是返回源list的一个子列表，<strong>list-head</strong>总是返回源list前n个元素的副本</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c) <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> ()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c) <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> ()
 (<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c) <span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> b)
 (<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c) <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> b c)
 (<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c <span style="color:#f92672">.</span> d) <span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> b)
@@ -416,7 +416,7 @@
 </code></pre></div><h4 id="last-pairchez">last-pair(Chez)</h4>
 <p>用法：(last-pair list) <!-- raw HTML omitted -->
 列表不能为空。 <strong>last-pair</strong>返回列表的最后一对（<strong>pair</strong>）（不是最后一个元素）, list可能是不正确的列表，在这种情况下，最后一对是包含最后一个元素和终止对象的一个pair。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">last-pair</span> <span style="color:#f92672">&#39;</span>(a b c d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">d</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">last-pair</span> <span style="color:#f92672">&#39;</span>(a b c d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">d</span>)
 (<span style="color:#a6e22e">last-pair</span> <span style="color:#f92672">&#39;</span>(a b c<span style="color:#f92672">.</span>d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> d)
 </code></pre></div><h4 id="list-copychez">list-copy(Chez)</h4>
 <p>用法： (list-copy list) <!-- raw HTML omitted -->
@@ -427,18 +427,18 @@
 <h4 id="make-listchez">make-list(Chez)</h4>
 <p>用法： (make-list n) 或者 (make-list n obj)<!-- raw HTML omitted -->
 返回n个对象的列表。<strong>n</strong>是一个正整数， 如果<strong>obj</strong>不指定，则返回的list是不确定的</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"> (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"> (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
  (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>)
  (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;hi&#34;</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#e6db74">&#34;hi&#34;</span> <span style="color:#e6db74">&#34;hi&#34;</span>)
 </code></pre></div><h4 id="iotachez">iota(Chez)</h4>
 <p>用法：(iota n)<!-- raw HTML omitted -->
 返回从 0（包含）到 n（不包含）的整数列表，<strong>n</strong>须为精确的非负整数</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">iota</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">=&gt; </span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">iota</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">=&gt; </span>()
 (<span style="color:#a6e22e">iota</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
 </code></pre></div><h4 id="enumeratechez">enumerate(Chez)</h4>
 <p>用法： (enumerate ls)<!-- raw HTML omitted -->
 返回: 从 0（包含）到长度 ls（不包含）的整数列表</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">enumerate</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">enumerate</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
 (<span style="color:#a6e22e">enumerate</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)
 (<span style="color:#66d9ef">let </span>([ls <span style="color:#f92672">&#39;</span>(a b c)])
 	(map cons ls (<span style="color:#a6e22e">enumerate</span> ls))) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span>) (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">1</span>) (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>))
@@ -446,7 +446,7 @@
 <p>用法： (remq! obj list) | (remv! obj list) | (remove! obj list)<!-- raw HTML omitted -->
 返回: 列表中所有 obj 都被移除后的列表<!-- raw HTML omitted -->
 这些过程与 R6RS 中的 <strong>remq</strong>, <strong>remv</strong>, 及 <strong>remove</strong> 过程类似，只是 remq!, remv! 和 remove! 使用输入列表中的pair来构成输出列表。它们进行较少的空间分配，但并不一定比它们非破坏性的相应版本更快。如果滥用，很容易导致混乱或错误的结果。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">remq!</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#f92672">&#39;</span>(a b a c a d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> c d)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">remq!</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#f92672">&#39;</span>(a b a c a d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> c d)
 (<span style="color:#a6e22e">remv!</span> <span style="color:#e6db74">#\a</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">#\a</span> <span style="color:#e6db74">#\b</span> <span style="color:#e6db74">#\c</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#e6db74">#\b</span> <span style="color:#e6db74">#\c</span>)
 (<span style="color:#a6e22e">remove!</span> <span style="color:#f92672">&#39;</span>(c) <span style="color:#f92672">&#39;</span>((<span style="color:#a6e22e">a</span>) (<span style="color:#a6e22e">b</span>) (<span style="color:#a6e22e">c</span>))) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span>) (<span style="color:#a6e22e">b</span>))
 </code></pre></div><h4 id="substq--substv--subst--substq--substv--substchez">substq | substv | subst | substq! | substv! | subst!(Chez)</h4>
@@ -454,7 +454,7 @@
 返回：在tree中将匹配到的old元素全部替换为new之后的tree.<!-- raw HTML omitted -->
 对于 substq 和 substq! ，相等性测试是基于 eq?, substv 和 substv! 是基于 eqv?, 而 subst 和 subst! 是基于 equal? <!-- raw HTML omitted -->
 substq!, substv!, 和 subst! 执行破坏性的替换。它们进行较少的空间分配，但并不一定比它们非破坏性的对应版本更快。如果滥用，很容易导致混乱或错误的结果。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">substq</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>((<span style="color:#a6e22e">b</span> c) b a)) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span> c) a a)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">substq</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#f92672">&#39;</span>((<span style="color:#a6e22e">b</span> c) b a)) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span> c) a a)
 
 (<span style="color:#a6e22e">substv</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&#39;</span>((<span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>) (<span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">.</span> <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#ae81ff">2</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>) (<span style="color:#ae81ff">2</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>)
 
@@ -469,7 +469,7 @@ substq!, substv!, 和 subst! 执行破坏性的替换。它们进行较少的空
 <p>用法：(reverse! list)<!-- raw HTML omitted -->
 返回：将原list反向输出<!-- raw HTML omitted -->
 reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取代 reverse 减少了空间分配，但并不一定比使用 reverse 更快。如果滥用，会很容易导致混乱或错误的结果。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">reverse!</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">reverse!</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
 (<span style="color:#a6e22e">reverse!</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#a6e22e">c</span> b a)
 
 (<span style="color:#66d9ef">let </span>([x <span style="color:#f92672">&#39;</span>(a b c)])
@@ -484,7 +484,7 @@ reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取�
 返回：将所有输入list串联起来的列表<!-- raw HTML omitted -->
 如同 <strong>append</strong>, <strong>append!</strong> 返回一个新的列表，其中元素依次为第一个列表中的元素，第二个列表中的元素，第三个列表中的元素，等等。不同之处在于， append! 重用所有参数中的点对以构造新列表。即，每一个列表参数的最后一个<strong>cdr</strong>, 其后一元素变为指向下一个列表参数。除最后一个参数外，如果任一参数为空列表，它实质上会被忽略。最后一个参数（并不一定得是列表）是不变的。</p>
 <p>相比于 append, append! 进行更少的空间分配（因为只修改指针，并没有数据拷贝），但并不一定更快。如果滥用，会很容易导致混乱或错误的结果。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">append!</span> <span style="color:#f92672">&#39;</span>(a b) <span style="color:#f92672">&#39;</span>(c d)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#a6e22e">a</span> b c d)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">append!</span> <span style="color:#f92672">&#39;</span>(a b) <span style="color:#f92672">&#39;</span>(c d)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#a6e22e">a</span> b c d)
 
 (<span style="color:#66d9ef">let </span>([x <span style="color:#f92672">&#39;</span>(a b)])
   (<span style="color:#a6e22e">append!</span> x <span style="color:#f92672">&#39;</span>(c d))
