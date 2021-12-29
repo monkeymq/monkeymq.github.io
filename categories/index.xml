@@ -5,18 +5,18 @@
     <link>https://lvsq.net/categories/</link>
     <description>Recent content in Categories on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 09 Aug 2021 14:31:04 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Dec 2021 16:55:08 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Doom Emacs Golang Env</title>
+      <title>Doom Emacs Golang 环境配置</title>
       <link>https://lvsq.net/2021/12/doom-emacs-golang-env/</link>
       <pubDate>Wed, 29 Dec 2021 16:55:08 +0800</pubDate>
       
       <guid>https://lvsq.net/2021/12/doom-emacs-golang-env/</guid>
-      <description></description>
+      <description>Doom Emacs是一个Emacs的一个配置集合，可看做CentOS和Linux的关系。它将Emcas和Vim相结合，包含了各自的种种优点，并减少</description>
     </item>
     
     <item>
