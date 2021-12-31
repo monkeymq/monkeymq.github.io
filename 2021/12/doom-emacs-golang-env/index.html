@@ -408,32 +408,21 @@
 <p>Doom安装完毕之后，执行下面的步骤：</p>
 <h3 id="第一步">第一步</h3>
 <p>修改 ~/doom.d/init.el, 可用（SPC f p）找到该文件</p>
-<p>在 (doom! 下面找到：
-:lang (go +lsp)</p>
+<p>在 (doom! 下面找到：</p>
+<blockquote>
+<p>:lang (go +lsp)</p>
+</blockquote>
+<blockquote>
 <p>:tools (lsp)</p>
+</blockquote>
+<blockquote>
 <p>:editor (sinppets, evil +everywhere, format +onsave)</p>
+</blockquote>
+<blockquote>
 <p>：completion (company)</p>
+</blockquote>
 <p>()中的项目都打开</p>
 <h3 id="第二步">第二步</h3>
-<p>执行~/.emacs.d/bin/doom sync 或者 (SPC h r r) 使配置生效</p>
-<h3 id="第三步">第三步</h3>
-<p>安装依赖包：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">motemen</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gore</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gore</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">stamblerre</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gocode</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">godoc</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">goimports</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gorename</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">guru</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cweill</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gotests</span><span style="color:#f92672">/...</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">fatih</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gomodifytags</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-
-<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">gopls</span> <span style="color:#66d9ef">for</span> (<span style="color:#f92672">+</span><span style="color:#a6e22e">lsp</span>)
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gopls</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-
-<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">golangci</span>
-<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">-</span><span style="color:#a6e22e">lint</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">-</span><span style="color:#a6e22e">lint</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
-</code></pre></div><p>这是针对Go &gt;= v1.16的，低于这个版本的用go get， 我想现在大家用的都是新版本了。</p>
-<h3 id="第四步">第四步</h3>
 <p>找到~/doom.d/config.el,添加如下内容：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;golang</span>
 (<span style="color:#66d9ef">setq</span> lsp-gopls-staticcheck <span style="color:#66d9ef">t</span>)
@@ -471,7 +460,26 @@
   <span style="color:#e6db74">:commands</span> yas-minor-mode
   <span style="color:#e6db74">:hook</span> (go-mode <span style="color:#f92672">.</span> yas-minor-mode))
 
-</code></pre></div><h3 id="第五步">第五步</h3>
+</code></pre></div><h3 id="第三步">第三步</h3>
+<p>安装依赖包：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">motemen</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gore</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gore</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">stamblerre</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gocode</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">godoc</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">goimports</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gorename</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">guru</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cweill</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gotests</span><span style="color:#f92672">/...</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">fatih</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gomodifytags</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">gopls</span> <span style="color:#66d9ef">for</span> (<span style="color:#f92672">+</span><span style="color:#a6e22e">lsp</span>)
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">golang</span>.<span style="color:#a6e22e">org</span><span style="color:#f92672">/</span><span style="color:#a6e22e">x</span><span style="color:#f92672">/</span><span style="color:#a6e22e">tools</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gopls</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">golangci</span>
+<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">-</span><span style="color:#a6e22e">lint</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">golangci</span><span style="color:#f92672">-</span><span style="color:#a6e22e">lint</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">latest</span>
+</code></pre></div><p>这是针对Go &gt;= v1.16的，低于这个版本的用go get， 我想现在大家用的都是新版本了。</p>
+<h3 id="第四步">第四步</h3>
+<p>执行~/.emacs.d/bin/doom sync 或者 (SPC h r r) 使配置生效</p>
+<h3 id="第五步">第五步</h3>
 <p>重启一下Emacs即可</p>
 
     </div>
