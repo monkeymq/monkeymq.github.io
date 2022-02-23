@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>我的Doom Emacs配置</title>
+      <link>https://lvsq.net/2022/02/my-doom-emacs-config/</link>
+      <pubDate>Wed, 23 Feb 2022 08:58:54 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2022/02/my-doom-emacs-config/</guid>
+      <description>config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom ;; sync&amp;#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &amp;#34;Siquan&amp;#34; user-mail-address &amp;#34;xxx@xxx.com&amp;#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;</description>
+    </item>
+    
+    <item>
       <title>Doom Emacs Golang 环境配置</title>
       <link>https://lvsq.net/2021/12/doom-emacs-golang-env/</link>
       <pubDate>Wed, 29 Dec 2021 16:55:08 +0800</pubDate>
@@ -178,15 +187,6 @@
       
       <guid>https://lvsq.net/2020/02/system-operations/</guid>
       <description>异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止</description>
-    </item>
-    
-    <item>
-      <title>Scheme语法define-record-type介绍</title>
-      <link>https://lvsq.net/2020/02/define-record-type/</link>
-      <pubDate>Mon, 03 Feb 2020 14:51:17 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/02/define-record-type/</guid>
-      <description>define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr</description>
     </item>
     
   </channel>

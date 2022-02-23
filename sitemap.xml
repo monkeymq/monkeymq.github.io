@@ -4,7 +4,49 @@
   
   <url>
     <loc>https://lvsq.net/categories/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/emacs/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/emacs/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/posts/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/tags/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/2022/02/my-doom-emacs-config/</loc>
+    <lastmod>2022-02-23T08:58:54+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -17,42 +59,7 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/emacs/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/emacs/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/tags/golang/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/posts/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
-    <lastmod>2021-12-29T16:55:08+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
     <lastmod>2021-12-29T16:55:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

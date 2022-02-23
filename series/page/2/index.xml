@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>Scheme语法define-record-type介绍</title>
+      <link>https://lvsq.net/2020/02/define-record-type/</link>
+      <pubDate>Mon, 03 Feb 2020 14:51:17 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/02/define-record-type/</guid>
+      <description>define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr</description>
+    </item>
+    
+    <item>
       <title>Chez Scheme Modules</title>
       <link>https://lvsq.net/2020/01/modules/</link>
       <pubDate>Fri, 17 Jan 2020 15:07:58 +0800</pubDate>
