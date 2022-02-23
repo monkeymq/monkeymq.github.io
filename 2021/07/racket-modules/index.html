@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>Racket Modules - 思泉笔谈 | AI-Life</title>
   
 
@@ -573,7 +573,7 @@ tiger
 <p>``lisp
 (module+ name-id
 decl &hellip;)</p>
-<pre><code>
+<pre tabindex="0"><code>
 module+声明的模块就像采用module*声明且使用#f作为initial-module-path的模块。此外，多个module+模块可以同名，同名的模块会组合成一个模块。这种组合特性可以用来定义一个test模块，在使用 raco test命令时就可以大显身手了。
 
 假设&quot;physics.rkt&quot; 为：

@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>系统操作(System Operations in Chez Scheme) - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="系统操作(System Operations in Chez Scheme)">
 <meta itemprop="description" content="异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止"><meta itemprop="datePublished" content="2020-02-06T10:54:14+08:00" />
 <meta itemprop="dateModified" content="2020-02-06T10:54:14+08:00" />
-<meta itemprop="wordCount" content="16103">
+<meta itemprop="wordCount" content="16069">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="系统操作(System Operations in Chez Scheme)"/>
 <meta name="twitter:description" content="异常 (warning who msg irritant &hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止"/>
@@ -397,7 +397,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/system-operations/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:16103字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:16069字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:33分 </span>
       </div>
     </div>
@@ -529,7 +529,7 @@
 <blockquote>
 <p>(load-library path) |  (load-library path eval-proc)</p>
 </blockquote>
-<p><strong>load-library</strong>与<strong>load</strong>相同，除了它会将输入文件视为由隐式**＃!r6rs**作为前缀。这有效地禁用了所有**非R6RS**词法语法，除非随后被**＃！chezscheme**覆盖</p>
+<p><strong>load-library</strong>与<strong>load</strong>相同，除了它会将输入文件视为由隐式**＃!r6rs<strong>作为前缀。这有效地禁用了所有</strong>非R6RS<strong>词法语法，除非随后被</strong>＃！chezscheme**覆盖</p>
 <blockquote>
 <p>(load-program path) |  (load-program path eval-proc)</p>
 </blockquote>
@@ -550,7 +550,7 @@
 <blockquote>
 <p>(compile-script input-filename) |  (compile-script input-filename output-filename)</p>
 </blockquote>
-<p><strong>compile-script</strong>与<strong>compile-file</strong>类似，不同点在于，它会从源文件复制开头的**#!**行到目标文件，同时该行不会被压缩，尽管参数**compile-compressed**被设置为#t，其他代码会被压缩，这样会保证操作系统可以正确地解释。</p>
+<p><strong>compile-script</strong>与<strong>compile-file</strong>类似，不同点在于，它会从源文件复制开头的**#!<strong>行到目标文件，同时该行不会被压缩，尽管参数</strong>compile-compressed**被设置为#t，其他代码会被压缩，这样会保证操作系统可以正确地解释。</p>
 <p><strong>compile-script</strong>允许从源脚本创建已编译的脚本文件，以减少脚本加载时间。与源代码脚本一样，可以使用**&ndash;script**命令行选项运行已编译的脚本。</p>
 <blockquote>
 <p>(compile-library input-filename) |  (compile-library input-filename oiutput-filename)</p>
@@ -599,7 +599,7 @@
 <blockquote>
 <p>(with-source-path who name procedure)</p>
 </blockquote>
-<p>过程<strong>with-source-path</strong>依次搜索当前源目录路径，以查找具有指定名称的文件，并在结果上调用过程。如果未找到这样的文件，则引发**&amp;assertion**和**&amp;who**异常，**&amp;who**的值为*who* 的值</p>
+<p>过程<strong>with-source-path</strong>依次搜索当前源目录路径，以查找具有指定名称的文件，并在结果上调用过程。如果未找到这样的文件，则引发**&amp;assertion<strong>和</strong>&amp;who<strong>异常，</strong>&amp;who**的值为<em>who</em> 的值</p>
 <p>如果<em>name</em> 是绝对路径，或者以./（Windows下是./），或者../（Windows下是..\），或者源目录列表中只包含“.”，或者默认值 &ldquo;&quot;，相当于 &ldquo;.&quot;，不执行搜索并返回<em>name</em>。</p>
 <p><em>who</em> 必须是符号，<em>name</em> 必须是字符串，<em>procedure</em> 应接受一个参数。</p>
 <p>以下示例假定文件“ pie”存在于目录“ ../spam”中，但不在“ ../ham”或当前目录中。</p>
@@ -712,7 +712,7 @@
 <blockquote>
 <p>compile-profile</p>
 </blockquote>
-<p>当将此参数设置为符号<strong>source</strong>或布尔值**#t**时，编译器将使用指令对生成的代码进行检测，这些指令对源代码的每个部分执行的次数进行计数。 当设置为符号**block**时，编译器类似地使用指令对生成的代码进行检测，该指令对每个代码块的执行次数进行计数。 当设置为**#f**（默认值）时，编译器不会插入这些指令。</p>
+<p>当将此参数设置为符号<strong>source</strong>或布尔值**#t<strong>时，编译器将使用指令对生成的代码进行检测，这些指令对源代码的每个部分执行的次数进行计数。 当设置为符号</strong>block<strong>时，编译器类似地使用指令对生成的代码进行检测，该指令对每个代码块的执行次数进行计数。 当设置为</strong>#f**（默认值）时，编译器不会插入这些指令。</p>
 <p>当compile-profile为非false时生成的代码较大且效率较低，因此仅在需要概要分析信息时才应设置此参数。启用概要分析检测后编译的代码的概要文件计数器将无限期保留，即使与它们关联的代码已被垃圾收集器回收。 这样可以得到更完整和准确的概要分析数据，但会导致动态生成或加载代码的程序出现空间泄漏，程序可以通过<strong>profile-release-counters</strong>过程显式地释放计数器，从而避免潜在的空间泄漏。</p>
 <blockquote>
 <p>(profile-clear)</p>
@@ -730,7 +730,7 @@
 <blockquote>
 <p>(profile-dump-html) | (profile-dump-html prefix) | (profile-dump-html prefix dump)</p>
 </blockquote>
-<p>此过程将生成一个或多个HTML文件，包括profile.html（其中包含用颜色编码的摘要信息），以及一个文件source.html，其中每个源文件源都包含用源代码进行颜色编码的副本，如前导中所述： 在本节中。 如果指定了<em>prefix</em> ，则它必须是字符串，并且在生成的HTML文件的名称之前。 例如，如果前缀为**“ /tmp/”**，则生成的文件将放置在目录/tmp中。 原始概要分析信息是从转储获取的，默认为**profile-dump**返回的值</p>
+<p>此过程将生成一个或多个HTML文件，包括profile.html（其中包含用颜色编码的摘要信息），以及一个文件source.html，其中每个源文件源都包含用源代码进行颜色编码的副本，如前导中所述： 在本节中。 如果指定了<em>prefix</em> ，则它必须是字符串，并且在生成的HTML文件的名称之前。 例如，如果前缀为**“ /tmp/”<strong>，则生成的文件将放置在目录/tmp中。 原始概要分析信息是从转储获取的，默认为</strong>profile-dump**返回的值</p>
 <blockquote>
 <p>(profile-palette)</p>
 </blockquote>
@@ -768,7 +768,7 @@
 <p>Chez Scheme通过<em>waiter</em> 或read-eval-print循环（REPL）与用户进行交互。 <em>waiter</em>在称为caf́e的上下文中运行。 当系统启动时，将用户置于caf́e中并分配<em>waiter</em> 。 <strong>new-cafe</strong>在旧的caf́e之上开启了一个新的Scheme caf́e。
 除了启动<em>waiter</em> 之外，<strong>new-cafe</strong>还设置了caf́e的重置和退出处理程序（请参阅reset-handler和exit-handler）。
 退出caf́e会返回到创建该caf́e的caf́e。从最初的caf́e退出后会完全退出了Scheme。 caf́e可以通过显式调用<strong>exit</strong>或通过接收end-of-file（Unix系统上为“ control-D”）来退出。在前一种情况下，传递给<strong>exit</strong>的任何值都是从<strong>new-cafe</strong>返回的。</p>
-<pre><code>&gt; (define x 1)
+<pre tabindex="0"><code>&gt; (define x 1)
 &gt; x
 1
 &gt; (new-cafe)

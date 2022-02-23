@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述：(" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>Recursive Bindings in Chez Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -427,7 +427,7 @@
 </code></pre></div><p>如果没有rec语法，用letrec也是可以的，但是稍显麻烦，代码也多一些，所以<strong>rec</strong>还是很好用的</p>
 <hr>
 <p>最后看一下<strong>rec</strong>语法的定义：</p>
-<pre><code class="language-shceme" data-lang="shceme">(define-syntax rec
+<pre tabindex="0"><code class="language-shceme" data-lang="shceme">(define-syntax rec
   (syntax-rules ()
     [(_ x e) (letrec ((x e)) x)]))
 </code></pre>

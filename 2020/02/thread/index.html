@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>线程（Thread System in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="线程（Thread System in Chez Scheme）">
 <meta itemprop="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程"><meta itemprop="datePublished" content="2020-02-17T15:18:39+08:00" />
 <meta itemprop="dateModified" content="2020-02-17T15:18:39+08:00" />
-<meta itemprop="wordCount" content="5767">
+<meta itemprop="wordCount" content="5745">
 <meta itemprop="keywords" content="thread,scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程（Thread System in Chez Scheme）"/>
 <meta name="twitter:description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程"/>
@@ -398,13 +398,13 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/thread/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5767字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:5745字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:12分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。</p>
-<p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如**+**和**sqrt**之类的数字运算符以及诸如**append**和**map**之类的非破坏性的高级原生操作。</p>
+<p>大多数原生的Scheme过程都是<em>线程安全</em> 的，这意味着可以从多个线程中同时调用它们。 这包括诸如<strong>cons</strong>和<strong>make-string</strong>之类的分配操作，诸如<strong>car</strong>和<strong>vector-ref</strong>之类的访问器，诸如**+<strong>和</strong>sqrt<strong>之类的数字运算符以及诸如</strong>append<strong>和</strong>map**之类的非破坏性的高级原生操作。</p>
 <p>简单的变动运算符（例如set-car！，vector-set！和record字段变动器）是线程安全的。 同样，对局部变量的分配，包括（未导出的）库和顶级程序变量的分配也是线程安全的。</p>
 <p>大多数I/O操作应被视为具有破坏性，因为它们可能会修改端口的内部结构。</p>
 <p>使用没有进行合适的同步策略的非线程安全的运算符可能会破坏它们所操作的对象。 这种损坏可能导致错误的行为，内存故障，甚至导致系统中止的不可恢复的错误。</p>
@@ -439,7 +439,7 @@
 </blockquote>
 <p><em>mutex</em> 必须是一个互斥锁。</p>
 <p><strong>mutex-acquire</strong>获取由<em>mutex</em> 标识的互斥锁。可选的bool参数<em>block？</em> 默认为#t，指定线程是否应阻塞等待互斥锁。<em>block？</em> 如果省略或为true，则线程将阻塞，直到获取了互斥锁为止，并返回未指定的值。</p>
-<p>如果<em>block？</em> 为false并且互斥锁当前已属于其他线程，当前线程并不会阻塞，而是，<strong>mutex-acquire</strong>立即返回值**#f**，以指示互斥锁不可用。 如果*block？* 为false并且成功获取了互斥锁，**mutex-acquire**返回#t。</p>
+<p>如果<em>block？</em> 为false并且互斥锁当前已属于其他线程，当前线程并不会阻塞，而是，<strong>mutex-acquire</strong>立即返回值**#f**，以指示互斥锁不可用。 如果<em>block？</em> 为false并且成功获取了互斥锁，<strong>mutex-acquire</strong>返回#t。</p>
 <p>互斥锁在Posix线程术语中是递归的，这意味着调用线程可以使用互斥锁获取（重新）获取它已经拥有的互斥锁（注：锁是可以重入的）。 在这种情况下，释放互斥锁需要执行相等数量的<strong>mutex-release</strong>。</p>
 <blockquote>
 <p>(mutex-release mutex)</p>
@@ -464,7 +464,7 @@
 <p>(condition-wait cond mutex) |  (condition-wait cond mutex timeout)</p>
 </blockquote>
 <p>返回：如果调用线程被条件唤醒返回#t，如果调用线程超时等待返回#f</p>
-<p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或**#f**的时间记录，表示没有超时。 默认为**#f**。</p>
+<p><em>cond</em> 必须是条件对象，并且<em>mutex</em> 必须是互斥锁。 可选参数<em>timeout</em> 是类型为<strong>time-duration</strong>或<strong>time-utc</strong>或**#f<strong>的时间记录，表示没有超时。 默认为</strong>#f**。</p>
 <p><strong>condition-wait</strong>等待由<em>cond</em> 标识的条件，且等待指定的<em>timeout</em>时长。在调用condition-wait时，调用线程必须已获取互斥锁<em>mutex</em> 。由于调用condition-wait的副作用而释放了<em>mutex</em> 。当稍后通过下述的过程之一从条件变量释放线程或超时到期时，将重新获取<em>mutex</em> ，并返回<strong>condition-wait</strong>。</p>
 <blockquote>
 <p>(condition-signal cond)</p>

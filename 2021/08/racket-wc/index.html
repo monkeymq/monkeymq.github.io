@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需50多行" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>不到60行代码，用Racket实现wc命令 - 思泉笔谈 | AI-Life</title>
   
 
@@ -462,7 +462,7 @@
 </code></pre></div><p>然后用raco生成一个可执行程序, 名字就叫r-wc，和wc稍微区分一下：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">raco exe -o r-wc r-wc.rkt
 </code></pre></div><p>就像使用wc命令一样，</p>
-<pre><code>➜  racket ./r-wc -h
+<pre tabindex="0"><code>➜  racket ./r-wc -h
 usage: r-wc [ &lt;option&gt; ... ] [&lt;file&gt;] ...
 
 &lt;option&gt; is one of

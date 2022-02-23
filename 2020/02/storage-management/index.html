@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>存储管理(Storage Management in Chez Scheme) - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="存储管理(Storage Management in Chez Scheme)">
 <meta itemprop="description" content="垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动"><meta itemprop="datePublished" content="2020-02-12T16:18:53+08:00" />
 <meta itemprop="dateModified" content="2020-02-12T16:18:53+08:00" />
-<meta itemprop="wordCount" content="7668">
+<meta itemprop="wordCount" content="7664">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="存储管理(Storage Management in Chez Scheme)"/>
 <meta name="twitter:description" content="垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动"/>
@@ -397,7 +397,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/storage-management/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:7668字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:7664字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:16分 </span>
       </div>
     </div>
@@ -496,7 +496,7 @@
 <li>暂时序对可以使用**ephemeron-pair?**这个谓词来区别普通对</li>
 <li>暂时序对维护了一个指向(car obj)的弱指针，并且仅仅在pair的car存在时cdr才能保留</li>
 </ul>
-<p>暂时序对的行为与弱序对类似，不过cdr有特殊的处理：如果car被设置为**#!bwp**的同时也会将cdr设置为**#!bwp**。由于同时将car和cdr字段设置为为**#!bwp**，因此可以通过cdr对象引用car对象这一事实本身并不意味着必须保留car（与弱序对不同）。 相反，出于某种原因，car必须独立于cdr对象保存。</p>
+<p>暂时序对的行为与弱序对类似，不过cdr有特殊的处理：如果car被设置为**#!bwp<strong>的同时也会将cdr设置为</strong>#!bwp**。由于同时将car和cdr字段设置为为**#!bwp**，因此可以通过cdr对象引用car对象这一事实本身并不意味着必须保留car（与弱序对不同）。 相反，出于某种原因，car必须独立于cdr对象保存。</p>
 <p>与弱序对和其他对一样，暂时序对使用**set-car!<strong>和</strong>set-cdr!**来修改数据，暂时序对的打印方式与普通对一样，但没有reader语法</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
 (<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">ephemeron-cons</span> x x))

@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>Lexical Scoping and Dynamic Scoping - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Lexical Scoping and Dynamic Scoping">
 <meta itemprop="description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"><meta itemprop="datePublished" content="2020-09-23T11:24:24+08:00" />
 <meta itemprop="dateModified" content="2020-09-23T11:24:24+08:00" />
-<meta itemprop="wordCount" content="1917">
+<meta itemprop="wordCount" content="1913">
 <meta itemprop="keywords" content="lexical,scoping," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Lexical Scoping and Dynamic Scoping"/>
 <meta name="twitter:description" content="我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的"/>
@@ -399,7 +399,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/09/lexical-dynamic-scoping/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1917字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1913字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:4分 </span>
       </div>
     </div>
@@ -435,7 +435,7 @@
 (<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;X = ~d &#34;</span> x)
 (<span style="color:#66d9ef">let</span> ((x <span style="color:#ae81ff">100</span>)) (<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;Inner X is ~d &#34;</span> x))
 </code></pre></div><p>(defvar x 1)定义了x，值为1，但是这个x属于自由变量，处于动态作用域，因为Lisp自动将全局变量即由defvar、defparameter、special定义的变量自动声明为动态作用域。
-x对于(lambda (y) (* x y))来说是“ **自由** ” 的，它可不会在意x绑定为2或者任何其他值，因为(let ((x 2)) &hellip;)中指定的x已经不是(lambda &hellip;)的参数了。</p>
+x对于(lambda (y) (* x y))来说是“ <strong>自由</strong> ” 的，它可不会在意x绑定为2或者任何其他值，因为(let ((x 2)) &hellip;)中指定的x已经不是(lambda &hellip;)的参数了。</p>
 <p>所以当我们执行(funcall f 3) 时，其结果不像词法作用域那样等于6，而是3</p>
 <p>(format t &ldquo;X = ~d &quot; x) 依然输出： X = 1</p>
 <p>(let ((x 100)) (format t &ldquo;Inner X is ~d &quot; x)) 输出为：Inner X is 100。 等等，这里的x为什么又是100了？ 还记得上文提到的<em>环境</em> 吗？！</p>

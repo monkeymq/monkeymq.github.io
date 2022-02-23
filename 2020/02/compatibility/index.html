@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可" />
-  <meta name="generator" content="Hugo 0.87.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
   <title>兼容性（Compatibility Features in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="兼容性（Compatibility Features in Chez Scheme）">
 <meta itemprop="description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可"><meta itemprop="datePublished" content="2020-02-18T14:23:39+08:00" />
 <meta itemprop="dateModified" content="2020-02-18T14:23:39+08:00" />
-<meta itemprop="wordCount" content="4767">
+<meta itemprop="wordCount" content="4753">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="兼容性（Compatibility Features in Chez Scheme）"/>
 <meta name="twitter:description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可"/>
@@ -397,7 +397,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/compatibility/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4767字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4753字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:10分 </span>
       </div>
     </div>
@@ -436,7 +436,7 @@
    (<span style="color:#66d9ef">let </span>() b1 b2 <span style="color:#f92672">...</span>)]
   [(<span style="color:#66d9ef">let* </span>([x e] more <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
    (<span style="color:#66d9ef">let </span>([x e]) (<span style="color:#66d9ef">let* </span>(<span style="color:#a6e22e">more</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>))])
-</code></pre></div><p>定义式<strong>and</strong>需要3个子句。第一个子句对于识别**(and)**是必要的，后两个以递归方式定义所有其他**and**形式。</p>
+</code></pre></div><p>定义式<strong>and</strong>需要3个子句。第一个子句对于识别**(and)<strong>是必要的，后两个以递归方式定义所有其他</strong>and**形式。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">and</span>)
   [(<span style="color:#a6e22e">and</span>) <span style="color:#66d9ef">#t</span>]
   [(<span style="color:#66d9ef">and </span>x) x]
@@ -452,7 +452,7 @@
    (<span style="color:#66d9ef">if </span>test
        (<span style="color:#66d9ef">begin </span>e1 e2 <span style="color:#f92672">...</span>)
        (<span style="color:#66d9ef">cond </span>more <span style="color:#f92672">...</span>))])
-</code></pre></div><p>为了使<strong>let</strong>的语法绝对正确，我们实际上必须要求输入中的绑定标识符是符号。 如果我们输入类似**（let（[3 x]）x）**的内容，则不会从**let**中得到错误，因为它不会检查验证标识符位置中的对象是否为符号。 相反，lambda可能会抱怨，或者可能是扩展完成很久之后的求值程序。 这是*fenders* 起作用的地方。</p>
+</code></pre></div><p>为了使<strong>let</strong>的语法绝对正确，我们实际上必须要求输入中的绑定标识符是符号。 如果我们输入类似**（let（[3 x]）x）<strong>的内容，则不会从</strong>let**中得到错误，因为它不会检查验证标识符位置中的对象是否为符号。 相反，lambda可能会抱怨，或者可能是扩展完成很久之后的求值程序。 这是<em>fenders</em> 起作用的地方。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let</span>)
   [(<span style="color:#66d9ef">let </span>([x e] <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
    (<span style="color:#a6e22e">andmap</span> symbol? <span style="color:#f92672">&#39;</span>(x <span style="color:#f92672">...</span>))
@@ -575,7 +575,7 @@
         (<span style="color:#a6e22e">set-stretch-string-string!</span> s
           (string-append str xtra))))))
 
-</code></pre></div><p>通常，大多数自动定义的过程都用于定义更特殊的过程， 在这个例子中，说的就是<strong>stretch-string-ref ** 和</strong>stretch-string-set!<strong>。而</strong>stretch-string-length** 和 **stretch-string-string**是惟一直接使用的自动生成的过程。</p>
+</code></pre></div><p>通常，大多数自动定义的过程都用于定义更特殊的过程， 在这个例子中，说的就是<strong>stretch-string-ref ** 和</strong>stretch-string-set!<strong>。而</strong>stretch-string-length** 和 <strong>stretch-string-string</strong>是惟一直接使用的自动生成的过程。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>ss (<span style="color:#a6e22e">make-stretch-string</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">#\X</span>))
 (<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;XX&#34;</span>
 (<span style="color:#a6e22e">stretch-string-ref</span> ss <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">#\X</span>
