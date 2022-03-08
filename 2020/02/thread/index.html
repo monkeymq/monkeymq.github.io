@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>线程（Thread System in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -482,18 +482,18 @@
 锁只是一个字长的整数，即<strong>iptr</strong>或<strong>uptr</strong>外部类型，其中包含目标计算机的本机字节序，可能是使用<strong>define-ftype</strong>定义的大结构的一部分。必须在驻留于Scheme堆外部的内存中显式分配它，并在适当时显式释放。当仅涉及线程时（即，当不涉及多个进程时），可以通过<strong>foreign-alloc</strong>分配内存。 当涉及多个进程时，应在进程共享的某个区域中分配该锁。</p>
 <p>使用<strong>ftype-init-lock!</strong> 初始化后，进程或线程可以尝试通过**ftype-lock!<strong>或</strong>ftype-spin-lock!<strong>锁定<em>lock</em> 。一旦锁已被锁定并且在解锁之前，即使通过最近锁定它的进程或线程，再一次尝试锁定该锁也会失败。 任何进程或线程可以使用</strong>ftype-unlock!**来解锁lock，而不仅仅是通过最近锁定锁的进程或线程来解锁。</p>
 <p>锁机制提供的结构很少，并且分配和使用中的错误可能导致内存错误，死锁和其他问题。 因此，通常建议仅将锁用作更高级别抽象的一部分，以确保按规范方式使用锁。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>lock
-  (<span style="color:#a6e22e">make-ftype-pointer</span> uptr
-    (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> uptr))))
-
-(<span style="color:#a6e22e">ftype-init-lock!</span> uptr () lock)
-(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
-(<span style="color:#a6e22e">ftype-spin-lock!</span> uptr () lock)
-(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>lock
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-ftype-pointer</span> uptr
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> uptr))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-init-lock!</span> uptr () lock)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-spin-lock!</span> uptr () lock)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-lock!</span> uptr () lock) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ftype-unlock!</span> uptr () lock)
+</span></span></code></pre></div><blockquote>
 <p>(ftype-init-lock! ftype-name (a &hellip;) fptr-expr) |  (ftype-init-lock! ftype-name (a &hellip;) fptr-expr index)</p>
 </blockquote>
 <blockquote>
@@ -531,44 +531,44 @@
 <p>返回新的ftype guardian <em>g</em> ，可以使用其注册<em>ftype-name</em> 类型（或<em>ftype-nam</em> e的某些子类型）的ftype-pointer。 通过使用ftype指针作为参数调用<em>g</em> ，可以向<em>g</em> 注册ftype指针。</p>
 <p>ftype guardian不会像普通的guardian那样自动保护其注册的ftype指针免遭回收。而是，对于每个通过普通（非弱，非监护人指针）变得不可访问的已注册的ftype指针，guardian会减少ftype指针指向的对象的引用计数。如果引用计数值为0，则ftype指针将保留并可以从guardian中检索。 但是，如果生成的引用计数值非零，则不会保留ftype指针。假设回收器外部的代码正确维护了引用计数，则从ftype guardian检索的对象（通过不带参数的调用）将确保具有0引用计数。回收器使用等效的<strong>ftype-locked-decr!<strong>来减少引用计数，以支持由多个进程共享的内存中的非Scheme对象。在这样的系统中，程序本身应使用</strong>ftype-locked-incr!</strong> 和<strong>ftype-locked-decr!</strong> 或非Scheme等效项（例如，第4.8节中所述C语言的scheme.h中的 LOCKED_INCR和LOCKED_DECR宏）来维护引用计数。</p>
 <p>下面的示例为ftype对象定义了一个简单的ftype和一个分配器，该对象释放以前分配的且不再可访问的ftype对象。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">module (<span style="color:#a6e22e">A</span> make-A free-dropped-As)
-  (<span style="color:#a6e22e">define-ftype</span> A
-    (<span style="color:#a6e22e">struct</span>
-      [refcount uptr]
-      [data int]))
-  (<span style="color:#66d9ef">define </span>g (<span style="color:#a6e22e">ftype-guardian</span> A))
-  (<span style="color:#66d9ef">define </span>free-dropped-As
-    (<span style="color:#66d9ef">lambda </span>()
-      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">g</span>)])
-        (<span style="color:#a6e22e">when</span> a
-          (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;freeing ~s\n&#34;</span> (<span style="color:#a6e22e">ftype-ref</span> A (<span style="color:#a6e22e">data</span>) a))
-          (<span style="color:#a6e22e">foreign-free</span> (<span style="color:#a6e22e">ftype-pointer-address</span> a))
-          (<span style="color:#a6e22e">free-dropped-As</span>)))))
-  (<span style="color:#66d9ef">define </span>make-A
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-      (<span style="color:#a6e22e">free-dropped-As</span>)
-      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">make-ftype-pointer</span> A (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> A)))])
-        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">refcount</span>) a <span style="color:#ae81ff">1</span>)
-        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">data</span>) a n)
-        (<span style="color:#a6e22e">g</span> a)
-        a))))
-</code></pre></div><p>我们可以通过分配，丢弃并立即回收指向A的ftype指针进行测试。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#66d9ef">do </span>([i <span style="color:#ae81ff">10</span> (<span style="color:#a6e22e">fx-</span> i <span style="color:#ae81ff">1</span>)])
-      ((<span style="color:#a6e22e">fx=</span> i <span style="color:#ae81ff">0</span>))
-(<span style="color:#a6e22e">make-A</span> i)
-    (<span style="color:#a6e22e">collect</span>))
-freeing <span style="color:#ae81ff">10</span>
-freeing <span style="color:#ae81ff">9</span>
-freeing <span style="color:#ae81ff">8</span>
-freeing <span style="color:#ae81ff">7</span>
-freeing <span style="color:#ae81ff">6</span>
-freeing <span style="color:#ae81ff">5</span>
-freeing <span style="color:#ae81ff">4</span>
-freeing <span style="color:#ae81ff">3</span>
-freeing <span style="color:#ae81ff">2</span>
-&gt; (<span style="color:#a6e22e">free-dropped-As</span>)
-freeing <span style="color:#ae81ff">1</span>
-</code></pre></div><p>由ftype guardian保护的对象可能包含指向其他对象的指针，这些其他对象的引用计数也应在分配包含对象时增加，并在释放包含对象时减少。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>module (<span style="color:#a6e22e">A</span> make-A free-dropped-As)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-ftype</span> A
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">struct</span>
+</span></span><span style="display:flex;"><span>      [refcount uptr]
+</span></span><span style="display:flex;"><span>      [data int]))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>g (<span style="color:#a6e22e">ftype-guardian</span> A))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>free-dropped-As
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">g</span>)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">when</span> a
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;freeing ~s\n&#34;</span> (<span style="color:#a6e22e">ftype-ref</span> A (<span style="color:#a6e22e">data</span>) a))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">foreign-free</span> (<span style="color:#a6e22e">ftype-pointer-address</span> a))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">free-dropped-As</span>)))))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>make-A
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">free-dropped-As</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([a (<span style="color:#a6e22e">make-ftype-pointer</span> A (<span style="color:#a6e22e">foreign-alloc</span> (<span style="color:#a6e22e">ftype-sizeof</span> A)))])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">refcount</span>) a <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">ftype-set!</span> A (<span style="color:#a6e22e">data</span>) a n)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">g</span> a)
+</span></span><span style="display:flex;"><span>        a))))
+</span></span></code></pre></div><p>我们可以通过分配，丢弃并立即回收指向A的ftype指针进行测试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>&gt; (<span style="color:#66d9ef">do </span>([i <span style="color:#ae81ff">10</span> (<span style="color:#a6e22e">fx-</span> i <span style="color:#ae81ff">1</span>)])
+</span></span><span style="display:flex;"><span>      ((<span style="color:#a6e22e">fx=</span> i <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">make-A</span> i)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">collect</span>))
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">free-dropped-As</span>)
+</span></span><span style="display:flex;"><span>freeing <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>由ftype guardian保护的对象可能包含指向其他对象的指针，这些其他对象的引用计数也应在分配包含对象时增加，并在释放包含对象时减少。</p>
 <h3 id="线程参数">线程参数</h3>
 <blockquote>
 <p>(make-thread-parameter object) |  (make-thread-parameter object procedure)</p>
@@ -583,135 +583,132 @@ freeing <span style="color:#ae81ff">1</span>
 <p>初始的控制台以及当前的输入和输出端口以及transcript端口都是线程安全的，因此多个线程向控制台打印错误和/或调试消息是安全的。即使在同一行内，输出也可能是交错的，但是端口不会损坏。 这些端口的线程安全性是通过为每个I/O操作获取一个互斥锁的高成本来实现的。</p>
 <h3 id="实例有界队列">实例：有界队列</h3>
 <p>以下代码摘自文章“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”，它使用许多线程系统功能实现了有界队列。 有界队列具有固定数量的可用插槽。 当队列已满时尝试入队会导致调用线程阻塞。 尝试从空队列中出队会导致调用线程阻塞。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> bq
-  (<span style="color:#a6e22e">fields</span>
-    (<span style="color:#a6e22e">immutable</span> data)
-    (<span style="color:#a6e22e">mutable</span> head)
-    (<span style="color:#a6e22e">mutable</span> tail)
-    (<span style="color:#a6e22e">immutable</span> mutex)
-    (<span style="color:#a6e22e">immutable</span> ready)
-    (<span style="color:#a6e22e">immutable</span> room))
-  (<span style="color:#a6e22e">protocol</span>
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span>)
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">bound</span>)
-        (<span style="color:#a6e22e">new</span> (make-vector bound) <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">make-mutex</span>)
-          (<span style="color:#a6e22e">make-condition</span>) (<span style="color:#a6e22e">make-condition</span>))))))
-
-(<span style="color:#66d9ef">define </span>dequeue!
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
-    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
-      (<span style="color:#66d9ef">let </span>loop ()
-        (<span style="color:#66d9ef">let </span>([head (<span style="color:#a6e22e">bq-head</span> q)])
-          (<span style="color:#a6e22e">cond</span>
-            [(= head (<span style="color:#a6e22e">bq-tail</span> q))
-             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-ready</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
-             (<span style="color:#a6e22e">loop</span>)]
-            [else
-             (<span style="color:#a6e22e">bq-head-set!</span> q (<span style="color:#a6e22e">incr</span> q head))
-             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-room</span> q))
-             (vector-ref (<span style="color:#a6e22e">bq-data</span> q) head)]))))))
-
-(<span style="color:#66d9ef">define </span>enqueue!
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">item</span> q)
-    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
-      (<span style="color:#66d9ef">let </span>loop ()
-        (<span style="color:#66d9ef">let* </span>([tail (<span style="color:#a6e22e">bq-tail</span> q)] [tail^ (<span style="color:#a6e22e">incr</span> q tail)])
-          (<span style="color:#a6e22e">cond</span>
-            [(= tail^ (<span style="color:#a6e22e">bq-head</span> q))
-             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-room</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
-             (<span style="color:#a6e22e">loop</span>)]
-			 [else
-             (vector-set! (<span style="color:#a6e22e">bq-data</span> q) tail item)
-             (<span style="color:#a6e22e">bq-tail-set!</span> q tail^)
-             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-ready</span> q))]))))))
-
-(<span style="color:#66d9ef">define </span>incr
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> i)
-    (modulo (+ i <span style="color:#ae81ff">1</span>) (vector-length (<span style="color:#a6e22e">bq-data</span> q)))))
-
-</code></pre></div><p>下面的代码演示了有界队列在一组线程中的应用，这些线程分别扮演数据的消费者和生产者。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>job-queue)
-(<span style="color:#66d9ef">define </span>die? <span style="color:#66d9ef">#f</span>)
-
-(<span style="color:#66d9ef">define </span>make-job
-  (<span style="color:#66d9ef">let </span>([count <span style="color:#ae81ff">0</span>])
-    (<span style="color:#66d9ef">define </span>fib
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-	    (<span style="color:#66d9ef">if </span>(&lt; n <span style="color:#ae81ff">2</span>)
-		  n
-          (+ (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">2</span>)) (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">1</span>))))))
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-      (<span style="color:#66d9ef">set! </span>count (+ count <span style="color:#ae81ff">1</span>))
-      (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;Adding job #~s = (lambda () (fib ~s))\n&#34;</span> count n)
-      (cons count (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> n))))))
-
-(<span style="color:#66d9ef">define </span>make-producer
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-    (<span style="color:#a6e22e">rec</span> producer
-      (<span style="color:#66d9ef">lambda </span>()
-        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s posting a job\n&#34;</span> n)
-        (<span style="color:#a6e22e">enqueue!</span> (<span style="color:#a6e22e">make-job</span> (+ <span style="color:#ae81ff">20</span> (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">10</span>))) job-queue)
-        (<span style="color:#66d9ef">if </span>die?
-            (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s dying\n&#34;</span> n)
-            (<span style="color:#a6e22e">producer</span>))))))
-
-
-(<span style="color:#66d9ef">define </span>make-consumer
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-    (<span style="color:#a6e22e">rec</span> consumer
-      (<span style="color:#66d9ef">lambda </span>()
-        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s looking for a job~%&#34;</span> n)
-        (<span style="color:#66d9ef">let </span>([job (<span style="color:#a6e22e">dequeue!</span> job-queue)])
-          (<span style="color:#66d9ef">if </span>die?
-              (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s dying\n&#34;</span> n)
-              (<span style="color:#a6e22e">begin</span>
-                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s executing job #~s~%&#34;</span> n (car job))
-                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s computed:  ~s~%&#34;</span> n ((cdr job)))
-                (<span style="color:#a6e22e">consumer</span>))))))))
-
-
-
-(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">bq-test</span> np nc)
-  (<span style="color:#66d9ef">set! </span>job-queue (<span style="color:#a6e22e">make-bq</span> (max nc np)))
-  (<span style="color:#66d9ef">do </span>([np np (- np <span style="color:#ae81ff">1</span>)])
-      ((&lt;= np <span style="color:#ae81ff">0</span>))
-      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-producer</span> np)))
-  (<span style="color:#66d9ef">do </span>([nc nc (- nc <span style="color:#ae81ff">1</span>)])
-      ((&lt;= nc <span style="color:#ae81ff">0</span>))
-      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-consumer</span> nc))))
-
-
-</code></pre></div><p>这是示例程序运行后的可能的前几行输出：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#a6e22e">begin</span>
-    (<span style="color:#a6e22e">bq-test</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
-    (<span style="color:#a6e22e">system</span> <span style="color:#e6db74">&#34;sleep 3&#34;</span>)
-    (<span style="color:#66d9ef">set! </span>die? <span style="color:#66d9ef">#t</span>))
-producer <span style="color:#ae81ff">3</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
-producer <span style="color:#ae81ff">3</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
-producer <span style="color:#ae81ff">3</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">3</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">22</span>))
-producer <span style="color:#ae81ff">3</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">4</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">21</span>))
-producer <span style="color:#ae81ff">2</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">5</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
-producer <span style="color:#ae81ff">1</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">6</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
-consumer <span style="color:#ae81ff">4</span> looking for a job
-producer <span style="color:#ae81ff">3</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">7</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">24</span>))
-consumer <span style="color:#ae81ff">4</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span>
-consumer <span style="color:#ae81ff">3</span> looking for a job
-producer <span style="color:#ae81ff">2</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">8</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
-consumer <span style="color:#ae81ff">3</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span>
-consumer <span style="color:#ae81ff">3</span> computed:  <span style="color:#ae81ff">121393</span>
-consumer <span style="color:#ae81ff">3</span> looking for a job
-producer <span style="color:#ae81ff">1</span> posting a job
-Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">9</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
-<span style="color:#f92672">...</span>
-</code></pre></div><p>在“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> bq
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">fields</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">immutable</span> data)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">mutable</span> head)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">mutable</span> tail)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">immutable</span> mutex)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">immutable</span> ready)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">immutable</span> room))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">protocol</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">bound</span>)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">new</span> (make-vector bound) <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">make-mutex</span>)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">make-condition</span>) (<span style="color:#a6e22e">make-condition</span>))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>dequeue!
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>loop ()
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let </span>([head (<span style="color:#a6e22e">bq-head</span> q)])
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>            [(= head (<span style="color:#a6e22e">bq-tail</span> q))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-ready</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">loop</span>)]
+</span></span><span style="display:flex;"><span>            [else
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">bq-head-set!</span> q (<span style="color:#a6e22e">incr</span> q head))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-room</span> q))
+</span></span><span style="display:flex;"><span>             (vector-ref (<span style="color:#a6e22e">bq-data</span> q) head)]))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>enqueue!
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">item</span> q)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">with-mutex</span> (<span style="color:#a6e22e">bq-mutex</span> q)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>loop ()
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let* </span>([tail (<span style="color:#a6e22e">bq-tail</span> q)] [tail^ (<span style="color:#a6e22e">incr</span> q tail)])
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>            [(= tail^ (<span style="color:#a6e22e">bq-head</span> q))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">condition-wait</span> (<span style="color:#a6e22e">bq-room</span> q) (<span style="color:#a6e22e">bq-mutex</span> q))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">loop</span>)]
+</span></span><span style="display:flex;"><span>			 [else
+</span></span><span style="display:flex;"><span>             (vector-set! (<span style="color:#a6e22e">bq-data</span> q) tail item)
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">bq-tail-set!</span> q tail^)
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">condition-signal</span> (<span style="color:#a6e22e">bq-ready</span> q))]))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>incr
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> i)
+</span></span><span style="display:flex;"><span>    (modulo (+ i <span style="color:#ae81ff">1</span>) (vector-length (<span style="color:#a6e22e">bq-data</span> q)))))
+</span></span></code></pre></div><p>下面的代码演示了有界队列在一组线程中的应用，这些线程分别扮演数据的消费者和生产者。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>job-queue)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>die? <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>make-job
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([count <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>fib
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>	    (<span style="color:#66d9ef">if </span>(&lt; n <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>		  n
+</span></span><span style="display:flex;"><span>          (+ (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">2</span>)) (<span style="color:#a6e22e">fib</span> (- n <span style="color:#ae81ff">1</span>))))))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">set! </span>count (+ count <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;Adding job #~s = (lambda () (fib ~s))\n&#34;</span> count n)
+</span></span><span style="display:flex;"><span>      (cons count (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> n))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>make-producer
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">rec</span> producer
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s posting a job\n&#34;</span> n)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">enqueue!</span> (<span style="color:#a6e22e">make-job</span> (+ <span style="color:#ae81ff">20</span> (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">10</span>))) job-queue)
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">if </span>die?
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;producer ~s dying\n&#34;</span> n)
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">producer</span>))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>make-consumer
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">rec</span> consumer
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s looking for a job~%&#34;</span> n)
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let </span>([job (<span style="color:#a6e22e">dequeue!</span> job-queue)])
+</span></span><span style="display:flex;"><span>          (<span style="color:#66d9ef">if </span>die?
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s dying\n&#34;</span> n)
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">begin</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s executing job #~s~%&#34;</span> n (car job))
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">printf</span> <span style="color:#e6db74">&#34;consumer ~s computed:  ~s~%&#34;</span> n ((cdr job)))
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">consumer</span>))))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">bq-test</span> np nc)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">set! </span>job-queue (<span style="color:#a6e22e">make-bq</span> (max nc np)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">do </span>([np np (- np <span style="color:#ae81ff">1</span>)])
+</span></span><span style="display:flex;"><span>      ((&lt;= np <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-producer</span> np)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">do </span>([nc nc (- nc <span style="color:#ae81ff">1</span>)])
+</span></span><span style="display:flex;"><span>      ((&lt;= nc <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">fork-thread</span> (<span style="color:#a6e22e">make-consumer</span> nc))))
+</span></span></code></pre></div><p>这是示例程序运行后的可能的前几行输出：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">begin</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bq-test</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">system</span> <span style="color:#e6db74">&#34;sleep 3&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">set! </span>die? <span style="color:#66d9ef">#t</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">3</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">3</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">3</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">3</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">22</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">3</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">4</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">21</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">2</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">5</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">1</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">6</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">29</span>))
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">4</span> looking for a job
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">3</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">7</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">24</span>))
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">4</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">3</span> looking for a job
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">2</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">8</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">3</span> executing job <span style="color:#f92672">#</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">3</span> computed:  <span style="color:#ae81ff">121393</span>
+</span></span><span style="display:flex;"><span>consumer <span style="color:#ae81ff">3</span> looking for a job
+</span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">1</span> posting a job
+</span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">9</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>在“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>

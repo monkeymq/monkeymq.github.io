@@ -5,10 +5,19 @@
     <link>https://lvsq.net/posts/</link>
     <description>Recent content in Posts on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 23 Feb 2022 08:58:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Mar 2022 20:46:35 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>系统操作(System Operations in Chez Scheme)</title>
+      <link>https://lvsq.net/2020/02/system-operations/</link>
+      <pubDate>Thu, 06 Feb 2020 10:54:14 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2020/02/system-operations/</guid>
+      <description>异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止</description>
+    </item>
     
     <item>
       <title>Scheme语法define-record-type介绍</title>

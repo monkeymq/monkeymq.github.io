@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Modules 模块用于帮助将程序组织成单独的部分，这些部分通过声明好的接口干净地交互。尽管模块化编程通常可以为多人参加的大型程序开发带来便利，但它也可以" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Chez Scheme Modules - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -419,105 +419,105 @@
 <p>模块由一组（可能为空的）定义和一组（可能为空的）初始化表达式序列组成。模块中定义的标识符（可理解为变量或者状态，下同）在模块的程序体中可见，被导出的标识符在模块的导入作用域内亦可见。模块接口中列出的每个标识符必须在该模块中定义或被导入该到模块。module 形式是一种定义，因此可以出现在其他定义可以出现的任何位置，包括嵌套在 lambda 表达式的程序体、 library 形式、顶层程序，以及嵌套在其他模块中。此外，因为模块名的作用域与其他标识符相同，所以模块和库可以像变量和关键字那样导出模块名。</p>
 <p>模块名与其他标识符占用相同的名字空间，并遵循相同的作用域规则。除非被导出，否则模块中定义的标识符仅在该模块中可见。</p>
 <p>模块内的表达式可以引用在模块外部绑定的标识符。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
-  (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">plusx</span>)
-    (<span style="color:#66d9ef">define </span>plusx (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (+ x y))))
-  (<span style="color:#a6e22e">import</span> m)
-  (<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">4</span>])
-    (<span style="color:#a6e22e">plusx</span> <span style="color:#ae81ff">5</span>))) <span style="color:#75715e">; =&gt; 8,注意不是9哦，可以将plusx视为：(define plusx (lambda (y) (+ 3 y))))</span>
-</code></pre></div><p>同样，import不会阻止访问出现导入表单的可见标识符，但import标识符所覆盖的变量除外（啥叫覆盖，看下面两段代码）。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
-(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>])
-  (<span style="color:#a6e22e">import</span> m)
-  (list x y)) <span style="color:#75715e">; =&gt; (local-x m-y)</span>
-</code></pre></div><p>模块m中定义了标识符y, 在其被import之后会覆盖let中的y；</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
-(<span style="color:#66d9ef">let </span>()
-  (<span style="color:#a6e22e">import</span> m)
-  (<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>]) (list x y)) <span style="color:#75715e">; =&gt; (local-x local-y)</span>
-)
-</code></pre></div><p>先import m，之后再定义y，模块中定义的y不会覆盖let的y。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">plusx</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>plusx (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (+ x y))))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> m)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">4</span>])
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">plusx</span> <span style="color:#ae81ff">5</span>))) <span style="color:#75715e">; =&gt; 8,注意不是9哦，可以将plusx视为：(define plusx (lambda (y) (+ 3 y))))</span>
+</span></span></code></pre></div><p>同样，import不会阻止访问出现导入表单的可见标识符，但import标识符所覆盖的变量除外（啥叫覆盖，看下面两段代码）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> m)
+</span></span><span style="display:flex;"><span>  (list x y)) <span style="color:#75715e">; =&gt; (local-x m-y)</span>
+</span></span></code></pre></div><p>模块m中定义了标识符y, 在其被import之后会覆盖let中的y；</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>()
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> m)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>]) (list x y)) <span style="color:#75715e">; =&gt; (local-x local-y)</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>先import m，之后再定义y，模块中定义的y不会覆盖let的y。</p>
 <p>另一方面，在模块中使用 import-only 会建立一个隔离的作用域，其中唯一可见的是被导入模块所导出的标识符，下面的代码中只有y可见。<!-- raw HTML omitted -->
 对于静态验证，有时不希望使用任何标识符，除了明确导入模块或本地范围的标识符外，这有时是合乎需要的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
-(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>])
-  (<span style="color:#a6e22e">import-only</span> m)
-  x) <span style="color:#75715e">; =&gt; Error: x is not visible</span>
-</code></pre></div><p>除非通过“import-only”导入的模块导出“import”或“import-only”以及至少一个模块的名称，否则无法在“import-only”范围内进行后续导入。 要创建一个包含多个模块导出的隔离范围而又不使“import”或“import-only”可见，必须以相同的“import-only”形式列出所有要导入的模块。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;m-y</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;local-x</span>] [y <span style="color:#e6db74">&#39;local-y</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import-only</span> m)
+</span></span><span style="display:flex;"><span>  x) <span style="color:#75715e">; =&gt; Error: x is not visible</span>
+</span></span></code></pre></div><p>除非通过“import-only”导入的模块导出“import”或“import-only”以及至少一个模块的名称，否则无法在“import-only”范围内进行后续导入。 要创建一个包含多个模块导出的隔离范围而又不使“import”或“import-only”可见，必须以相同的“import-only”形式列出所有要导入的模块。</p>
 <p><strong>另一种解决方案是创建一个包含每个其他模块的导出的模块。</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> m2 (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;y</span>))
-(<span style="color:#a6e22e">module</span> m1 (<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">define </span>x <span style="color:#e6db74">&#39;x</span>))
-(<span style="color:#a6e22e">module</span> mega-module (cons x y)
-  (<span style="color:#a6e22e">import</span> m1)
-  (<span style="color:#a6e22e">import</span> m2)
-  (<span style="color:#a6e22e">import</span> scheme))
-(<span style="color:#66d9ef">let </span>([y <span style="color:#ae81ff">3</span>])
-  (<span style="color:#a6e22e">import-only</span> mega-module)
-  (cons x y)) <span style="color:#75715e">; =&gt; (x . y)</span>
-</code></pre></div><p>在它被编译之前，源程序被翻译成不含语法抽象、语法定义、库定义、模块定义以及 import 形式的核心语言程序。翻译由语法展开器负责，语法展开器以递归下降的方式处理源程序中的形式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> m2 (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#e6db74">&#39;y</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> m1 (<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">define </span>x <span style="color:#e6db74">&#39;x</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> mega-module (cons x y)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> m1)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> m2)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> scheme))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([y <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import-only</span> mega-module)
+</span></span><span style="display:flex;"><span>  (cons x y)) <span style="color:#75715e">; =&gt; (x . y)</span>
+</span></span></code></pre></div><p>在它被编译之前，源程序被翻译成不含语法抽象、语法定义、库定义、模块定义以及 import 形式的核心语言程序。翻译由语法展开器负责，语法展开器以递归下降的方式处理源程序中的形式。</p>
 <p>module 和 import 特殊形式仅影响标识符(identifier)在源程序中的可见性，而不影响其含义。特别地，无论变量被绑定到在模块内部或外部定义的位置，import 都不会引入新位置。为了保持由模块和语法抽象建立的作用域关系，局部变量在必要时会被重命名。因此，表达式：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">1</span>])
-  (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">x</span> setter)
-    (<span style="color:#66d9ef">define-syntax </span>x (<span style="color:#a6e22e">identifier-syntax</span> z))
-    (<span style="color:#66d9ef">define </span>setter (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">set! </span>z x)))
-    (<span style="color:#66d9ef">define </span>z <span style="color:#ae81ff">5</span>))
-  (<span style="color:#66d9ef">let </span>([y x] [z <span style="color:#ae81ff">0</span>])
-    (<span style="color:#a6e22e">import</span> m)
-    (<span style="color:#a6e22e">setter</span> <span style="color:#ae81ff">3</span>)
-    (+ x y z))) <span style="color:#75715e">; =&gt; 4</span>
-</code></pre></div><p>等价于下面的表达式，其中标识符被统一地更名，并带上了下标：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x0 <span style="color:#ae81ff">1</span>])
-  (<span style="color:#66d9ef">define-syntax </span>x1 (<span style="color:#a6e22e">identifier-syntax</span> z1))
-  (<span style="color:#66d9ef">define </span>setter1 (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x2</span>) (<span style="color:#66d9ef">set! </span>z1 x2)))
-  (<span style="color:#66d9ef">define </span>z1 <span style="color:#ae81ff">5</span>)
-  (<span style="color:#66d9ef">let </span>([y3 x0] [z3 <span style="color:#ae81ff">0</span>])
-    (<span style="color:#a6e22e">setter1</span> <span style="color:#ae81ff">3</span>)
-    (+ x1 y3 z3)))
-</code></pre></div><h3 id="互递归module">互递归module</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">a</span> b)
-  (<span style="color:#a6e22e">module</span> a (<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">define </span>x (<span style="color:#66d9ef">lambda </span>() y)))
-  (<span style="color:#a6e22e">module</span> b (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y (<span style="color:#66d9ef">lambda </span>() x)))
-  (<span style="color:#a6e22e">import</span> a)
-  (<span style="color:#a6e22e">import</span> b))
-</code></pre></div><p>此模式的一般化语法定义如下，允许定义多个互递归的模块</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>rec-modules
-  (<span style="color:#66d9ef">syntax-rules </span>(<span style="color:#a6e22e">module</span>)
-    [(<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">id</span> <span style="color:#f92672">...</span>) form <span style="color:#f92672">...</span>) <span style="color:#f92672">...</span>)
-     (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">...</span>)
-       (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">id</span> <span style="color:#f92672">...</span>) form <span style="color:#f92672">...</span>) <span style="color:#f92672">...</span>
-       (<span style="color:#a6e22e">import</span> m) <span style="color:#f92672">...</span>)]))
-</code></pre></div><h3 id="组合module">组合module</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">x</span> setter)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define-syntax </span>x (<span style="color:#a6e22e">identifier-syntax</span> z))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>setter (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">set! </span>z x)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>z <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([y x] [z <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">import</span> m)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">setter</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>    (+ x y z))) <span style="color:#75715e">; =&gt; 4</span>
+</span></span></code></pre></div><p>等价于下面的表达式，其中标识符被统一地更名，并带上了下标：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x0 <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define-syntax </span>x1 (<span style="color:#a6e22e">identifier-syntax</span> z1))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>setter1 (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x2</span>) (<span style="color:#66d9ef">set! </span>z1 x2)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>z1 <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([y3 x0] [z3 <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">setter1</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>    (+ x1 y3 z3)))
+</span></span></code></pre></div><h3 id="互递归module">互递归module</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">a</span> b)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">module</span> a (<span style="color:#a6e22e">x</span>) (<span style="color:#66d9ef">define </span>x (<span style="color:#66d9ef">lambda </span>() y)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">module</span> b (<span style="color:#a6e22e">y</span>) (<span style="color:#66d9ef">define </span>y (<span style="color:#66d9ef">lambda </span>() x)))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> a)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import</span> b))
+</span></span></code></pre></div><p>此模式的一般化语法定义如下，允许定义多个互递归的模块</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define-syntax </span>rec-modules
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">syntax-rules </span>(<span style="color:#a6e22e">module</span>)
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">id</span> <span style="color:#f92672">...</span>) form <span style="color:#f92672">...</span>) <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">module</span> m (<span style="color:#a6e22e">id</span> <span style="color:#f92672">...</span>) form <span style="color:#f92672">...</span>) <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">import</span> m) <span style="color:#f92672">...</span>)]))
+</span></span></code></pre></div><h3 id="组合module">组合module</h3>
 <p>由于模块可以重新导出所导入的绑定，所以很容易在单个模块上提供多个视图，就像下面的 s 和 t 为 r 提供的视图那样，或者将几个模块组合成一个复合，就像 r 那样。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> p (<span style="color:#a6e22e">x</span> y)
-  (<span style="color:#66d9ef">define </span>x <span style="color:#ae81ff">1</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">2</span>))
-(<span style="color:#a6e22e">module</span> q (<span style="color:#a6e22e">y</span> z)
-  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>) (<span style="color:#66d9ef">define </span>z <span style="color:#ae81ff">4</span>))
-(<span style="color:#a6e22e">module</span> r (<span style="color:#a6e22e">a</span> b c d)
-  (<span style="color:#a6e22e">import*</span> p (<span style="color:#a6e22e">a</span> x) (<span style="color:#a6e22e">b</span> y))
-  (<span style="color:#a6e22e">import*</span> q (<span style="color:#a6e22e">c</span> y) (<span style="color:#a6e22e">d</span> z)))
-(<span style="color:#a6e22e">module</span> s (<span style="color:#a6e22e">a</span> c) (<span style="color:#a6e22e">import</span> r))
-(<span style="color:#a6e22e">module</span> t (<span style="color:#a6e22e">b</span> d) (<span style="color:#a6e22e">import</span> r))
-</code></pre></div><h4 id="import">import*</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> p (<span style="color:#a6e22e">x</span> y)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>x <span style="color:#ae81ff">1</span>) (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> q (<span style="color:#a6e22e">y</span> z)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>) (<span style="color:#66d9ef">define </span>z <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> r (<span style="color:#a6e22e">a</span> b c d)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import*</span> p (<span style="color:#a6e22e">a</span> x) (<span style="color:#a6e22e">b</span> y))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import*</span> q (<span style="color:#a6e22e">c</span> y) (<span style="color:#a6e22e">d</span> z)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> s (<span style="color:#a6e22e">a</span> c) (<span style="color:#a6e22e">import</span> r))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> t (<span style="color:#a6e22e">b</span> d) (<span style="color:#a6e22e">import</span> r))
+</span></span></code></pre></div><h4 id="import">import*</h4>
 <p>稍微解释一下import*, 其语法定义如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>import*
-  (<span style="color:#66d9ef">syntax-rules </span>()
-    [(<span style="color:#a6e22e">_</span> m) (<span style="color:#a6e22e">begin</span>)]
-    [(<span style="color:#a6e22e">_</span> m (<span style="color:#a6e22e">new</span> old))
-     (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">new</span>)
-       (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">tmp</span>)
-(<span style="color:#a6e22e">import</span> m)
-         (<span style="color:#a6e22e">alias</span> tmp old))
-       (<span style="color:#a6e22e">alias</span> new tmp))]
-    [(<span style="color:#a6e22e">_</span> m id) (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">id</span>) (<span style="color:#a6e22e">import</span> m))]
-    [(<span style="color:#a6e22e">_</span> m spec0 spec1 <span style="color:#f92672">...</span>)
-     (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">import*</span> m spec0) (<span style="color:#a6e22e">import*</span> m spec1 <span style="color:#f92672">...</span>))]))
-</code></pre></div><p>它支持重命名import的绑定和选择性导入特定的绑定，无需使用内置的import子形式来选择和重命名标识符，举例来说：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>()
-	(<span style="color:#a6e22e">import*</span> scheme (+ cons) (cons +)) (+ (cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>) (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">7</span>)
-
-(<span style="color:#66d9ef">let </span>()
-	(<span style="color:#a6e22e">import*</span> (<span style="color:#a6e22e">rnrs</span>) (+ cons) (cons +)) (+ (cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>) (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">7</span>)
-</code></pre></div><h4 id="元定义meta-definitions">元定义Meta Definitions</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define-syntax </span>import*
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">syntax-rules </span>()
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> m) (<span style="color:#a6e22e">begin</span>)]
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> m (<span style="color:#a6e22e">new</span> old))
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">new</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">tmp</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">import</span> m)
+</span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">alias</span> tmp old))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">alias</span> new tmp))]
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> m id) (<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">id</span>) (<span style="color:#a6e22e">import</span> m))]
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> m spec0 spec1 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">import*</span> m spec0) (<span style="color:#a6e22e">import*</span> m spec1 <span style="color:#f92672">...</span>))]))
+</span></span></code></pre></div><p>它支持重命名import的绑定和选择性导入特定的绑定，无需使用内置的import子形式来选择和重命名标识符，举例来说：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>()
+</span></span><span style="display:flex;"><span>	(<span style="color:#a6e22e">import*</span> scheme (+ cons) (cons +)) (+ (cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>) (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>()
+</span></span><span style="display:flex;"><span>	(<span style="color:#a6e22e">import*</span> (<span style="color:#a6e22e">rnrs</span>) (+ cons) (cons +)) (+ (cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>) (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">7</span>)
+</span></span></code></pre></div><h4 id="元定义meta-definitions">元定义Meta Definitions</h4>
 <blockquote>
 <p>语法：(meta . definition)</p>
 </blockquote>
@@ -528,13 +528,13 @@
 <p>它告诉展开器，该定义式产生的任何变量定义都只是展开期定义，只能用于其他元定义的右侧，最主要是用在转换器表达式中。它用于定义展开期辅助函数，以及供一个或多个 syntax-case 转换器所使用的其他信息。</p>
 <p>元定义的语义类似于<strong>let*</strong>，它可以是自递归，但不是互递归的。</p>
 <p>元定义通过宏展开传播，因此可以编写，例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">a</span>)
-  (<span style="color:#a6e22e">meta</span> define-record foo (<span style="color:#a6e22e">x</span>))
-  (<span style="color:#66d9ef">define-syntax </span>a
-    (<span style="color:#66d9ef">let </span>([q (<span style="color:#a6e22e">make-foo</span> <span style="color:#f92672">#&#39;</span><span style="color:#e6db74">&#39;q</span>)])
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">foo-x</span> q)))))
-a <span style="color:#960050;background-color:#1e0010">；</span><span style="color:#66d9ef">=&gt; </span>q
-</code></pre></div><h4 id="条件展开conditional-expansion">条件展开Conditional expansion</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> (<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">meta</span> define-record foo (<span style="color:#a6e22e">x</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define-syntax </span>a
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>([q (<span style="color:#a6e22e">make-foo</span> <span style="color:#f92672">#&#39;</span><span style="color:#e6db74">&#39;q</span>)])
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">foo-x</span> q)))))
+</span></span><span style="display:flex;"><span>a <span style="color:#960050;background-color:#1e0010">；</span><span style="color:#66d9ef">=&gt; </span>q
+</span></span></code></pre></div><h4 id="条件展开conditional-expansion">条件展开Conditional expansion</h4>
 <p>可以通过 <strong>meta-cond</strong> 在展开期做出决策，这类似于 <strong>cond</strong>，但是是在展开期求值并测试表达式，并且可以在预期为定义的上下文中以及在表达式上下文中使用。</p>
 <blockquote>
 <p>语法：(meta-cond clause1 clause2 &hellip;)</p>
@@ -549,37 +549,37 @@ a <span style="color:#960050;background-color:#1e0010">；</span><span style="co
 </blockquote>
 <p>在展开期间，test 表达式会被顺序地求值，直到某条表达式求值为真或者求值完所有的表达式为止。如果一条 test 表达式求值为真，则 meta-cond 形式将展开为包含相应表达式 expr1 expr2 &hellip; 所组成的 begin 形式。如果没有求值为真的 test 表达式，且存在 else 子句，则 meta-cond 形式将展开为由来自于 else 子句的表达式 expr1 expr2 &hellip; 所组成的 begin 形式。否则，meta-cond 表达式展开为对 void 过程的调用。</p>
 <p>meta-cond 可以按如下定义：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>meta-cond
-  (<span style="color:#66d9ef">syntax-rules </span>()
-    [(<span style="color:#a6e22e">_</span> [a0 a1 a2 <span style="color:#f92672">...</span>] [b0 b1 b2 <span style="color:#f92672">...</span>] <span style="color:#f92672">...</span>)
-     (<span style="color:#66d9ef">let-syntax </span>([expr (<span style="color:#a6e22e">cond</span>
-                          [a0 (<span style="color:#a6e22e">identifier-syntax</span> (<span style="color:#66d9ef">begin </span>a1 a2 <span style="color:#f92672">...</span>))]
-                          [b0 (<span style="color:#a6e22e">identifier-syntax</span> (<span style="color:#66d9ef">begin </span>b1 b2 <span style="color:#f92672">...</span>))]
-                          <span style="color:#f92672">...</span>)])
-       expr)]))
-</code></pre></div><p>meta-cond 用于在展开期从一组可能的形式中进行选择。例如，程序员可以定义过程的安全（进行错误检查）和不安全（不进行错误检查）版本，并根据编译期优化级别决定调用版本，如下所示:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">meta-cond</span>
-  [(= (<span style="color:#a6e22e">optimize-level</span>) <span style="color:#ae81ff">3</span>) (<span style="color:#a6e22e">unsafe-frob</span> x)]
-  [<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">safe-frob</span> x)])
-</code></pre></div><h4 id="别名aliases">别名Aliases</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define-syntax </span>meta-cond
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">syntax-rules </span>()
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">_</span> [a0 a1 a2 <span style="color:#f92672">...</span>] [b0 b1 b2 <span style="color:#f92672">...</span>] <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">let-syntax </span>([expr (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>                          [a0 (<span style="color:#a6e22e">identifier-syntax</span> (<span style="color:#66d9ef">begin </span>a1 a2 <span style="color:#f92672">...</span>))]
+</span></span><span style="display:flex;"><span>                          [b0 (<span style="color:#a6e22e">identifier-syntax</span> (<span style="color:#66d9ef">begin </span>b1 b2 <span style="color:#f92672">...</span>))]
+</span></span><span style="display:flex;"><span>                          <span style="color:#f92672">...</span>)])
+</span></span><span style="display:flex;"><span>       expr)]))
+</span></span></code></pre></div><p>meta-cond 用于在展开期从一组可能的形式中进行选择。例如，程序员可以定义过程的安全（进行错误检查）和不安全（不进行错误检查）版本，并根据编译期优化级别决定调用版本，如下所示:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">meta-cond</span>
+</span></span><span style="display:flex;"><span>  [(= (<span style="color:#a6e22e">optimize-level</span>) <span style="color:#ae81ff">3</span>) (<span style="color:#a6e22e">unsafe-frob</span> x)]
+</span></span><span style="display:flex;"><span>  [<span style="color:#66d9ef">else </span>(<span style="color:#a6e22e">safe-frob</span> x)])
+</span></span></code></pre></div><h4 id="别名aliases">别名Aliases</h4>
 <blockquote>
 <p>语法：(alias id1 id2)</p>
 </blockquote>
 <p>alias 是一类定义，可以出现在其他定义可以出现的任何位置。它用于将绑定从一个标识符转移到另一个标识符。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>]) (<span style="color:#a6e22e">alias</span> y x) (<span style="color:#66d9ef">set! </span>y <span style="color:#ae81ff">4</span>) (list x y)) <span style="color:#75715e">; =&gt; (4 4)</span>
-</code></pre></div><p>由于展开是由左至右进行的，别名应该出现在右侧的标识符的定义之后，例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>()
-  (<span style="color:#a6e22e">import-only</span> (<span style="color:#a6e22e">chezscheme</span>))
-  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>)
-  (<span style="color:#a6e22e">alias</span> x y)
-  x) <span style="color:#75715e">; =&gt; 3</span>
-</code></pre></div><p>而不是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>()
-  (<span style="color:#a6e22e">import-only</span> (<span style="color:#a6e22e">chezscheme</span>))
-  (<span style="color:#a6e22e">alias</span> x y)
-  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>)
-  x) <span style="color:#75715e">; =&gt; exception: unbound identifier</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>]) (<span style="color:#a6e22e">alias</span> y x) (<span style="color:#66d9ef">set! </span>y <span style="color:#ae81ff">4</span>) (list x y)) <span style="color:#75715e">; =&gt; (4 4)</span>
+</span></span></code></pre></div><p>由于展开是由左至右进行的，别名应该出现在右侧的标识符的定义之后，例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>()
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import-only</span> (<span style="color:#a6e22e">chezscheme</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">alias</span> x y)
+</span></span><span style="display:flex;"><span>  x) <span style="color:#75715e">; =&gt; 3</span>
+</span></span></code></pre></div><p>而不是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>()
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">import-only</span> (<span style="color:#a6e22e">chezscheme</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">alias</span> x y)
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">define </span>y <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>  x) <span style="color:#75715e">; =&gt; exception: unbound identifier</span>
+</span></span></code></pre></div>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">

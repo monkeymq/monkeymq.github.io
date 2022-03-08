@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。 先看看该语法描" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Fluid Binding in Chez Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -412,10 +412,10 @@
 <p>该Binding的作用类似局部变量，与<strong>set!</strong> 比较相似。由<strong>fluid-let</strong>定义的变量必须已绑定到顶层(top level)或者封闭的lambda内或者其他形式的绑定，这很关键！</p>
 <hr>
 <p>请看代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
-  (+ (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#ae81ff">5</span>]) x)
-	x)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">8</span>
-</code></pre></div><p>先定义变量x=3，然后在加法操作当中临时将x的值改为5，最后结果为8，如果将<strong>fluid-let</strong>中的x换个名字，比如y，将如何呢？<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>  (+ (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#ae81ff">5</span>]) x)
+</span></span><span style="display:flex;"><span>	x)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">8</span>
+</span></span></code></pre></div><p>先定义变量x=3，然后在加法操作当中临时将x的值改为5，最后结果为8，如果将<strong>fluid-let</strong>中的x换个名字，比如y，将如何呢？<!-- raw HTML omitted -->
 会得到一个异常：</p>
 <blockquote>
 <p>Exception: variable y is not bound</p>
@@ -423,18 +423,18 @@
 <p>y没有绑定，是的，y即没有在顶层中被定义，也未在某个lambda中或者任何其他形式，这里只能是x</p>
 <hr>
 <p>再学习下两个例子，加深印象：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
-  (<span style="color:#66d9ef">letrec </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (cons x y))])
-	(<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>]) (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;c</span>))
-)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> c)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
-  (<span style="color:#a6e22e">call/cc</span>
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">k</span>)
-       (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>])
-       (<span style="color:#66d9ef">letrec </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (<span style="color:#a6e22e">k</span> <span style="color:#e6db74">&#39;*</span>))])
-           (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;*</span>)))))
-x) <span style="color:#960050;background-color:#1e0010">⇒</span> a
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">letrec </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (cons x y))])
+</span></span><span style="display:flex;"><span>	(<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>]) (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;c</span>))
+</span></span><span style="display:flex;"><span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> c)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">call/cc</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">k</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">fluid-let</span> ([x <span style="color:#e6db74">&#39;b</span>])
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">letrec </span>([f (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">y</span>) (<span style="color:#a6e22e">k</span> <span style="color:#e6db74">&#39;*</span>))])
+</span></span><span style="display:flex;"><span>           (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;*</span>)))))
+</span></span><span style="display:flex;"><span>x) <span style="color:#960050;background-color:#1e0010">⇒</span> a
+</span></span></code></pre></div><hr>
 <p>Fluid Binding实际上是Scheme对Dynamic Scoping的保留，Scheme使用的是Lexical Scoping， 对于这两种Scoping更详细的描述可参考<a href="https://lvsq.net/2020/09/lexical-dynamic-scoping/">Lexical Scoping and Dynamic Scoping</a></p>
 
     </div>

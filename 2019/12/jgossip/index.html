@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Gossip是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Jgossip - gossip协议的开源实现 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -423,34 +423,33 @@
 </li>
 </ul>
 <p>引入：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
-  <span style="color:#f92672">&lt;groupId&gt;</span>net.lvsq<span style="color:#f92672">&lt;/groupId&gt;</span>
-  <span style="color:#f92672">&lt;artifactId&gt;</span>jgossip<span style="color:#f92672">&lt;/artifactId&gt;</span>
-  <span style="color:#f92672">&lt;version&gt;</span>1.3.2<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-</code></pre></div><p>一个简单的例子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span> gossip_port <span style="color:#f92672">=</span> 60001<span style="color:#f92672">;</span>
-String cluster <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gossip_cluster&#34;</span><span style="color:#f92672">;</span>
-
-GossipSettings settings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipSettings<span style="color:#f92672">();</span>
-settings<span style="color:#f92672">.</span><span style="color:#a6e22e">setGossipInterval</span><span style="color:#f92672">(</span>1000<span style="color:#f92672">);</span>
-
-<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-    String myIpAddress <span style="color:#f92672">=</span> InetAddress<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalHost</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHostAddress</span><span style="color:#f92672">();</span>
-    List<span style="color:#f92672">&lt;</span>SeedMember<span style="color:#f92672">&gt;</span> seedNodes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
-    SeedMember seed <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SeedMember<span style="color:#f92672">();</span>
-    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setCluster</span><span style="color:#f92672">(</span>cluster<span style="color:#f92672">);</span>
-    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setIpAddress</span><span style="color:#f92672">(</span>myIpAddress<span style="color:#f92672">);</span>
-    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setPort</span><span style="color:#f92672">(</span>60001<span style="color:#f92672">);</span>
-    seedNodes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>seed<span style="color:#f92672">);</span>
-
-    gossipService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipService<span style="color:#f92672">(</span>cluster<span style="color:#f92672">,</span> myIpAddress<span style="color:#f92672">,</span> gossip_port<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> seedNodes<span style="color:#f92672">,</span> settings<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>member<span style="color:#f92672">,</span> state<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;member:&#34;</span> <span style="color:#f92672">+</span> member <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;  state: &#34;</span> <span style="color:#f92672">+</span> state<span style="color:#f92672">));</span>
-<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
-<span style="color:#f92672">}</span>
-gossipService<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;groupId&gt;</span>net.lvsq<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;artifactId&gt;</span>jgossip<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;version&gt;</span>1.3.2<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>一个简单的例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> gossip_port <span style="color:#f92672">=</span> 60001<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String cluster <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gossip_cluster&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GossipSettings settings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipSettings<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>settings<span style="color:#f92672">.</span><span style="color:#a6e22e">setGossipInterval</span><span style="color:#f92672">(</span>1000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String myIpAddress <span style="color:#f92672">=</span> InetAddress<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalHost</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHostAddress</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>SeedMember<span style="color:#f92672">&gt;</span> seedNodes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    SeedMember seed <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SeedMember<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setCluster</span><span style="color:#f92672">(</span>cluster<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setIpAddress</span><span style="color:#f92672">(</span>myIpAddress<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    seed<span style="color:#f92672">.</span><span style="color:#a6e22e">setPort</span><span style="color:#f92672">(</span>60001<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    seedNodes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>seed<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    gossipService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GossipService<span style="color:#f92672">(</span>cluster<span style="color:#f92672">,</span> myIpAddress<span style="color:#f92672">,</span> gossip_port<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> seedNodes<span style="color:#f92672">,</span> settings<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>member<span style="color:#f92672">,</span> state<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;member:&#34;</span> <span style="color:#f92672">+</span> member <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;  state: &#34;</span> <span style="color:#f92672">+</span> state<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>gossipService<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><hr>
 <p>详细介绍请看 =&gt; <a href="https://github.com/monkeymq/jgossip">项目地址</a></p>
 <p>欢迎大家fork， 如果觉得好请start ~~~</p>
 

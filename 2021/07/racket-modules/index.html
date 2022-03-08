@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Racket Modules - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Racket Modules">
 <meta itemprop="description" content="模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以"><meta itemprop="datePublished" content="2021-07-08T11:00:25+08:00" />
 <meta itemprop="dateModified" content="2021-07-08T11:00:25+08:00" />
-<meta itemprop="wordCount" content="3387">
+<meta itemprop="wordCount" content="3391">
 <meta itemprop="keywords" content="racket,module," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Racket Modules"/>
 <meta name="twitter:description" content="模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以"/>
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -398,7 +398,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/racket-modules/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:3387字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:3391字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:7分 </span>
       </div>
     </div>
@@ -413,34 +413,34 @@
 <p>│   └── main.rkt</p>
 <p>mod_demo目录下有一个main.rkt模块，和一个ext目录，该目录下有一个cake.rkt的模块。</p>
 <p>cake.rkt的内容如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-(<span style="color:#a6e22e">provide</span> print-cake)
-(define (print-cake n)
-  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
-  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
-  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
-  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
-
-(define (show fmt n ch)
-  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
-  (newline))
-</code></pre></div><p>(provide print-cake) 意味着将函数print-cake导出，在模块外部就可以使用该函数了；还有一个私有的函数show, 该函数未导出，所以外部无法访问。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">provide</span> print-cake)
+</span></span><span style="display:flex;"><span>(define (print-cake n)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (show fmt n ch)
+</span></span><span style="display:flex;"><span>  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
+</span></span><span style="display:flex;"><span>  (newline))
+</span></span></code></pre></div><p>(provide print-cake) 意味着将函数print-cake导出，在模块外部就可以使用该函数了；还有一个私有的函数show, 该函数未导出，所以外部无法访问。
 main.rkt的内容为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#34;ext/cake.rkt&#34;</span>)
-
-(print-cake (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">30</span>))
-</code></pre></div><p>(require &ldquo;ext/cake.rkt&rdquo;) 将cake模块引入，引用路径符合Unix风格(但是，不能以文件分隔符即'/&lsquo;作为开始或者结束)，也支持相对路径，(require &ldquo;./ext/cake.rkt&rdquo;) 也是完全可以的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#34;ext/cake.rkt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(print-cake (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">30</span>))
+</span></span></code></pre></div><p>(require &ldquo;ext/cake.rkt&rdquo;) 将cake模块引入，引用路径符合Unix风格(但是，不能以文件分隔符即&rsquo;/&lsquo;作为开始或者结束)，也支持相对路径，(require &ldquo;./ext/cake.rkt&rdquo;) 也是完全可以的。</p>
 <h3 id="collections">Collections</h3>
 <p>collection中的模块通过不带引号的、无后缀的路径引用。例如：以下模块引用了作为“racket” collection一部分的“date.rkt”库：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(<span style="color:#a6e22e">require</span> racket/date)
-
-(printf <span style="color:#e6db74">&#34;Today is ~s\n&#34;</span>
-        (date-&gt;string (seconds-&gt;date (current-seconds))))
-</code></pre></div><p>注意，(require racket/date)没有带双引号。像racket/date这样的模块看起来像一个标识符，当require看到一个未加引号的模块引用时，它会将引用转换为基于collection的模块路径：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">require</span> racket/date)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(printf <span style="color:#e6db74">&#34;Today is ~s\n&#34;</span>
+</span></span><span style="display:flex;"><span>        (date-&gt;string (seconds-&gt;date (current-seconds))))
+</span></span></code></pre></div><p>注意，(require racket/date)没有带双引号。像racket/date这样的模块看起来像一个标识符，当require看到一个未加引号的模块引用时，它会将引用转换为基于collection的模块路径：</p>
 <ul>
 <li>首先，如果未引用的路径不包含 /，然后 require会自动向引用添加一个“/main”。例如，( require slideshow )等效于( require slideshow/main )。</li>
 <li>其次，require 向路径隐式添加了“.rkt”后缀。</li>
@@ -456,14 +456,14 @@ main.rkt的内容为：</p>
 raco pkg install &ndash;link /path/to/mod_demo</p>
 </blockquote>
 <p>安装之后，在任何模块中使用(require mod_demo/ext/cake)都会从/path/to/mod_demo/ext/cake.rkt导入print-cake含函数。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> mod_demo/ext/cake)
-<span style="color:#a6e22e">&gt;</span> (print-cake <span style="color:#ae81ff">4</span>)
-   <span style="color:#f92672">......</span>
- <span style="color:#f92672">.</span><span style="color:#a6e22e">-</span><span style="color:#960050;background-color:#1e0010">|||||</span>|-.
- |        <span style="color:#960050;background-color:#1e0010">|</span>
-------------
-<span style="color:#a6e22e">&gt;</span>
-</code></pre></div><p>默认情况下，您安装的目录名称既用作包名称又用作包提供的collection</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> mod_demo/ext/cake)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (print-cake <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">......</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">.</span><span style="color:#a6e22e">-</span><span style="color:#960050;background-color:#1e0010">|||||</span>|-.
+</span></span><span style="display:flex;"><span> |        <span style="color:#960050;background-color:#1e0010">|</span>
+</span></span><span style="display:flex;"><span>------------
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span>
+</span></span></code></pre></div><p>默认情况下，您安装的目录名称既用作包名称又用作包提供的collection</p>
 <p>将lib放入collection之后，仍然可以使用raco make来编译库的源文件，但是使用raco setup更加方便。尤其是修改了模块代码后，使用raco setup会重新编译所有库文件，并重新安装包。与raco make不同的是，raco setup 后面的参数是包名，即raco setup mod_demo, 而raco make后面是模块名，即raco make main.rkt。</p>
 <h2 id="模块语法">模块语法</h2>
 <p>模块文件开头处的#lang其实是模块形式的简写，但不能用于REPL。</p>
@@ -475,99 +475,99 @@ raco pkg install &ndash;link /path/to/mod_demo</p>
 <p>name-id是模块的名字，initial-module-path 为初始化导入，每个decl可以是导入，或者导出，或者定义，或者表达式。</p>
 <p>initial-module-path是必须的，模块内部也是一个环境（SICP中的环境，即上下文），内部使用的指令是需要通过initial-module-path引导的。常用的initial-module-path是racket, require/define/provide等等都来自racket。另一个常用的initial-module-path是racket-base,它提供的功能较少，但仍然是很常用。</p>
 <p>上一节中的“cake.rkt”也可以写成：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(module cake racket
-  (<span style="color:#a6e22e">provide</span> print-cake)
-
-  (define (print-cake n)
-    (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
-    (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
-    (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
-    (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
-
-  (define (show fmt n ch)
-    (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
-    (newline)))
-</code></pre></div><p>这种模块形式是可以被REPL求值的（注意(require &lsquo;cake)， 模块名cake需要被quote，因为这时cake是非文件的模块声明）：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;cake</span>)
-<span style="color:#a6e22e">&gt;</span> (print-cake <span style="color:#ae81ff">3</span>)
-   <span style="color:#f92672">...</span>
-
- <span style="color:#f92672">.</span><span style="color:#a6e22e">-</span><span style="color:#960050;background-color:#1e0010">||</span>|-.
-
- |     <span style="color:#960050;background-color:#1e0010">|</span>
-
----------
-</code></pre></div><p>声明一个模块，其body不会被立刻求值，只有在显式地被require之后才会求值一次。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (module hi racket
-    (printf <span style="color:#e6db74">&#34;Hello\n&#34;</span>))
-<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;hi</span>)
-Hello
-
-<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;hi</span>)
-</code></pre></div><h3 id="lang">#lang</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(module cake racket
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">provide</span> print-cake)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (define (print-cake n)
+</span></span><span style="display:flex;"><span>    (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
+</span></span><span style="display:flex;"><span>    (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
+</span></span><span style="display:flex;"><span>    (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
+</span></span><span style="display:flex;"><span>    (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (define (show fmt n ch)
+</span></span><span style="display:flex;"><span>    (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
+</span></span><span style="display:flex;"><span>    (newline)))
+</span></span></code></pre></div><p>这种模块形式是可以被REPL求值的（注意(require &lsquo;cake)， 模块名cake需要被quote，因为这时cake是非文件的模块声明）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;cake</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (print-cake <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">.</span><span style="color:#a6e22e">-</span><span style="color:#960050;background-color:#1e0010">||</span>|-.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> |     <span style="color:#960050;background-color:#1e0010">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---------
+</span></span></code></pre></div><p>声明一个模块，其body不会被立刻求值，只有在显式地被require之后才会求值一次。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (module hi racket
+</span></span><span style="display:flex;"><span>    (printf <span style="color:#e6db74">&#34;Hello\n&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;hi</span>)
+</span></span><span style="display:flex;"><span>Hello
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;hi</span>)
+</span></span></code></pre></div><h3 id="lang">#lang</h3>
 <p>#lang声明的模块的body没有特定的语法，因为其语法由#lang之后的名称所决定。</p>
 <p>比如，#lang racket的语法是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-decl <span style="color:#f92672">...</span>
-</code></pre></div><p>等同于：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(module name racket
-  decl <span style="color:#f92672">...</span>)
-</code></pre></div><p>name是包含#lang形式的文件名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>decl <span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>等同于：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(module name racket
+</span></span><span style="display:flex;"><span>  decl <span style="color:#f92672">...</span>)
+</span></span></code></pre></div><p>name是包含#lang形式的文件名</p>
 <h3 id="子模块">子模块</h3>
 <p>一个模块可以嵌套在另一个模块中，父模块可以直接访问子模块导出的函数、定义、表达式。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(module zoo racket
-  (<span style="color:#a6e22e">provide</span> tiger)
-  (define tiger <span style="color:#e6db74">&#34;Tony&#34;</span>))
-
-(<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;zoo</span>)
-
-tiger
-</code></pre></div><h4 id="module">module*</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(module zoo racket
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">provide</span> tiger)
+</span></span><span style="display:flex;"><span>  (define tiger <span style="color:#e6db74">&#34;Tony&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;zoo</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tiger
+</span></span></code></pre></div><h4 id="module">module*</h4>
 <p>module*形式类似module：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(module* name-id initial-module-path-or-#f
-  decl <span style="color:#f92672">...</span>)
-</code></pre></div><p>module*与module的不同之处在于：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(module* name-id initial-module-path-or-#f
+</span></span><span style="display:flex;"><span>  decl <span style="color:#f92672">...</span>)
+</span></span></code></pre></div><p>module*与module的不同之处在于：</p>
 <ul>
 <li>由module声明的子模块，可以被其父模块require, 但是子模块不能require父模块；</li>
 <li>由module*声明的字模块，可以require父模块，但是父模块不能require该子模块；</li>
 </ul>
 <p>此外，module*形式可以用#f代替initial-module-path，这意味着，子模块可以访问父模块所以绑定，包括未通过provide导出的绑定。</p>
 <p>因此，用module*和#f来声明一个模块的一个用途是，将某个模块未provide出去的绑定导出。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(<span style="color:#a6e22e">provide</span> print-cake)
-
-(define (print-cake n)
-  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
-  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
-  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
-  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
-
-(define (show fmt n ch)
-  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
-  (newline))
-
-(module* extras <span style="color:#960050;background-color:#1e0010">#</span>f
-  (<span style="color:#a6e22e">provide</span> show))
-</code></pre></div><p>尽管show函数未导出，但是子模块extras却将其导出了，外部程序可以使用(require (submod &ldquo;caske.rkt&rdquo; extras))来访问隐藏的show函数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">provide</span> print-cake)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (print-cake n)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (show fmt n ch)
+</span></span><span style="display:flex;"><span>  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
+</span></span><span style="display:flex;"><span>  (newline))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(module* extras <span style="color:#960050;background-color:#1e0010">#</span>f
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">provide</span> show))
+</span></span></code></pre></div><p>尽管show函数未导出，但是子模块extras却将其导出了，外部程序可以使用(require (submod &ldquo;caske.rkt&rdquo; extras))来访问隐藏的show函数。</p>
 <h3 id="main和test子模块">Main和Test子模块</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(define (print-cake n)
-  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
-  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
-  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
-  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
-
-(define (show fmt n ch)
-  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
-  (newline))
-
-(module* main <span style="color:#960050;background-color:#1e0010">#</span>f
-  (print-cake <span style="color:#ae81ff">10</span>))
-</code></pre></div><p>这个“cake.rkt”变体，包含了一个main子模块，并调用了print-cake函数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (print-cake n)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;   ~a   &#34;</span> n <span style="color:#e6db74">#\.</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; .-~a-. &#34;</span> n <span style="color:#e6db74">#\|</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34; | ~a | &#34;</span> n <span style="color:#e6db74">#\space</span>)
+</span></span><span style="display:flex;"><span>  (show <span style="color:#e6db74">&#34;---~a---&#34;</span> n <span style="color:#e6db74">#\-</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (show fmt n ch)
+</span></span><span style="display:flex;"><span>  (printf fmt (<span style="color:#a6e22e">make-string</span> n ch))
+</span></span><span style="display:flex;"><span>  (newline))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(module* main <span style="color:#960050;background-color:#1e0010">#</span>f
+</span></span><span style="display:flex;"><span>  (print-cake <span style="color:#ae81ff">10</span>))
+</span></span></code></pre></div><p>这个“cake.rkt”变体，包含了一个main子模块，并调用了print-cake函数。</p>
 <p>一般来说，运行一个模块时并不会运行其中由module*声明的子模块，但是main子模块除外。</p>
 <p>main子模块并不一定由module*声明，如果不需要使用父模块的绑定，也可以由module来声明。 更常见的做法是由module+来声明</p>
 <p>``lisp
@@ -576,7 +576,7 @@ decl &hellip;)</p>
 <pre tabindex="0"><code>
 module+声明的模块就像采用module*声明且使用#f作为initial-module-path的模块。此外，多个module+模块可以同名，同名的模块会组合成一个模块。这种组合特性可以用来定义一个test模块，在使用 raco test命令时就可以大显身手了。
 
-假设&quot;physics.rkt&quot; 为：
+假设&#34;physics.rkt&#34; 为：
 ```lisp
 #lang racket
 (module+ test
@@ -601,25 +601,25 @@ module+声明的模块就像采用module*声明且使用#f作为initial-module-p
   (check-= (to-energy 1) 9e+16 1e+15))
 </code></pre><p>导入&quot;physics.rkt&quot; 时，并不会运行drop和to-energy的测试，不过运行raco test physics.rkt将会执行这些测试。</p>
 <p>这等价于使用module*:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#960050;background-color:#1e0010">#</span>lang racket
-
-(<span style="color:#a6e22e">provide</span> drop
-         to-energy)
-
-(define (drop <span style="color:#66d9ef">t</span>)
-  (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">1/2</span> <span style="color:#ae81ff">49/5</span> <span style="color:#66d9ef">t</span> <span style="color:#66d9ef">t</span>))
-
-(define (to-energy m)
-  (<span style="color:#a6e22e">*</span> m (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">299792458</span> <span style="color:#ae81ff">2</span>)))
-
-(module* test <span style="color:#960050;background-color:#1e0010">#</span>f
-  (<span style="color:#a6e22e">require</span> rackunit)
-  (define ε <span style="color:#ae81ff">1e-10</span>)
-  (check-= (drop <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span> ε)
-  (check-= (drop <span style="color:#ae81ff">10</span>) <span style="color:#ae81ff">490</span> ε)
-  (check-= (to-energy <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span> ε)
-  (check-= (to-energy <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">9e+16</span> <span style="color:#ae81ff">1e+15</span>))
-</code></pre></div><p>module+的组合行为对main模块也有帮助，即使不需要组合， ( module+ main &hellip;. )也是首选，因为它比( module* main #f &hellip;. )更具可读性 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span>lang racket
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">provide</span> drop
+</span></span><span style="display:flex;"><span>         to-energy)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (drop <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">1/2</span> <span style="color:#ae81ff">49/5</span> <span style="color:#66d9ef">t</span> <span style="color:#66d9ef">t</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (to-energy m)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">*</span> m (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">299792458</span> <span style="color:#ae81ff">2</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(module* test <span style="color:#960050;background-color:#1e0010">#</span>f
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">require</span> rackunit)
+</span></span><span style="display:flex;"><span>  (define ε <span style="color:#ae81ff">1e-10</span>)
+</span></span><span style="display:flex;"><span>  (check-= (drop <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span> ε)
+</span></span><span style="display:flex;"><span>  (check-= (drop <span style="color:#ae81ff">10</span>) <span style="color:#ae81ff">490</span> ε)
+</span></span><span style="display:flex;"><span>  (check-= (to-energy <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span> ε)
+</span></span><span style="display:flex;"><span>  (check-= (to-energy <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">9e+16</span> <span style="color:#ae81ff">1e+15</span>))
+</span></span></code></pre></div><p>module+的组合行为对main模块也有帮助，即使不需要组合， ( module+ main &hellip;. )也是首选，因为它比( module* main #f &hellip;. )更具可读性 。</p>
 <h2 id="require">Require</h2>
 <p>require的定义为：</p>
 <blockquote>
@@ -627,26 +627,26 @@ module+声明的模块就像采用module*声明且使用#f作为initial-module-p
 </blockquote>
 <h3 id="only-in">only-in</h3>
 <p>用来限制模块导出的绑定，也可重命名绑定</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#a6e22e">&gt;</span> (module m (lib <span style="color:#e6db74">&#34;racket&#34;</span>)
-    (<span style="color:#a6e22e">provide</span> tastes-great?
-             less-filling?)
-    (define tastes-great? <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>)
-    (define less-filling? <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>))
-<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> (only-in <span style="color:#e6db74">&#39;m</span> tastes-great?))
-<span style="color:#a6e22e">&gt;</span> tastes-great?
-<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>
-
-<span style="color:#a6e22e">&gt;</span> less-filling?
-less-filling?: undefined<span style="color:#75715e">;</span>
-
- cannot reference an identifier before its definition
-
-  in module: top-level
-
-<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> (only-in <span style="color:#e6db74">&#39;m</span> [less-filling? lite?]))
-<span style="color:#a6e22e">&gt;</span> lite?
-<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>
-</code></pre></div><h3 id="except-in">except-in</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (module m (lib <span style="color:#e6db74">&#34;racket&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">provide</span> tastes-great?
+</span></span><span style="display:flex;"><span>             less-filling?)
+</span></span><span style="display:flex;"><span>    (define tastes-great? <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>    (define less-filling? <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> (only-in <span style="color:#e6db74">&#39;m</span> tastes-great?))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> tastes-great?
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> less-filling?
+</span></span><span style="display:flex;"><span>less-filling?: undefined<span style="color:#75715e">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> cannot reference an identifier before its definition
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  in module: top-level
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">require</span> (only-in <span style="color:#e6db74">&#39;m</span> [less-filling? lite?]))
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">&gt;</span> lite?
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#66d9ef">t</span>
+</span></span></code></pre></div><h3 id="except-in">except-in</h3>
 <p>是only-in的补充，用来排除某些绑定</p>
 <blockquote>
 <p>(except-in require-spec id &hellip;)</p>

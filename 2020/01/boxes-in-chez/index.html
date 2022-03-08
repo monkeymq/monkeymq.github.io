@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Chez Scheme中有一种Boxes结构，它是一个单元素对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据结构" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Chez Scheme中Boxes介绍 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -409,41 +409,41 @@
 <hr>
 <h4 id="box-obj">(box? obj)</h4>
 <p>如果 obj 是 box, 则为 #t, 否则为 #f.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">box?</span> <span style="color:#f92672">&#39;#</span>&amp;a) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">box?</span> <span style="color:#e6db74">&#39;a</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">box?</span> (<span style="color:#a6e22e">box</span> <span style="color:#ae81ff">3</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
-</code></pre></div><h4 id="box-obj-1">(box obj)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">box?</span> <span style="color:#f92672">&#39;#</span>&amp;a) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">box?</span> <span style="color:#e6db74">&#39;a</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">box?</span> (<span style="color:#a6e22e">box</span> <span style="color:#ae81ff">3</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><h4 id="box-obj-1">(box obj)</h4>
 <p>创建一个由obj组成的box</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;a</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;a
-(<span style="color:#a6e22e">box</span> (<span style="color:#a6e22e">box</span> <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;<span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)
-</code></pre></div><h4 id="unbox-box">(unbox box)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;a</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;a
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">box</span> (<span style="color:#a6e22e">box</span> <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;<span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)
+</span></span></code></pre></div><h4 id="unbox-box">(unbox box)</h4>
 <p>返回box的内容</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">unbox</span> <span style="color:#f92672">#</span>&amp;a) <span style="color:#66d9ef">=&gt; </span>a
-(<span style="color:#a6e22e">unbox</span> <span style="color:#f92672">#</span>&amp;<span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)
-
-(<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#34;hi&#34;</span>)])
-  (<span style="color:#a6e22e">unbox</span> b)) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#34;hi&#34;</span>
-</code></pre></div><h4 id="set-box-box-obj">(set-box! box obj)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">unbox</span> <span style="color:#f92672">#</span>&amp;a) <span style="color:#66d9ef">=&gt; </span>a
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">unbox</span> <span style="color:#f92672">#</span>&amp;<span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;(<span style="color:#a6e22e">a</span> b c)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#34;hi&#34;</span>)])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">unbox</span> b)) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#34;hi&#34;</span>
+</span></span></code></pre></div><h4 id="set-box-box-obj">(set-box! box obj)</h4>
 <p>box 必须是可变的。 set-box! 把 box 的内容设置为 obj.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;x</span>)])
-  (<span style="color:#a6e22e">set-box!</span> b <span style="color:#e6db74">&#39;y</span>)
-  b) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;y
-
-(<span style="color:#66d9ef">let </span>([incr!
-       (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-         (<span style="color:#a6e22e">set-box!</span> x (+ (<span style="color:#a6e22e">unbox</span> x) <span style="color:#ae81ff">1</span>)))])
-  (<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#ae81ff">3</span>)])
-    (<span style="color:#a6e22e">incr!</span> b)
-    (<span style="color:#a6e22e">unbox</span> b))) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
-</code></pre></div><h4 id="box-cas-box-old-obj-new-obj">(box-cas! box old-obj new-obj)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;x</span>)])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">set-box!</span> b <span style="color:#e6db74">&#39;y</span>)
+</span></span><span style="display:flex;"><span>  b) <span style="color:#66d9ef">=&gt; </span><span style="color:#f92672">#</span>&amp;y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([incr!
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">set-box!</span> x (+ (<span style="color:#a6e22e">unbox</span> x) <span style="color:#ae81ff">1</span>)))])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([b (<span style="color:#a6e22e">box</span> <span style="color:#ae81ff">3</span>)])
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">incr!</span> b)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">unbox</span> b))) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><h4 id="box-cas-box-old-obj-new-obj">(box-cas! box old-obj new-obj)</h4>
 <p>如果 box 被改变，则为 #t, 否则为 #f.<!-- raw HTML omitted -->
 box 必须是可变的。 若 box 待替换的内容和 old-obj 相同(基于 eq?), 则 box-cas! 自动将 box 的内容替换为 new-obj; 若不相同，则 box 保持不变。即CAS操作，原子的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;old</span>))
-(<span style="color:#a6e22e">box-cas!</span> b <span style="color:#e6db74">&#39;old</span> <span style="color:#e6db74">&#39;new</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">unbox</span> b) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#39;new</span>
-(<span style="color:#a6e22e">box-cas!</span> b <span style="color:#e6db74">&#39;other</span> <span style="color:#e6db74">&#39;wrong</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">unbox</span> b) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#39;new</span>
-</code></pre></div><h4 id="mutable-box-obj">(mutable-box? obj)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>b (<span style="color:#a6e22e">box</span> <span style="color:#e6db74">&#39;old</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">box-cas!</span> b <span style="color:#e6db74">&#39;old</span> <span style="color:#e6db74">&#39;new</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">unbox</span> b) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#39;new</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">box-cas!</span> b <span style="color:#e6db74">&#39;other</span> <span style="color:#e6db74">&#39;wrong</span>) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">unbox</span> b) <span style="color:#66d9ef">=&gt; </span><span style="color:#e6db74">&#39;new</span>
+</span></span></code></pre></div><h4 id="mutable-box-obj">(mutable-box? obj)</h4>
 <p>如果 obj 是可变的 box ，则为 #t, 否则为 #f.</p>
 <h4 id="immutable-box-obj">(immutable-box? obj)</h4>
 <p>如果 obj 是不可变的 box ，则为 #t, 否则为 #f.</p>

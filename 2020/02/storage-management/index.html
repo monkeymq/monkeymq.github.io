@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>存储管理(Storage Management in Chez Scheme) - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -444,8 +444,8 @@
 </blockquote>
 <p><strong>collect-request-handler</strong>的值必须是一个过程。当系统认为应该要进行GC时（即，自上次GC以来，系统分配了由参数<strong>collect-trip-bytes</strong>规定的存储量之后），该过程在不带参数的情况下被调用。</p>
 <p>默认情况下，collect-request-handler仅调用不带参数的collect。 可以通过将collect-request-handler设置为不执行任何操作的过程来禁用自动收集，例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">collect-request-handler</span> void)
-</code></pre></div><p>也可以利用防止任何中断的<strong>critical-section</strong>来临时禁用GC</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">collect-request-handler</span> void)
+</span></span></code></pre></div><p>也可以利用防止任何中断的<strong>critical-section</strong>来临时禁用GC</p>
 <blockquote>
 <p>release-minimum-generation</p>
 </blockquote>
@@ -473,22 +473,22 @@
 </ul>
 <p>弱序对的car中的弱指针就像普通指针一样，只要它指向的对象可以通过系统中某个地方的普通（非弱）指针访问即可。 但是，如果垃圾收集器在某个时候识别出不存在指向该对象的非弱指针，则它将每个指向该对象的弱指针替换为“ broken weak-pointer”对象**#!bwp**，并丢弃该对象。</p>
 <p>弱序对的cdr字段不是弱指针，因此可以使用弱序对来构造弱保持对象的列表。可以像使用普通的列表的处理操作（例如length，map和assv）来操作这些list。弱序对可以使用set-car!和set-cdr!来修改； 在set-car!之后，car字段包含指向新对象的弱指针，代替了旧对象。弱序对的打印方式与普通对相同。 弱序对没有reader语法。弱序对在被写入然后被读取时成为普通对。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
-
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
-(<span style="color:#a6e22e">collect</span>)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span></code></pre></div><blockquote>
 <p>(weak-pair? obj)</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">weak-pair?</span> (<span style="color:#a6e22e">weak-cons</span> <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">weak-pair?</span> (cons <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">weak-pair?</span> <span style="color:#e6db74">&#34;oops&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">weak-pair?</span> (<span style="color:#a6e22e">weak-cons</span> <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">weak-pair?</span> (cons <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">weak-pair?</span> <span style="color:#e6db74">&#34;oops&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>(ephemeron-cons obj1 obj2)</p>
 </blockquote>
 <p><em>obj1</em> 是新对的car, obj2构成了新对的cdr。暂时序对和普通对是无法区分的，除了这两种方式：</p>
@@ -498,151 +498,148 @@
 </ul>
 <p>暂时序对的行为与弱序对类似，不过cdr有特殊的处理：如果car被设置为**#!bwp<strong>的同时也会将cdr设置为</strong>#!bwp**。由于同时将car和cdr字段设置为为**#!bwp**，因此可以通过cdr对象引用car对象这一事实本身并不意味着必须保留car（与弱序对不同）。 相反，出于某种原因，car必须独立于cdr对象保存。</p>
 <p>与弱序对和其他对一样，暂时序对使用**set-car!<strong>和</strong>set-cdr!**来修改数据，暂时序对的打印方式与普通对一样，但没有reader语法</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">ephemeron-cons</span> x x))
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
-(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
-
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">ephemeron-cons</span> x x))
-(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
-(<span style="color:#a6e22e">collect</span>)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x x)) <span style="color:#75715e">; not an ephemeron pair</span>
-(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
-(<span style="color:#a6e22e">collect</span>)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
-(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
-</code></pre></div><p>与弱序对一样，如果在将x设置为*之前进行了垃圾回收将该pair提升为较老的一代，则上面中间示例的最后两个表达式实际上可能返回（a . b）。 但是，在上面的最后一个示例中，最后两个表达式的结果将始终为（a . b），因为弱序对的cdr持有非弱引用，并且该非弱引用阻止car字段变** #!bwp**。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">ephemeron-cons</span> x x))
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
+</span></span><span style="display:flex;"><span>(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">ephemeron-cons</span> x x))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span><span style="display:flex;"><span>(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x x)) <span style="color:#75715e">; not an ephemeron pair</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
+</span></span><span style="display:flex;"><span>(cdr p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)
+</span></span></code></pre></div><p>与弱序对一样，如果在将x设置为*之前进行了垃圾回收将该pair提升为较老的一代，则上面中间示例的最后两个表达式实际上可能返回（a . b）。 但是，在上面的最后一个示例中，最后两个表达式的结果将始终为（a . b），因为弱序对的cdr持有非弱引用，并且该非弱引用阻止car字段变** #!bwp**。</p>
 <blockquote>
 <p>(ephemeron-pair? obj)</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">ephemeron-pair?</span> (<span style="color:#a6e22e">ephemeron-cons</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">ephemeron-pair?</span> (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">ephemeron-pair?</span> (<span style="color:#a6e22e">weak-cons</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">ephemeron-pair?</span> <span style="color:#e6db74">&#34;oops&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">ephemeron-pair?</span> (<span style="color:#a6e22e">ephemeron-cons</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ephemeron-pair?</span> (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ephemeron-pair?</span> (<span style="color:#a6e22e">weak-cons</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">ephemeron-pair?</span> <span style="color:#e6db74">&#34;oops&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>(bwp-object? obj)</p>
 </blockquote>
 <p>返回：如果obj是断开的broken weak-pair对象，则返回#t，否则返回#f</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">bwp-object?</span> <span style="color:#f92672">#</span>!bwp) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">bwp-object?</span> <span style="color:#e6db74">&#39;bwp</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
-(<span style="color:#a6e22e">collect</span> (<span style="color:#a6e22e">collect-maximum-generation</span>))
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-(<span style="color:#a6e22e">bwp-object?</span> (car p)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">bwp-object?</span> <span style="color:#f92672">#</span>!bwp) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">bwp-object?</span> <span style="color:#e6db74">&#39;bwp</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#e6db74">&#39;*</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span> (<span style="color:#a6e22e">collect-maximum-generation</span>))
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">bwp-object?</span> (car p)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><blockquote>
 <p>(make-guardian)</p>
 </blockquote>
 <p><strong>Guardians</strong>由要保护的对象组的过程表示。创建guardian后，注册对象组为空。 通过将对象作为参数传递给守护者，可以向guardian注册对象：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
-x <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
-(<span style="color:#a6e22e">G</span> x)
-</code></pre></div><p>注册对象时也可以指定“representative”（即，y）对象。 继续上面的示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>y (cons <span style="color:#e6db74">&#39;ccc</span> <span style="color:#e6db74">&#39;ddd</span>))
-y <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">ccc</span> <span style="color:#f92672">.</span> ddd)
-(<span style="color:#a6e22e">G</span> y <span style="color:#e6db74">&#39;rep</span>)
-</code></pre></div><p>与守护者关联的一组注册对象在逻辑上细分为两个不相交的子组：一个子组称为“可访问”对象，一个子组称为“不可访问”对象。不可访问的对象是已被证明无法访问的对象（通过guardian机制本身或通过弱序对或暂时序对的car字段除外），可访问的对象是未经证明的对象。“已证明”一词在这里很重要：可能是可访问组中的某些对象确实是不可访问的，但这尚未得到证明。 在某些情况下，直到对象实际上变得不可访问很久之后（在当前实现中，直到发生包含对象的世代的垃圾回收），才可能做出这种证明。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
+</span></span><span style="display:flex;"><span>x <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x)
+</span></span></code></pre></div><p>注册对象时也可以指定“representative”（即，y）对象。 继续上面的示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>y (cons <span style="color:#e6db74">&#39;ccc</span> <span style="color:#e6db74">&#39;ddd</span>))
+</span></span><span style="display:flex;"><span>y <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">ccc</span> <span style="color:#f92672">.</span> ddd)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> y <span style="color:#e6db74">&#39;rep</span>)
+</span></span></code></pre></div><p>与守护者关联的一组注册对象在逻辑上细分为两个不相交的子组：一个子组称为“可访问”对象，一个子组称为“不可访问”对象。不可访问的对象是已被证明无法访问的对象（通过guardian机制本身或通过弱序对或暂时序对的car字段除外），可访问的对象是未经证明的对象。“已证明”一词在这里很重要：可能是可访问组中的某些对象确实是不可访问的，但这尚未得到证明。 在某些情况下，直到对象实际上变得不可访问很久之后（在当前实现中，直到发生包含对象的世代的垃圾回收），才可能做出这种证明。</p>
 <p>向guardian注册的对象最初被放置在可访问组中，并在它们变得不可访问后的某个时刻移入不可访问组。 不可访问组中的对象是通过调用不带参数的guardian来检索的。 如果不可访问组中没有对象，则guardian返回#f。 继续上面的示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
-(<span style="color:#66d9ef">set! </span>y <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span>)
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb) <span style="color:#75715e">; 也有可能这个后打印出来</span>
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> rep         <span style="color:#75715e">; 这个先打印出来</span>
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-</code></pre></div><p>对G的初始调用返回#f，因为绑定到x和y的对是向G注册的唯一对象，并且仍然可以通过这些绑定访问这些序对。调用collect时，对象将移入不可访问的组。 因此，对G的两个调用返回先前绑定到x的序对和先前绑定到y的序对的representative，尽管可能与所示顺序相反。 （如上所述，对于弱序对，如果对象已迁移到较老的一代，则调用collect实际上可能不足以证明该对象不可访问。）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>y <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb) <span style="color:#75715e">; 也有可能这个后打印出来</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> rep         <span style="color:#75715e">; 这个先打印出来</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><p>对G的初始调用返回#f，因为绑定到x和y的对是向G注册的唯一对象，并且仍然可以通过这些绑定访问这些序对。调用collect时，对象将移入不可访问的组。 因此，对G的两个调用返回先前绑定到x的序对和先前绑定到y的序对的representative，尽管可能与所示顺序相反。 （如上所述，对于弱序对，如果对象已迁移到较老的一代，则调用collect实际上可能不足以证明该对象不可访问。）</p>
 <p>实际上，从guardian那里获取的对象在任何方面都没有特殊的地位。 此功能避免了共享或循环结构可能会出现的问题。 由不可访问对象组成的共享或循环结构将被完整保留，将注册由guardian保护的部分都放置在该guardian不可访问的集合中。 然后，程序员可以完全控制结构的处理顺序。</p>
 <p>一个对象可以在guardian处多次注册，在这种情况下，可以多次检索该对象：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
-(<span style="color:#a6e22e">G</span> x)
-(<span style="color:#a6e22e">G</span> x)
-(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span>)
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
-</code></pre></div><p>它也可以向不止一个guardian注册，并且guardian本身也可以向其他guardian注册。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
+</span></span></code></pre></div><p>它也可以向不止一个guardian注册，并且guardian本身也可以向其他guardian注册。
 在没有“representative”的情况下向guardian注册的对象，并放置在一个弱序对或暂时对的car字段中，其直到从guardian处将返回并由程序丢弃，或者直到guardian本身被丢弃为止。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(<span style="color:#a6e22e">G</span> x)
-(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span>)
-(<span style="color:#66d9ef">set! </span>y (<span style="color:#a6e22e">G</span>))
-y <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
-(<span style="color:#66d9ef">set! </span>y <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span> <span style="color:#ae81ff">1</span>)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-
-</code></pre></div><p>另一方面，如果指定了representative（对象本身除外），则在从guardian处获得representative的同时，也会从弱序对或暂时序对的car字段中丢弃受保护的对象。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
-(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(<span style="color:#a6e22e">G</span> x <span style="color:#e6db74">&#39;rep</span>)
-(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span>)
-
-(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> rep  <span style="color:#75715e">; 获得representative的值</span>
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp <span style="color:#75715e">; 自动丢弃</span>
-</code></pre></div><p>下面的示例说明了当guardian本身丢弃时，该对象已被释放并且弱序对的car字段设置为#!bwp：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
-(<span style="color:#66d9ef">define </span>x (cons aaa <span style="color:#e6db74">&#39;bbb</span>))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
-(<span style="color:#a6e22e">G</span> x)
-(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
-(<span style="color:#66d9ef">set! </span>G <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">collect</span>)
-(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
-</code></pre></div><p>下面的示例演示了如何使用guardian来释放外部存储，就像由C库“malloc”和“free”操作管理存储。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>malloc
-  (<span style="color:#66d9ef">let </span>([malloc-guardian (<span style="color:#a6e22e">make-guardian</span>)])
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">size</span>)
-      <span style="color:#75715e">; first free any storage that has been dropped.  to avoid long</span>
-      <span style="color:#75715e">; delays, it might be better to deallocate no more than, say,</span>
-      <span style="color:#75715e">; ten objects for each one allocated</span>
-      (<span style="color:#66d9ef">let </span>f ()
-        (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">malloc-guardian</span>)])
-          (<span style="color:#a6e22e">when</span> x
-		    (<span style="color:#a6e22e">do-free</span> x)
-			(<span style="color:#a6e22e">f</span>))))
-      <span style="color:#75715e">; then allocate and register the new storage</span>
-      (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">do-malloc</span> size)])
-        (<span style="color:#a6e22e">malloc-guardian</span> x)
-        x))))
-
-</code></pre></div><p><strong>do-malloc</strong>必须返回一个Scheme对象“header”，该header封装一个指向外部存储的指针（可能是无符号整数），并且必须通过此header对外部存储进行所有访问。特别是，必须注意在删除相应的header之后，在Scheme之外不存在指向外部存储的指针。 <strong>do-free</strong>必须使用封装的指针释放外部存储。这两个原语都可以使用外部分配和外部无关的定义，也可以作为外部过程导入的C库“malloc”和“free”运算符进行定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>y (<span style="color:#a6e22e">G</span>))
+</span></span><span style="display:flex;"><span>y <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">aaa</span> <span style="color:#f92672">.</span> bbb)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>y <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span></code></pre></div><p>另一方面，如果指定了representative（对象本身除外），则在从guardian处获得representative的同时，也会从弱序对或暂时序对的car字段中丢弃受保护的对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons <span style="color:#e6db74">&#39;aaa</span> <span style="color:#e6db74">&#39;bbb</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x <span style="color:#e6db74">&#39;rep</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> rep  <span style="color:#75715e">; 获得representative的值</span>
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp <span style="color:#75715e">; 自动丢弃</span>
+</span></span></code></pre></div><p>下面的示例说明了当guardian本身丢弃时，该对象已被释放并且弱序对的car字段设置为#!bwp：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>G (<span style="color:#a6e22e">make-guardian</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (cons aaa <span style="color:#e6db74">&#39;bbb</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">weak-cons</span> x <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">G</span> x)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>x <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>G <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>(car p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>!bwp
+</span></span></code></pre></div><p>下面的示例演示了如何使用guardian来释放外部存储，就像由C库“malloc”和“free”操作管理存储。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>malloc
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([malloc-guardian (<span style="color:#a6e22e">make-guardian</span>)])
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">size</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; first free any storage that has been dropped.  to avoid long</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; delays, it might be better to deallocate no more than, say,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; ten objects for each one allocated</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>f ()
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">malloc-guardian</span>)])
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">when</span> x
+</span></span><span style="display:flex;"><span>		    (<span style="color:#a6e22e">do-free</span> x)
+</span></span><span style="display:flex;"><span>			(<span style="color:#a6e22e">f</span>))))
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; then allocate and register the new storage</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">do-malloc</span> size)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">malloc-guardian</span> x)
+</span></span><span style="display:flex;"><span>        x))))
+</span></span></code></pre></div><p><strong>do-malloc</strong>必须返回一个Scheme对象“header”，该header封装一个指向外部存储的指针（可能是无符号整数），并且必须通过此header对外部存储进行所有访问。特别是，必须注意在删除相应的header之后，在Scheme之外不存在指向外部存储的指针。 <strong>do-free</strong>必须使用封装的指针释放外部存储。这两个原语都可以使用外部分配和外部无关的定义，也可以作为外部过程导入的C库“malloc”和“free”运算符进行定义。</p>
 <p>如果不希望调用malloc来释放存储，则可以使用collect-request处理器来检查并释放已丢弃的存储，如下所示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>malloc)
-(<span style="color:#66d9ef">let </span>([malloc-guardian (<span style="color:#a6e22e">make-guardian</span>)])
-  (<span style="color:#66d9ef">set! </span>malloc
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">size</span>)
-      <span style="color:#75715e">; allocate and register the new storage</span>
-      (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">do-malloc</span> size)])
-        (<span style="color:#a6e22e">malloc-guardian</span> x)
-        x)))
-
-  (<span style="color:#a6e22e">collect-request-handler</span>
-    (<span style="color:#66d9ef">lambda </span>()
-      <span style="color:#75715e">; first, invoke the collector</span>
-      (<span style="color:#a6e22e">collect</span>)
-      <span style="color:#75715e">; then free any storage that has been dropped</span>
-      (<span style="color:#66d9ef">let </span>f ()
-        (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">malloc-guardian</span>)])
-          (<span style="color:#a6e22e">when</span> x
-            (<span style="color:#a6e22e">do-free</span> x)
-            (<span style="color:#a6e22e">f</span>)))))))
-</code></pre></div><p>通过一点重构，就有可能将封装的外部地址注册为带header的representative，在这种情况下，do-free将仅将外部地址作为参数。 这将使标头一旦变得不可访问，便可以将其从Scheme堆中删除。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>malloc)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([malloc-guardian (<span style="color:#a6e22e">make-guardian</span>)])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">set! </span>malloc
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">size</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; allocate and register the new storage</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">do-malloc</span> size)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">malloc-guardian</span> x)
+</span></span><span style="display:flex;"><span>        x)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">collect-request-handler</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; first, invoke the collector</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">collect</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">; then free any storage that has been dropped</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>f ()
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let </span>([x (<span style="color:#a6e22e">malloc-guardian</span>)])
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">when</span> x
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">do-free</span> x)
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">f</span>)))))))
+</span></span></code></pre></div><p>通过一点重构，就有可能将封装的外部地址注册为带header的representative，在这种情况下，do-free将仅将外部地址作为参数。 这将使标头一旦变得不可访问，便可以将其从Scheme堆中删除。</p>
 <h3 id="锁对象locking-objects">锁对象Locking Objects</h3>
 <p>来自C语言的变量或数据结构到Scheme对象的所有指针，通常应在输入（或重新输入）Scheme之前丢弃。 当无法遵循该准则时，可以通过锁定对象或等效的C库过程Slock_object锁定该对象。</p>
 <blockquote>

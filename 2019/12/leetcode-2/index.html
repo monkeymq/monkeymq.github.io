@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加 Golang的实现： /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>两数相加 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -405,111 +405,111 @@
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>本文在于解答LeetCode中的第二题，问题的描述可参见 <a href="https://leetcode-cn.com/problems/add-two-numbers/">两数相加</a></p>
 <p>Golang的实现：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/**
-</span><span style="color:#75715e"> * Definition for singly-linked list.
-</span><span style="color:#75715e"> * type ListNode struct {
-</span><span style="color:#75715e"> *     Val int
-</span><span style="color:#75715e"> *     Next *ListNode
-</span><span style="color:#75715e"> * }
-</span><span style="color:#75715e"> */</span>
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addTwoNumbers</span>(<span style="color:#a6e22e">l1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">l2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
-    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
-    <span style="color:#a6e22e">nodes</span> <span style="color:#f92672">:=</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>{}
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
-    <span style="color:#66d9ef">for</span> {
-        <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">l1</span>, <span style="color:#a6e22e">l2</span>, <span style="color:#a6e22e">carry</span>)
-        <span style="color:#a6e22e">carry</span> = <span style="color:#a6e22e">c</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-            <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#a6e22e">node</span>)
-            
-            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l1</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-                <span style="color:#a6e22e">l1</span> = <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span>
-            } <span style="color:#66d9ef">else</span> {
-                <span style="color:#a6e22e">l1</span> = <span style="color:#66d9ef">nil</span>
-            }
-
-            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-                <span style="color:#a6e22e">l2</span> = <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span>
-            } <span style="color:#66d9ef">else</span> {
-                <span style="color:#a6e22e">l2</span> = <span style="color:#66d9ef">nil</span>
-            }
-
-            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">carry</span> &gt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">l1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
-                <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span>:<span style="color:#a6e22e">carry</span>})
-            }
-            
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">break</span>
-        }
-    }
-
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nodes</span>{
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-            <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">n</span>
-        }
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> &lt; len(<span style="color:#a6e22e">nodes</span>) {
-            <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
-        }
-    }
-        
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">n2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">carry</span> <span style="color:#66d9ef">int</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#66d9ef">int</span>) {
-    <span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#ae81ff">0</span>
-    }
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
-        <span style="color:#a6e22e">n1</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
-    }
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
-        <span style="color:#a6e22e">n2</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
-    }
-
-    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">n1</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n2</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">carry</span>
-    <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
-     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">sum</span> &gt; <span style="color:#ae81ff">9</span> {
-        <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">1</span>
-        <span style="color:#a6e22e">sum</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>
-    }
-    <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Val</span> = <span style="color:#a6e22e">sum</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">carry</span>
-}
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * type ListNode struct {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     Val int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     Next *ListNode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addTwoNumbers</span>(<span style="color:#a6e22e">l1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">l2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nodes</span> <span style="color:#f92672">:=</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>{}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">l1</span>, <span style="color:#a6e22e">l2</span>, <span style="color:#a6e22e">carry</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">carry</span> = <span style="color:#a6e22e">c</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#a6e22e">node</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l1</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">l1</span> = <span style="color:#a6e22e">l1</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">l1</span> = <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">l2</span> = <span style="color:#a6e22e">l2</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">l2</span> = <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">carry</span> &gt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">l1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">l2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">nodes</span> = append(<span style="color:#a6e22e">nodes</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span>:<span style="color:#a6e22e">carry</span>})
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nodes</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">n</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> &lt; len(<span style="color:#a6e22e">nodes</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">nodes</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">n2</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#a6e22e">carry</span> <span style="color:#66d9ef">int</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>, <span style="color:#66d9ef">int</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">n1</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">n2</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ListNode</span>{<span style="color:#a6e22e">Val</span> : <span style="color:#ae81ff">0</span>}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">n1</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n2</span>.<span style="color:#a6e22e">Val</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">carry</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">sum</span> &gt; <span style="color:#ae81ff">9</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">carry</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">sum</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Val</span> = <span style="color:#a6e22e">sum</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">carry</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
 <p>下面提供Scheme版本的实现【(1 0) + (9 1 2) = (0 2 2)】，为了简单起见，与题目要求稍有不同，这里采用list，而不是题目要求的链表，但实际上应是一样的。比较之下可以看出，相对而言，Scheme语言的实现更加简短优雅，得益于其强大的表达能力</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">
-(letrec (
-    [Polishing
-        (lambda (l num)
-            (<span style="color:#66d9ef">if</span> (eq? num <span style="color:#ae81ff">0</span>) l (Polishing (<span style="color:#a6e22e">append</span> l <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">0</span>)) (<span style="color:#a6e22e">-</span> num <span style="color:#ae81ff">1</span>)))
-        )
-    ]
-    [Align
-        (lambda (l1 l2)
-            (<span style="color:#66d9ef">let</span> ([len1 (<span style="color:#a6e22e">length</span> l1)] [len2 (<span style="color:#a6e22e">length</span> l2)]) 
-                (<span style="color:#66d9ef">if</span> [eq? len1 len2] [list l1 l2] 
-                    [if (<span style="color:#a6e22e">&gt;</span> len1 len2) (<span style="color:#a6e22e">list</span> l1 (Polishing l2 (<span style="color:#a6e22e">-</span> len1 len2))) 
-                        (<span style="color:#a6e22e">list</span> (Polishing l1 (<span style="color:#a6e22e">-</span> len2 len1)) l2)]))
-        )
-    ]
-    [Add
-        (lambda (l1 l2) 
-            (<span style="color:#66d9ef">let</span> ([ l (Align l1 l2)]) 
-                (Carry (<span style="color:#a6e22e">map</span> (lambda (x y) (<span style="color:#a6e22e">+</span> x y)) (<span style="color:#a6e22e">car</span> l) (<span style="color:#a6e22e">cadr</span> l)) <span style="color:#ae81ff">0</span>)  
-            )
-        )
-    ]
-    [Carry 
-        (lambda (l c)
-            (<span style="color:#66d9ef">if</span> (null? l) 
-                (<span style="color:#66d9ef">if</span> [eq? c 0] <span style="color:#f92672">&#39;</span>() [cons c l]) 
-                (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">mod</span> ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c ) <span style="color:#ae81ff">10</span>) (Carry (<span style="color:#a6e22e">cdr</span> l) (quotient ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c) <span style="color:#ae81ff">10</span>)))
-            )
-        )  
-    ]) 
-(Add <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">9</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)))
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(letrec (
+</span></span><span style="display:flex;"><span>    [Polishing
+</span></span><span style="display:flex;"><span>        (lambda (l num)
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">if</span> (eq? num <span style="color:#ae81ff">0</span>) l (Polishing (<span style="color:#a6e22e">append</span> l <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">0</span>)) (<span style="color:#a6e22e">-</span> num <span style="color:#ae81ff">1</span>)))
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    [Align
+</span></span><span style="display:flex;"><span>        (lambda (l1 l2)
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> ([len1 (<span style="color:#a6e22e">length</span> l1)] [len2 (<span style="color:#a6e22e">length</span> l2)]) 
+</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">if</span> [eq? len1 len2] [list l1 l2] 
+</span></span><span style="display:flex;"><span>                    [if (<span style="color:#a6e22e">&gt;</span> len1 len2) (<span style="color:#a6e22e">list</span> l1 (Polishing l2 (<span style="color:#a6e22e">-</span> len1 len2))) 
+</span></span><span style="display:flex;"><span>                        (<span style="color:#a6e22e">list</span> (Polishing l1 (<span style="color:#a6e22e">-</span> len2 len1)) l2)]))
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    [Add
+</span></span><span style="display:flex;"><span>        (lambda (l1 l2) 
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> ([ l (Align l1 l2)]) 
+</span></span><span style="display:flex;"><span>                (Carry (<span style="color:#a6e22e">map</span> (lambda (x y) (<span style="color:#a6e22e">+</span> x y)) (<span style="color:#a6e22e">car</span> l) (<span style="color:#a6e22e">cadr</span> l)) <span style="color:#ae81ff">0</span>)  
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    [Carry 
+</span></span><span style="display:flex;"><span>        (lambda (l c)
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">if</span> (null? l) 
+</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">if</span> [eq? c 0] <span style="color:#f92672">&#39;</span>() [cons c l]) 
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">cons</span> (<span style="color:#a6e22e">mod</span> ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c ) <span style="color:#ae81ff">10</span>) (Carry (<span style="color:#a6e22e">cdr</span> l) (quotient ( <span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">car</span> l) c) <span style="color:#ae81ff">10</span>)))
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )  
+</span></span><span style="display:flex;"><span>    ]) 
+</span></span><span style="display:flex;"><span>(Add <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">9</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)))
+</span></span></code></pre></div><hr>
 <p>Golang版本和Scheme版本的实现思路不相同，简要描述一下后者：</p>
 <ul>
 <li>(1 0) + (9 1 2), 先进行补位：</li>

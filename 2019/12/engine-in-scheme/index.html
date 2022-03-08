@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Engine in Scheme - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Engine in Scheme">
 <meta itemprop="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"><meta itemprop="datePublished" content="2019-12-27T10:30:09+08:00" />
 <meta itemprop="dateModified" content="2019-12-27T10:30:09+08:00" />
-<meta itemprop="wordCount" content="1225">
+<meta itemprop="wordCount" content="1231">
 <meta itemprop="keywords" content="engine,scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Engine in Scheme"/>
 <meta name="twitter:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"/>
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -398,7 +398,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/engine-in-scheme/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1225字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1231字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
       </div>
     </div>
@@ -418,86 +418,83 @@
 <!-- raw HTML omitted -->
 <hr>
 <p>看看具体的例子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>eng
-  (<span style="color:#a6e22e">make-engine</span>
-    (<span style="color:#66d9ef">lambda </span>() <span style="color:#ae81ff">3</span>)))
-
-(<span style="color:#a6e22e">eng</span>
-	<span style="color:#ae81ff">10</span>  <span style="color:#75715e">;; ticks</span>
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> value) value)  <span style="color:#75715e">;; complete</span>
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)  <span style="color:#75715e">;; expire</span>
-) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
-
-</code></pre></div><p>通常将列表作为完整过程传递给引擎，使引擎完成时返回一个列表，该列表的第一个元素是剩余的ticks，另一个元素是计算返回的值，这通常很有用。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>eng
-  (<span style="color:#a6e22e">make-engine</span>
-    (<span style="color:#66d9ef">lambda </span>() <span style="color:#ae81ff">3</span>)))
-
-(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">10</span> list
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">9</span> <span style="color:#ae81ff">3</span>)
-
-</code></pre></div><p>在上面的示例中，计算值为3，还剩下9个时间片，即，需要一单位的时间片来计算出3。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>eng
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-engine</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>() <span style="color:#ae81ff">3</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">10</span>  <span style="color:#75715e">;; ticks</span>
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> value) value)  <span style="color:#75715e">;; complete</span>
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)  <span style="color:#75715e">;; expire</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p>通常将列表作为完整过程传递给引擎，使引擎完成时返回一个列表，该列表的第一个元素是剩余的ticks，另一个元素是计算返回的值，这通常很有用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>eng
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-engine</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>() <span style="color:#ae81ff">3</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">10</span> list
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">9</span> <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><p>在上面的示例中，计算值为3，还剩下9个时间片，即，需要一单位的时间片来计算出3。</p>
 <hr>
 <p>再看一个复杂点的例子：
 先定义一个计算裴波那切值的函数</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>fibonacci
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
-    (<span style="color:#66d9ef">let </span>fib ([i n])
-      (<span style="color:#a6e22e">cond</span>
-        [(= i <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span>]
-        [(= i <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">1</span>]
-        [<span style="color:#66d9ef">else </span>(+ (<span style="color:#a6e22e">fib</span> (- i <span style="color:#ae81ff">1</span>))
-                 (<span style="color:#a6e22e">fib</span> (- i <span style="color:#ae81ff">2</span>)))]))))
-</code></pre></div><p>创建engine</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>eng
-  (<span style="color:#a6e22e">make-engine</span>
-    (<span style="color:#66d9ef">lambda </span>()
-      (<span style="color:#a6e22e">fibonacci</span> <span style="color:#ae81ff">10</span>))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
-	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
-	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
-	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
-	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">21</span> <span style="color:#ae81ff">55</span>)
-</code></pre></div><p>每次时间片（燃料）用完时，到期程序都会将eng分配给新引擎。整个计算需要4个blocks，每个block包含50个ticks。最后50个燃料中，有21个都用掉了。因此，使用的燃料总量为179个。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>fibonacci
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>fib ([i n])
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>        [(= i <span style="color:#ae81ff">0</span>) <span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        [(= i <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">else </span>(+ (<span style="color:#a6e22e">fib</span> (- i <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>                 (<span style="color:#a6e22e">fib</span> (- i <span style="color:#ae81ff">2</span>)))]))))
+</span></span></code></pre></div><p>创建engine</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>eng
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-engine</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">fibonacci</span> <span style="color:#ae81ff">10</span>))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;expired&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span> list
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">set! </span>eng new-eng) <span style="color:#e6db74">&#34;expired&#34;</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">21</span> <span style="color:#ae81ff">55</span>)
+</span></span></code></pre></div><p>每次时间片（燃料）用完时，到期程序都会将eng分配给新引擎。整个计算需要4个blocks，每个block包含50个ticks。最后50个燃料中，有21个都用掉了。因此，使用的燃料总量为179个。</p>
 <p>我们还可以统计一下消耗的ticks数量</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>mileage
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">thunk</span>)
-    (<span style="color:#66d9ef">let </span>loop ([eng (<span style="color:#a6e22e">make-engine</span> thunk)] [total-ticks <span style="color:#ae81ff">0</span>])
-      (<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span>
-           (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> <span style="color:#f92672">.</span> values)
-             (+ total-ticks (- <span style="color:#ae81ff">50</span> ticks)))
-           (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
-             (<span style="color:#a6e22e">loop</span> new-eng
-      (+ total-ticks <span style="color:#ae81ff">50</span>)))))))
-(<span style="color:#a6e22e">mileage</span> (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fibonacci</span> <span style="color:#ae81ff">10</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">179</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>mileage
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">thunk</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>loop ([eng (<span style="color:#a6e22e">make-engine</span> thunk)] [total-ticks <span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">eng</span> <span style="color:#ae81ff">50</span>
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> <span style="color:#f92672">.</span> values)
+</span></span><span style="display:flex;"><span>             (+ total-ticks (- <span style="color:#ae81ff">50</span> ticks)))
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new-eng</span>)
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">loop</span> new-eng
+</span></span><span style="display:flex;"><span>      (+ total-ticks <span style="color:#ae81ff">50</span>)))))))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">mileage</span> (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fibonacci</span> <span style="color:#ae81ff">10</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">179</span>
+</span></span></code></pre></div><hr>
 <p>再看看一个例子——round-robin:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>round-robin
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">engs</span>)
-    (<span style="color:#66d9ef">if </span>(null? engs)
-        <span style="color:#f92672">&#39;</span>()
-        ((car engs)
-			<span style="color:#ae81ff">1</span> <span style="color:#75715e">;;ticks</span>
-			(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> value) (cons value (<span style="color:#a6e22e">round-robin</span> (cdr engs)))) <span style="color:#75715e">;;complete</span>
-			(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">eng</span>) <span style="color:#75715e">;;expire</span>
-				(<span style="color:#a6e22e">round-robin</span>
-					(append (cdr engs) (list eng))))))))
-
-
-(<span style="color:#a6e22e">round-robin</span>
-  (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-         (<span style="color:#a6e22e">make-engine</span>
-           (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fibonacci</span> x))))
-  <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">2</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span>)
-
-</code></pre></div><p>这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数'(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>round-robin
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">engs</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">if </span>(null? engs)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#39;</span>()
+</span></span><span style="display:flex;"><span>        ((car engs)
+</span></span><span style="display:flex;"><span>			<span style="color:#ae81ff">1</span> <span style="color:#75715e">;;ticks</span>
+</span></span><span style="display:flex;"><span>			(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ticks</span> value) (cons value (<span style="color:#a6e22e">round-robin</span> (cdr engs)))) <span style="color:#75715e">;;complete</span>
+</span></span><span style="display:flex;"><span>			(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">eng</span>) <span style="color:#75715e">;;expire</span>
+</span></span><span style="display:flex;"><span>				(<span style="color:#a6e22e">round-robin</span>
+</span></span><span style="display:flex;"><span>					(append (cdr engs) (list eng))))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">round-robin</span>
+</span></span><span style="display:flex;"><span>  (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">make-engine</span>
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fibonacci</span> x))))
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">2</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span>)
+</span></span></code></pre></div><p>这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数&rsquo;(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！</p>
 
     </div>
     <div class="article-footer">

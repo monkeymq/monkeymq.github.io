@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Scheme实现一个FIFO队列 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -429,55 +429,52 @@
 <li>打印函数</li>
 </ul>
 <p>(print-queue <em>&lt;queue&gt;</em>)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">module</span> FIFO-QUEUE
-    (<span style="color:#a6e22e">make-queue</span> empty-queue? front-queue insert-queue! delete-queue! length-queue print-queue)
-    (<span style="color:#66d9ef">define </span>front-ptr (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (caar q)))
-    (<span style="color:#66d9ef">define </span>set-front-ptr! (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> item) (set-car! (car q) item)))
-    (<span style="color:#66d9ef">define </span>rear-ptr (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (cdar q)))
-    (<span style="color:#66d9ef">define </span>set-rear-ptr! (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> item) (set-cdr! (car q) item)))
-
-    (<span style="color:#66d9ef">define </span>make-queue (<span style="color:#66d9ef">lambda </span>() (cons (cons <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>()) <span style="color:#ae81ff">0</span>)))
-    (<span style="color:#66d9ef">define </span>empty-queue? (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (null? (<span style="color:#a6e22e">front-ptr</span> q))))
-    (<span style="color:#66d9ef">define </span>front-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty-queue?</span> q) (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;FRONT called with an empty queue&#34;</span> q) (car (<span style="color:#a6e22e">front-ptr</span> q)))))
-    (<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">insert-queue!</span> q item)
-        (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">new-pair</span> (cons item <span style="color:#f92672">&#39;</span>())))
-            (<span style="color:#a6e22e">if</span>
-                (<span style="color:#a6e22e">empty-queue?</span> q)
-                (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">set-front-ptr!</span> q new-pair) (<span style="color:#a6e22e">set-rear-ptr!</span> q new-pair) (set-cdr! q (+ <span style="color:#ae81ff">1</span> (cdr q))) q)
-                (<span style="color:#66d9ef">begin </span>(set-cdr! (<span style="color:#a6e22e">rear-ptr</span> q) new-pair) (<span style="color:#a6e22e">set-rear-ptr!</span> q new-pair) (set-cdr! q ( + <span style="color:#ae81ff">1</span> (cdr q))) q)
-            )
-        )
-    )
-    (<span style="color:#66d9ef">define </span>delete-queue!
-        (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
-            (<span style="color:#a6e22e">if</span>
-                (<span style="color:#a6e22e">empty-queue?</span> q)
-                (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;DELETE! called with an empty queue&#34;</span> q)
-                (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">set-front-ptr!</span> q (cdr (<span style="color:#a6e22e">front-ptr</span> q))) (set-cdr! q (- (cdr q) <span style="color:#ae81ff">1</span>)) q)
-            )
-        )
-    )
-    (<span style="color:#66d9ef">define </span>length-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (cdr q)))
-    (<span style="color:#66d9ef">define </span>print-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
-        (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty-queue?</span> q) <span style="color:#f92672">&#39;</span>() (<span style="color:#a6e22e">front-ptr</span> q))
-    ))
-)
-
-
-</code></pre></div><p>前4个过程是用于内部的帮助函数，队列维护两个指针，一个指向列头（<strong>front-ptr</strong>）,一个指向列尾（<strong>rear-ptr</strong>），这样可以弥补原生的set-car!和set-cdr!的不足。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (load <span style="color:#e6db74">&#34;/path/to/FIFO-QUEUE.scm&#34;</span>) <span style="color:#75715e">;;加载FIFO-QUEUE模块</span>
-&gt; (<span style="color:#a6e22e">import</span> FIFO-QUEUE)
-&gt; (<span style="color:#66d9ef">define </span>q (<span style="color:#a6e22e">make-queue</span>))
-&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">1</span>) <span style="color:#75715e">;; (((1) 1) . 1), 最后一个数字1表示队列长度, 在队列有删除或者插入时，及时修改该值，为了在取队列长度时减小开销，否则要遍历一次才行</span>
-&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">2</span>) <span style="color:#75715e">;; (((1 2) 2) . 2)</span>
-&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">3</span>) <span style="color:#75715e">;; (((1 2 3) 3) . 3)</span>
-&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">4</span>) <span style="color:#75715e">;; (((1 2 3 4) 4) . 4)</span>
-&gt; (<span style="color:#a6e22e">delete-queue!</span> q) <span style="color:#75715e">;; (((2 3 4) 4) . 3)</span>
-&gt; (<span style="color:#a6e22e">delete-queue!</span> q) <span style="color:#75715e">;; (((3 4) 4) . 2)</span>
-&gt; (<span style="color:#a6e22e">front-queue</span> q) <span style="color:#75715e">;; 3</span>
-&gt; (<span style="color:#a6e22e">length-queue</span> q) <span style="color:#75715e">;; 2</span>
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">module</span> FIFO-QUEUE
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">make-queue</span> empty-queue? front-queue insert-queue! delete-queue! length-queue print-queue)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>front-ptr (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (caar q)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>set-front-ptr! (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> item) (set-car! (car q) item)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>rear-ptr (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (cdar q)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>set-rear-ptr! (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span> item) (set-cdr! (car q) item)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>make-queue (<span style="color:#66d9ef">lambda </span>() (cons (cons <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>()) <span style="color:#ae81ff">0</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>empty-queue? (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (null? (<span style="color:#a6e22e">front-ptr</span> q))))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>front-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty-queue?</span> q) (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;FRONT called with an empty queue&#34;</span> q) (car (<span style="color:#a6e22e">front-ptr</span> q)))))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">insert-queue!</span> q item)
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">let </span>((<span style="color:#a6e22e">new-pair</span> (cons item <span style="color:#f92672">&#39;</span>())))
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">if</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">empty-queue?</span> q)
+</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">set-front-ptr!</span> q new-pair) (<span style="color:#a6e22e">set-rear-ptr!</span> q new-pair) (set-cdr! q (+ <span style="color:#ae81ff">1</span> (cdr q))) q)
+</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">begin </span>(set-cdr! (<span style="color:#a6e22e">rear-ptr</span> q) new-pair) (<span style="color:#a6e22e">set-rear-ptr!</span> q new-pair) (set-cdr! q ( + <span style="color:#ae81ff">1</span> (cdr q))) q)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>delete-queue!
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">if</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">empty-queue?</span> q)
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;DELETE! called with an empty queue&#34;</span> q)
+</span></span><span style="display:flex;"><span>                (<span style="color:#66d9ef">begin </span>(<span style="color:#a6e22e">set-front-ptr!</span> q (cdr (<span style="color:#a6e22e">front-ptr</span> q))) (set-cdr! q (- (cdr q) <span style="color:#ae81ff">1</span>)) q)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>length-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>) (cdr q)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>print-queue (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">q</span>)
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty-queue?</span> q) <span style="color:#f92672">&#39;</span>() (<span style="color:#a6e22e">front-ptr</span> q))
+</span></span><span style="display:flex;"><span>    ))
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>前4个过程是用于内部的帮助函数，队列维护两个指针，一个指向列头（<strong>front-ptr</strong>）,一个指向列尾（<strong>rear-ptr</strong>），这样可以弥补原生的set-car!和set-cdr!的不足。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>&gt; (load <span style="color:#e6db74">&#34;/path/to/FIFO-QUEUE.scm&#34;</span>) <span style="color:#75715e">;;加载FIFO-QUEUE模块</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">import</span> FIFO-QUEUE)
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#66d9ef">define </span>q (<span style="color:#a6e22e">make-queue</span>))
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">1</span>) <span style="color:#75715e">;; (((1) 1) . 1), 最后一个数字1表示队列长度, 在队列有删除或者插入时，及时修改该值，为了在取队列长度时减小开销，否则要遍历一次才行</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">2</span>) <span style="color:#75715e">;; (((1 2) 2) . 2)</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">3</span>) <span style="color:#75715e">;; (((1 2 3) 3) . 3)</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">insert-queue!</span> q <span style="color:#ae81ff">4</span>) <span style="color:#75715e">;; (((1 2 3 4) 4) . 4)</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">delete-queue!</span> q) <span style="color:#75715e">;; (((2 3 4) 4) . 3)</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">delete-queue!</span> q) <span style="color:#75715e">;; (((3 4) 4) . 2)</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">front-queue</span> q) <span style="color:#75715e">;; 3</span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">length-queue</span> q) <span style="color:#75715e">;; 2</span>
+</span></span></code></pre></div>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">

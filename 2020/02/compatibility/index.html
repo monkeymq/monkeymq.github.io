@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>兼容性（Compatibility Features in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -42,7 +42,7 @@
 <meta itemprop="name" content="兼容性（Compatibility Features in Chez Scheme）">
 <meta itemprop="description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可"><meta itemprop="datePublished" content="2020-02-18T14:23:39+08:00" />
 <meta itemprop="dateModified" content="2020-02-18T14:23:39+08:00" />
-<meta itemprop="wordCount" content="4753">
+<meta itemprop="wordCount" content="4765">
 <meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="兼容性（Compatibility Features in Chez Scheme）"/>
 <meta name="twitter:description" content="本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可"/>
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -397,7 +397,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/compatibility/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4753字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:4765字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:10分 </span>
       </div>
     </div>
@@ -416,48 +416,47 @@
 <p>在扩展过程中，转换过程<strong>extend-syntax</strong>会尝试以给定的子句的顺序将输入表达式与每个模式进行匹配。如果输入表达式匹配了某个模式，则将模式变量绑定到输入表达式的相应部分，并对子句的<em>fender</em> （如果有）进行求值。如果<em>fender</em> 返回一个真值，则执行给定的扩展。 如果输入与模式不匹配，或者<em>fender</em> 返回错误值，则转换过程将尝试下一个子句。如果无法选择任何子句，则会引发条件类型**＆assertion**的异常。</p>
 <p>在模式内，省略号（&hellip;）可用于指定零个或多个出现的前面的模式片段或原型。类似地，可以在输出中使用省略号来指定零个或多个扩展原型的结构。在这种情况下，扩展原型必须包含输入模式原型的一部分。</p>
 <p>第一个例子，定义了<strong>rec</strong>, 使用单个关键字，一个子句，且没有fender和省略号</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">rec</span>)
-  [(<span style="color:#a6e22e">rec</span> id val)
-   (<span style="color:#66d9ef">let </span>([id <span style="color:#66d9ef">#f</span>])
-     (<span style="color:#66d9ef">set! </span>id val)
-     id)])
-
-</code></pre></div><p>第二个例子，定义了<strong>when</strong>，展示了如何使用省略号</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">when</span>)
-  [(<span style="color:#a6e22e">when</span> test exp1 exp2 <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">if </span>test (<span style="color:#66d9ef">begin </span>exp1 exp2 <span style="color:#f92672">...</span>) <span style="color:#66d9ef">#f</span>)])
-</code></pre></div><p>下一个示例显示let的定义。 let的定义显示了多个省略号的使用，其中一个用于标识符/值序对，另一个用于body中的表达式。它还表明原型不必是单个标识符，并且在template中可以将原型的各个部分彼此分开。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let</span>)
-  [(<span style="color:#66d9ef">let </span>([x e] <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
-   ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>) e <span style="color:#f92672">...</span>)])
-</code></pre></div><p>下一个示例显示let*，其语法与let相同，但是根据let以两个子句（一个用于基本情况，一个用于递归步骤）递归定义，因为它必须产生一个嵌套结构。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let*</span>)
-  [(<span style="color:#66d9ef">let* </span>() b1 b2 <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">let </span>() b1 b2 <span style="color:#f92672">...</span>)]
-  [(<span style="color:#66d9ef">let* </span>([x e] more <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">let </span>([x e]) (<span style="color:#66d9ef">let* </span>(<span style="color:#a6e22e">more</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>))])
-</code></pre></div><p>定义式<strong>and</strong>需要3个子句。第一个子句对于识别**(and)<strong>是必要的，后两个以递归方式定义所有其他</strong>and**形式。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">and</span>)
-  [(<span style="color:#a6e22e">and</span>) <span style="color:#66d9ef">#t</span>]
-  [(<span style="color:#66d9ef">and </span>x) x]
-  [(<span style="color:#66d9ef">and </span>x y <span style="color:#f92672">...</span>) (<span style="color:#66d9ef">if </span>x (<span style="color:#66d9ef">and </span>y <span style="color:#f92672">...</span>) <span style="color:#66d9ef">#f</span>)])
-</code></pre></div><p><strong>cond</strong>的定义需要四个子句。 与<strong>let*<strong>一样，必须对cond进行递归描述，部分原因是它会产生嵌套的</strong>if</strong>表达式，部分原因是一个省略号原型不足以描述所有可能的<strong>cond</strong>子句。 <strong>cond</strong>的定义还要求除<strong>cond</strong>之外，我们还指定<strong>else</strong>作为关键字。 这是定义：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#66d9ef">cond </span>else)
-  [(<span style="color:#a6e22e">cond</span>) <span style="color:#66d9ef">#f</span>]
-  [(<span style="color:#66d9ef">cond </span>(<span style="color:#66d9ef">else </span>e1 e2 <span style="color:#f92672">...</span>))
-   (<span style="color:#66d9ef">begin </span>e1 e2 <span style="color:#f92672">...</span>)]
-  [(<span style="color:#66d9ef">cond </span>(<span style="color:#a6e22e">test</span>) more <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">or </span>test (<span style="color:#66d9ef">cond </span>more <span style="color:#f92672">...</span>))]
-  [(<span style="color:#66d9ef">cond </span>(<span style="color:#a6e22e">test</span> e1 e2 <span style="color:#f92672">...</span>) more <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">if </span>test
-       (<span style="color:#66d9ef">begin </span>e1 e2 <span style="color:#f92672">...</span>)
-       (<span style="color:#66d9ef">cond </span>more <span style="color:#f92672">...</span>))])
-</code></pre></div><p>为了使<strong>let</strong>的语法绝对正确，我们实际上必须要求输入中的绑定标识符是符号。 如果我们输入类似**（let（[3 x]）x）<strong>的内容，则不会从</strong>let**中得到错误，因为它不会检查验证标识符位置中的对象是否为符号。 相反，lambda可能会抱怨，或者可能是扩展完成很久之后的求值程序。 这是<em>fenders</em> 起作用的地方。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let</span>)
-  [(<span style="color:#66d9ef">let </span>([x e] <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
-   (<span style="color:#a6e22e">andmap</span> symbol? <span style="color:#f92672">&#39;</span>(x <span style="color:#f92672">...</span>))
-   ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>) e <span style="color:#f92672">...</span>)])
-</code></pre></div><p><strong>'（x &hellip;）<strong>上的</strong>symbol?<strong>的</strong>andmap</strong>确保每个绑定标识符都是一个符号。 <em>fender</em> 仅仅是Scheme表达式。 在该表达式中，首先使用与子句的<em>template</em> 部分相同的规则来扩展引用的对象。 在这种情况下，将**'（x &hellip;）**扩展到标识符/值对中的标识符列表。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">rec</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">rec</span> id val)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">let </span>([id <span style="color:#66d9ef">#f</span>])
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">set! </span>id val)
+</span></span><span style="display:flex;"><span>     id)])
+</span></span></code></pre></div><p>第二个例子，定义了<strong>when</strong>，展示了如何使用省略号</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">when</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">when</span> test exp1 exp2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">if </span>test (<span style="color:#66d9ef">begin </span>exp1 exp2 <span style="color:#f92672">...</span>) <span style="color:#66d9ef">#f</span>)])
+</span></span></code></pre></div><p>下一个示例显示let的定义。 let的定义显示了多个省略号的使用，其中一个用于标识符/值序对，另一个用于body中的表达式。它还表明原型不必是单个标识符，并且在template中可以将原型的各个部分彼此分开。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">let </span>([x e] <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>) e <span style="color:#f92672">...</span>)])
+</span></span></code></pre></div><p>下一个示例显示let*，其语法与let相同，但是根据let以两个子句（一个用于基本情况，一个用于递归步骤）递归定义，因为它必须产生一个嵌套结构。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let*</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">let* </span>() b1 b2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">let </span>() b1 b2 <span style="color:#f92672">...</span>)]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">let* </span>([x e] more <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">let </span>([x e]) (<span style="color:#66d9ef">let* </span>(<span style="color:#a6e22e">more</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>))])
+</span></span></code></pre></div><p>定义式<strong>and</strong>需要3个子句。第一个子句对于识别**(and)<strong>是必要的，后两个以递归方式定义所有其他</strong>and**形式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">and</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">and</span>) <span style="color:#66d9ef">#t</span>]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">and </span>x) x]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">and </span>x y <span style="color:#f92672">...</span>) (<span style="color:#66d9ef">if </span>x (<span style="color:#66d9ef">and </span>y <span style="color:#f92672">...</span>) <span style="color:#66d9ef">#f</span>)])
+</span></span></code></pre></div><p><strong>cond</strong>的定义需要四个子句。 与<strong>let*<strong>一样，必须对cond进行递归描述，部分原因是它会产生嵌套的</strong>if</strong>表达式，部分原因是一个省略号原型不足以描述所有可能的<strong>cond</strong>子句。 <strong>cond</strong>的定义还要求除<strong>cond</strong>之外，我们还指定<strong>else</strong>作为关键字。 这是定义：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#66d9ef">cond </span>else)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">cond</span>) <span style="color:#66d9ef">#f</span>]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">cond </span>(<span style="color:#66d9ef">else </span>e1 e2 <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">begin </span>e1 e2 <span style="color:#f92672">...</span>)]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">cond </span>(<span style="color:#a6e22e">test</span>) more <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">or </span>test (<span style="color:#66d9ef">cond </span>more <span style="color:#f92672">...</span>))]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">cond </span>(<span style="color:#a6e22e">test</span> e1 e2 <span style="color:#f92672">...</span>) more <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">if </span>test
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">begin </span>e1 e2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">cond </span>more <span style="color:#f92672">...</span>))])
+</span></span></code></pre></div><p>为了使<strong>let</strong>的语法绝对正确，我们实际上必须要求输入中的绑定标识符是符号。 如果我们输入类似**（let（[3 x]）x）<strong>的内容，则不会从</strong>let**中得到错误，因为它不会检查验证标识符位置中的对象是否为符号。 相反，lambda可能会抱怨，或者可能是扩展完成很久之后的求值程序。 这是<em>fenders</em> 起作用的地方。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">let</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">let </span>([x e] <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">andmap</span> symbol? <span style="color:#f92672">&#39;</span>(x <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>   ((<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) b1 b2 <span style="color:#f92672">...</span>) e <span style="color:#f92672">...</span>)])
+</span></span></code></pre></div><p><strong>&rsquo;（x &hellip;）<strong>上的</strong>symbol?<strong>的</strong>andmap</strong>确保每个绑定标识符都是一个符号。 <em>fender</em> 仅仅是Scheme表达式。 在该表达式中，首先使用与子句的<em>template</em> 部分相同的规则来扩展引用的对象。 在这种情况下，将**&rsquo;（x &hellip;）**扩展到标识符/值对中的标识符列表。</p>
 <p><strong>extend-syntax</strong>通常可以处理您的一切需求，但是某些语法扩展定义要求能够包含对任意Scheme表达式求值的结果。 该功能由<strong>with</strong>提供。</p>
 <blockquote>
 <p>(with ((pat expr) &hellip;) template)</p>
@@ -466,51 +465,50 @@
 <p><strong>with</strong>可用于引入新的模式标识符，该标识符绑定到<strong>extend-syntax</strong>模板中的任意Scheme表达式所生成的表达式。 也就是说，<strong>with</strong>允许从<strong>extend-syntax</strong>的声明式样式转为full Scheme的过程式样式。</p>
 <p><strong>with</strong>的一种常见用法是在模板中引入临时标识符或临时标识符列表。 如果在<strong>extend-syntax</strong>框架内执行，<strong>with</strong>也可用于执行可能笨拙或效率低下的复杂转换。</p>
 <p>例如，<strong>or</strong>需要使用临时标识符。 我们可以如下定义<strong>or</strong>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">or</span>)
-  [(<span style="color:#a6e22e">or</span>) <span style="color:#66d9ef">#f</span>]
-  [(<span style="color:#66d9ef">or </span>x) x]
-  [(<span style="color:#66d9ef">or </span>x y <span style="color:#f92672">...</span>)
-   (<span style="color:#66d9ef">let </span>([temp x])
-     (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>y <span style="color:#f92672">...</span>)))])
-</code></pre></div><p>这会一直有效，直到将<strong>or</strong>表达式放置在<strong>temp</strong>发生的范围内为止，在这种情况下，可能会发生奇怪的事情，因为<strong>extend-syntax</strong>不尊重词法作用域。 （这是<strong>define-syntax</strong>优于<strong>extend-syntax</strong>的原因之一。）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#t</span>])
-  (<span style="color:#66d9ef">or </span><span style="color:#66d9ef">#f</span> temp)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">or</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">or</span>) <span style="color:#66d9ef">#f</span>]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">or </span>x) x]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">or </span>x y <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">let </span>([temp x])
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>y <span style="color:#f92672">...</span>)))])
+</span></span></code></pre></div><p>这会一直有效，直到将<strong>or</strong>表达式放置在<strong>temp</strong>发生的范围内为止，在这种情况下，可能会发生奇怪的事情，因为<strong>extend-syntax</strong>不尊重词法作用域。 （这是<strong>define-syntax</strong>优于<strong>extend-syntax</strong>的原因之一。）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#t</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">or </span><span style="color:#66d9ef">#f</span> temp)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>如果将标识符temp换个名字，则一切正常。就可以理解&quot;<strong>extend-syntax</strong>不尊重词法作用域&quot;这句话了。 实际上，上述的(let &hellip;)表达式，展开之后就变成了：</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#t</span>])
-   (<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#f</span>])
-       (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>temp))
-   )
-)
-</code></pre></div><p>一种解决方案是，使用<strong>gensym</strong>和<strong>with</strong>来创建临时标识符，如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">or</span>)
-  [(<span style="color:#a6e22e">or</span>) <span style="color:#66d9ef">#f</span>]
-  [(<span style="color:#66d9ef">or </span>x) x]
-  [(<span style="color:#66d9ef">or </span>x y <span style="color:#f92672">...</span>)
-   (<span style="color:#a6e22e">with</span> ([temp (<span style="color:#a6e22e">gensym</span>)])
-     (<span style="color:#66d9ef">let </span>([temp x])
-	   (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>y <span style="color:#f92672">...</span>))))])
-</code></pre></div><p>而且，<strong>with</strong>可以以<strong>extend-syntax</strong>无法直接使用的方式来组合输入模式的元素，例如以下<strong>folding-plus</strong>示例:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">folding-plus</span>)
-  [(<span style="color:#a6e22e">folding-plus</span> x y)
-   (<span style="color:#66d9ef">and </span>(number? <span style="color:#e6db74">&#39;x</span>) (number? <span style="color:#e6db74">&#39;y</span>))
-   (<span style="color:#a6e22e">with</span> ([val (+ <span style="color:#e6db74">&#39;x</span> <span style="color:#e6db74">&#39;y</span>)])
-      val)]
-  [(<span style="color:#a6e22e">folding-plus</span> x y) (+ x y)])
-</code></pre></div><p>如果x和y均为数字常数，则folding-plus折叠为（+ x y）的值。 否则，folding-plus转换为（+ x y）以供以后评估。 fender在扩展时检查操作数是否为数字，并使用with进行求值。 与fender一样，扩展仅在带引号的表达式内执行，因为quote将数据与Scheme表达式的其余部分区分开。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#t</span>])
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">let </span>([temp <span style="color:#66d9ef">#f</span>])
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>temp))
+</span></span><span style="display:flex;"><span>   )
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>一种解决方案是，使用<strong>gensym</strong>和<strong>with</strong>来创建临时标识符，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">or</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">or</span>) <span style="color:#66d9ef">#f</span>]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">or </span>x) x]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#66d9ef">or </span>x y <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">with</span> ([temp (<span style="color:#a6e22e">gensym</span>)])
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">let </span>([temp x])
+</span></span><span style="display:flex;"><span>	   (<span style="color:#66d9ef">if </span>temp temp (<span style="color:#66d9ef">or </span>y <span style="color:#f92672">...</span>))))])
+</span></span></code></pre></div><p>而且，<strong>with</strong>可以以<strong>extend-syntax</strong>无法直接使用的方式来组合输入模式的元素，例如以下<strong>folding-plus</strong>示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">folding-plus</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">folding-plus</span> x y)
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">and </span>(number? <span style="color:#e6db74">&#39;x</span>) (number? <span style="color:#e6db74">&#39;y</span>))
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">with</span> ([val (+ <span style="color:#e6db74">&#39;x</span> <span style="color:#e6db74">&#39;y</span>)])
+</span></span><span style="display:flex;"><span>      val)]
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">folding-plus</span> x y) (+ x y)])
+</span></span></code></pre></div><p>如果x和y均为数字常数，则folding-plus折叠为（+ x y）的值。 否则，folding-plus转换为（+ x y）以供以后评估。 fender在扩展时检查操作数是否为数字，并使用with进行求值。 与fender一样，扩展仅在带引号的表达式内执行，因为quote将数据与Scheme表达式的其余部分区分开。</p>
 <p>下面的示例利用with允许我们将模式绑定到表达式这一事实，将模式变量列表绑定到临时符号列表。 此临时列表帮助我们实现sigma语法扩展。 sigma与lambda相似，除了它在标识符列表中分配标识符而不是创建新绑定之外。 它可用于并行执行一系列分配。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">sigma</span>)
-  [(<span style="color:#a6e22e">sigma</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) e1 e2 <span style="color:#f92672">...</span>)
-   (<span style="color:#a6e22e">with</span> ([(<span style="color:#a6e22e">t</span> <span style="color:#f92672">...</span>) (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gensym</span>)) <span style="color:#f92672">&#39;</span>(x <span style="color:#f92672">...</span>))])
-     (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">...</span>)
-       (<span style="color:#66d9ef">set! </span>x t) <span style="color:#f92672">...</span>
-       e1 e2 <span style="color:#f92672">...</span>))])
-
-(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>] [y <span style="color:#e6db74">&#39;b</span>])
-	((<span style="color:#a6e22e">sigma</span> (<span style="color:#a6e22e">x</span> y) (list x y)) y x)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> a)
-
-</code></pre></div><h3 id="结构体">结构体</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">extend-syntax</span> (<span style="color:#a6e22e">sigma</span>)
+</span></span><span style="display:flex;"><span>  [(<span style="color:#a6e22e">sigma</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">...</span>) e1 e2 <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">with</span> ([(<span style="color:#a6e22e">t</span> <span style="color:#f92672">...</span>) (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gensym</span>)) <span style="color:#f92672">&#39;</span>(x <span style="color:#f92672">...</span>))])
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>       (<span style="color:#66d9ef">set! </span>x t) <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>       e1 e2 <span style="color:#f92672">...</span>))])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#e6db74">&#39;a</span>] [y <span style="color:#e6db74">&#39;b</span>])
+</span></span><span style="display:flex;"><span>	((<span style="color:#a6e22e">sigma</span> (<span style="color:#a6e22e">x</span> y) (list x y)) y x)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> a)
+</span></span></code></pre></div><h3 id="结构体">结构体</h3>
 <p>本节介绍一种机制，类似于第7.15节的record定义机制，该机制允许使用固定的命名字段集创建数据结构。 与record类型不同，结构体类型不是唯一类型，而是实现为向量。 具体而言，将结构体实现为向量，其长度比字段数大一倍，并且其第一个元素包含该结构体的符号名称。</p>
 <p>将结构体表示为向量可以在某种程度上简化结构体的读取和打印以及结构体定义工具的扩展。但是，它确实有一些缺点。 一个是在不适当的情况下，结构体可能会被错误地视为普通向量。当在程序中处理结构体和向量时，在检查更通用的向量类型之前，必须注意先寻找更具体的结构体类型，例如在一系列cond子句中。一个类似的缺点是，结构体实例容易被有意或无意地“伪造”。 也不可能控制如何打印和读取结构体。</p>
 <p>通过<strong>define-structure</strong>创建结构体。 每个结构体定义式都定义一个构造过程，一个类型谓词，每个字段的访问过程以及每个字段的分配过程。<strong>define-structure</strong>允许程序员控制哪些字段是构造函数过程的参数，以及哪些字段由构造函数过程显式初始化。<strong>define-structure</strong>非常简单，但对于大多数应用程序来说足够强大，如果还不足以应付应用程序的需求还可以很容易的扩展以满足之。 本节末尾给出的define-structure定义可以作为更复杂变体的起点。</p>
@@ -528,125 +526,121 @@
 </ul>
 <p>标识符<em>id1 &hellip;</em> 命名的字段由构造函数的参数初始化。 由标识符<em>id2 &hellip;</em> 命名的字段被显式初始化为表达式<em>expr &hellip;</em> 的值。每个表达式都在标识符<em>id1 &hellip;</em> （绑定到相应的字段值）的范围内进行求值，并且在标识符<em>id2 &hellip;</em> （绑定到相应的字段值）的范围内出现（类似<strong>let*</strong>） 。</p>
 <p>为了清晰起见，构造函数的行为就像定义为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>make-name
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">id1</span> <span style="color:#f92672">...</span>)
-    (<span style="color:#66d9ef">let* </span>([id2 expr ] <span style="color:#f92672">...</span>) body )))
-</code></pre></div><p>其中<em>body</em> 根据标识符<em>id1 &hellip;</em> 和<em>id2 &hellip;</em> 的值构建结构体。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>make-name
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">id1</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let* </span>([id2 expr ] <span style="color:#f92672">...</span>) body )))
+</span></span></code></pre></div><p>其中<em>body</em> 根据标识符<em>id1 &hellip;</em> 和<em>id2 &hellip;</em> 的值构建结构体。</p>
 <p>如果不需要除构造函数过程的参数初始化的字段以外的其他字段，则可以省略第二个子表达式*( (id2 expr) &hellip;)* 。</p>
 <p>以下简单示例演示了如何在Scheme中定义pair（如果它们不存在的话）。 这两个字段都由构造函数过程的参数初始化。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-structure</span> (<span style="color:#a6e22e">pare</span> car cdr))
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-pare</span> <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b))
-(<span style="color:#a6e22e">pare?</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(pair? p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">pare?</span> <span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">pare-car</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> a
-(<span style="color:#a6e22e">pare-cdr</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> b
-(<span style="color:#a6e22e">set-pare-cdr!</span> p (<span style="color:#a6e22e">make-pare</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#e6db74">&#39;c</span>))
-(<span style="color:#a6e22e">pare-car</span> (<span style="color:#a6e22e">pare-cdr</span> p)) <span style="color:#960050;background-color:#1e0010">⇒</span> b
-(<span style="color:#a6e22e">pare-cdr</span> (<span style="color:#a6e22e">pare-cdr</span> p)) <span style="color:#960050;background-color:#1e0010">⇒</span> c
-
-</code></pre></div><p>以下示例定义了一个方便的字符串数据结构，称为<strong>strext-string</strong> ，该结构会根据需要增长。本例子中，会显式地初始化一个字段的值，该字段在构造函数中定义。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-structure</span> (<span style="color:#a6e22e">stretch-string</span> length fill)
-  ([string (make-string length fill)]))
-
-(<span style="color:#66d9ef">define </span>stretch-string-ref
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i)
-    (<span style="color:#66d9ef">let </span>([n (<span style="color:#a6e22e">stretch-string-length</span> s)])
-      (<span style="color:#a6e22e">when</span> (&gt;= i n) (<span style="color:#a6e22e">stretch-stretch-string!</span> s (+ i <span style="color:#ae81ff">1</span>) n))
-      (string-ref (<span style="color:#a6e22e">stretch-string-string</span> s) i))))
-
-(<span style="color:#66d9ef">define </span>stretch-string-set!
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i c)
-    (<span style="color:#66d9ef">let </span>([n (<span style="color:#a6e22e">stretch-string-length</span> s)])
-      (<span style="color:#a6e22e">when</span> (&gt;= i n) (<span style="color:#a6e22e">stretch-stretch-string!</span> s (+ i <span style="color:#ae81ff">1</span>) n))
-      (string-set! (<span style="color:#a6e22e">stretch-string-string</span> s) i c))))
-
-(<span style="color:#66d9ef">define </span>stretch-string-fill!
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> c)
-    (string-fill! (<span style="color:#a6e22e">stretch-string-string</span> s) c)
-    (<span style="color:#a6e22e">set-stretch-string-fill!</span> s c)))
-
-(<span style="color:#66d9ef">define </span>stretch-stretch-string!
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i n)
-    (<span style="color:#a6e22e">set-stretch-string-length!</span> s i)
-    (<span style="color:#66d9ef">let </span>([str (<span style="color:#a6e22e">stretch-string-string</span> s)]
-          [fill (<span style="color:#a6e22e">stretch-string-fill</span> s)])
-      (<span style="color:#66d9ef">let </span>([xtra (make-string (- i n) fill)])
-        (<span style="color:#a6e22e">set-stretch-string-string!</span> s
-          (string-append str xtra))))))
-
-</code></pre></div><p>通常，大多数自动定义的过程都用于定义更特殊的过程， 在这个例子中，说的就是<strong>stretch-string-ref ** 和</strong>stretch-string-set!<strong>。而</strong>stretch-string-length** 和 <strong>stretch-string-string</strong>是惟一直接使用的自动生成的过程。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>ss (<span style="color:#a6e22e">make-stretch-string</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">#\X</span>))
-(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;XX&#34;</span>
-(<span style="color:#a6e22e">stretch-string-ref</span> ss <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">#\X</span>
-(<span style="color:#a6e22e">stretch-string-length</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">4</span>
-(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;XXXX&#34;</span>
-
-(<span style="color:#a6e22e">stretch-string-fill!</span> ss <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">\</span>@)
-(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@&#34;</span>
-(<span style="color:#a6e22e">stretch-string-ref</span> ss <span style="color:#ae81ff">5</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">\</span>@
-(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@@@&#34;</span>
-
-(<span style="color:#a6e22e">stretch-string-set!</span> ss <span style="color:#ae81ff">7</span> <span style="color:#e6db74">#\=</span>)
-(<span style="color:#a6e22e">stretch-string-length</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">8</span>
-(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@@@@=&#34;</span>
-
-</code></pre></div><p>《The Scheme Programming Language》（第4版）的8.4节定义了define-structure的简化变体，作为使用syntax-case的示例。 下面给出的定义实现了完整版本。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>define-structure
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-    (<span style="color:#66d9ef">define </span>gen-id
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">template-id</span> <span style="color:#f92672">.</span> args)
-        (<span style="color:#a6e22e">datum-&gt;syntax</span> template-id
-          (<span style="color:#a6e22e">string-&gt;symbol</span>
-            (apply string-append
-                   (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-                          (<span style="color:#66d9ef">if </span>(string? x)
-                              x
-                              (<span style="color:#a6e22e">symbol-&gt;string</span>
-                                (<span style="color:#a6e22e">syntax-&gt;datum</span> x))))
-	                    args))))))
-
-  (<span style="color:#a6e22e">syntax-case</span> x ()
-      ((<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>))
-       (<span style="color:#a6e22e">andmap</span> identifier? <span style="color:#f92672">#&#39;</span>(name field1 <span style="color:#f92672">...</span>))
-       <span style="color:#f92672">#&#39;</span>(define-structure (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>) ()))
-      ((<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>) ((<span style="color:#a6e22e">field2</span> init) <span style="color:#f92672">...</span>))
-       (<span style="color:#a6e22e">andmap</span> identifier? <span style="color:#f92672">#&#39;</span>(name field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>))
-       (<span style="color:#a6e22e">with-syntax</span>
-         ((<span style="color:#a6e22e">constructor</span> (<span style="color:#a6e22e">gen-id</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;make-&#34;</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span>))
-          (<span style="color:#a6e22e">predicate</span> (<span style="color:#a6e22e">gen-id</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;?&#34;</span>))
-          ((<span style="color:#a6e22e">access</span> <span style="color:#f92672">...</span>)
-
-	       (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gen-id</span> x <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;-&#34;</span> x))
-                <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)))
-          ((<span style="color:#a6e22e">assign</span> <span style="color:#f92672">...</span>)
-           (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gen-id</span> x <span style="color:#e6db74">&#34;set-&#34;</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#e6db74">&#34;!&#34;</span>))
-                <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)))
-          (<span style="color:#a6e22e">structure-length</span>
-           (+ (length <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)) <span style="color:#ae81ff">1</span>))
-          ((<span style="color:#a6e22e">index</span> <span style="color:#f92672">...</span>)
-           (<span style="color:#66d9ef">let </span>f ([i <span style="color:#ae81ff">1</span>] [ids <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)])
-             (<span style="color:#66d9ef">if </span>(null? ids)
-				 <span style="color:#f92672">&#39;</span>()
-                 (cons i (<span style="color:#a6e22e">f</span> (+ i <span style="color:#ae81ff">1</span>) (cdr ids)))))))
-
-	      <span style="color:#f92672">#&#39;</span>(begin
-             (<span style="color:#66d9ef">define </span>constructor
-               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">field1</span> <span style="color:#f92672">...</span>)
-                 (<span style="color:#66d9ef">let* </span>([field2 init] <span style="color:#f92672">...</span>)
-                   (vector <span style="color:#e6db74">&#39;name</span> field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>))))
-             (<span style="color:#66d9ef">define </span>predicate
-               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-                 (<span style="color:#66d9ef">and </span>(vector? x)
-                      (<span style="color:#f92672">#</span><span style="color:#ae81ff">3</span>%fx= (vector-length x) structure-length)
-                      (eq? (vector-ref x <span style="color:#ae81ff">0</span>) <span style="color:#e6db74">&#39;name</span>))))
-             (<span style="color:#66d9ef">define </span>access (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (vector-ref x index)))
-             <span style="color:#f92672">...</span>
-             (<span style="color:#66d9ef">define </span>assign
-               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> update) (vector-set! x index update)))
-             <span style="color:#f92672">...</span>))))))
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-structure</span> (<span style="color:#a6e22e">pare</span> car cdr))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-pare</span> <span style="color:#960050;background-color:#1e0010">’</span>a <span style="color:#960050;background-color:#1e0010">’</span>b))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare?</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(pair? p) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare?</span> <span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> b)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare-car</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> a
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare-cdr</span> p) <span style="color:#960050;background-color:#1e0010">⇒</span> b
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">set-pare-cdr!</span> p (<span style="color:#a6e22e">make-pare</span> <span style="color:#e6db74">&#39;b</span> <span style="color:#e6db74">&#39;c</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare-car</span> (<span style="color:#a6e22e">pare-cdr</span> p)) <span style="color:#960050;background-color:#1e0010">⇒</span> b
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">pare-cdr</span> (<span style="color:#a6e22e">pare-cdr</span> p)) <span style="color:#960050;background-color:#1e0010">⇒</span> c
+</span></span></code></pre></div><p>以下示例定义了一个方便的字符串数据结构，称为<strong>strext-string</strong> ，该结构会根据需要增长。本例子中，会显式地初始化一个字段的值，该字段在构造函数中定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-structure</span> (<span style="color:#a6e22e">stretch-string</span> length fill)
+</span></span><span style="display:flex;"><span>  ([string (make-string length fill)]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>stretch-string-ref
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>([n (<span style="color:#a6e22e">stretch-string-length</span> s)])
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">when</span> (&gt;= i n) (<span style="color:#a6e22e">stretch-stretch-string!</span> s (+ i <span style="color:#ae81ff">1</span>) n))
+</span></span><span style="display:flex;"><span>      (string-ref (<span style="color:#a6e22e">stretch-string-string</span> s) i))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>stretch-string-set!
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i c)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>([n (<span style="color:#a6e22e">stretch-string-length</span> s)])
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">when</span> (&gt;= i n) (<span style="color:#a6e22e">stretch-stretch-string!</span> s (+ i <span style="color:#ae81ff">1</span>) n))
+</span></span><span style="display:flex;"><span>      (string-set! (<span style="color:#a6e22e">stretch-string-string</span> s) i c))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>stretch-string-fill!
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> c)
+</span></span><span style="display:flex;"><span>    (string-fill! (<span style="color:#a6e22e">stretch-string-string</span> s) c)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">set-stretch-string-fill!</span> s c)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>stretch-stretch-string!
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">s</span> i n)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">set-stretch-string-length!</span> s i)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>([str (<span style="color:#a6e22e">stretch-string-string</span> s)]
+</span></span><span style="display:flex;"><span>          [fill (<span style="color:#a6e22e">stretch-string-fill</span> s)])
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([xtra (make-string (- i n) fill)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">set-stretch-string-string!</span> s
+</span></span><span style="display:flex;"><span>          (string-append str xtra))))))
+</span></span></code></pre></div><p>通常，大多数自动定义的过程都用于定义更特殊的过程， 在这个例子中，说的就是<strong>stretch-string-ref ** 和</strong>stretch-string-set!<strong>。而</strong>stretch-string-length** 和 <strong>stretch-string-string</strong>是惟一直接使用的自动生成的过程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>ss (<span style="color:#a6e22e">make-stretch-string</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">#\X</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;XX&#34;</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-ref</span> ss <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">#\X</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-length</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;XXXX&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-fill!</span> ss <span style="color:#e6db74">#\@</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@&#34;</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-ref</span> ss <span style="color:#ae81ff">5</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">#\@</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@@@&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-set!</span> ss <span style="color:#ae81ff">7</span> <span style="color:#e6db74">#\=</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-length</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">stretch-string-string</span> ss) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;@@@@@@@=&#34;</span>
+</span></span></code></pre></div><p>《The Scheme Programming Language》（第4版）的8.4节定义了define-structure的简化变体，作为使用syntax-case的示例。 下面给出的定义实现了完整版本。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define-syntax </span>define-structure
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>gen-id
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">template-id</span> <span style="color:#f92672">.</span> args)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">datum-&gt;syntax</span> template-id
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">string-&gt;symbol</span>
+</span></span><span style="display:flex;"><span>            (apply string-append
+</span></span><span style="display:flex;"><span>                   (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>                          (<span style="color:#66d9ef">if </span>(string? x)
+</span></span><span style="display:flex;"><span>                              x
+</span></span><span style="display:flex;"><span>                              (<span style="color:#a6e22e">symbol-&gt;string</span>
+</span></span><span style="display:flex;"><span>                                (<span style="color:#a6e22e">syntax-&gt;datum</span> x))))
+</span></span><span style="display:flex;"><span>	                    args))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">syntax-case</span> x ()
+</span></span><span style="display:flex;"><span>      ((<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">andmap</span> identifier? <span style="color:#f92672">#&#39;</span>(name field1 <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">#&#39;</span>(define-structure (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>) ()))
+</span></span><span style="display:flex;"><span>      ((<span style="color:#a6e22e">_</span> (<span style="color:#a6e22e">name</span> field1 <span style="color:#f92672">...</span>) ((<span style="color:#a6e22e">field2</span> init) <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">andmap</span> identifier? <span style="color:#f92672">#&#39;</span>(name field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>))
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">with-syntax</span>
+</span></span><span style="display:flex;"><span>         ((<span style="color:#a6e22e">constructor</span> (<span style="color:#a6e22e">gen-id</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;make-&#34;</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span>))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">predicate</span> (<span style="color:#a6e22e">gen-id</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;?&#34;</span>))
+</span></span><span style="display:flex;"><span>          ((<span style="color:#a6e22e">access</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	       (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gen-id</span> x <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;-&#34;</span> x))
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)))
+</span></span><span style="display:flex;"><span>          ((<span style="color:#a6e22e">assign</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>           (map (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (<span style="color:#a6e22e">gen-id</span> x <span style="color:#e6db74">&#34;set-&#34;</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;name</span> <span style="color:#e6db74">&#34;-&#34;</span> x <span style="color:#e6db74">&#34;!&#34;</span>))
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">structure-length</span>
+</span></span><span style="display:flex;"><span>           (+ (length <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)) <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>          ((<span style="color:#a6e22e">index</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>           (<span style="color:#66d9ef">let </span>f ([i <span style="color:#ae81ff">1</span>] [ids <span style="color:#f92672">#&#39;</span>(field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>)])
+</span></span><span style="display:flex;"><span>             (<span style="color:#66d9ef">if </span>(null? ids)
+</span></span><span style="display:flex;"><span>				 <span style="color:#f92672">&#39;</span>()
+</span></span><span style="display:flex;"><span>                 (cons i (<span style="color:#a6e22e">f</span> (+ i <span style="color:#ae81ff">1</span>) (cdr ids)))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	      <span style="color:#f92672">#&#39;</span>(begin
+</span></span><span style="display:flex;"><span>             (<span style="color:#66d9ef">define </span>constructor
+</span></span><span style="display:flex;"><span>               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">field1</span> <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>                 (<span style="color:#66d9ef">let* </span>([field2 init] <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>                   (vector <span style="color:#e6db74">&#39;name</span> field1 <span style="color:#f92672">...</span> field2 <span style="color:#f92672">...</span>))))
+</span></span><span style="display:flex;"><span>             (<span style="color:#66d9ef">define </span>predicate
+</span></span><span style="display:flex;"><span>               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>                 (<span style="color:#66d9ef">and </span>(vector? x)
+</span></span><span style="display:flex;"><span>                      (<span style="color:#f92672">#</span><span style="color:#ae81ff">3</span>%fx= (vector-length x) structure-length)
+</span></span><span style="display:flex;"><span>                      (eq? (vector-ref x <span style="color:#ae81ff">0</span>) <span style="color:#e6db74">&#39;name</span>))))
+</span></span><span style="display:flex;"><span>             (<span style="color:#66d9ef">define </span>access (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) (vector-ref x index)))
+</span></span><span style="display:flex;"><span>             <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>             (<span style="color:#66d9ef">define </span>assign
+</span></span><span style="display:flex;"><span>               (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> update) (vector-set! x index update)))
+</span></span><span style="display:flex;"><span>             <span style="color:#f92672">...</span>))))))
+</span></span></code></pre></div>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">

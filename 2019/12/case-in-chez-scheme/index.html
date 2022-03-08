@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Schem" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Chez Scheme中的case扩展 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -422,17 +422,16 @@
 <hr>
 <p>那么返回值是什么呢？</p>
 <!-- raw HTML omitted -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>p
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-    (<span style="color:#66d9ef">case </span>x
-      [(<span style="color:#e6db74">&#34;abc&#34;</span> <span style="color:#e6db74">&#34;def&#34;</span>) <span style="color:#e6db74">&#39;one</span> <span style="color:#e6db74">&#39;1</span>]
-      [((<span style="color:#a6e22e">a</span> b c)) <span style="color:#e6db74">&#39;two</span>]
-      [<span style="color:#66d9ef">else </span><span style="color:#66d9ef">#f</span>])))
-(<span style="color:#a6e22e">p</span> (string <span style="color:#e6db74">#\d</span> <span style="color:#e6db74">#\e</span> <span style="color:#e6db74">#\f</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
-(<span style="color:#a6e22e">p</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> two
-(<span style="color:#a6e22e">p</span> <span style="color:#e6db74">&#34;eee&#34;</span>)  <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-
-</code></pre></div><p>上面的例子定义了一个函数p，接收一个参数x</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">case </span>x
+</span></span><span style="display:flex;"><span>      [(<span style="color:#e6db74">&#34;abc&#34;</span> <span style="color:#e6db74">&#34;def&#34;</span>) <span style="color:#e6db74">&#39;one</span> <span style="color:#e6db74">&#39;1</span>]
+</span></span><span style="display:flex;"><span>      [((<span style="color:#a6e22e">a</span> b c)) <span style="color:#e6db74">&#39;two</span>]
+</span></span><span style="display:flex;"><span>      [<span style="color:#66d9ef">else </span><span style="color:#66d9ef">#f</span>])))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">p</span> (string <span style="color:#e6db74">#\d</span> <span style="color:#e6db74">#\e</span> <span style="color:#e6db74">#\f</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> two
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">p</span> <span style="color:#e6db74">&#34;eee&#34;</span>)  <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><p>上面的例子定义了一个函数p，接收一个参数x</p>
 <ul>
 <li>如果x为字符串&quot;abc&quot;或者&quot;def&quot;，则返回1；</li>
 <li>如果x为列表((a b c)，则返回two</li>
@@ -440,14 +439,14 @@
 </ul>
 <p>可见，有了case语法多条件判断写起来就方便很多，并且代码也容易读了，当然这里也可以用cond来写，这里只是为了描述case的语法而没有使用cond</p>
 <p>再看一个例子，就不用解释了：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([ls <span style="color:#f92672">&#39;</span>(ii iv)])
-  (<span style="color:#66d9ef">case </span>(cadr ls)
-	[i <span style="color:#ae81ff">1</span>]
-	[ii <span style="color:#ae81ff">2</span>]
-	[iii <span style="color:#ae81ff">3</span>]
-	[(<span style="color:#a6e22e">iiii</span> iv) <span style="color:#ae81ff">4</span>]
-	[<span style="color:#66d9ef">else </span><span style="color:#e6db74">&#39;out-of-range</span>])) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">4</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([ls <span style="color:#f92672">&#39;</span>(ii iv)])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">case </span>(cadr ls)
+</span></span><span style="display:flex;"><span>	[i <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>	[ii <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>	[iii <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>	[(<span style="color:#a6e22e">iiii</span> iv) <span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>	[<span style="color:#66d9ef">else </span><span style="color:#e6db74">&#39;out-of-range</span>])) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><hr>
 <h3 id="record-case">record-case</h3>
 <p>来看看另一个很类似的扩展，也十分有用，它就是<strong>record-case</strong>。它可以以record为单位来做条件判断并执行指令。<!-- raw HTML omitted --></p>
 <h4 id="语法格式">语法格式：</h4>
@@ -471,11 +470,10 @@
       [(sub) (x y) (- x y)]
       [(mul) (x y) (* x y)]
       [(div) (x y) (/ x y)]
-      [else (assertion-violationf 'calc &quot;invalid expression ~s&quot; x)])))
+      [else (assertion-violationf &#39;calc &#34;invalid expression ~s&#34; x)])))
 
-(calc '(add 3 4)) =&gt; 7
-(calc '(div 3 4)) =&gt; 3/4
-
+(calc &#39;(add 3 4)) =&gt; 7
+(calc &#39;(div 3 4)) =&gt; 3/4
 </code></pre>
     </div>
     <div class="article-footer">

@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>系统操作(System Operations in Chez Scheme) - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -426,8 +426,8 @@
 <p>break-handler</p>
 </blockquote>
 <p>此参数的值必须是一个过程。当前的中断处理程序由break调用，它传递其参数。有关默认中断处理程序的描述，请参见break。以下示例显示了如何禁用breaks。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">break-handler</span> (<span style="color:#66d9ef">lambda </span>args (<span style="color:#a6e22e">void</span>)))
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">break-handler</span> (<span style="color:#66d9ef">lambda </span>args (<span style="color:#a6e22e">void</span>)))
+</span></span></code></pre></div><blockquote>
 <p>(set-timer n)</p>
 </blockquote>
 <p><em>n</em> 必须为非负整数。当<em>n</em> 为非零时，设置计时器启动一个内部计时器，其初始值为n。经过n个tick后，将发生计时器中断，从而导致计时器中断处理程序被调用。tick不是统一的时间单位，而是在很大程度上取决于每个过程调用要完成多少工作。</p>
@@ -450,46 +450,46 @@
 <blockquote>
 <p>(environment? obj)</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">interaction-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">environment?</span> <span style="color:#e6db74">&#39;interaction-environment</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">environment</span> <span style="color:#f92672">&#39;</span>(prefix (<span style="color:#a6e22e">rnrs</span>) $rnrs-))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">interaction-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment?</span> <span style="color:#e6db74">&#39;interaction-environment</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment?</span> (<span style="color:#a6e22e">environment</span> <span style="color:#f92672">&#39;</span>(prefix (<span style="color:#a6e22e">rnrs</span>) $rnrs-))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><blockquote>
 <p>(environment-mutable? env)</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">interaction-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">environment</span> <span style="color:#f92672">&#39;</span>(prefix (<span style="color:#a6e22e">rnrs</span>) $rnrs-))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">interaction-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">environment-mutable?</span> (<span style="color:#a6e22e">environment</span> <span style="color:#f92672">&#39;</span>(prefix (<span style="color:#a6e22e">rnrs</span>) $rnrs-))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>(scheme-environment)</p>
 </blockquote>
 <p>scheme-environment返回一个包含初始顶级绑定的环境。该环境对应于Scheme模块。此过程返回的环境是不可变的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>cons <span style="color:#ae81ff">3</span>)
-(<span style="color:#a6e22e">top-level-value</span> <span style="color:#e6db74">&#39;cons</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;procedure cons&gt;
-(<span style="color:#a6e22e">set-top-level-value!</span> <span style="color:#e6db74">&#39;cons</span> <span style="color:#ae81ff">3</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> exception
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>cons <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">top-level-value</span> <span style="color:#e6db74">&#39;cons</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;procedure cons&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">set-top-level-value!</span> <span style="color:#e6db74">&#39;cons</span> <span style="color:#ae81ff">3</span> (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> exception
+</span></span></code></pre></div><blockquote>
 <p>(copy-environment env) |  (copy-environment env mutable?) |  (copy-environment env mutable? syms)</p>
 </blockquote>
 <p>copy-environment返回env的副本，即包含与<em>env</em> 相同绑定的新环境。<em>mutable?</em> 如果为true，则该environment是可变的，反之则不可变；</p>
 <p>从<em>env</em> 复制到新环境的绑定集由<em>syms</em> 确定，其默认值为（environment-symbols env）。每个<em>syms</em> 元素的绑定（如果有）都被复制到新环境中，并且新环境中不存在其他绑定。</p>
 <p><strong>在当前的实现中，永远不会收集环境使用的存储空间，因此重复使用复制环境最终将导致系统内存不足。</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>e (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>)))
-(eval <span style="color:#f92672">&#39;</span>(<span style="color:#66d9ef">define </span>cons +) e)
-(eval <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) e) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">7</span>
-(eval <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>e (<span style="color:#a6e22e">copy-environment</span> (<span style="color:#a6e22e">scheme-environment</span>)))
+</span></span><span style="display:flex;"><span>(eval <span style="color:#f92672">&#39;</span>(<span style="color:#66d9ef">define </span>cons +) e)
+</span></span><span style="display:flex;"><span>(eval <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) e) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>(eval <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">scheme-environment</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><blockquote>
 <p>(environment-symbols env)</p>
 </blockquote>
 <p>此过程返回代表环境env中绑定的标识符的符号列表。它主要用于构建要从一种环境复制到另一种环境的符号列表。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>listless-environment
-  (<span style="color:#a6e22e">copy-environment</span>
-    (<span style="color:#a6e22e">scheme-environment</span>)
-    <span style="color:#66d9ef">#t</span>
-    (<span style="color:#a6e22e">remq</span> <span style="color:#e6db74">&#39;list</span> (<span style="color:#a6e22e">environment-symbols</span> (<span style="color:#a6e22e">scheme-environment</span>)))))
-(eval <span style="color:#f92672">&#39;</span>(<span style="color:#66d9ef">let </span>([x (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)]) x) listless-environment) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)
-(eval <span style="color:#f92672">&#39;</span>(list <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) listless-environment) <span style="color:#960050;background-color:#1e0010">⇒</span> exception
-</code></pre></div><h3 id="编译求值和加载">编译、求值和加载</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>listless-environment
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">copy-environment</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">scheme-environment</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">remq</span> <span style="color:#e6db74">&#39;list</span> (<span style="color:#a6e22e">environment-symbols</span> (<span style="color:#a6e22e">scheme-environment</span>)))))
+</span></span><span style="display:flex;"><span>(eval <span style="color:#f92672">&#39;</span>(<span style="color:#66d9ef">let </span>([x (cons <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)]) x) listless-environment) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>(eval <span style="color:#f92672">&#39;</span>(list <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) listless-environment) <span style="color:#960050;background-color:#1e0010">⇒</span> exception
+</span></span></code></pre></div><h3 id="编译求值和加载">编译、求值和加载</h3>
 <blockquote>
 <p>(eval obj) |  (eval obj env)</p>
 </blockquote>
@@ -500,8 +500,8 @@
 <p>(compile obj) |  (compile obj env)</p>
 </blockquote>
 <p><em>obj</em> 可以为Scheme表达式，在指定的环境（或交互环境，如果未提供环境）中使用当前扩展器（current-expand的值）进行扩展），编译为机器代码，然后执行。 compile是current-eval参数的默认值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">compile</span> <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>)
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">compile</span> <span style="color:#f92672">&#39;</span>(cons <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><blockquote>
 <p>(interpret obj)  | (interpret obj env)</p>
 </blockquote>
 <p>解释类似于编译，只是表达式是解释的而不是编译的（the expression is interpreted rather than compiled）。解释可以用作编译的替代品，但有以下警告：</p>
@@ -516,15 +516,15 @@
 </blockquote>
 <p><em>path</em> 必须是字符串。 <strong>load</strong>读取并求值<em>path</em> 指定的文件的内容。该文件可能包含源代码或目标代码。默认情况下，<strong>load</strong>使用<strong>eval</strong>求值源文件中找到的每个源表达式。如果指定了<em>eval-proc</em> ，则<strong>load</strong>将使用此过程。 <em>eval-proc</em> 必须接受一个参数，即要求值的表达式。</p>
 <p>eval-proc参数有助于实现嵌入的类似于Scheme的语言，并有助于使用用于Scheme程序的替代评估机制。 eval-proc也可以用于其他用途。例如，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(load <span style="color:#e6db74">&#34;myfile.ss&#34;</span>
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-    (<span style="color:#a6e22e">pretty-print</span>
-      (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">annotation?</span> x)
-          (<span style="color:#a6e22e">annotation-stripped</span> x)
-          x))
-    (<span style="color:#a6e22e">newline</span>)
-(eval x)))
-</code></pre></div><p>对每一个表达式求值之前使用<strong>pretty-print</strong>打印。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(load <span style="color:#e6db74">&#34;myfile.ss&#34;</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">pretty-print</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">annotation?</span> x)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">annotation-stripped</span> x)
+</span></span><span style="display:flex;"><span>          x))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">newline</span>)
+</span></span><span style="display:flex;"><span>(eval x)))
+</span></span></code></pre></div><p>对每一个表达式求值之前使用<strong>pretty-print</strong>打印。</p>
 <p>参数source-directorys确定了搜索目录，以搜索未由绝对路径名标识的源文件。</p>
 <blockquote>
 <p>(load-library path) |  (load-library path eval-proc)</p>
@@ -603,27 +603,27 @@
 <p>如果<em>name</em> 是绝对路径，或者以./（Windows下是./），或者../（Windows下是..\），或者源目录列表中只包含“.”，或者默认值 &ldquo;&quot;，相当于 &ldquo;.&quot;，不执行搜索并返回<em>name</em>。</p>
 <p><em>who</em> 必须是符号，<em>name</em> 必须是字符串，<em>procedure</em> 应接受一个参数。</p>
 <p>以下示例假定文件“ pie”存在于目录“ ../spam”中，但不在“ ../ham”或当前目录中。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>find-file
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">fn</span>)
-	(<span style="color:#a6e22e">with-source-path</span> <span style="color:#e6db74">&#39;find-file</span> fn values)))
-
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;pie&#34;</span>
-
-(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> exception in find-file: pie not found
-
-(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../spam&#34;</span>))
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;../spam/pie&#34;</span>
-
-(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;/pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;/pie&#34;</span>
-
-(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;./pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;./pie&#34;</span>
-
-(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../spam&#34;</span>))
-(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;../pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;../ham/pie&#34;</span>
-</code></pre></div><h3 id="编译器管理">编译器管理</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>find-file
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">fn</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#a6e22e">with-source-path</span> <span style="color:#e6db74">&#39;find-file</span> fn values)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;pie&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> exception in find-file: pie not found
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../spam&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;../spam/pie&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;/pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;/pie&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../ham&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;./pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;./pie&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">source-directories</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#e6db74">&#34;../spam&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">find-file</span> <span style="color:#e6db74">&#34;../pie&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;../ham/pie&#34;</span>
+</span></span></code></pre></div><h3 id="编译器管理">编译器管理</h3>
 <blockquote>
 <p>optimize-level</p>
 </blockquote>
@@ -639,11 +639,11 @@
 </blockquote>
 <p><em>variable</em> 必须是一个原始procedure的名字。** $primitive**语法形式允许以单个原始引用的粒度控制优化级别，并且它可以用于访问原始值。</p>
 <p>表达式（$primitive variable）可以缩写为**#%variable**。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#f92672">#</span>%car <span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#a6e22e">a</span> b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> a
-(<span style="color:#66d9ef">let </span>([car cdr]) (car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> c)
-(<span style="color:#66d9ef">let </span>([car cdr]) (<span style="color:#f92672">#</span>%car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> a
-(<span style="color:#66d9ef">begin </span>(<span style="color:#66d9ef">set! </span>car cdr) (<span style="color:#f92672">#</span>%car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> a
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#f92672">#</span>%car <span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#a6e22e">a</span> b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> a
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([car cdr]) (car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> c)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([car cdr]) (<span style="color:#f92672">#</span>%car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> a
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">begin </span>(<span style="color:#66d9ef">set! </span>car cdr) (<span style="color:#f92672">#</span>%car <span style="color:#f92672">&#39;</span>(a b c))) <span style="color:#960050;background-color:#1e0010">⇒</span> a
+</span></span></code></pre></div><blockquote>
 <p>debug-level</p>
 </blockquote>
 <p>该参数可以采用0、1、2和3这四个值之一。它用于告诉编译器保留调试信息的重要性，其中0的重要性最低，而3的重要性最高。 默认值是1。从9.0版开始，它仅用于确定在非尾部位置遇到的引起错误的调用是否被视为在尾部位置（因此，导致调用者的帧不出现在堆栈回溯中）。 这发生在低于2的调试级别。</p>
@@ -686,28 +686,26 @@
 <p>标记每个步骤的数字既指示步骤的顺序，又指示必须在同一计划过程中执行的顺序。 （如果需要，所有步骤都可以在同一Scheme流程中执行。）
 当compile-profile设置为默认值#f时，将禁用源和块分析。</p>
 <p>假设文件/tmp/fatfib/fatfib.ss包含以下代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>fat+
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> y)
-    (<span style="color:#66d9ef">if </span>(zero? y)
-        x
-        (<span style="color:#a6e22e">fat+</span> (<span style="color:#ae81ff">1</span>+ x) (<span style="color:#ae81ff">1</span>- y)))))
-
-(<span style="color:#66d9ef">define </span>fatfib
-  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-	(<span style="color:#66d9ef">if </span>(&lt; x <span style="color:#ae81ff">2</span>)
-		<span style="color:#ae81ff">1</span>
-		(<span style="color:#a6e22e">fat+</span> (<span style="color:#a6e22e">fatfib</span> (<span style="color:#ae81ff">1</span>- x)) (<span style="color:#a6e22e">fatfib</span> (<span style="color:#ae81ff">1</span>- (<span style="color:#ae81ff">1</span>- x)))))))
-
-</code></pre></div><p>我们可以像下面这样加载fatfib.ss并且开启概要分析：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">parameterize</span> ([compile-profile <span style="color:#e6db74">&#39;source</span>])
-  (load <span style="color:#e6db74">&#34;/tmp/fatfib/fatfib.ss&#34;</span>))
-
-</code></pre></div><p>然后运行代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">fatfib</span> <span style="color:#ae81ff">20</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">10946</span>
-</code></pre></div><p>运行（或多次运行）之后，转储概要文件为一些html文件集合：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>fat+
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> y)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">if </span>(zero? y)
+</span></span><span style="display:flex;"><span>        x
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">fat+</span> (<span style="color:#ae81ff">1</span>+ x) (<span style="color:#ae81ff">1</span>- y)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>fatfib
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">if </span>(&lt; x <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		(<span style="color:#a6e22e">fat+</span> (<span style="color:#a6e22e">fatfib</span> (<span style="color:#ae81ff">1</span>- x)) (<span style="color:#a6e22e">fatfib</span> (<span style="color:#ae81ff">1</span>- (<span style="color:#ae81ff">1</span>- x)))))))
+</span></span></code></pre></div><p>我们可以像下面这样加载fatfib.ss并且开启概要分析：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">parameterize</span> ([compile-profile <span style="color:#e6db74">&#39;source</span>])
+</span></span><span style="display:flex;"><span>  (load <span style="color:#e6db74">&#34;/tmp/fatfib/fatfib.ss&#34;</span>))
+</span></span></code></pre></div><p>然后运行代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">fatfib</span> <span style="color:#ae81ff">20</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">10946</span>
+</span></span></code></pre></div><p>运行（或多次运行）之后，转储概要文件为一些html文件集合：
 使用<strong>profile-dump-html</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">profile-dump-html</span>)
-</code></pre></div><p>这将创建一个名为profile.html的文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">profile-dump-html</span>)
+</span></span></code></pre></div><p>这将创建一个名为profile.html的文件</p>
 <p>在图中，执行最频繁的代码以接近红色的颜色突出显示，而执行最不频繁的代码以接近紫色的颜色突出显示。</p>
 <blockquote>
 <p>compile-profile</p>
@@ -736,28 +734,27 @@
 </blockquote>
 <p>此参数的值必须是至少三对的非空向量。 每个pair的car是背景色，而cdr是前景（文本）色。 每种颜色都必须是一个字符串，并且每个字符串都应包含HTML层叠样式表（CSS）颜色说明符。 第一组用于未配置的代码，第二对用于未执行的配置的代码。 第三个用于执行频率最低的代码，第四个用于执行频率倒数第二低的代码，以此类推，最后一个用于执行频率最高的代码。 程序员可能希望提供自己的调色板以增强可见性或更改所用颜色的数量。</p>
 <p>默认情况下，黑色背景用于未配置文件的代码，灰色背景用于未执行的配置文件的代码。 根据执行频率，紫色到红色的背景颜色用于执行的概要分析代码，而最频繁执行的代码使用红色。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">profile-palette</span>) <span style="color:#960050;background-color:#1e0010">⇒</span>
-<span style="color:#f92672">#</span>((<span style="color:#e6db74">&#34;#111111&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>) (<span style="color:#e6db74">&#34;#607D8B&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
-    (<span style="color:#e6db74">&#34;#9C27B0&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#673AB7&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
-    (<span style="color:#e6db74">&#34;#3F51B5&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>) (<span style="color:#e6db74">&#34;#2196F3&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-    (<span style="color:#e6db74">&#34;#00BCD4&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#4CAF50&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-    (<span style="color:#e6db74">&#34;#CDDC39&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#FFEB3B&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-    (<span style="color:#e6db74">&#34;#FFC107&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#FF9800&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-    (<span style="color:#e6db74">&#34;#F44336&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>))
-(<span style="color:#a6e22e">profile-palette</span>
- <span style="color:#75715e">; set palette with rainbow colors and black text</span>
- <span style="color:#75715e">; for all but unprofiled or unexecuted code</span>
-  <span style="color:#f92672">&#39;#</span>((<span style="color:#e6db74">&#34;#000000&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
-     (<span style="color:#e6db74">&#34;#666666&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
-     (<span style="color:#e6db74">&#34;#8B00FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#6600FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#0000FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#00FF00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#FFFF00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#FF7F00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
-     (<span style="color:#e6db74">&#34;#FF0000&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)))  <span style="color:#75715e">; red</span>
-
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">profile-palette</span>) <span style="color:#960050;background-color:#1e0010">⇒</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">#</span>((<span style="color:#e6db74">&#34;#111111&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>) (<span style="color:#e6db74">&#34;#607D8B&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#9C27B0&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#673AB7&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#3F51B5&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>) (<span style="color:#e6db74">&#34;#2196F3&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#00BCD4&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#4CAF50&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#CDDC39&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#FFEB3B&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#FFC107&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>) (<span style="color:#e6db74">&#34;#FF9800&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;#F44336&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">profile-palette</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">; set palette with rainbow colors and black text</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">; for all but unprofiled or unexecuted code</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#39;#</span>((<span style="color:#e6db74">&#34;#000000&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#666666&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;white&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#8B00FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#6600FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#0000FF&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#00FF00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#FFFF00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#FF7F00&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#e6db74">&#34;#FF0000&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;black&#34;</span>)))  <span style="color:#75715e">; red</span>
+</span></span></code></pre></div><blockquote>
 <p>(profile-line-number-color)</p>
 </blockquote>
 <p>此参数的值必须是字符串或#f。 如果是字符串，则该字符串应包含HTML层叠样式表（CSS）颜色说明符。 如果参数设置为字符串，则<strong>profile-dump-html</strong>使用指定的颜色在每个源文件的html呈现中包括行号。 如果参数设置为#f，则不包含行号。</p>
@@ -781,22 +778,22 @@
 &gt;&gt; (exit 1)
 1
 </code></pre><p>如果指定了可选的<em>eval-proc</em> 参数，则使用<em>eval-proc</em> 求值从控制台输入的程序。 否则，将使用参数<em>current-eval</em> 的值。 eval-proc必须接受一个参数，即要求值的表达式。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#a6e22e">new-cafe</span> (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x))
-&gt;&gt; <span style="color:#ae81ff">3</span>
-<span style="color:#ae81ff">3</span>
-
-&gt;&gt; (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> ())))
-(<span style="color:#a6e22e">a</span> b c)
-
-&gt; (<span style="color:#66d9ef">define </span>sum
-	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ls</span>)
-		(<span style="color:#66d9ef">if </span>(null? ls)
-			<span style="color:#ae81ff">0</span>
-			(+ (car ls) (<span style="color:#a6e22e">sum</span> (cdr ls))))))
-&gt; (<span style="color:#a6e22e">new-cafe</span> sum)
-&gt;&gt; (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>)
-<span style="color:#ae81ff">6</span>
-</code></pre></div><h3 id="时间和日期">时间和日期</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">new-cafe</span> (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x))
+</span></span><span style="display:flex;"><span>&gt;&gt; <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt;&gt; (<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> ())))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">a</span> b c)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#66d9ef">define </span>sum
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">ls</span>)
+</span></span><span style="display:flex;"><span>		(<span style="color:#66d9ef">if </span>(null? ls)
+</span></span><span style="display:flex;"><span>			<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>			(+ (car ls) (<span style="color:#a6e22e">sum</span> (cdr ls))))))
+</span></span><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">new-cafe</span> sum)
+</span></span><span style="display:flex;"><span>&gt;&gt; (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>
+</span></span></code></pre></div><h3 id="时间和日期">时间和日期</h3>
 <p>时间由时间对象表示。 时间对象记录特定时间或持续时间的纳秒和秒，以及标识时间对象性质的<em>time type</em> 。 时间类型是以下符号之一：<!-- raw HTML omitted -->
 <strong>time-utc:</strong> 从“纪元”1970年1月1日0点0分0秒以来的时间<!-- raw HTML omitted -->
 <strong>time-monotonic:</strong> 从过去某个任意时间点开始经过的时间，理想情况下无需进行调整。<!-- raw HTML omitted -->
@@ -810,22 +807,22 @@
 <p>(current-time) |  (current-time time-type)</p>
 </blockquote>
 <p><em>time-type</em> 必须是上述的时间对象之一，默认为<strong>time-utc</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">current-time</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;time-utc <span style="color:#ae81ff">1198815722.473668000</span>&gt;
-(<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-process) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;time-process <span style="color:#ae81ff">0.120534264</span>&gt;
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">current-time</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;time-utc <span style="color:#ae81ff">1198815722.473668000</span>&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-process) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;time-process <span style="color:#ae81ff">0.120534264</span>&gt;
+</span></span></code></pre></div><blockquote>
 <p>(make-time type nsec sec)</p>
 </blockquote>
 <p><em>type</em> 必须是上面列出的时间类型符号之一。 <em>nsec</em> 表示纳秒，并且必须是小于$10^9$的精确非负整数。<em>sec</em> 表示秒，并且必须是精确的整数。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-utc</span> <span style="color:#ae81ff">787511000</span> <span style="color:#ae81ff">1198783214</span>)
-(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">5</span>)
-(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">-5</span>)
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-utc</span> <span style="color:#ae81ff">787511000</span> <span style="color:#ae81ff">1198783214</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">-5</span>)
+</span></span></code></pre></div><blockquote>
 <p>(time? obj)</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">time?</span> (<span style="color:#a6e22e">current-time</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">time?</span> (<span style="color:#a6e22e">make-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-utc <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">time?</span> <span style="color:#e6db74">&#34;1400 hours&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">time?</span> (<span style="color:#a6e22e">current-time</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time?</span> (<span style="color:#a6e22e">make-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-utc <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time?</span> <span style="color:#e6db74">&#34;1400 hours&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>(time-type time)</p>
 </blockquote>
 <p>返回<em>time</em> 的时间类型</p>
@@ -849,44 +846,43 @@
 <p>(copy-time time)</p>
 </blockquote>
 <p>复制时间。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>t1 (<span style="color:#a6e22e">current-time</span>))
-(<span style="color:#66d9ef">define </span>t2 (<span style="color:#a6e22e">copy-time</span> t1))
-(eq? t2 t1) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(eqv? (<span style="color:#a6e22e">time-second</span> t2) (<span style="color:#a6e22e">time-second</span> t1)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-(eqv? (<span style="color:#a6e22e">time-nanosecond</span> t2) (<span style="color:#a6e22e">time-nanosecond</span> t1)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>t1 (<span style="color:#a6e22e">current-time</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>t2 (<span style="color:#a6e22e">copy-time</span> t1))
+</span></span><span style="display:flex;"><span>(eq? t2 t1) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(eqv? (<span style="color:#a6e22e">time-second</span> t2) (<span style="color:#a6e22e">time-second</span> t1)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(eqv? (<span style="color:#a6e22e">time-nanosecond</span> t2) (<span style="color:#a6e22e">time-nanosecond</span> t1)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><blockquote>
 <p>(time-difference time1 time2 ) | (time-difference! time1 time2 ) | (add-duration time timed) | (add-duration! time timed) | (subtract-duration time timed) | (subtract-duration! time timed)</p>
 </blockquote>
 <p>对于<strong>time-difference，time1</strong>和<strong>time2</strong>必须具有相同的时间类型，结果是时间类型为time-duration的时间对象。 对于<strong>add-duration，add-duration！，subtract-duration</strong>和<strong>subtract-duration！</strong>，timed必须具有时间类型time-duration，并且结果是时间类型与时间相同的时间对象。 <strong>time-difference！，add-duration！<strong>和</strong>subtract-duration！</strong> 可能具有破坏性，即每个对象都可能修改并返回其第一个参数，或者可能分配了新的时间对象</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">let </span>([<span style="color:#66d9ef">delay </span>(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>)])
-  (<span style="color:#66d9ef">let </span>([t1 (<span style="color:#a6e22e">current-time</span> <span style="color:#e6db74">&#39;time-monotonic</span>)])
-    (<span style="color:#a6e22e">sleep</span> delay)
-    (<span style="color:#66d9ef">let </span>([t2 (<span style="color:#a6e22e">current-time</span> <span style="color:#e6db74">&#39;time-monotonic</span>)])
-      (<span style="color:#66d9ef">let </span>([t3 (<span style="color:#a6e22e">time-difference</span> t2 t1)])
-        (<span style="color:#a6e22e">and</span>
-(eq? (<span style="color:#a6e22e">time-type</span> t3) <span style="color:#e6db74">&#39;time-duration</span>)
-(<span style="color:#a6e22e">time&gt;=?</span> t3 delay)
-(<span style="color:#a6e22e">time=?</span> (<span style="color:#a6e22e">add-duration</span> t1 t3) t2)
-(<span style="color:#a6e22e">time=?</span> (<span style="color:#a6e22e">subtract-duration</span> t2 t3) t1)))))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([<span style="color:#66d9ef">delay </span>(<span style="color:#a6e22e">make-time</span> <span style="color:#e6db74">&#39;time-duration</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>)])
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>([t1 (<span style="color:#a6e22e">current-time</span> <span style="color:#e6db74">&#39;time-monotonic</span>)])
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">sleep</span> delay)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let </span>([t2 (<span style="color:#a6e22e">current-time</span> <span style="color:#e6db74">&#39;time-monotonic</span>)])
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">let </span>([t3 (<span style="color:#a6e22e">time-difference</span> t2 t1)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">and</span>
+</span></span><span style="display:flex;"><span>(eq? (<span style="color:#a6e22e">time-type</span> t3) <span style="color:#e6db74">&#39;time-duration</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time&gt;=?</span> t3 delay)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time=?</span> (<span style="color:#a6e22e">add-duration</span> t1 t3) t2)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time=?</span> (<span style="color:#a6e22e">subtract-duration</span> t2 t3) t1)))))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><blockquote>
 <p>(current-date) |  (current-date offset)</p>
 </blockquote>
 <p>如上所述，<em>offset</em> 表示UTC以东的时区偏移量（以秒为单位）。 它必须是一个介于-86400到+86400（含）之间的精确整数，并且默认为本地时区偏移量。 可以通过传递零偏移量来获得UTC.offset表示UTC以东以秒为单位的时区偏移量，如上所述。 它必须是一个介于-86400到+86400（含）之间的精确整数，并且默认为本地时区偏移量。 UTC可以通过传递零偏移来获得。</p>
 <p>如果未提供<em>offset</em> ，则使用当前时区的offset，以及<strong>date-dst？</strong> 和<strong>date-zone-name</strong>报告有关时区的信息。 如果提供了偏移量，那么<strong>date-dst？</strong> 和结果日期对象上的<strong>date-zone-name</strong>都是**#f**。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">current-date</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Thu Dec <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">23</span>:23:20 <span style="color:#ae81ff">2007</span>&gt;
-(<span style="color:#a6e22e">current-date</span> <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Fri Dec <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">04</span>:23:20 <span style="color:#ae81ff">2007</span>&gt;
-(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">current-date</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;EST&#34;</span> <span style="color:#66d9ef">or </span>other system-provided string
-(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">current-date</span> <span style="color:#ae81ff">0</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">current-date</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Thu Dec <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">23</span>:23:20 <span style="color:#ae81ff">2007</span>&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">current-date</span> <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Fri Dec <span style="color:#ae81ff">28</span> <span style="color:#ae81ff">04</span>:23:20 <span style="color:#ae81ff">2007</span>&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">current-date</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;EST&#34;</span> <span style="color:#66d9ef">or </span>other system-provided string
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">current-date</span> <span style="color:#ae81ff">0</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><blockquote>
 <p>(make-date nsec sec min hour day mon year) |  (make-date nsec sec min hour day mon year offset)</p>
 </blockquote>
 <p>nsec代表纳秒，并且必须是小于$10^9$的精确非负整数。sec代表秒，并且必须是小于62的精确非负整数。min代表分钟，并且必须是小于60的精确非负整数。hour必须是精确的非负整数 小于24。day必须是一个精确的整数，1≤day≤31。（实际上限可能取决于月份和年份。）mon表示月份必须是一个精确的整数，1≤mon≤12。年必须 是一个精确的整数。 如上所述，它应至少为1970。offset表示UTC以东的时区偏移（以秒为单位）。 它必须是-86400到+86400（含）范围内的精确整数。 可以通过传递零偏移量来指定UTC。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1970</span> <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Thu Jan <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">00</span>:00:00 <span style="color:#ae81ff">1970</span>&gt;
-(<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">-14400</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Sun Sep <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">09</span>:07:30 <span style="color:#ae81ff">2007</span>&gt;
-(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">-14400</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(string? (<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1970</span> <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Thu Jan <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">00</span>:00:00 <span style="color:#ae81ff">1970</span>&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">-14400</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#f92672">#</span>&lt;date Sun Sep <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">09</span>:07:30 <span style="color:#ae81ff">2007</span>&gt;
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">-14400</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(string? (<span style="color:#a6e22e">date-zone-name</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">2007</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><blockquote>
 <p>(date-nanosecond date) | (date-second date) | (date-minute date) | (date-hour date) | (date-day date) | (date-month date) | (date-year date) | (date-zone-offset date)</p>
 </blockquote>
 <p>如字面的意思， 返回日期的对应的部分的值</p>
@@ -903,11 +899,11 @@
 <p>(date-and-time) |  (date-and-time date)</p>
 </blockquote>
 <p>字符串始终采用以下示例所示的格式，长度始终为24。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">date-and-time</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;Fri Jul 13 13:13:13 2001&#34;</span>
-
-(<span style="color:#a6e22e">defined</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">0</span>))
-(<span style="color:#a6e22e">date-and-time</span> d) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;Mon Jan 01 00:00:00 2007&#34;</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">date-and-time</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;Fri Jul 13 13:13:13 2001&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">defined</span> (<span style="color:#a6e22e">make-date</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2007</span> <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">date-and-time</span> d) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;Mon Jan 01 00:00:00 2007&#34;</span>
+</span></span></code></pre></div><blockquote>
 <p>(sleep time)</p>
 </blockquote>
 <p><em>time</em> 必须是类型为<strong>time-duration</strong>的时间对象。 <em>sleep</em> 导致调用线程在大约由时间对象指示的时间量内暂停操作，除非该进程收到中断睡眠操作的信号。 实际睡眠时间取决于系统时钟的粒度以及系统运行其他线程和进程的繁忙程度。</p>
@@ -916,13 +912,13 @@
 <p>(time expr)
 <strong>time</strong>求值<em>expr</em> ，并且作为副作用，打印（到console-output端口）cpu时间量，实时时间量，分配的字节数以及与求值<em>expr</em> 相关的收集开销。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">&gt; (<span style="color:#a6e22e">time</span> (<span style="color:#a6e22e">collect</span>))
-(<span style="color:#a6e22e">time</span> (<span style="color:#a6e22e">collect</span>))
-    <span style="color:#ae81ff">1</span> collection
-    <span style="color:#ae81ff">1</span> ms elapsed cpu time, including <span style="color:#ae81ff">1</span> ms collecting
-    <span style="color:#ae81ff">1</span> ms elapsed real time, including <span style="color:#ae81ff">1</span> ms collecting
-    <span style="color:#ae81ff">160</span> bytes allocated, including <span style="color:#ae81ff">8184</span> bytes reclaimed
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>&gt; (<span style="color:#a6e22e">time</span> (<span style="color:#a6e22e">collect</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">time</span> (<span style="color:#a6e22e">collect</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> collection
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> ms elapsed cpu time, including <span style="color:#ae81ff">1</span> ms collecting
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span> ms elapsed real time, including <span style="color:#ae81ff">1</span> ms collecting
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">160</span> bytes allocated, including <span style="color:#ae81ff">8184</span> bytes reclaimed
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>(cpu-time)</p>
 </blockquote>
@@ -1005,18 +1001,18 @@
 </table>
 <p>所有值都是从系统启动开始算</p>
 <p><strong>statistics</strong>可以像如下定义：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>statistics
-  (<span style="color:#66d9ef">lambda </span>()
-    (<span style="color:#a6e22e">make-sstats</span>
-      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-thread)
-      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-monotonic)
-      (- (+ (<span style="color:#a6e22e">bytes-allocated</span>) (<span style="color:#a6e22e">bytes-deallocated</span>))
-         (<span style="color:#a6e22e">initial-bytes-allocated</span>))
-      (<span style="color:#a6e22e">collections</span>)
-      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-collector-cpu)
-      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-collector-real)
-      (<span style="color:#a6e22e">bytes-deallocated</span>))))
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>statistics
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">lambda </span>()
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">make-sstats</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-thread)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-monotonic)
+</span></span><span style="display:flex;"><span>      (- (+ (<span style="color:#a6e22e">bytes-allocated</span>) (<span style="color:#a6e22e">bytes-deallocated</span>))
+</span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">initial-bytes-allocated</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">collections</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-collector-cpu)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">current-time</span> <span style="color:#960050;background-color:#1e0010">’</span>time-collector-real)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">bytes-deallocated</span>))))
+</span></span></code></pre></div><blockquote>
 <p>(make-sstats cpu real bytes gc-count gc-cpu gc-real gc-bytes)
 返回：sstats记录</p>
 </blockquote>
@@ -1043,15 +1039,15 @@
 <p>object-countsx返回的关联列表具有以下结构：
 <em>((type (generation count . bytes) &hellip;) &hellip;)</em></p>
 <p><em>type</em>是原始类型的名称，以符号（例如，对）表示，或者是record-type描述符（rtd）。 generation是介于0和（collect-maximum-generation）的值（包含在内）或表示静态生成的符号static之间的非负固定编号。 <em>count</em>和字节是非负的fixnum。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">collect-request-handler</span> void)
-(<span style="color:#a6e22e">enable-object-counts</span> <span style="color:#66d9ef">#t</span>)
-(<span style="color:#a6e22e">define-record-type</span> frob (<span style="color:#a6e22e">fields</span> x))
-(<span style="color:#66d9ef">define </span>x (<span style="color:#a6e22e">make-frob</span> (<span style="color:#a6e22e">make-frob</span> <span style="color:#66d9ef">#f</span>)))
-(<span style="color:#a6e22e">collect</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>)
-(cdr (assoc <span style="color:#ae81ff">3</span>
-       (cdr (assoc (<span style="color:#a6e22e">record-type-descriptor</span> frob)
-              (<span style="color:#a6e22e">object-counts</span>)))))  <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">.</span> <span style="color:#ae81ff">16</span>)
-</code></pre></div><h3 id="成本中心-cost-centers">成本中心 Cost Centers</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">collect-request-handler</span> void)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">enable-object-counts</span> <span style="color:#66d9ef">#t</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> frob (<span style="color:#a6e22e">fields</span> x))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>x (<span style="color:#a6e22e">make-frob</span> (<span style="color:#a6e22e">make-frob</span> <span style="color:#66d9ef">#f</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">collect</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>(cdr (assoc <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>       (cdr (assoc (<span style="color:#a6e22e">record-type-descriptor</span> frob)
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">object-counts</span>)))))  <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">.</span> <span style="color:#ae81ff">16</span>)
+</span></span></code></pre></div><h3 id="成本中心-cost-centers">成本中心 Cost Centers</h3>
 <p>成本中心用于在求值选定的代码段时跟踪分配的字节，执行的指令和/或经过的CPU时间。 成本中心是通过过程<strong>make-cost-center</strong>创建的，而成本是通过<strong>with-cost-center</strong>过程进行跟踪的。</p>
 <p>仅为此目的代码跟踪分配和指令计数。 该工具由两个参数控制：<strong>generate-allocation-counts</strong>和<strong>generate-instruction-counts</strong>。 默认情况下禁用检测。 内置程序没有检测，解释代码或非Scheme代码也没有。 仅当过程<strong>with-cost-center</strong>的可选参数*timed?*有值且不为false时才会跟踪经历的时间</p>
 <p><strong>with-cost-center</strong>过程即使在使用同一成本中心重新输入，在多个线程中同时使用并通过继续调用退出或重新输入一次或多次后，也要遵循上述注意事项来准确跟踪成本。</p>
@@ -1095,65 +1091,65 @@
 </blockquote>
 <p>make-parameter接受一个或两个参数。 第一个参数是内部变量的初始值，第二个参数（如果存在）是应用于初始值和所有后续值的过滤器。 过滤器应接受一个参数。 如果该值不合适，则过滤器应引发异常或将值转换为更合适的形式。</p>
 <p>例如，print-length的默认定义如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>print-length
-  (<span style="color:#a6e22e">make-parameter</span>
-    <span style="color:#66d9ef">#f</span>
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
-      (<span style="color:#a6e22e">unless</span> (<span style="color:#66d9ef">or </span>(not x) (<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">fixnum?</span> x) (<span style="color:#a6e22e">fx&gt;=</span> x <span style="color:#ae81ff">0</span>)))
-        (<span style="color:#a6e22e">assertion-violationf</span> <span style="color:#960050;background-color:#1e0010">’</span>print-length
-          <span style="color:#e6db74">&#34;~s is not a positive fixnum or #f&#34;</span>
-	x)) x)))
-
-(<span style="color:#a6e22e">print-length</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
-(<span style="color:#a6e22e">print-length</span> <span style="color:#ae81ff">3</span>)
-(<span style="color:#a6e22e">print-length</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">format</span><span style="color:#e6db74">&#34;~s&#34;</span><span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#ae81ff">123456</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;(123...)&#34;</span>
-(<span style="color:#a6e22e">print-length</span> <span style="color:#66d9ef">#f</span>)
-(<span style="color:#a6e22e">format</span><span style="color:#e6db74">&#34;~s&#34;</span><span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#ae81ff">123456</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;(123456)&#34;</span>
-</code></pre></div><p><strong>make-parameter</strong>的定义使用<strong>case-lambda</strong>很简单：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>make-parameter
-  (<span style="color:#a6e22e">case-lambda</span>
-    [(<span style="color:#a6e22e">init</span> guard)
-     (<span style="color:#66d9ef">let </span>([v (<span style="color:#a6e22e">guard</span> init)])
-       (<span style="color:#a6e22e">case-lambda</span>
-         [() v]
-         [(<span style="color:#a6e22e">u</span>) (<span style="color:#66d9ef">set! </span>v (<span style="color:#a6e22e">guard</span> u))]))]
-    [(<span style="color:#a6e22e">init</span>)
-     (<span style="color:#a6e22e">make-parameter</span> init (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x))]))
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>print-length
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-parameter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">unless</span> (<span style="color:#66d9ef">or </span>(not x) (<span style="color:#66d9ef">and </span>(<span style="color:#a6e22e">fixnum?</span> x) (<span style="color:#a6e22e">fx&gt;=</span> x <span style="color:#ae81ff">0</span>)))
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">assertion-violationf</span> <span style="color:#960050;background-color:#1e0010">’</span>print-length
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;~s is not a positive fixnum or #f&#34;</span>
+</span></span><span style="display:flex;"><span>	x)) x)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">print-length</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">print-length</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">print-length</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">format</span><span style="color:#e6db74">&#34;~s&#34;</span><span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#ae81ff">123456</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;(123...)&#34;</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">print-length</span> <span style="color:#66d9ef">#f</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">format</span><span style="color:#e6db74">&#34;~s&#34;</span><span style="color:#960050;background-color:#1e0010">’</span>(<span style="color:#ae81ff">123456</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;(123456)&#34;</span>
+</span></span></code></pre></div><p><strong>make-parameter</strong>的定义使用<strong>case-lambda</strong>很简单：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>make-parameter
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">case-lambda</span>
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">init</span> guard)
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">let </span>([v (<span style="color:#a6e22e">guard</span> init)])
+</span></span><span style="display:flex;"><span>       (<span style="color:#a6e22e">case-lambda</span>
+</span></span><span style="display:flex;"><span>         [() v]
+</span></span><span style="display:flex;"><span>         [(<span style="color:#a6e22e">u</span>) (<span style="color:#66d9ef">set! </span>v (<span style="color:#a6e22e">guard</span> u))]))]
+</span></span><span style="display:flex;"><span>    [(<span style="color:#a6e22e">init</span>)
+</span></span><span style="display:flex;"><span>     (<span style="color:#a6e22e">make-parameter</span> init (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x))]))
+</span></span></code></pre></div><blockquote>
 <p>(parameterize ((param expr) &hellip;) body1 body2 &hellip;)</p>
 </blockquote>
 <p>使用语法形式<strong>parameterize</strong>，可以以类似于普通变量的<strong>fluid-let</strong>的方式更改参数的值。 在计算body时，将每个<em>param</em> 设置为相应的<em>expr</em> 的值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>test
-  (<span style="color:#a6e22e">make-parameter</span> <span style="color:#ae81ff">0</span>))
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">0</span>
-(<span style="color:#a6e22e">test</span> <span style="color:#ae81ff">1</span>)
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
-(<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">2</span>
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
-(<span style="color:#a6e22e">test</span> <span style="color:#ae81ff">3</span>)
-(<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
-(<span style="color:#66d9ef">define </span>k (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)) (<span style="color:#66d9ef">begin </span>(<span style="color:#66d9ef">set! </span>k (call/cc k))
-	<span style="color:#960050;background-color:#1e0010">’</span>k) <span style="color:#960050;background-color:#1e0010">⇒</span> k
-(<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
-  (<span style="color:#a6e22e">test</span> (call/cc k))
-  (<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> k
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
-(<span style="color:#a6e22e">k3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span><span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
-</code></pre></div><h3 id="虚拟寄存器virtual-registers">虚拟寄存器Virtual registers</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>test
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-parameter</span> <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>k (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span>) x)) (<span style="color:#66d9ef">begin </span>(<span style="color:#66d9ef">set! </span>k (call/cc k))
+</span></span><span style="display:flex;"><span>	<span style="color:#960050;background-color:#1e0010">’</span>k) <span style="color:#960050;background-color:#1e0010">⇒</span> k
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">parameterize</span> ([test <span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">test</span> (call/cc k))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">test</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> k
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">k3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">test</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h3 id="虚拟寄存器virtual-registers">虚拟寄存器Virtual registers</h3>
 <p>编译器支持一组有限的<em>虚拟寄存器</em> ，以供需要高速，全局和可变存储位置的程序使用。 引用或分配虚拟寄存器可能比访问可分配的局部变量或全局变量更快，并且访问时永远不会比它们更慢，而且这样做的代码序列通常更小。 分配可能会显著加快，因为不需要跟踪从虚拟寄存器到年轻对象的指针，因为可能存在于较早一世代中的可变位置。 在系统的线程版本上，虚拟寄存器是“每个线程”的，因此可以以比线程参数低廉的方式用作thread-local存储。</p>
 <p>该接口包含三个过程：<strong>virtual-register-count</strong>（返回虚拟寄存器的数量），<strong>set-virtual-register!</strong>（设置指定的虚拟寄存器的值）和<strong>virtual-register</strong>（获取指定虚拟寄存器的值）。</p>
 <p>虚拟寄存器由小于虚拟寄存器数量的非负fixnum索引指定。 为了获得<strong>set-virtual-register!<strong>和</strong>virtual-register</strong>的最佳性能，索引应该是直接嵌入在调用中的常量（或者可以通过对调用的优化来传播）。 为了避免将这些常量放在源代码中，程序员应考虑使用标识符宏为虚拟寄存器命名，例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define-syntax </span>current-state
-  (<span style="color:#a6e22e">identifier-syntax</span>
-    [id (<span style="color:#a6e22e">virtual-register</span> <span style="color:#ae81ff">0</span>)]
-    [(<span style="color:#66d9ef">set! </span>id e) (<span style="color:#a6e22e">set-virtual-register!</span> <span style="color:#ae81ff">0</span> e)]))
-
-(<span style="color:#66d9ef">set! </span>current-state <span style="color:#e6db74">&#39;start</span>)
-current-state <span style="color:#960050;background-color:#1e0010">⇒</span> start
-</code></pre></div><p>虚拟寄存器必须被视为应用程序级资源，即，打算由多个应用程序使用的库通常不应使用虚拟寄存器，以避免与应用程序使用寄存器冲突。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define-syntax </span>current-state
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">identifier-syntax</span>
+</span></span><span style="display:flex;"><span>    [id (<span style="color:#a6e22e">virtual-register</span> <span style="color:#ae81ff">0</span>)]
+</span></span><span style="display:flex;"><span>    [(<span style="color:#66d9ef">set! </span>id e) (<span style="color:#a6e22e">set-virtual-register!</span> <span style="color:#ae81ff">0</span> e)]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">set! </span>current-state <span style="color:#e6db74">&#39;start</span>)
+</span></span><span style="display:flex;"><span>current-state <span style="color:#960050;background-color:#1e0010">⇒</span> start
+</span></span></code></pre></div><p>虚拟寄存器必须被视为应用程序级资源，即，打算由多个应用程序使用的库通常不应使用虚拟寄存器，以避免与应用程序使用寄存器冲突。</p>
 <blockquote>
 <p>(virtual-register-count)</p>
 </blockquote>
@@ -1183,14 +1179,14 @@ current-state <span style="color:#960050;background-color:#1e0010">⇒</span> st
 <p>(getenv key)</p>
 </blockquote>
 <p>返回：环境中<em>key</em> 的值，或 <strong>#f</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">getenv</span> <span style="color:#e6db74">&#34;HOME&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;/u/freddy&#34;</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">getenv</span> <span style="color:#e6db74">&#34;HOME&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;/u/freddy&#34;</span>
+</span></span></code></pre></div><blockquote>
 <p>(putenv key value)</p>
 </blockquote>
 <p><em>key</em> 和 <em>value</em> 必须是字符串</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">putenv</span> <span style="color:#e6db74">&#34;SCHEME&#34;</span> <span style="color:#e6db74">&#34;rocks!&#34;</span>)
-(<span style="color:#a6e22e">getenv</span> <span style="color:#e6db74">&#34;SCHEME&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;rocks!&#34;</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">putenv</span> <span style="color:#e6db74">&#34;SCHEME&#34;</span> <span style="color:#e6db74">&#34;rocks!&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">getenv</span> <span style="color:#e6db74">&#34;SCHEME&#34;</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#e6db74">&#34;rocks!&#34;</span>
+</span></span></code></pre></div><blockquote>
 <p>(get-registry key)</p>
 </blockquote>
 <p>返回：<em>key</em> 的注册表值，或者**#f**</p>

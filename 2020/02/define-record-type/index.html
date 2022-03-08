@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="define-record-type Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回tr" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Scheme语法define-record-type介绍 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -404,8 +404,8 @@
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <h3 id="define-record-type">define-record-type</h3>
 <p>Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回true的谓词、以及每个字段的访问procedure和针对可变字段的赋值procedure。总的来说，与Java中的POJO类比较相似，不过不用自定义getter和setter方法，这与Kotlin倒为类似，例如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
-</code></pre></div><p>创建了一个名为<strong>point</strong>的record类型，并且有两个字段<strong>x</strong>和<strong>y</strong>，和如下几个定义式（自动生成）：<!-- raw HTML omitted --></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
+</span></span></code></pre></div><p>创建了一个名为<strong>point</strong>的record类型，并且有两个字段<strong>x</strong>和<strong>y</strong>，和如下几个定义式（自动生成）：<!-- raw HTML omitted --></p>
 <table>
 <thead>
 <tr>
@@ -433,94 +433,91 @@
 </tbody>
 </table>
 <p>默认下，字段是不可变的，但是可以声明为可变的（mutable）。如下定义<strong>point</strong>中，字段x是可变的，但y维持不变：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x) y))
-</code></pre></div><p>当然亦可显式地将字段声明为不可变的：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x) (<span style="color:#a6e22e">immutable</span> y)))
-</code></pre></div><p>在这个例子中，define-record-type除了生成了上述的几个定义式之外，还为字段x增加了一个赋值过程：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x) y))
+</span></span></code></pre></div><p>当然亦可显式地将字段声明为不可变的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x) (<span style="color:#a6e22e">immutable</span> y)))
+</span></span></code></pre></div><p>在这个例子中，define-record-type除了生成了上述的几个定义式之外，还为字段x增加了一个赋值过程：</p>
 <p>(point-x-set! p x)</p>
 <p>该赋值过程可以用于改变x的内容</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">-17</span>))
-(<span style="color:#a6e22e">point-x-set!</span> p (- (<span style="color:#a6e22e">point-x</span> p) <span style="color:#ae81ff">12</span>))
-(<span style="color:#a6e22e">point-x</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">24</span>
-
-</code></pre></div><p>自动生成的几个定义式是允许改变名称的，下面的<strong>point</strong>定义式，其构造函数名为<strong>mkpoint</strong>, 谓词为<strong>ispoint?</strong>，x和y的访问器分别为<strong>x-val</strong>和<strong>y-val</strong>, x的赋值器为<strong>set-x-val!</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> (<span style="color:#a6e22e">point</span> mkpoint ispoint?)
-  (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x x-val set-x-val!)
-          (<span style="color:#a6e22e">immutable</span> y y-val)))
-</code></pre></div><p>默认情况下，每次一个record definition创建一个新类型（为方便理解，可以用Java来解释，即对于同一个POJO类new出两个实例，但这两个实例并不能equal），如下所示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span> p)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
-  (<span style="color:#66d9ef">if </span>(eq? p <span style="color:#e6db74">&#39;make</span>) (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">point?</span> p)))
-(<span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;make</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
-</code></pre></div><p>第一个f的调用即(f &lsquo;make)返回一个point类型的p，将p传递给第二个f，但p是由第一个调用生成的类型，所以point?返回#f。按照SICP的说法，这两个define-record-type并不在一个<strong>环境</strong>中，只是名字一样而已。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">36</span> <span style="color:#ae81ff">-17</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x-set!</span> p (- (<span style="color:#a6e22e">point-x</span> p) <span style="color:#ae81ff">12</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">24</span>
+</span></span></code></pre></div><p>自动生成的几个定义式是允许改变名称的，下面的<strong>point</strong>定义式，其构造函数名为<strong>mkpoint</strong>, 谓词为<strong>ispoint?</strong>，x和y的访问器分别为<strong>x-val</strong>和<strong>y-val</strong>, x的赋值器为<strong>set-x-val!</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> (<span style="color:#a6e22e">point</span> mkpoint ispoint?)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">fields</span> (<span style="color:#a6e22e">mutable</span> x x-val set-x-val!)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">immutable</span> y y-val)))
+</span></span></code></pre></div><p>默认情况下，每次一个record definition创建一个新类型（为方便理解，可以用Java来解释，即对于同一个POJO类new出两个实例，但这两个实例并不能equal），如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span> p)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">if </span>(eq? p <span style="color:#e6db74">&#39;make</span>) (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">point?</span> p)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;make</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><p>第一个f的调用即(f &lsquo;make)返回一个point类型的p，将p传递给第二个f，但p是由第一个调用生成的类型，所以point?返回#f。按照SICP的说法，这两个define-record-type并不在一个<strong>环境</strong>中，只是名字一样而已。</p>
 <p>默认的生产行为(generative behavior)或许可以由记录定义式中的<strong>nongenerative</strong>子句来重载：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span> p)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
-  (<span style="color:#66d9ef">if </span>(eq? p <span style="color:#e6db74">&#39;make</span>) (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">point?</span> p)))
-(<span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;make</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
-</code></pre></div><p>以这种方式创建的记录类型仍然不同于由定义出现在程序的不同部分中创建的记录类型，即使这些定义在语法上是相同的：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span>)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
-  (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
-
-(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">g</span> p)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
-  (<span style="color:#a6e22e">point?</span> p))
-
-(<span style="color:#a6e22e">g</span> (<span style="color:#a6e22e">f</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
-</code></pre></div><p>甚至可以通过在nongenerative子句中包含uid（唯一id）来覆盖它：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span>)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y)
-    (<span style="color:#a6e22e">nongenerative</span> really-the-same-point))
-  (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
-
-(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">g</span> p)
-  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y)
-    (<span style="color:#a6e22e">nongenerative</span> really-the-same-point))
-  (<span style="color:#a6e22e">point?</span> p))
-
-(<span style="color:#a6e22e">g</span> (<span style="color:#a6e22e">f</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
-</code></pre></div><p>记录类型可以定义为有<strong>parent</strong>子句的子类型，即一个记录类型可以声明为某一个记录类型的子类型，如果指定了父类型，则子类型将继承父类型所有字段，且子类型的每个实例都被视为父类型的实例，因此可以直接使用父类型的访问器和字段等等。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
-(<span style="color:#a6e22e">define-record-type</span> cpoint (<span style="color:#a6e22e">parent</span> point) (<span style="color:#a6e22e">fields</span> color))
-
-(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>))
-(<span style="color:#a6e22e">point?</span> (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>)) <span style="color:#66d9ef">=&gt; </span> <span style="color:#66d9ef">#t</span>
-(<span style="color:#a6e22e">cpoint?</span> (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
-
-(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>))
-(<span style="color:#a6e22e">point-x</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">point-y</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
-(<span style="color:#a6e22e">cpoint-color</span> cp) <span style="color:#66d9ef">=&gt; </span>red
-
-</code></pre></div><p>到目前为止，define-record-type定义的默认构造函数接受record包含的字段一样多的参数，其实我们可以重写默认值，这里需要引入<strong>protocol</strong>子句，以下定义将创建一个具有三个字段的点记录：x，y和d，其中d表示距原点的位移。构造函数仍然只接受两个参数，即x和y值，并将d初始化为x和y平方和的平方根。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> point
-  (<span style="color:#a6e22e">fields</span> x y d)
-  (<span style="color:#a6e22e">protocol</span>
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span>)
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> y)
-        (<span style="color:#a6e22e">new</span> x y (sqrt (+ (* x x) (* y y))))))))
-
-(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
-(<span style="color:#a6e22e">point-x</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">point-y</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
-(<span style="color:#a6e22e">point-d</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">5</span>
-</code></pre></div><p>另外，子类型的构造函数中的参数顺序是不可改变的，即先是父类型构造函数的字段，然后才是子类型的参数，如果需要改变子类型的构造函数的参数顺序该如何呢？</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record-type</span> cpoint
-  (<span style="color:#a6e22e">parent</span> point)
-  (<span style="color:#a6e22e">fields</span> color)
-  (<span style="color:#a6e22e">protocol</span>
-    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">pargs-&gt;new</span>)
-      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> c y)
-        ((<span style="color:#a6e22e">pargs-&gt;new</span> x y) c)))))
-
-(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#e6db74">&#39;red</span> <span style="color:#ae81ff">4</span>))
-(<span style="color:#a6e22e">point-x</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
-(<span style="color:#a6e22e">point-y</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
-(<span style="color:#a6e22e">point-d</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">5</span>
-(<span style="color:#a6e22e">cpoint-color</span> cp) <span style="color:#66d9ef">=&gt; </span>red
-
-</code></pre></div><p>最后来看看define-record-type的语法形式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span> p)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">if </span>(eq? p <span style="color:#e6db74">&#39;make</span>) (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) (<span style="color:#a6e22e">point?</span> p)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">f</span> (<span style="color:#a6e22e">f</span> <span style="color:#e6db74">&#39;make</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><p>以这种方式创建的记录类型仍然不同于由定义出现在程序的不同部分中创建的记录类型，即使这些定义在语法上是相同的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">g</span> p)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y) (<span style="color:#a6e22e">nongenerative</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">point?</span> p))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">g</span> (<span style="color:#a6e22e">f</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
+</span></span></code></pre></div><p>甚至可以通过在nongenerative子句中包含uid（唯一id）来覆盖它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">f</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">nongenerative</span> really-the-same-point))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">g</span> p)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">nongenerative</span> really-the-same-point))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">point?</span> p))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">g</span> (<span style="color:#a6e22e">f</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#t</span>
+</span></span></code></pre></div><p>记录类型可以定义为有<strong>parent</strong>子句的子类型，即一个记录类型可以声明为某一个记录类型的子类型，如果指定了父类型，则子类型将继承父类型所有字段，且子类型的每个实例都被视为父类型的实例，因此可以直接使用父类型的访问器和字段等等。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> point (<span style="color:#a6e22e">fields</span> x y))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> cpoint (<span style="color:#a6e22e">parent</span> point) (<span style="color:#a6e22e">fields</span> color))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point?</span> (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>)) <span style="color:#66d9ef">=&gt; </span> <span style="color:#66d9ef">#t</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cpoint?</span> (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)) <span style="color:#66d9ef">=&gt; </span><span style="color:#66d9ef">#f</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#39;red</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-y</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cpoint-color</span> cp) <span style="color:#66d9ef">=&gt; </span>red
+</span></span></code></pre></div><p>到目前为止，define-record-type定义的默认构造函数接受record包含的字段一样多的参数，其实我们可以重写默认值，这里需要引入<strong>protocol</strong>子句，以下定义将创建一个具有三个字段的点记录：x，y和d，其中d表示距原点的位移。构造函数仍然只接受两个参数，即x和y值，并将d初始化为x和y平方和的平方根。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> point
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">fields</span> x y d)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">protocol</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">new</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> y)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">new</span> x y (sqrt (+ (* x x) (* y y))))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>p (<span style="color:#a6e22e">make-point</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-y</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-d</span> p) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><p>另外，子类型的构造函数中的参数顺序是不可改变的，即先是父类型构造函数的字段，然后才是子类型的参数，如果需要改变子类型的构造函数的参数顺序该如何呢？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record-type</span> cpoint
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">parent</span> point)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">fields</span> color)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">protocol</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">pargs-&gt;new</span>)
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">lambda </span>(<span style="color:#a6e22e">x</span> c y)
+</span></span><span style="display:flex;"><span>        ((<span style="color:#a6e22e">pargs-&gt;new</span> x y) c)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>cp (<span style="color:#a6e22e">make-cpoint</span> <span style="color:#ae81ff">3</span> <span style="color:#e6db74">&#39;red</span> <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-y</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-d</span> cp) <span style="color:#66d9ef">=&gt; </span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cpoint-color</span> cp) <span style="color:#66d9ef">=&gt; </span>red
+</span></span></code></pre></div><p>最后来看看define-record-type的语法形式：</p>
 <blockquote>
 <p>syntax: (define-record-type record-name clause &hellip;)</p>
 </blockquote>
@@ -542,15 +539,15 @@
 <hr>
 <h3 id="define-record-in-chez-scheme">define-record in Chez Scheme</h3>
 <p>Chez Scheme依然支持$R^6RS$中传统的record类型的定义，另外还提供一个新的语法，即<strong>define-record</strong>，其语法形式与<strong>define-record-type</strong>一样，所不同的地方在于，<strong>define-record中的字段默认是可变的</strong>，这与$R^6RS$中的record相反，因此，创建一个记录类型时，同时会定义下列过程：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#a6e22e">define-record</span> point (<span style="color:#a6e22e">x</span> y))
-
-(<span style="color:#a6e22e">make-point</span> x y) <span style="color:#75715e">;;	constructor</span>
-(<span style="color:#a6e22e">point?</span> obj) <span style="color:#75715e">;;	predicate</span>
-(<span style="color:#a6e22e">point-x</span> p) <span style="color:#75715e">;;	accessor for field x</span>
-(<span style="color:#a6e22e">point-y</span> p) <span style="color:#75715e">;;	accessor for field y</span>
-(<span style="color:#a6e22e">set-point-x!</span> p obj) <span style="color:#75715e">;;	mutator for field x</span>
-(<span style="color:#a6e22e">set-point-y!</span> p obj) <span style="color:#75715e">;;	mutator for field y</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">define-record</span> point (<span style="color:#a6e22e">x</span> y))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">make-point</span> x y) <span style="color:#75715e">;;	constructor</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point?</span> obj) <span style="color:#75715e">;;	predicate</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-x</span> p) <span style="color:#75715e">;;	accessor for field x</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">point-y</span> p) <span style="color:#75715e">;;	accessor for field y</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">set-point-x!</span> p obj) <span style="color:#75715e">;;	mutator for field x</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">set-point-y!</span> p obj) <span style="color:#75715e">;;	mutator for field y</span>
+</span></span></code></pre></div><hr>
 <p>通过对<strong>define-record-type</strong>的了解，可以发现其非常<strong>OO</strong>，smalltalk是否受其影响不得而知，至少经过纵向比较对于我们学习技术大有裨益。</p>
 
     </div>

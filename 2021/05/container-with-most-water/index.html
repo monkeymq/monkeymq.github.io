@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&amp;hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>【盛最多水的容器】问题的求解 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -409,25 +409,24 @@
 </blockquote>
 <p>更详细的描述请访问：https://leetcode-cn.com/problems/container-with-most-water/</p>
 <p>首先可以想到的最简单的方法，就是暴力求解，将所有的面积都计算出来，取最大值即可。下面给出(Racket)[https://racket-lang.org/]的代码，得益于函数式语言和S表达式强大的表现力，代码可以很短：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define/contract (max-area height) (-&gt; (listof exact-integer?) exact-integer?)
-    (define len (<span style="color:#a6e22e">length</span> height))
-    (cond
-        ((<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>)
-        ((<span style="color:#a6e22e">=</span> len <span style="color:#ae81ff">2</span>) (area (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">car</span> height)) (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">2</span>  (<span style="color:#a6e22e">cadr</span> height))))
-        (else (<span style="color:#a6e22e">max</span> (each-area height) (max-area (<span style="color:#a6e22e">cdr</span> height))))))
-
-(define (area n1 n2)
-    (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
-
-(define (each-area height)
-    (<span style="color:#66d9ef">let</span> ([first (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">car</span> height))])
-        (foldl <span style="color:#a6e22e">max</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">map</span> (lambda (i h) (area <span style="color:#a6e22e">first</span> (<span style="color:#a6e22e">list</span> i h))) (range <span style="color:#ae81ff">2</span> (add1 (<span style="color:#a6e22e">length</span> height)) ) (<span style="color:#a6e22e">cdr</span> height)))))
-
-</code></pre></div><p>上述解法虽然正确，但是效率很低, 如果有10000个整数，即n=10000，其执行时间超过了2秒：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
-
-=&gt; cpu time: <span style="color:#ae81ff">2387</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">2466</span> gc time: <span style="color:#ae81ff">137</span>
-</code></pre></div><p>那么有更好的解决方法吗？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define/contract (max-area height) (-&gt; (listof exact-integer?) exact-integer?)
+</span></span><span style="display:flex;"><span>    (define len (<span style="color:#a6e22e">length</span> height))
+</span></span><span style="display:flex;"><span>    (cond
+</span></span><span style="display:flex;"><span>        ((<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        ((<span style="color:#a6e22e">=</span> len <span style="color:#ae81ff">2</span>) (area (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">car</span> height)) (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">2</span>  (<span style="color:#a6e22e">cadr</span> height))))
+</span></span><span style="display:flex;"><span>        (else (<span style="color:#a6e22e">max</span> (each-area height) (max-area (<span style="color:#a6e22e">cdr</span> height))))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (area n1 n2)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define (each-area height)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let</span> ([first (<span style="color:#a6e22e">list</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">car</span> height))])
+</span></span><span style="display:flex;"><span>        (foldl <span style="color:#a6e22e">max</span> <span style="color:#ae81ff">0</span> (<span style="color:#a6e22e">map</span> (lambda (i h) (area <span style="color:#a6e22e">first</span> (<span style="color:#a6e22e">list</span> i h))) (range <span style="color:#ae81ff">2</span> (add1 (<span style="color:#a6e22e">length</span> height)) ) (<span style="color:#a6e22e">cdr</span> height)))))
+</span></span></code></pre></div><p>上述解法虽然正确，但是效率很低, 如果有10000个整数，即n=10000，其执行时间超过了2秒：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(time (max-area (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>=&gt; cpu time: <span style="color:#ae81ff">2387</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">2466</span> gc time: <span style="color:#ae81ff">137</span>
+</span></span></code></pre></div><p>那么有更好的解决方法吗？</p>
 <p>显然可以认为所有整数都保存在一个列表或者数组中，假设我们有两个指针，一个叫head，指向第一个整数, 表示为：head -&gt; (i, $h_i$)，i为列表下标， $h_i$代表第i个整数值；另一个叫tail，指向最后一个整数，表示为tail -&gt; (j, $h_j$)，我们可以仅仅利用这两个指针的移动，就能计算出最大的面积，其过程为：</p>
 <ol>
 <li>计算由head和tail围成的矩形的面积$S_{ij}$, 矩形的长度x = j - i, 高度y = min ($h_i$, $h_j$);</li>
@@ -441,62 +440,62 @@
 </ol>
 <p>很显然，使用<strong>双指针</strong>算法，时间复杂度降低到了$O(n)$。</p>
 <h3 id="racket-版本">Racket 版本</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;;better solution</span>
-(define/contract (max-area-pair-pointer height) (-&gt; (listof exact-integer?) exact-integer?)
-    (define (area n1 n2)
-        (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
-
-    (<span style="color:#66d9ef">let</span> ([len (<span style="color:#a6e22e">length</span> height)])
-        (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>
-            (<span style="color:#66d9ef">let</span> loop ([h height] [hindex (range <span style="color:#ae81ff">0</span> len)]
-                            [rheight (<span style="color:#a6e22e">reverse</span> height)] [rindex (<span style="color:#a6e22e">reverse</span> (range <span style="color:#ae81ff">0</span> len))]
-                            [maxa 0])
-                    (<span style="color:#66d9ef">let*</span> ([head (<span style="color:#a6e22e">list</span> (<span style="color:#a6e22e">car</span> hindex) (<span style="color:#a6e22e">car</span> h))] [tail (<span style="color:#a6e22e">list</span> (<span style="color:#a6e22e">car</span> rindex) (<span style="color:#a6e22e">car</span> rheight))] [a (area head tail)])
-                        (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">car</span> head) (<span style="color:#a6e22e">car</span> tail)) maxa
-                            (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">cadr</span> head) (<span style="color:#a6e22e">cadr</span> tail))
-                                (loop h hindex (<span style="color:#a6e22e">cdr</span> rheight) (<span style="color:#a6e22e">cdr</span> rindex) (<span style="color:#a6e22e">max</span> maxa a))
-                                (loop (<span style="color:#a6e22e">cdr</span> h) (<span style="color:#a6e22e">cdr</span> hindex) rheight rindex (<span style="color:#a6e22e">max</span> maxa a)))
-                                ))))))
-</code></pre></div><p>如果使用这个方法计算10000个整数的面积，执行时间只需1毫秒，而且不需要GC（对照暴力破解版本，2+秒）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(time (max-area-pair-pointer (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
-
-=&gt; cpu time: <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">1</span> gc time: <span style="color:#ae81ff">0</span>
-</code></pre></div><h3 id="rust版本">Rust版本</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#75715e">;;better solution</span>
+</span></span><span style="display:flex;"><span>(define/contract (max-area-pair-pointer height) (-&gt; (listof exact-integer?) exact-integer?)
+</span></span><span style="display:flex;"><span>    (define (area n1 n2)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">car</span> n2) (<span style="color:#a6e22e">car</span> n1)) (<span style="color:#a6e22e">min</span> (<span style="color:#a6e22e">cadr</span> n1) (<span style="color:#a6e22e">cadr</span> n2))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let</span> ([len (<span style="color:#a6e22e">length</span> height)])
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> len <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> loop ([h height] [hindex (range <span style="color:#ae81ff">0</span> len)]
+</span></span><span style="display:flex;"><span>                            [rheight (<span style="color:#a6e22e">reverse</span> height)] [rindex (<span style="color:#a6e22e">reverse</span> (range <span style="color:#ae81ff">0</span> len))]
+</span></span><span style="display:flex;"><span>                            [maxa 0])
+</span></span><span style="display:flex;"><span>                    (<span style="color:#66d9ef">let*</span> ([head (<span style="color:#a6e22e">list</span> (<span style="color:#a6e22e">car</span> hindex) (<span style="color:#a6e22e">car</span> h))] [tail (<span style="color:#a6e22e">list</span> (<span style="color:#a6e22e">car</span> rindex) (<span style="color:#a6e22e">car</span> rheight))] [a (area head tail)])
+</span></span><span style="display:flex;"><span>                        (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">car</span> head) (<span style="color:#a6e22e">car</span> tail)) maxa
+</span></span><span style="display:flex;"><span>                            (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&gt;</span> (<span style="color:#a6e22e">cadr</span> head) (<span style="color:#a6e22e">cadr</span> tail))
+</span></span><span style="display:flex;"><span>                                (loop h hindex (<span style="color:#a6e22e">cdr</span> rheight) (<span style="color:#a6e22e">cdr</span> rindex) (<span style="color:#a6e22e">max</span> maxa a))
+</span></span><span style="display:flex;"><span>                                (loop (<span style="color:#a6e22e">cdr</span> h) (<span style="color:#a6e22e">cdr</span> hindex) rheight rindex (<span style="color:#a6e22e">max</span> maxa a)))
+</span></span><span style="display:flex;"><span>                                ))))))
+</span></span></code></pre></div><p>如果使用这个方法计算10000个整数的面积，执行时间只需1毫秒，而且不需要GC（对照暴力破解版本，2+秒）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(time (max-area-pair-pointer (build-list <span style="color:#ae81ff">10000</span>  (lambda(x) (<span style="color:#a6e22e">random</span> <span style="color:#ae81ff">1000000</span>)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>=&gt; cpu time: <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">real</span> time: <span style="color:#ae81ff">1</span> gc time: <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><h3 id="rust版本">Rust版本</h3>
 <p>同时提供一个Rust版本的实现，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::cmp::{max, min};
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">HeightType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">i64</span>;
-
-<span style="color:#75715e">#[derive(Debug)]</span>
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Solution</span> {}
-
-<span style="color:#66d9ef">impl</span> Solution {
-    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">max_area</span>(height: Vec<span style="color:#f92672">&lt;</span>HeightType<span style="color:#f92672">&gt;</span>) -&gt; <span style="color:#a6e22e">HeightType</span> {
-        <span style="color:#66d9ef">let</span> len <span style="color:#f92672">=</span> height.len();
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> len <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> {
-            <span style="color:#ae81ff">0</span>
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> max_area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> hi <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> ti <span style="color:#f92672">=</span> len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">while</span> ti <span style="color:#f92672">&gt;</span> hi {
-                <span style="color:#66d9ef">let</span> hd <span style="color:#f92672">=</span> height.get(hi).unwrap();
-                <span style="color:#66d9ef">let</span> td <span style="color:#f92672">=</span> height.get(ti).unwrap();
-                <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> ((ti <span style="color:#f92672">-</span> hi) <span style="color:#66d9ef">as</span> HeightType) <span style="color:#f92672">*</span> min(hd, td);
-
-                max_area <span style="color:#f92672">=</span> max(max_area, a);
-
-                <span style="color:#66d9ef">if</span> hd <span style="color:#f92672">&lt;</span> td {
-                    hi <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-                } <span style="color:#66d9ef">else</span> {
-                    ti <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
-                }
-            }
-            max_area
-        };
-    }
-}
-</code></pre></div><p>两个版本做一个简单的比较：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::cmp::{max, min};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">HeightType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">i64</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Solution</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> Solution {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">max_area</span>(height: Vec<span style="color:#f92672">&lt;</span>HeightType<span style="color:#f92672">&gt;</span>) -&gt; <span style="color:#a6e22e">HeightType</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> len <span style="color:#f92672">=</span> height.len();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> len <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> max_area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> hi <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> ti <span style="color:#f92672">=</span> len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> ti <span style="color:#f92672">&gt;</span> hi {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">let</span> hd <span style="color:#f92672">=</span> height.get(hi).unwrap();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">let</span> td <span style="color:#f92672">=</span> height.get(ti).unwrap();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> ((ti <span style="color:#f92672">-</span> hi) <span style="color:#66d9ef">as</span> HeightType) <span style="color:#f92672">*</span> min(hd, td);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                max_area <span style="color:#f92672">=</span> max(max_area, a);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> hd <span style="color:#f92672">&lt;</span> td {
+</span></span><span style="display:flex;"><span>                    hi <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    ti <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            max_area
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>两个版本做一个简单的比较：</p>
 <table>
 <thead>
 <tr>

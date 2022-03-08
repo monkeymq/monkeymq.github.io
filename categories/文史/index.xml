@@ -5,10 +5,19 @@
     <link>https://lvsq.net/categories/%E6%96%87%E5%8F%B2/</link>
     <description>Recent content in 文史 on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Dec 2019 17:24:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Mar 2022 20:46:35 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>费曼学习法</title>
+      <link>https://lvsq.net/2022/03/feynman_technique/</link>
+      <pubDate>Mon, 07 Mar 2022 20:46:35 +0800</pubDate>
+      
+      <guid>https://lvsq.net/2022/03/feynman_technique/</guid>
+      <description>本篇是用费曼学习法来学习《费曼学习法》。当代很多人都有知识焦虑，人前露怯不在少数，沉下心来读一些书充实自己就很重要，很多人确实读了一些书，但</description>
+    </item>
     
     <item>
       <title>我的Doom Emacs配置</title>
@@ -179,15 +188,6 @@
       
       <guid>https://lvsq.net/2020/02/storage-management/</guid>
       <description>垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动</description>
-    </item>
-    
-    <item>
-      <title>系统操作(System Operations in Chez Scheme)</title>
-      <link>https://lvsq.net/2020/02/system-operations/</link>
-      <pubDate>Thu, 06 Feb 2020 10:54:14 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/02/system-operations/</guid>
-      <description>异常 (warning who msg irritant &amp;hellip;) 返回：未指定 警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止</description>
     </item>
     
   </channel>

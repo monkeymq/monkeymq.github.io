@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="Threads 创建一个新线程： (thread (lambda() (displayln &amp;#34;This is a new thread&amp;#34;))) 休眠线程并且杀掉: (define worker (thread (lambda () (let loop () (displayln &amp;#34;Working...&amp;#34;) (sleep 0.2) (loop))))) (sleep 2.5) (kill-thread worker) 如果主线程退出或者被杀掉，其子线程也面临着退出, 可以利" />
-  <meta name="generator" content="Hugo 0.92.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.93.0 with theme pure" />
   <title>Racket 并发与同步 - 思泉笔谈 | AI-Life</title>
   
 
@@ -169,7 +169,7 @@
             <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
             <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">2</span></li>
+            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
         </ul>
     </div>
 </div>
@@ -284,7 +284,7 @@
             
             
             <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">1</span></li>
+                    class="tag-list-count">2</span></li>
             
         </ul>
 
@@ -295,6 +295,16 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -332,16 +342,6 @@
                     </p>
                     <p class="item-date">
                         <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-concurrency/" class="title">Racket 并发与同步</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-08 13:47:13 &#43;0800 CST" itemprop="datePublished">2021-07-08</time>
                     </p>
                 </div>
             </li>
@@ -405,149 +405,147 @@
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <h3 id="threads">Threads</h3>
 <p>创建一个新线程：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(thread (lambda() (displayln <span style="color:#e6db74">&#34;This is a new thread&#34;</span>)))
-</code></pre></div><p>休眠线程并且杀掉:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define worker (thread (lambda ()
-                         (<span style="color:#66d9ef">let</span> loop ()
-                           (displayln <span style="color:#e6db74">&#34;Working...&#34;</span>)
-                           (<span style="color:#a6e22e">sleep</span> <span style="color:#ae81ff">0.2</span>)
-                           (loop)))))
-(<span style="color:#a6e22e">sleep</span> <span style="color:#ae81ff">2.5</span>)
-
-(kill-thread worker)
-</code></pre></div><p>如果主线程退出或者被杀掉，其子线程也面临着退出, 可以利用therad-wait来等待其他线程执行完成.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define worker (thread
-                 (lambda ()
-                   (for ([i 100])
-                     (printf <span style="color:#e6db74">&#34;Working hard... ~a~n&#34;</span> i)))))
-(thread-wait worker)
-(displayln <span style="color:#e6db74">&#34;Worker finished&#34;</span>)
-</code></pre></div><h3 id="thread-mailboxes">Thread Mailboxes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(thread (lambda() (displayln <span style="color:#e6db74">&#34;This is a new thread&#34;</span>)))
+</span></span></code></pre></div><p>休眠线程并且杀掉:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define worker (thread (lambda ()
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>                           (displayln <span style="color:#e6db74">&#34;Working...&#34;</span>)
+</span></span><span style="display:flex;"><span>                           (<span style="color:#a6e22e">sleep</span> <span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>                           (loop)))))
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">sleep</span> <span style="color:#ae81ff">2.5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(kill-thread worker)
+</span></span></code></pre></div><p>如果主线程退出或者被杀掉，其子线程也面临着退出, 可以利用therad-wait来等待其他线程执行完成.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define worker (thread
+</span></span><span style="display:flex;"><span>                 (lambda ()
+</span></span><span style="display:flex;"><span>                   (for ([i 100])
+</span></span><span style="display:flex;"><span>                     (printf <span style="color:#e6db74">&#34;Working hard... ~a~n&#34;</span> i)))))
+</span></span><span style="display:flex;"><span>(thread-wait worker)
+</span></span><span style="display:flex;"><span>(displayln <span style="color:#e6db74">&#34;Worker finished&#34;</span>)
+</span></span></code></pre></div><h3 id="thread-mailboxes">Thread Mailboxes</h3>
 <p>每个线程具备一个邮箱来接受消息，thread-send用于异步地向一个线程发送消息，thread-receive可获取邮箱中最老的消息,如有必要线程会阻塞等待消息到来。 这就是Actor并发模型，Erlang也是采用这种模型。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define worker-thread (thread
-                       (lambda ()
-                         (<span style="color:#66d9ef">let</span> loop ()
-                           (match (thread-receive)
-                             [(? number? num)
-                              (printf <span style="color:#e6db74">&#34;Processing ~a~n&#34;</span> num)
-                              (loop)]
-                             [<span style="color:#e6db74">&#39;done</span>
-                              (printf <span style="color:#e6db74">&#34;Done~n&#34;</span>)])))))
-(for ([i 20])
-  (thread-send worker-thread i))
-(thread-send worker-thread <span style="color:#e6db74">&#39;done</span>)
-(thread-wait worker-thread)
-</code></pre></div><h3 id="semaphores">Semaphores</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define worker-thread (thread
+</span></span><span style="display:flex;"><span>                       (lambda ()
+</span></span><span style="display:flex;"><span>                         (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>                           (match (thread-receive)
+</span></span><span style="display:flex;"><span>                             [(? number? num)
+</span></span><span style="display:flex;"><span>                              (printf <span style="color:#e6db74">&#34;Processing ~a~n&#34;</span> num)
+</span></span><span style="display:flex;"><span>                              (loop)]
+</span></span><span style="display:flex;"><span>                             [<span style="color:#e6db74">&#39;done</span>
+</span></span><span style="display:flex;"><span>                              (printf <span style="color:#e6db74">&#34;Done~n&#34;</span>)])))))
+</span></span><span style="display:flex;"><span>(for ([i 20])
+</span></span><span style="display:flex;"><span>  (thread-send worker-thread i))
+</span></span><span style="display:flex;"><span>(thread-send worker-thread <span style="color:#e6db74">&#39;done</span>)
+</span></span><span style="display:flex;"><span>(thread-wait worker-thread)
+</span></span></code></pre></div><h3 id="semaphores">Semaphores</h3>
 <p>用于同步。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define output-semaphore (make-semaphore <span style="color:#ae81ff">1</span>))
-(define (make-thread name)
-  (thread (lambda ()
-            (for [(i <span style="color:#ae81ff">10</span>)]
-              (semaphore-wait output-semaphore)
-              (printf <span style="color:#e6db74">&#34;thread ~a: ~a~n&#34;</span> name i)
-              (semaphore-post output-semaphore)))))
-(define threads
-  (<span style="color:#a6e22e">map</span> make-thread <span style="color:#f92672">&#39;</span>(A B C)))
-(for-each thread-wait threads)
-</code></pre></div><p>或者使用call-with-semaphore，不用显式地释放信号量</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define output-semaphore (make-semaphore <span style="color:#ae81ff">1</span>))
-(define (make-thread name)
-  (thread (lambda ()
-            (for [(i <span style="color:#ae81ff">10</span>)]
-              (call-with-semaphore
-               output-semaphore
-               (lambda ()
-                (printf <span style="color:#e6db74">&#34;thread ~a: ~a~n&#34;</span> name i)))))))
-(define threads
-  (<span style="color:#a6e22e">map</span> make-thread <span style="color:#f92672">&#39;</span>(A B C)))
-(for-each thread-wait threads)
-</code></pre></div><h3 id="channels">Channels</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define output-semaphore (make-semaphore <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>(define (make-thread name)
+</span></span><span style="display:flex;"><span>  (thread (lambda ()
+</span></span><span style="display:flex;"><span>            (for [(i <span style="color:#ae81ff">10</span>)]
+</span></span><span style="display:flex;"><span>              (semaphore-wait output-semaphore)
+</span></span><span style="display:flex;"><span>              (printf <span style="color:#e6db74">&#34;thread ~a: ~a~n&#34;</span> name i)
+</span></span><span style="display:flex;"><span>              (semaphore-post output-semaphore)))))
+</span></span><span style="display:flex;"><span>(define threads
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">map</span> make-thread <span style="color:#f92672">&#39;</span>(A B C)))
+</span></span><span style="display:flex;"><span>(for-each thread-wait threads)
+</span></span></code></pre></div><p>或者使用call-with-semaphore，不用显式地释放信号量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define output-semaphore (make-semaphore <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>(define (make-thread name)
+</span></span><span style="display:flex;"><span>  (thread (lambda ()
+</span></span><span style="display:flex;"><span>            (for [(i <span style="color:#ae81ff">10</span>)]
+</span></span><span style="display:flex;"><span>              (call-with-semaphore
+</span></span><span style="display:flex;"><span>               output-semaphore
+</span></span><span style="display:flex;"><span>               (lambda ()
+</span></span><span style="display:flex;"><span>                (printf <span style="color:#e6db74">&#34;thread ~a: ~a~n&#34;</span> name i)))))))
+</span></span><span style="display:flex;"><span>(define threads
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">map</span> make-thread <span style="color:#f92672">&#39;</span>(A B C)))
+</span></span><span style="display:flex;"><span>(for-each thread-wait threads)
+</span></span></code></pre></div><h3 id="channels">Channels</h3>
 <p>通道用于线程之间传递数据,Golang采取的就是这种方式。</p>
 <p>channel-put用来发送数据到通道，channel-get可以从通道中获取数据.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define result-channel (make-channel))
-(define result-thread
-        (thread (lambda ()
-                  (<span style="color:#66d9ef">let</span> loop ()
-                    (display (channel-get result-channel))
-                    (loop)))))
-
-(define work-channel (make-channel))
-(define (make-worker thread-id)
-  (thread
-   (lambda ()
-     (<span style="color:#66d9ef">let</span> loop ()
-       (define item (channel-get work-channel))
-       (case item
-         [(DONE)
-          (channel-put result-channel
-                       (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a done\n&#34;</span> thread-id))]
-         [else
-          (channel-put result-channel
-                       (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a processed ~a\n&#34;</span>
-                               thread-id
-                               item))
-          (loop)])))))
-(define work-threads (<span style="color:#a6e22e">map</span> make-worker <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)))
-(for ([item <span style="color:#f92672">&#39;</span>(A B C D E F G H DONE DONE)])
-  (channel-put work-channel item))
-(for-each thread-wait work-threads)
-(channel-put result-channel <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#75715e">; waits until result-thread has printed all other output</span>
-
-</code></pre></div><h3 id="缓冲异步通道buffered-asynchronous-channels">缓冲异步通道Buffered Asynchronous Channels</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define result-channel (make-channel))
+</span></span><span style="display:flex;"><span>(define result-thread
+</span></span><span style="display:flex;"><span>        (thread (lambda ()
+</span></span><span style="display:flex;"><span>                  (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>                    (display (channel-get result-channel))
+</span></span><span style="display:flex;"><span>                    (loop)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define work-channel (make-channel))
+</span></span><span style="display:flex;"><span>(define (make-worker thread-id)
+</span></span><span style="display:flex;"><span>  (thread
+</span></span><span style="display:flex;"><span>   (lambda ()
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>       (define item (channel-get work-channel))
+</span></span><span style="display:flex;"><span>       (case item
+</span></span><span style="display:flex;"><span>         [(DONE)
+</span></span><span style="display:flex;"><span>          (channel-put result-channel
+</span></span><span style="display:flex;"><span>                       (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a done\n&#34;</span> thread-id))]
+</span></span><span style="display:flex;"><span>         [else
+</span></span><span style="display:flex;"><span>          (channel-put result-channel
+</span></span><span style="display:flex;"><span>                       (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a processed ~a\n&#34;</span>
+</span></span><span style="display:flex;"><span>                               thread-id
+</span></span><span style="display:flex;"><span>                               item))
+</span></span><span style="display:flex;"><span>          (loop)])))))
+</span></span><span style="display:flex;"><span>(define work-threads (<span style="color:#a6e22e">map</span> make-worker <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)))
+</span></span><span style="display:flex;"><span>(for ([item <span style="color:#f92672">&#39;</span>(A B C D E F G H DONE DONE)])
+</span></span><span style="display:flex;"><span>  (channel-put work-channel item))
+</span></span><span style="display:flex;"><span>(for-each thread-wait work-threads)
+</span></span><span style="display:flex;"><span>(channel-put result-channel <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#75715e">; waits until result-thread has printed all other output</span>
+</span></span></code></pre></div><h3 id="缓冲异步通道buffered-asynchronous-channels">缓冲异步通道Buffered Asynchronous Channels</h3>
 <p>与上述的channel类似，只是BAC会有一定的缓冲区，一般不会被阻塞，除非缓冲区满了（put操作）或者空（get操作）.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#a6e22e">require</span> racket/async-channel)
-
-(define print-thread
-  (thread (lambda ()
-            (<span style="color:#66d9ef">let</span> loop ()
-              (displayln (thread-receive))
-              (loop)))))
-(define (safer-printf <span style="color:#f92672">.</span> items)
-  (thread-send print-thread
-               (<span style="color:#a6e22e">apply</span> <span style="color:#a6e22e">format</span> items)))
-
-(define work-channel (make-async-channel <span style="color:#ae81ff">3</span>))
-(define (make-worker-thread thread-id)
-  (thread
-   (lambda ()
-     (<span style="color:#66d9ef">let</span> loop ()
-       (define item (async-channel-get work-channel))
-       (safer-printf <span style="color:#e6db74">&#34;Thread ~a processing item: ~a&#34;</span> thread-id item)
-       (loop)))))
-
-(for-each make-worker-thread <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>))
-(for ([item <span style="color:#f92672">&#39;</span>(a b c d e f g h i j k l m)])
-  (async-channel-put work-channel item))
-</code></pre></div><h3 id="同步事件和sync">同步事件和sync</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(define main-thread (current-thread))
-(define alarm (alarm-evt (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">3000</span> (current-inexact-milliseconds))))
-(define channel (make-channel))
-(define (make-worker-thread thread-id)
-  (thread
-   (lambda ()
-     (define evt (sync channel alarm))
-     (cond
-       [(equal? evt alarm)
-        (thread-send main-thread <span style="color:#e6db74">&#39;alarm</span>)]
-       [else
-        (thread-send main-thread
-                     (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a received ~a&#34;</span>
-                             thread-id
-                             evt))]))))
-(make-worker-thread <span style="color:#ae81ff">1</span>)
-(make-worker-thread <span style="color:#ae81ff">2</span>)
-(make-worker-thread <span style="color:#ae81ff">3</span>)
-(channel-put channel <span style="color:#e6db74">&#39;A</span>)
-(channel-put channel <span style="color:#e6db74">&#39;B</span>)
-(<span style="color:#66d9ef">let</span> loop ()
-  (match (thread-receive)
-    [<span style="color:#e6db74">&#39;alarm</span>
-     (displayln <span style="color:#e6db74">&#34;Done&#34;</span>)]
-    [result
-     (displayln result)
-     (loop)]))
-
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">require</span> racket/async-channel)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define print-thread
+</span></span><span style="display:flex;"><span>  (thread (lambda ()
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>              (displayln (thread-receive))
+</span></span><span style="display:flex;"><span>              (loop)))))
+</span></span><span style="display:flex;"><span>(define (safer-printf <span style="color:#f92672">.</span> items)
+</span></span><span style="display:flex;"><span>  (thread-send print-thread
+</span></span><span style="display:flex;"><span>               (<span style="color:#a6e22e">apply</span> <span style="color:#a6e22e">format</span> items)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(define work-channel (make-async-channel <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>(define (make-worker-thread thread-id)
+</span></span><span style="display:flex;"><span>  (thread
+</span></span><span style="display:flex;"><span>   (lambda ()
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>       (define item (async-channel-get work-channel))
+</span></span><span style="display:flex;"><span>       (safer-printf <span style="color:#e6db74">&#34;Thread ~a processing item: ~a&#34;</span> thread-id item)
+</span></span><span style="display:flex;"><span>       (loop)))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(for-each make-worker-thread <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>(for ([item <span style="color:#f92672">&#39;</span>(a b c d e f g h i j k l m)])
+</span></span><span style="display:flex;"><span>  (async-channel-put work-channel item))
+</span></span></code></pre></div><h3 id="同步事件和sync">同步事件和sync</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define main-thread (current-thread))
+</span></span><span style="display:flex;"><span>(define alarm (alarm-evt (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">3000</span> (current-inexact-milliseconds))))
+</span></span><span style="display:flex;"><span>(define channel (make-channel))
+</span></span><span style="display:flex;"><span>(define (make-worker-thread thread-id)
+</span></span><span style="display:flex;"><span>  (thread
+</span></span><span style="display:flex;"><span>   (lambda ()
+</span></span><span style="display:flex;"><span>     (define evt (sync channel alarm))
+</span></span><span style="display:flex;"><span>     (cond
+</span></span><span style="display:flex;"><span>       [(equal? evt alarm)
+</span></span><span style="display:flex;"><span>        (thread-send main-thread <span style="color:#e6db74">&#39;alarm</span>)]
+</span></span><span style="display:flex;"><span>       [else
+</span></span><span style="display:flex;"><span>        (thread-send main-thread
+</span></span><span style="display:flex;"><span>                     (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;Thread ~a received ~a&#34;</span>
+</span></span><span style="display:flex;"><span>                             thread-id
+</span></span><span style="display:flex;"><span>                             evt))]))))
+</span></span><span style="display:flex;"><span>(make-worker-thread <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>(make-worker-thread <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>(make-worker-thread <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>(channel-put channel <span style="color:#e6db74">&#39;A</span>)
+</span></span><span style="display:flex;"><span>(channel-put channel <span style="color:#e6db74">&#39;B</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let</span> loop ()
+</span></span><span style="display:flex;"><span>  (match (thread-receive)
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#39;alarm</span>
+</span></span><span style="display:flex;"><span>     (displayln <span style="color:#e6db74">&#34;Done&#34;</span>)]
+</span></span><span style="display:flex;"><span>    [result
+</span></span><span style="display:flex;"><span>     (displayln result)
+</span></span><span style="display:flex;"><span>     (loop)]))
+</span></span></code></pre></div><hr>
 <p>欢迎加入<strong>Racket 隐修会</strong> ：731859928(QQ)</p>
 
     </div>
