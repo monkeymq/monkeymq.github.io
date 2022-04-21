@@ -24,20 +24,6 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/%E6%96%87%E5%8F%B2/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://lvsq.net/2022/03/feynman_technique/</loc>
     <lastmod>2022-03-07T20:46:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -45,7 +31,21 @@
   </url>
   
   <url>
+    <loc>https://lvsq.net/</loc>
+    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/</loc>
+    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://lvsq.net/categories/%E6%96%87%E5%8F%B2/</loc>
     <lastmod>2022-03-07T20:46:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -143,6 +143,13 @@
   </url>
   
   <url>
+    <loc>https://lvsq.net/2021/05/container-with-most-water/</loc>
+    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://lvsq.net/categories/leetcode/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -151,13 +158,6 @@
   
   <url>
     <loc>https://lvsq.net/categories/lisp/</loc>
-    <lastmod>2021-05-11T18:09:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/05/container-with-most-water/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -521,14 +521,14 @@
   </url>
   
   <url>
-    <loc>https://lvsq.net/about/</loc>
+    <loc>https://lvsq.net/tags/about/</loc>
     <lastmod>2019-12-03T09:06:26+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://lvsq.net/tags/about/</loc>
+    <loc>https://lvsq.net/about/</loc>
     <lastmod>2019-12-03T09:06:26+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
