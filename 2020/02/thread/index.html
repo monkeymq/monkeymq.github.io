@@ -24,7 +24,7 @@
   
   
   <meta name="description" content="下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程" />
-  <meta name="generator" content="Hugo 0.97.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.99.0 with theme pure" />
   <title>线程（Thread System in Chez Scheme） - 思泉笔谈 | AI-Life</title>
   
 
@@ -708,15 +708,15 @@
 </span></span><span style="display:flex;"><span>producer <span style="color:#ae81ff">1</span> posting a job
 </span></span><span style="display:flex;"><span>Adding job <span style="color:#f92672">#</span><span style="color:#ae81ff">9</span> = (<span style="color:#66d9ef">lambda </span>() (<span style="color:#a6e22e">fib</span> <span style="color:#ae81ff">26</span>))
 </span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
-</span></span></code></pre></div><p>在“A Scheme for native threads<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
-<section class="footnotes" role="doc-endnotes">
+</span></span></code></pre></div><p>在“A Scheme for native threads<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>”中给出了其他示例，包括可悬挂线程的定义和在无法访问时自动终止的线程。</p>
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>R. Kent Dybvig. A Scheme for native threads. In Symposium in Honor of Mitchell Wand, August 2009. <a href="http://www.ccs.neu.edu/events/wand-symposium/">http://www.ccs.neu.edu/events/wand-symposium/</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p>R. Kent Dybvig. A Scheme for native threads. In Symposium in Honor of Mitchell Wand, August 2009. <a href="http://www.ccs.neu.edu/events/wand-symposium/">http://www.ccs.neu.edu/events/wand-symposium/</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
     </div>
     <div class="article-footer">

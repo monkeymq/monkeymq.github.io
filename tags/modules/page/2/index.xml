@@ -178,7 +178,7 @@
       <pubDate>Wed, 27 Nov 2019 20:58:09 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/11/emacs/</guid>
-      <description>M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查</description>
+      <description>M -&amp;gt; Alt(option) S -&amp;gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-x 0 关闭当前窗口 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移</description>
     </item>
     
   </channel>
