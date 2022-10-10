@@ -115,7 +115,7 @@
       <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
       
       <guid>https://lvsq.net/2019/12/recursive-bindings/</guid>
-      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述：(</description>
+      <description>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。 这是语法描述： (rec</description>
     </item>
     
     <item>

@@ -24,7 +24,7 @@
       <pubDate>Wed, 23 Feb 2022 08:58:54 +0800</pubDate>
       
       <guid>https://lvsq.net/2022/02/my-doom-emacs-config/</guid>
-      <description>config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom ;; sync&amp;#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &amp;#34;Siquan&amp;#34; user-mail-address &amp;#34;xxx@xxx.com&amp;#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;</description>
+      <description>config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom ;; sync&amp;#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &amp;#34;Siquan&amp;#34; user-mail-address &amp;#34;xx@xx.com&amp;#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;</description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@
       <pubDate>Tue, 20 Oct 2020 10:49:13 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/10/rebuilding-racket/</guid>
-      <description>作者 MATTHEW FLATT, University of Utah,USACANER DERICI, Indiana University, USAR. KENT DYBVIG, Cisco Systems, Inc., USAANDREW W. KEEP, Cisco Systems, Inc., USAGUSTAVO E. MASSACCESI, Universidad de Buenos Aires, ArgentinaSARAH SPALL, Indiana University, USASAM TOBIN-HOCHSTADT, Indiana University, USAJON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Racket，并且</description>
+      <description>作者 MATTHEW FLATT, University of Utah, USACANER DERICI, Indiana University, USA R. KENT DYBVIG, Cisco Systems, Inc., USA ANDREW W. KEEP, Cisco Systems, Inc., USA GUSTAVO E. MASSACCESI, Universidad de Buenos Aires, Argentina SARAH SPALL, Indiana University, USA SAM TOBIN-HOCHSTADT, Indiana University, USA JON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Ra</description>
     </item>
     
     <item>
@@ -132,7 +132,7 @@
       <pubDate>Thu, 14 May 2020 10:13:25 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/05/beam-vs-jvm/</guid>
-      <description>作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是：1）Erlang编程语言的语义，并在其上实现</description>
+      <description>作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是： 1）Erlang编程语言的语义，并在其上实现</description>
     </item>
     
     <item>
@@ -159,7 +159,7 @@
       <pubDate>Fri, 06 Mar 2020 17:35:49 +0800</pubDate>
       
       <guid>https://lvsq.net/2020/03/fifo-queue/</guid>
-      <description>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make</description>
+      <description>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个</description>
     </item>
     
     <item>
