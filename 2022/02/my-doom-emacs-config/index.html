@@ -42,7 +42,7 @@
 <meta itemprop="name" content="我的Doom Emacs配置">
 <meta itemprop="description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;"><meta itemprop="datePublished" content="2022-02-23T08:58:54+08:00" />
 <meta itemprop="dateModified" content="2022-02-23T08:58:54+08:00" />
-<meta itemprop="wordCount" content="2506">
+<meta itemprop="wordCount" content="2515">
 <meta itemprop="keywords" content="emacs," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="我的Doom Emacs配置"/>
 <meta name="twitter:description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;"/>
@@ -397,7 +397,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/my-doom-emacs-config/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2506字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2515字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:6分 </span>
       </div>
     </div>
@@ -577,6 +577,9 @@
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> elfeed-db-directory <span style="color:#e6db74">&#34;~/work/emacs-org/elfeed&#34;</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> rmh-elfeed-org-files (<span style="color:#a6e22e">list</span> <span style="color:#e6db74">&#34;~/work/emacs-org/elfeed/elfeed.org&#34;</span>))
 </span></span><span style="display:flex;"><span>(add-hook! <span style="color:#e6db74">&#39;elfeed-search-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>elfeed-update)
+</span></span><span style="display:flex;"><span>(add-hook <span style="color:#e6db74">&#39;elfeed-new-entry-hook</span>
+</span></span><span style="display:flex;"><span>          (elfeed-make-tagger <span style="color:#e6db74">:before</span> <span style="color:#e6db74">&#34;2 weeks ago&#34;</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#e6db74">:remove</span> <span style="color:#e6db74">&#39;unread</span>))
 </span></span></code></pre></div><h3 id="initel">init.el</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#75715e">;;; init.el -*- lexical-binding: t; -*-</span>
 </span></span><span style="display:flex;"><span>
