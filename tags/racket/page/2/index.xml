@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>racket on 思泉笔谈 | AI-Life</title>
+    <title>Racket on 思泉笔谈 | AI-Life</title>
     <link>https://lvsq.net/tags/racket/</link>
-    <description>Recent content in racket on 思泉笔谈 | AI-Life</description>
+    <description>Recent content in Racket on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Mon, 09 Aug 2021 14:31:04 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/racket/index.xml" rel="self" type="application/rss+xml" />

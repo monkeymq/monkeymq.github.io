@@ -6,57 +6,85 @@
     <title>
         我的Doom Emacs配置 - 思泉笔谈 | AI-Life
       </title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  <meta name="description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom ;; sync&amp;#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &amp;#34;Siquan&amp;#34; user-mail-address &amp;#34;xx@xx.com&amp;#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;" />
-  <meta name="generator" content="Hugo 0.104.1 with theme pure" />
-  <title>我的Doom Emacs配置 - 思泉笔谈 | AI-Life</title>
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="我的Doom Emacs配置" />
-<meta property="og:description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2022/02/my-doom-emacs-config/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-02-23T08:58:54+08:00" />
-<meta property="article:modified_time" content="2022-02-23T08:58:54+08:00" />
-
-<meta itemprop="name" content="我的Doom Emacs配置">
-<meta itemprop="description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;"><meta itemprop="datePublished" content="2022-02-23T08:58:54+08:00" />
-<meta itemprop="dateModified" content="2022-02-23T08:58:54+08:00" />
-<meta itemprop="wordCount" content="2515">
-<meta itemprop="keywords" content="emacs," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="我的Doom Emacs配置"/>
-<meta name="twitter:description" content="config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;"/>
-
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
-
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-
-</head>
 
   </head>
   
@@ -397,7 +425,7 @@
 	</span>
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/my-doom-emacs-config/#comments"
             class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2515字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:2736字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:6分 </span>
       </div>
     </div>
@@ -430,7 +458,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; There are two ways to load a theme. Both assume the theme is installed and</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; available. You can either set `doom-theme&#39; or manually load a theme with the</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; `load-theme&#39; function. This is the default:</span>
-</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> doom-theme <span style="color:#e6db74">&#39;doom-badger</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> doom-theme <span style="color:#e6db74">&#39;doom-monokai-pro</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; If you use `org&#39; and don&#39;t want your org files in the default location below,</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; change `org-directory&#39;. It must be set before org loads!</span>
@@ -535,10 +563,6 @@
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> lsp-eldoc-render-all <span style="color:#66d9ef">t</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> lsp-gopls-complete-unimported <span style="color:#66d9ef">t</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> lsp-gopls-codelens <span style="color:#66d9ef">nil</span>)
-</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> lsp-mode
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:ensure</span> <span style="color:#66d9ef">t</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:commands</span> (lsp lsp-deferred)
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:hook</span> (go-mode <span style="color:#f92672">.</span> lsp-deferred))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Set up before-save hooks to format buffer and add/delete imports.</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Make sure you don&#39;t have other gofmt/goimports hooks enabled.</span>
@@ -547,10 +571,6 @@
 </span></span><span style="display:flex;"><span>  (add-hook <span style="color:#e6db74">&#39;before-save-hook</span> <span style="color:#a6e22e">#&#39;</span>lsp-organize-imports <span style="color:#66d9ef">t</span> <span style="color:#66d9ef">t</span>))
 </span></span><span style="display:flex;"><span>(add-hook <span style="color:#e6db74">&#39;go-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>lsp-go-install-save-hooks)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Optional - provides fancier overlays.</span>
-</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> lsp-ui
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:ensure</span> <span style="color:#66d9ef">t</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:commands</span> lsp-ui-mode)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;; Company mode is a standard completion package that works well with lsp-mode.</span>
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> company
@@ -577,9 +597,75 @@
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> elfeed-db-directory <span style="color:#e6db74">&#34;~/work/emacs-org/elfeed&#34;</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">setq</span> rmh-elfeed-org-files (<span style="color:#a6e22e">list</span> <span style="color:#e6db74">&#34;~/work/emacs-org/elfeed/elfeed.org&#34;</span>))
 </span></span><span style="display:flex;"><span>(add-hook! <span style="color:#e6db74">&#39;elfeed-search-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>elfeed-update)
-</span></span><span style="display:flex;"><span>(add-hook <span style="color:#e6db74">&#39;elfeed-new-entry-hook</span>
-</span></span><span style="display:flex;"><span>          (elfeed-make-tagger <span style="color:#e6db74">:before</span> <span style="color:#e6db74">&#34;2 weeks ago&#34;</span>
-</span></span><span style="display:flex;"><span>                              <span style="color:#e6db74">:remove</span> <span style="color:#e6db74">&#39;unread</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;(add-hook &#39;elfeed-new-entry-hook</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;          (elfeed-make-tagger :before &#34;2 weeks ago&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;                              :remove &#39;unread))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; lsp</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> lsp-mode
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:ensure</span> <span style="color:#66d9ef">t</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:commands</span> (lsp lsp-deferred)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:hook</span> (go-mode <span style="color:#f92672">.</span> lsp-deferred)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:custom</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; what to use when checking on-save. &#34;check&#34; is default, I prefer clippy</span>
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-cargo-watch-command <span style="color:#e6db74">&#34;clippy&#34;</span>)
+</span></span><span style="display:flex;"><span>  (lsp-eldoc-render-all <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (lsp-idle-delay <span style="color:#ae81ff">0.6</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; enable / disable the hints as you prefer:</span>
+</span></span><span style="display:flex;"><span>  (lsp-inlay-hint-enable <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list</span>
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-lifetime-elision-hints-enable <span style="color:#e6db74">&#34;skip_trivial&#34;</span>)
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-chaining-hints <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-closure-return-type-hints <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-parameter-hints <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>  (lsp-rust-analyzer-display-reborrow-hints <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:config</span>
+</span></span><span style="display:flex;"><span>  (add-hook <span style="color:#e6db74">&#39;lsp-mode-hook</span> <span style="color:#e6db74">&#39;lsp-ui-mode</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Optional - provides fancier overlays.</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> lsp-ui
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:ensure</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:commands</span> lsp-ui-mode
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:custom</span>
+</span></span><span style="display:flex;"><span>  (lsp-ui-peek-always-show <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (lsp-ui-sideline-show-hover <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (lsp-ui-doc-enable <span style="color:#66d9ef">nil</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> flycheck <span style="color:#e6db74">:ensure</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;rust</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;refer: https://robert.kra.hn/posts/rust-emacs-setup/</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">use-package</span> rustic
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:ensure</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:bind</span> (<span style="color:#e6db74">:map</span> rustic-mode-map
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;M-j&#34;</span> <span style="color:#f92672">.</span> lsp-ui-imenu)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;M-?&#34;</span> <span style="color:#f92672">.</span> lsp-find-references)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c l&#34;</span> <span style="color:#f92672">.</span> flycheck-list-errors)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c a&#34;</span> <span style="color:#f92672">.</span> lsp-execute-code-action)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c r&#34;</span> <span style="color:#f92672">.</span> lsp-rename)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c q&#34;</span> <span style="color:#f92672">.</span> lsp-workspace-restart)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c Q&#34;</span> <span style="color:#f92672">.</span> lsp-workspace-shutdown)
+</span></span><span style="display:flex;"><span>              (<span style="color:#e6db74">&#34;C-c C-c s&#34;</span> <span style="color:#f92672">.</span> lsp-rust-analyzer-status))
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">:config</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; uncomment for less flashiness</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; (setq lsp-eldoc-hook nil)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; (setq lsp-enable-symbol-highlighting nil)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; (setq lsp-signature-auto-activate nil)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; comment to disable rustfmt on save</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">setq</span> rustic-format-on-save <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>  (add-hook <span style="color:#e6db74">&#39;rustic-mode-hook</span> <span style="color:#e6db74">&#39;rk/rustic-mode-hook</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun rk/rustic-mode-hook ()
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; so that run C-c C-c C-r works without having to confirm, but don&#39;t try to</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; save rust buffers that are not file visiting. Once</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">;; no longer be necessary.</span>
+</span></span><span style="display:flex;"><span>  (when buffer-file-name
+</span></span><span style="display:flex;"><span>    (setq-local buffer-save-without-query <span style="color:#66d9ef">t</span>))
+</span></span><span style="display:flex;"><span>  (add-hook <span style="color:#e6db74">&#39;before-save-hook</span> <span style="color:#e6db74">&#39;lsp-format-buffer</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>))
 </span></span></code></pre></div><h3 id="initel">init.el</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#75715e">;;; init.el -*- lexical-binding: t; -*-</span>
 </span></span><span style="display:flex;"><span>
@@ -596,6 +682,13 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;;</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;;      Alternatively, press &#39;gd&#39; (or &#39;C-c c d&#39;) on a module to browse its</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">;;      directory (for easy access to its source code).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; 添加中国源</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;(setq package-archives &#39;((&#34;gnu&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/gnu/&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;                         (&#34;melpa&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/melpa/&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;                         (&#34;melpa-stable&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/melpa-stable/&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;                         (&#34;org&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/org/&#34;)))</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>(doom! <span style="color:#e6db74">:input</span>
 </span></span><span style="display:flex;"><span>       <span style="color:#75715e">;; chinese</span>
@@ -963,7 +1056,7 @@
 </ul>
   <div class="copyright">
     &copy;2019  -
-    2022
+    2024
     <div class="publishby">
       <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
        base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
@@ -984,7 +1077,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>

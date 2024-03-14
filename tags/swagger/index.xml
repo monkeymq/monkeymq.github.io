@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>swagger on 思泉笔谈 | AI-Life</title>
+    <title>Swagger on 思泉笔谈 | AI-Life</title>
     <link>https://lvsq.net/tags/swagger/</link>
-    <description>Recent content in swagger on 思泉笔谈 | AI-Life</description>
+    <description>Recent content in Swagger on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Fri, 29 Nov 2019 10:21:12 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/swagger/index.xml" rel="self" type="application/rss+xml" />

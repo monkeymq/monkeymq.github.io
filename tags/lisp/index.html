@@ -5,53 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         思泉笔谈 | AI-Life</title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  
-  <meta name="generator" content="Hugo 0.104.1 with theme pure" />
-  <title>思泉笔谈 | AI-Life</title>
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <link rel="alternate" type="application/rss+xml" href="https://lvsq.net/tags/lisp/index.xml" title="思泉笔谈 | AI-Life" />
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="lisp" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/tags/lisp/" />
-
-<meta itemprop="name" content="lisp">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="lisp"/>
-<meta name="twitter:description" content=""/>
-
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
-
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-
-</head>
 
   </head>
   
@@ -351,36 +383,36 @@
 <main class="main" role="main">
     <article class="content article article-tags post-type-list" itemscope="">
         <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">lisp</h1>
+            <h1 itemprop="name" class="hidden-xs">Lisp</h1>
             <p class="text-muted hidden-xs">共 27 个标签</p>
             <nav role="navigation" id="nav-main" class="okayNav">
                 <ul>
                     <li><a href="https://lvsq.net/tags">All</a></li>
-                    <li><a href="https://lvsq.net/tags/about/">about</a></li>
-                    <li><a href="https://lvsq.net/tags/chez/">chez</a></li>
-                    <li><a href="https://lvsq.net/tags/emacs/">emacs</a></li>
-                    <li><a href="https://lvsq.net/tags/engine/">engine</a></li>
-                    <li><a href="https://lvsq.net/tags/erlang/">erlang</a></li>
-                    <li><a href="https://lvsq.net/tags/fluid-let/">fluid-let</a></li>
-                    <li><a href="https://lvsq.net/tags/functional/">functional</a></li>
-                    <li><a href="https://lvsq.net/tags/golang/">golang</a></li>
-                    <li><a href="https://lvsq.net/tags/gossip/">gossip</a></li>
-                    <li><a href="https://lvsq.net/tags/jgossip/">jgossip</a></li>
-                    <li><a href="https://lvsq.net/tags/leetcode/">leetcode</a></li>
-                    <li><a href="https://lvsq.net/tags/lexical/">lexical</a></li>
-                    <li><a href="https://lvsq.net/tags/lisp/">lisp</a></li>
-                    <li><a href="https://lvsq.net/tags/module/">module</a></li>
-                    <li><a href="https://lvsq.net/tags/modules/">modules</a></li>
-                    <li><a href="https://lvsq.net/tags/pl/">pl</a></li>
-                    <li><a href="https://lvsq.net/tags/racket/">racket</a></li>
-                    <li><a href="https://lvsq.net/tags/rec/">rec</a></li>
-                    <li><a href="https://lvsq.net/tags/scheme/">scheme</a></li>
-                    <li><a href="https://lvsq.net/tags/scoping/">scoping</a></li>
+                    <li><a href="https://lvsq.net/tags/about/">About</a></li>
+                    <li><a href="https://lvsq.net/tags/chez/">Chez</a></li>
+                    <li><a href="https://lvsq.net/tags/emacs/">Emacs</a></li>
+                    <li><a href="https://lvsq.net/tags/engine/">Engine</a></li>
+                    <li><a href="https://lvsq.net/tags/erlang/">Erlang</a></li>
+                    <li><a href="https://lvsq.net/tags/fluid-let/">Fluid-Let</a></li>
+                    <li><a href="https://lvsq.net/tags/functional/">Functional</a></li>
+                    <li><a href="https://lvsq.net/tags/golang/">Golang</a></li>
+                    <li><a href="https://lvsq.net/tags/gossip/">Gossip</a></li>
+                    <li><a href="https://lvsq.net/tags/jgossip/">Jgossip</a></li>
+                    <li><a href="https://lvsq.net/tags/leetcode/">Leetcode</a></li>
+                    <li><a href="https://lvsq.net/tags/lexical/">Lexical</a></li>
+                    <li><a href="https://lvsq.net/tags/lisp/">Lisp</a></li>
+                    <li><a href="https://lvsq.net/tags/module/">Module</a></li>
+                    <li><a href="https://lvsq.net/tags/modules/">Modules</a></li>
+                    <li><a href="https://lvsq.net/tags/pl/">Pl</a></li>
+                    <li><a href="https://lvsq.net/tags/racket/">Racket</a></li>
+                    <li><a href="https://lvsq.net/tags/rec/">Rec</a></li>
+                    <li><a href="https://lvsq.net/tags/scheme/">Scheme</a></li>
+                    <li><a href="https://lvsq.net/tags/scoping/">Scoping</a></li>
                     <li><a href="https://lvsq.net/tags/sicp/">SICP</a></li>
-                    <li><a href="https://lvsq.net/tags/swagger/">swagger</a></li>
-                    <li><a href="https://lvsq.net/tags/syntactic/">syntactic</a></li>
-                    <li><a href="https://lvsq.net/tags/thread/">thread</a></li>
-                    <li><a href="https://lvsq.net/tags/vendorextensions/">vendorExtensions</a></li>
+                    <li><a href="https://lvsq.net/tags/swagger/">Swagger</a></li>
+                    <li><a href="https://lvsq.net/tags/syntactic/">Syntactic</a></li>
+                    <li><a href="https://lvsq.net/tags/thread/">Thread</a></li>
+                    <li><a href="https://lvsq.net/tags/vendorextensions/">VendorExtensions</a></li>
                     <li><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/">文史</a></li>
                     <li><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/">随想</a></li>
                 </ul>
@@ -416,7 +448,7 @@
 </ul>
   <div class="copyright">
     &copy;2019  -
-    2022
+    2024
     <div class="publishby">
       <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
        base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
@@ -437,7 +469,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>erlang on 思泉笔谈 | AI-Life</title>
+    <title>Erlang on 思泉笔谈 | AI-Life</title>
     <link>https://lvsq.net/tags/erlang/</link>
-    <description>Recent content in erlang on 思泉笔谈 | AI-Life</description>
+    <description>Recent content in Erlang on 思泉笔谈 | AI-Life</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Thu, 14 May 2020 10:13:25 +0800</lastBuildDate>
     
         <atom:link href="https://lvsq.net/tags/erlang/index.xml" rel="self" type="application/rss+xml" />

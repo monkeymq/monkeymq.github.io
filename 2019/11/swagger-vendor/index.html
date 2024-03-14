@@ -6,57 +6,85 @@
     <title>
         Swagger 如何使用vendorExtensions进行扩展 - 思泉笔谈 | AI-Life
       </title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  <meta name="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;quo" />
-  <meta name="generator" content="Hugo 0.104.1 with theme pure" />
-  <title>Swagger 如何使用vendorExtensions进行扩展 - 思泉笔谈 | AI-Life</title>
-  
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
+            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Swagger 如何使用vendorExtensions进行扩展" />
-<meta property="og:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&quo" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/11/swagger-vendor/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-11-29T10:21:12+08:00" />
-<meta property="article:modified_time" content="2019-11-29T10:21:12+08:00" />
-
-<meta itemprop="name" content="Swagger 如何使用vendorExtensions进行扩展">
-<meta itemprop="description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&quo"><meta itemprop="datePublished" content="2019-11-29T10:21:12+08:00" />
-<meta itemprop="dateModified" content="2019-11-29T10:21:12+08:00" />
-<meta itemprop="wordCount" content="592">
-<meta itemprop="keywords" content="swagger,vendorExtensions," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Swagger 如何使用vendorExtensions进行扩展"/>
-<meta name="twitter:description" content="Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&quo"/>
-
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
-
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-
-</head>
 
   </head>
   
@@ -430,33 +458,33 @@
 </span></span><span style="display:flex;"><span>    }<span style="color:#960050;background-color:#1e0010">,</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
 </span></span></code></pre></div><p>后台代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ObjectVendorExtension logo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectVendorExtension<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;x-logo&#34;</span><span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>logo<span style="color:#f92672">.</span><span style="color:#a6e22e">addProperty</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StringVendorExtension<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;https://xxx.svg&#34;</span><span style="color:#f92672">));</span>
-</span></span><span style="display:flex;"><span>logo<span style="color:#f92672">.</span><span style="color:#a6e22e">addProperty</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StringVendorExtension<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;color&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;#090807&#34;</span><span style="color:#f92672">));</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ObjectVendorExtension logo <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectVendorExtension(<span style="color:#e6db74">&#34;x-logo&#34;</span>);
+</span></span><span style="display:flex;"><span>logo.<span style="color:#a6e22e">addProperty</span>(<span style="color:#66d9ef">new</span> StringVendorExtension(<span style="color:#e6db74">&#34;url&#34;</span>, <span style="color:#e6db74">&#34;https://xxx.svg&#34;</span>));
+</span></span><span style="display:flex;"><span>logo.<span style="color:#a6e22e">addProperty</span>(<span style="color:#66d9ef">new</span> StringVendorExtension(<span style="color:#e6db74">&#34;color&#34;</span>, <span style="color:#e6db74">&#34;#090807&#34;</span>));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ApiInfoBuilder<span style="color:#f92672">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">title</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;swagger-bootstrap-ui！！&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">extensions</span><span style="color:#f92672">(</span>Lists<span style="color:#f92672">.</span><span style="color:#a6e22e">newArrayList</span><span style="color:#f92672">(</span>logo<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">description</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&lt;div style=&#39;font-size:14px;color:red;&#39;&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">termsOfServiceUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;http://www.xxx.com/&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">version</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1.0.0&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ApiInfoBuilder()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">title</span>(<span style="color:#e6db74">&#34;swagger-bootstrap-ui！！&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">extensions</span>(Lists.<span style="color:#a6e22e">newArrayList</span>(logo))
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">description</span>(<span style="color:#e6db74">&#34;&lt;div style=&#39;font-size:14px;color:red;&#39;&gt;swagger-bootstrap-ui-demo RESTful APIs&lt;/div&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">termsOfServiceUrl</span>(<span style="color:#e6db74">&#34;http://www.xxx.com/&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">version</span>(<span style="color:#e6db74">&#34;1.0.0&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">build</span>();
 </span></span></code></pre></div><hr>
 <h2 id="内部对象扩展">内部对象扩展</h2>
 <p>给Path添加一个扩展属性<!-- raw HTML omitted --><!-- raw HTML omitted -->x-order<!-- raw HTML omitted --><!-- raw HTML omitted -->为例</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Order</span><span style="color:#f92672">(</span>Ordered<span style="color:#f92672">.</span><span style="color:#a6e22e">HIGHEST_PRECEDENCE</span><span style="color:#f92672">+</span>100<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OperationPositionBulderPlugin</span> <span style="color:#66d9ef">implements</span> OperationBuilderPlugin <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Order</span>(Ordered.<span style="color:#a6e22e">HIGHEST_PRECEDENCE</span><span style="color:#f92672">+</span>100)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OperationPositionBulderPlugin</span> <span style="color:#66d9ef">implements</span> OperationBuilderPlugin {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>OperationContext context<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#f92672">.</span><span style="color:#a6e22e">operationBuilder</span><span style="color:#f92672">().</span><span style="color:#a6e22e">extensions</span><span style="color:#f92672">(</span>Lists<span style="color:#f92672">.</span><span style="color:#a6e22e">newArrayList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StringVendorExtension<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;x-order&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">)));</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">apply</span>(OperationContext context) {
+</span></span><span style="display:flex;"><span>        context.<span style="color:#a6e22e">operationBuilder</span>().<span style="color:#a6e22e">extensions</span>(Lists.<span style="color:#a6e22e">newArrayList</span>(<span style="color:#66d9ef">new</span> StringVendorExtension(<span style="color:#e6db74">&#34;x-order&#34;</span>,<span style="color:#e6db74">&#34;1&#34;</span>)));
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">supports</span><span style="color:#f92672">(</span>DocumentationType delimiter<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">supports</span>(DocumentationType delimiter) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>详细介绍可以<a href="https://www.xiaominfo.com/2019/05/29/springfox-13/#more">参考</a></p>
 
     </div>
@@ -586,7 +614,7 @@
 </ul>
   <div class="copyright">
     &copy;2019  -
-    2022
+    2024
     <div class="publishby">
       <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
        base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
@@ -607,7 +635,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
