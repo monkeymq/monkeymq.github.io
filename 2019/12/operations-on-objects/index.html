@@ -1,414 +1,233 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Scheme/Chez Scheme 对象操作 - 思泉笔谈 | AI-Life
-      </title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  <meta name="description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &amp;#39;(a b c)) ⇒ #f (atom? &amp;#39;(3 . 4)) ⇒ #f (atom? &amp;#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度" />
-  <meta name="generator" content="Hugo 0.123.7 with theme pure" />
-  <title>Scheme/Chez Scheme 对象操作 - 思泉笔谈 | AI-Life</title>
-  
+<html lang="zh" dir="auto">
 
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Scheme/Chez Scheme 对象操作" />
-<meta property="og:description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/12/operations-on-objects/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-30T16:27:27+08:00" />
-<meta property="article:modified_time" content="2019-12-30T16:27:27+08:00" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Scheme/Chez Scheme 对象操作 | 思泉笔谈 | AI-Life</title>
+<meta name="keywords" content="scheme">
+<meta name="description" content="Pairs and Lists
+atom?
+atom? 相当于 (lambda (x) (not (pair? x)))
+(atom? &#39;(a b c)) ⇒ #f
+(atom? &#39;(3 . 4)) ⇒ #f
+(atom? &#39;()) ⇒ #t
+(atom? 3) ⇒ #t
+list-head(Chez)
+用法：(list-head list n) 
+n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本">
+<meta name="author" content="">
+<link rel="canonical" href="https://continuation.cn/2019/12/operations-on-objects/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://continuation.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://continuation.cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://continuation.cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://continuation.cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://continuation.cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://continuation.cn/2019/12/operations-on-objects/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-<meta itemprop="name" content="Scheme/Chez Scheme 对象操作">
-<meta itemprop="description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度"><meta itemprop="datePublished" content="2019-12-30T16:27:27+08:00" />
-<meta itemprop="dateModified" content="2019-12-30T16:27:27+08:00" />
-<meta itemprop="wordCount" content="1435">
-<meta itemprop="keywords" content="scheme," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Scheme/Chez Scheme 对象操作"/>
-<meta name="twitter:description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x))) (atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度"/>
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+            .list {
+                background: var(--theme);
+            }
 
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
 
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://continuation.cn/2019/12/operations-on-objects/">
+  <meta property="og:site_name" content="思泉笔谈 | AI-Life">
+  <meta property="og:title" content="Scheme/Chez Scheme 对象操作">
+  <meta property="og:description" content="Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x)))
+(atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-12-30T16:27:27+08:00">
+    <meta property="article:modified_time" content="2019-12-30T16:27:27+08:00">
+    <meta property="article:tag" content="Scheme">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scheme/Chez Scheme 对象操作">
+<meta name="twitter:description" content="Pairs and Lists
+atom?
+atom? 相当于 (lambda (x) (not (pair? x)))
+(atom? &#39;(a b c)) ⇒ #f
+(atom? &#39;(3 . 4)) ⇒ #f
+(atom? &#39;()) ⇒ #t
+(atom? 3) ⇒ #t
+list-head(Chez)
+用法：(list-head list n) 
+n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://continuation.cn/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Scheme/Chez Scheme 对象操作",
+      "item": "https://continuation.cn/2019/12/operations-on-objects/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Scheme/Chez Scheme 对象操作",
+  "name": "Scheme\/Chez Scheme 对象操作",
+  "description": "Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x)))\n(atom? \u0026#39;(a b c)) ⇒ #f (atom? \u0026#39;(3 . 4)) ⇒ #f (atom? \u0026#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本\n",
+  "keywords": [
+    "scheme"
+  ],
+  "articleBody": "Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x)))\n(atom? '(a b c)) ⇒ #f (atom? '(3 . 4)) ⇒ #f (atom? '()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本\n(list-head '(a b c) 0) ⇒ () (list-head '(a b c) 2) ⇒ (a b) (list-head '(a b c) 3) ⇒ (a b c) (list-head '(a b c . d) 2) ⇒ (a b) (list-head '(a b c . d) 3) ⇒ (a b c) (list-head '#1=(a . #1#) 5) ⇒ (a a a a a) last-pair(Chez) 用法：(last-pair list) 列表不能为空。 last-pair返回列表的最后一对（pair）（不是最后一个元素）, list可能是不正确的列表，在这种情况下，最后一对是包含最后一个元素和终止对象的一个pair。\n(last-pair '(a b c d)) ⇒ (d) (last-pair '(a b c.d)) ⇒ (c . d) list-copy(Chez) 用法： (list-copy list) 返回一个list的副本，equal?（结构和值相同）判断为#t\nlist*(Chez) 用法：(list* obj … final-obj) 返回一个由obj … final-obj 组成的list, 与R6RS的**cons***相同\nmake-list(Chez) 用法： (make-list n) 或者 (make-list n obj) 返回n个对象的列表。n是一个正整数， 如果obj不指定，则返回的list是不确定的\n(make-list 0 '()) =\u003e () (make-list 3 0) =\u003e (0 0 0) (make-list 2 \"hi\") =\u003e (\"hi\" \"hi\") iota(Chez) 用法：(iota n) 返回从 0（包含）到 n（不包含）的整数列表，n须为精确的非负整数\n(iota 0) =\u003e () (iota 5) =\u003e (0 1 2 3 4) enumerate(Chez) 用法： (enumerate ls) 返回: 从 0（包含）到长度 ls（不包含）的整数列表\n(enumerate '()) =\u003e () (enumerate '(a b c)) =\u003e (0 1 2) (let ([ls '(a b c)]) (map cons ls (enumerate ls))) =\u003e ((a . 0) (b . 1) (c . 2)) remq! | remv! | remove!(Chez) 用法： (remq! obj list) | (remv! obj list) | (remove! obj list) 返回: 列表中所有 obj 都被移除后的列表 这些过程与 R6RS 中的 remq, remv, 及 remove 过程类似，只是 remq!, remv! 和 remove! 使用输入列表中的pair来构成输出列表。它们进行较少的空间分配，但并不一定比它们非破坏性的相应版本更快。如果滥用，很容易导致混乱或错误的结果。\n(remq! 'a '(a b a c a d)) ⇒ (b c d) (remv! #\\a '(#\\a #\\b #\\c)) =\u003e (#\\b #\\c) (remove! '(c) '((a) (b) (c))) =\u003e ((a) (b)) substq | substv | subst | substq! | substv! | subst!(Chez) 用法： (subs* new old tree) 返回：在tree中将匹配到的old元素全部替换为new之后的tree. 对于 substq 和 substq! ，相等性测试是基于 eq?, substv 和 substv! 是基于 eqv?, 而 subst 和 subst! 是基于 equal? substq!, substv!, 和 subst! 执行破坏性的替换。它们进行较少的空间分配，但并不一定比它们非破坏性的对应版本更快。如果滥用，很容易导致混乱或错误的结果。\n(substq 'a 'b '((b c) b a)) =\u003e ((a c) a a) (substv 2 1 '((1 . 2) (1 . 4) . 1)) =\u003e ((2 . 2) (2 . 4) . 2) (subst 'a '(a . b) '((a . b) (c a . b) . c)) =\u003e (a (c . a) . c) (let ([tr '((b c) b a)]) (substq! 'a 'b tr) tr) =\u003e ((a c) a a) reverse! 用法：(reverse! list) 返回：将原list反向输出 reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取代 reverse 减少了空间分配，但并不一定比使用 reverse 更快。如果滥用，会很容易导致混乱或错误的结果。\n(reverse! '()) =\u003e () (reverse! '(a b c)) =\u003e (c b a) (let ([x '(a b c)]) (reverse! x) x) =\u003e (a) (let ([x '(a b c)]) (set! x (reverse! x)) x) =\u003e (c b a) append! 用法：(append! list …) 返回：将所有输入list串联起来的列表 如同 append, append! 返回一个新的列表，其中元素依次为第一个列表中的元素，第二个列表中的元素，第三个列表中的元素，等等。不同之处在于， append! 重用所有参数中的点对以构造新列表。即，每一个列表参数的最后一个cdr, 其后一元素变为指向下一个列表参数。除最后一个参数外，如果任一参数为空列表，它实质上会被忽略。最后一个参数（并不一定得是列表）是不变的。\n相比于 append, append! 进行更少的空间分配（因为只修改指针，并没有数据拷贝），但并不一定更快。如果滥用，会很容易导致混乱或错误的结果。\n(append! '(a b) '(c d)) =\u003e (a b c d) (let ([x '(a b)]) (append! x '(c d)) x) =\u003e (a b c d) (append '(1 2 (3 4)) '(5 6)) =\u003e (1 2 (3 4) 5 6) (append '(1 2 (3 4)) '() '(5 6)) =\u003e (1 2 (3 4) 5 6) ",
+  "wordCount" : "1435",
+  "inLanguage": "zh",
+  "datePublished": "2019-12-30T16:27:27+08:00",
+  "dateModified": "2019-12-30T16:27:27+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://continuation.cn/2019/12/operations-on-objects/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "思泉笔谈 | AI-Life",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://continuation.cn/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
-  </head>
-  
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 
-  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="slimContent">
-      <div class="navbar-header">
-        <div class="profile-block text-center">
-          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
-            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
-          </a>
-          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
-          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
-        </div><div class="search" id="search-form-wrap">
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="搜索" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
-                        class="icon icon-search"></i></button>
-            </span>
-        </div>
-        <div class="ins-search">
-            <div class="ins-search-mask"></div>
-            <div class="ins-search-container">
-                <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
-                        x-webkit-speech />
-                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
-                        aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="ins-section-wrapper">
-                    <div class="ins-section-container"></div>
-                </div>
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://continuation.cn/" accesskey="h" title="思泉笔谈 | AI-Life (Alt + H)">思泉笔谈 | AI-Life</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
             </div>
         </div>
-    </form>
-</div>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-        <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
-                <a href="/">
-                    <i class="icon icon-home-fill"></i>
-                  <span class="menu-title">Home</span>
+        <ul id="menu">
+            <li>
+                <a href="https://continuation.cn/" title="Home">
+                    <span>Home</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-archives">
-                <a href="/posts">
-                    <i class="icon icon-archives-fill"></i>
-                  <span class="menu-title">Archives</span>
+            <li>
+                <a href="https://continuation.cn/posts" title="Archives">
+                    <span>Archives</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-categories">
-                <a href="/categories">
-                    <i class="icon icon-folder"></i>
-                  <span class="menu-title">Categories</span>
+            <li>
+                <a href="https://continuation.cn/categories" title="Categories">
+                    <span>Categories</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-tags">
-                <a href="/tags">
-                    <i class="icon icon-tags"></i>
-                  <span class="menu-title">Tags</span>
+            <li>
+                <a href="https://continuation.cn/tags" title="Tags">
+                    <span>Tags</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about">
-                    <i class="icon icon-cup-fill"></i>
-                  <span class="menu-title">About</span>
+            <li>
+                <a href="https://continuation.cn/about" title="About">
+                    <span>About</span>
                 </a>
             </li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    
-      <div class="widget">
-    <h3 class="widget-title">公告</h3>
-    <div class="widget-body">
-        <div id="board">
-            <div class="content">此处会记录一些我的心得，如果有错误欢迎留言斧正，如果对你有所启发或者帮助，那么我会感觉我做了一件伟大的事情
-            </div>
-        </div>
-    </div>
-</div>
-
-      <div class="widget">
-    <h3 class="widget-title"> 分类</h3>
-    <div class="widget-body">
-        <ul class="category-list">
-            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">4</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/emacs/" class="category-list-link">emacs</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/erlang/" class="category-list-link">erlang</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">6</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
-        </ul>
-    </div>
-</div>
-      <div class="widget">
-    <h3 class="widget-title"> 标签</h3>
-    <div class="widget-body">
-        <ul class="tag-list">
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
-                    class="tag-list-count">3</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/erlang/" class="tag-list-link">erlang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/functional/" class="tag-list-link">functional</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/golang/" class="tag-list-link">golang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/pl/" class="tag-list-link">pl</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/racket/" class="tag-list-link">racket</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
-                    class="tag-list-count">17</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/thread/" class="tag-list-link">thread</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">2</span></li>
-            
-        </ul>
-
-    </div>
-</div>
-      
-<div class="widget">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget-body">
-        <ul class="recent-post-list list-unstyled no-thumbnail">
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/02/my-doom-emacs-config/" class="title">我的Doom Emacs配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-02-23 08:58:54 &#43;0800 CST" itemprop="datePublished">2022-02-23</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/12/doom-emacs-golang-env/" class="title">Doom Emacs Golang 环境配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-12-29 16:55:08 &#43;0800 CST" itemprop="datePublished">2021-12-29</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/08/racket-wc/" class="title">不到60行代码，用Racket实现wc命令</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-09 14:31:04 &#43;0800 CST" itemprop="datePublished">2021-08-09</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-time-improvement/" class="title">改进Racket的time函数</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-  </div>
-</aside>
-
-    
-    
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <h4 class="toc-title">文章目录</h4>
-    <nav id="toc" class="js-toc toc">
-
     </nav>
-  </div>
-</aside>
-<main class="main" role="main"><div class="content">
-  <article id="-" class="article article-type-" itemscope
-    itemtype="http://schema.org/BlogPosting">
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
     
-    <div class="article-header">
-      <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/12/operations-on-objects/"
-    >Scheme/Chez Scheme 对象操作</a
-  >
-</h1>
+    <h1 class="post-title entry-hint-parent">
+      Scheme/Chez Scheme 对象操作
+    </h1>
+    <div class="post-meta"><span title='2019-12-30 16:27:27 +0800 CST'>十二月 30, 2019</span>
 
-      <div class="article-meta">
-        <span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/12/operations-on-objects/" class="article-date">
-  <time datetime="2019-12-30 16:27:27 &#43;0800 CST" itemprop="datePublished">2019-12-30</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
-  </span>
-
-	<span class="article-read hidden-xs">
-	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
-	    <span id="busuanzi_container_page_pv">
-			<span id="busuanzi_value_page_pv">0</span>
-		</span>
-	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/operations-on-objects/#comments"
-            class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1435字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
-      </div>
-    </div>
-    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h3 id="pairs-and-lists">Pairs and Lists</h3>
-<h4 id="atom">atom?</h4>
+</div>
+  </header> 
+  <div class="post-content"><h3 id="pairs-and-lists">Pairs and Lists<a hidden class="anchor" aria-hidden="true" href="#pairs-and-lists">#</a></h3>
+<h4 id="atom">atom?<a hidden class="anchor" aria-hidden="true" href="#atom">#</a></h4>
 <p>atom? 相当于 (lambda (x) (not (pair? x)))</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span>)) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#f</span>
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">atom?</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">atom?</span> <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> <span style="color:#66d9ef">#t</span>
-</span></span></code></pre></div><h4 id="list-headchez">list-head(Chez)</h4>
+</span></span></code></pre></div><h4 id="list-headchez">list-head(Chez)<a hidden class="anchor" aria-hidden="true" href="#list-headchez">#</a></h4>
 <p>用法：(list-head list n) <!-- raw HTML omitted -->
 <em>n</em>是一个非负整数，且小于等于<em>list</em>的长度；<strong>list-head</strong>和Scheme标准过程<strong>list-tail</strong>可能会同时使用来切割一个list，不同点在于，<strong>list-tail</strong>不会分配内存而只是返回源list的一个子列表，<strong>list-head</strong>总是返回源list前n个元素的副本</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c) <span style="color:#ae81ff">0</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> ()
@@ -417,43 +236,43 @@
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c <span style="color:#f92672">.</span> d) <span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> b)
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;</span>(a b c <span style="color:#f92672">.</span> d) <span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> b c)
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">list-head</span> <span style="color:#f92672">&#39;#</span><span style="color:#ae81ff">1</span>=(<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> <span style="color:#f92672">#</span><span style="color:#ae81ff">1</span><span style="color:#f92672">#</span>) <span style="color:#ae81ff">5</span>) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">a</span> a a a a)
-</span></span></code></pre></div><h4 id="last-pairchez">last-pair(Chez)</h4>
+</span></span></code></pre></div><h4 id="last-pairchez">last-pair(Chez)<a hidden class="anchor" aria-hidden="true" href="#last-pairchez">#</a></h4>
 <p>用法：(last-pair list) <!-- raw HTML omitted -->
 列表不能为空。 <strong>last-pair</strong>返回列表的最后一对（<strong>pair</strong>）（不是最后一个元素）, list可能是不正确的列表，在这种情况下，最后一对是包含最后一个元素和终止对象的一个pair。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">last-pair</span> <span style="color:#f92672">&#39;</span>(a b c d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">d</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">last-pair</span> <span style="color:#f92672">&#39;</span>(a b c<span style="color:#f92672">.</span>d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> d)
-</span></span></code></pre></div><h4 id="list-copychez">list-copy(Chez)</h4>
+</span></span></code></pre></div><h4 id="list-copychez">list-copy(Chez)<a hidden class="anchor" aria-hidden="true" href="#list-copychez">#</a></h4>
 <p>用法： (list-copy list) <!-- raw HTML omitted -->
 返回一个list的副本，equal?（结构和值相同）判断为#t</p>
-<h4 id="listchez">list*(Chez)</h4>
+<h4 id="listchez">list*(Chez)<a hidden class="anchor" aria-hidden="true" href="#listchez">#</a></h4>
 <p>用法：(list* obj &hellip; final-obj)<!-- raw HTML omitted -->
 返回一个由obj &hellip; final-obj 组成的list, 与R6RS的**cons***相同</p>
-<h4 id="make-listchez">make-list(Chez)</h4>
+<h4 id="make-listchez">make-list(Chez)<a hidden class="anchor" aria-hidden="true" href="#make-listchez">#</a></h4>
 <p>用法： (make-list n) 或者 (make-list n obj)<!-- raw HTML omitted -->
 返回n个对象的列表。<strong>n</strong>是一个正整数， 如果<strong>obj</strong>不指定，则返回的list是不确定的</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span> (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
 </span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">make-list</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;hi&#34;</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#e6db74">&#34;hi&#34;</span> <span style="color:#e6db74">&#34;hi&#34;</span>)
-</span></span></code></pre></div><h4 id="iotachez">iota(Chez)</h4>
+</span></span></code></pre></div><h4 id="iotachez">iota(Chez)<a hidden class="anchor" aria-hidden="true" href="#iotachez">#</a></h4>
 <p>用法：(iota n)<!-- raw HTML omitted -->
 返回从 0（包含）到 n（不包含）的整数列表，<strong>n</strong>须为精确的非负整数</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">iota</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">=&gt; </span>()
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">iota</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)
-</span></span></code></pre></div><h4 id="enumeratechez">enumerate(Chez)</h4>
+</span></span></code></pre></div><h4 id="enumeratechez">enumerate(Chez)<a hidden class="anchor" aria-hidden="true" href="#enumeratechez">#</a></h4>
 <p>用法： (enumerate ls)<!-- raw HTML omitted -->
 返回: 从 0（包含）到长度 ls（不包含）的整数列表</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">enumerate</span> <span style="color:#f92672">&#39;</span>()) <span style="color:#66d9ef">=&gt; </span>()
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">enumerate</span> <span style="color:#f92672">&#39;</span>(a b c)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([ls <span style="color:#f92672">&#39;</span>(a b c)])
 </span></span><span style="display:flex;"><span>	(map cons ls (<span style="color:#a6e22e">enumerate</span> ls))) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span>) (<span style="color:#a6e22e">b</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">1</span>) (<span style="color:#a6e22e">c</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span>))
-</span></span></code></pre></div><h4 id="remq--remv--removechez">remq! | remv! | remove!(Chez)</h4>
+</span></span></code></pre></div><h4 id="remq--remv--removechez">remq! | remv! | remove!(Chez)<a hidden class="anchor" aria-hidden="true" href="#remq--remv--removechez">#</a></h4>
 <p>用法： (remq! obj list) | (remv! obj list) | (remove! obj list)<!-- raw HTML omitted -->
 返回: 列表中所有 obj 都被移除后的列表<!-- raw HTML omitted -->
 这些过程与 R6RS 中的 <strong>remq</strong>, <strong>remv</strong>, 及 <strong>remove</strong> 过程类似，只是 remq!, remv! 和 remove! 使用输入列表中的pair来构成输出列表。它们进行较少的空间分配，但并不一定比它们非破坏性的相应版本更快。如果滥用，很容易导致混乱或错误的结果。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#a6e22e">remq!</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#f92672">&#39;</span>(a b a c a d)) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#a6e22e">b</span> c d)
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">remv!</span> <span style="color:#e6db74">#\a</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">#\a</span> <span style="color:#e6db74">#\b</span> <span style="color:#e6db74">#\c</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#e6db74">#\b</span> <span style="color:#e6db74">#\c</span>)
 </span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">remove!</span> <span style="color:#f92672">&#39;</span>(c) <span style="color:#f92672">&#39;</span>((<span style="color:#a6e22e">a</span>) (<span style="color:#a6e22e">b</span>) (<span style="color:#a6e22e">c</span>))) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span>) (<span style="color:#a6e22e">b</span>))
-</span></span></code></pre></div><h4 id="substq--substv--subst--substq--substv--substchez">substq | substv | subst | substq! | substv! | subst!(Chez)</h4>
+</span></span></code></pre></div><h4 id="substq--substv--subst--substq--substv--substchez">substq | substv | subst | substq! | substv! | subst!(Chez)<a hidden class="anchor" aria-hidden="true" href="#substq--substv--subst--substq--substv--substchez">#</a></h4>
 <p>用法： (subs* new old tree)<!-- raw HTML omitted -->
 返回：在tree中将匹配到的old元素全部替换为new之后的tree.<!-- raw HTML omitted -->
 对于 substq 和 substq! ，相等性测试是基于 eq?, substv 和 substv! 是基于 eqv?, 而 subst 和 subst! 是基于 equal? <!-- raw HTML omitted -->
@@ -469,7 +288,7 @@ substq!, substv!, 和 subst! 执行破坏性的替换。它们进行较少的空
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([tr <span style="color:#f92672">&#39;</span>((<span style="color:#a6e22e">b</span> c) b a)])
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">substq!</span> <span style="color:#e6db74">&#39;a</span> <span style="color:#e6db74">&#39;b</span> tr)
 </span></span><span style="display:flex;"><span>  tr) <span style="color:#66d9ef">=&gt; </span>((<span style="color:#a6e22e">a</span> c) a a)
-</span></span></code></pre></div><h4 id="reverse">reverse!</h4>
+</span></span></code></pre></div><h4 id="reverse">reverse!<a hidden class="anchor" aria-hidden="true" href="#reverse">#</a></h4>
 <p>用法：(reverse! list)<!-- raw HTML omitted -->
 返回：将原list反向输出<!-- raw HTML omitted -->
 reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取代 reverse 减少了空间分配，但并不一定比使用 reverse 更快。如果滥用，会很容易导致混乱或错误的结果。</p>
@@ -483,7 +302,7 @@ reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取�
 </span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>([x <span style="color:#f92672">&#39;</span>(a b c)])
 </span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">set! </span>x (<span style="color:#a6e22e">reverse!</span> x))
 </span></span><span style="display:flex;"><span>  x) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#a6e22e">c</span> b a)
-</span></span></code></pre></div><h4 id="append">append!</h4>
+</span></span></code></pre></div><h4 id="append">append!<a hidden class="anchor" aria-hidden="true" href="#append">#</a></h4>
 <p>用法：(append! list &hellip;)<!-- raw HTML omitted -->
 返回：将所有输入list串联起来的列表<!-- raw HTML omitted -->
 如同 <strong>append</strong>, <strong>append!</strong> 返回一个新的列表，其中元素依次为第一个列表中的元素，第二个列表中的元素，第三个列表中的元素，等等。不同之处在于， append! 重用所有参数中的点对以构造新列表。即，每一个列表参数的最后一个<strong>cdr</strong>, 其后一元素变为指向下一个列表参数。除最后一个参数外，如果任一参数为空列表，它实质上会被忽略。最后一个参数（并不一定得是列表）是不变的。</p>
@@ -497,221 +316,86 @@ reverse! 通过反转其链接破坏性地反向排序列表。以 reverse! 取�
 </span></span><span style="display:flex;"><span>(append <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>)
 </span></span><span style="display:flex;"><span>(append <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>)) <span style="color:#f92672">&#39;</span>() <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>)) <span style="color:#66d9ef">=&gt; </span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> (<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>) <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>)
 </span></span></code></pre></div>
-    </div>
-    <div class="article-footer">
-<blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/12/operations-on-objects/" title="Scheme/Chez Scheme 对象操作" target="_blank" rel="external">https://lvsq.net/2019/12/operations-on-objects/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
-    </li>
-  </ul>
-</blockquote>
 
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">思泉</span><small class="ml-1x">历史及函数式编程爱好者</small></a></h3>
-        <div>爱生活，与天地往来, ailife.dev</div>
-      </div>
-    </figure>
   </div>
-</div>
-    </div>
-  </article>
-<section id="comments">
-</section>
 
-</div><nav class="bar bar-footer clearfix" data-stick-bottom>
-    <div class="bar-inner">
-        <ul class="pager pull-left">
-            <li class="prev">
-                <a href="https://lvsq.net/2019/12/engine-in-scheme/" title="Engine in Scheme"><i
-                        class="icon icon-angle-left"
-                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://lvsq.net/2020/01/boxes-in-chez/"
-                    title="Chez Scheme中Boxes介绍"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="文章目录" role="button">
-                    <span>[&nbsp;</span><span>文章目录</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        
-        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
-            data-target="#donateModal"><span>赏</span></button>
-        
-        <div class="bar-right">
-            <div class="share-component" data-sites="wechat,twitter,douban,google"
-                data-mobile-sites="wechat,twitter,douban"></div>
-        </div>
-    </div>
-</nav>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://continuation.cn/tags/scheme/">Scheme</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://continuation.cn/">思泉笔谈 | AI-Life</a></span> · 
 
-
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content donate">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <div class="modal-body">
-                <div class="donate-box">
-                    <div class="donate-head">
-                        <p>感谢您的支持,我会继续努力的!</p>
-                    </div>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-                            <div class="donate-payimg">
-                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
-                                    alt="扫码支持" title="扫一扫" />
-                            </div>
-                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
-                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-                            <div class="donate-payimg">
-                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
-                                    alt="扫码支持" title="扫一扫" />
-                            </div>
-                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
-                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
-                        </div>
-                    </div>
-                    <div class="donate-footer">
-                        <ul class="nav nav-tabs nav-justified" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
-                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
-                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
-                                    微信支付</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-twitter"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2019  -
-    2024
-    <div class="publishby">
-      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
-       base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
-    </div>
-  </div>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/javascript.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/go.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/erlang.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/scheme.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/java.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/lisp.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/rust.min.js"></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
     })
-    hljs.initHighlightingOnLoad();
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
-<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(未命名)',
-            },
-            ROOT_URL: 'https:\/\/lvsq.net\/',
-            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
 
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '7b6f34c867f37fdfb75e',
-        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
-        repo: 'monkeymq.github.io',
-        owner: 'monkeymq',
-        admin: ['monkeymq'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
-    });
-    gitalk.render('comments');
 </script>
+</body>
 
-  </body>
 </html>

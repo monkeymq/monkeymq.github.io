@@ -1,523 +1,254 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        思泉笔谈 | AI-Life</title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  
-  <meta name="generator" content="Hugo 0.123.7 with theme pure" />
-  <title>思泉笔谈 | AI-Life</title>
-  
+<html lang="zh" dir="auto">
 
-  <link rel="alternate" type="application/rss+xml" href="https://lvsq.net/tags/emacs/index.xml" title="思泉笔谈 | AI-Life" />
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Emacs" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lvsq.net/tags/emacs/" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Emacs | 思泉笔谈 | AI-Life</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://continuation.cn/tags/emacs/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://continuation.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://continuation.cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://continuation.cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://continuation.cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://continuation.cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://continuation.cn/tags/emacs/index.xml">
+<link rel="alternate" hreflang="zh" href="https://continuation.cn/tags/emacs/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-<meta itemprop="name" content="Emacs">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Emacs"/>
-<meta name="twitter:description" content=""/>
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+            .list {
+                background: var(--theme);
+            }
 
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://continuation.cn/tags/emacs/">
+  <meta property="og:site_name" content="思泉笔谈 | AI-Life">
+  <meta property="og:title" content="Emacs">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Emacs">
+<meta name="twitter:description" content="">
 
 </head>
 
-  </head>
-  
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 
-  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="slimContent">
-      <div class="navbar-header">
-        <div class="profile-block text-center">
-          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
-            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
-          </a>
-          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
-          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
-        </div><div class="search" id="search-form-wrap">
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="搜索" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
-                        class="icon icon-search"></i></button>
-            </span>
-        </div>
-        <div class="ins-search">
-            <div class="ins-search-mask"></div>
-            <div class="ins-search-container">
-                <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
-                        x-webkit-speech />
-                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
-                        aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="ins-section-wrapper">
-                    <div class="ins-section-container"></div>
-                </div>
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://continuation.cn/" accesskey="h" title="思泉笔谈 | AI-Life (Alt + H)">思泉笔谈 | AI-Life</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
             </div>
         </div>
-    </form>
-</div>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-        <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
-                <a href="/">
-                    <i class="icon icon-home-fill"></i>
-                  <span class="menu-title">Home</span>
+        <ul id="menu">
+            <li>
+                <a href="https://continuation.cn/" title="Home">
+                    <span>Home</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-archives">
-                <a href="/posts">
-                    <i class="icon icon-archives-fill"></i>
-                  <span class="menu-title">Archives</span>
+            <li>
+                <a href="https://continuation.cn/posts" title="Archives">
+                    <span>Archives</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-categories">
-                <a href="/categories">
-                    <i class="icon icon-folder"></i>
-                  <span class="menu-title">Categories</span>
+            <li>
+                <a href="https://continuation.cn/categories" title="Categories">
+                    <span>Categories</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-tags">
-                <a href="/tags">
-                    <i class="icon icon-tags"></i>
-                  <span class="menu-title">Tags</span>
+            <li>
+                <a href="https://continuation.cn/tags" title="Tags">
+                    <span>Tags</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about">
-                    <i class="icon icon-cup-fill"></i>
-                  <span class="menu-title">About</span>
+            <li>
+                <a href="https://continuation.cn/about" title="About">
+                    <span>About</span>
                 </a>
             </li>
         </ul>
-      </nav>
-    </div>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Emacs
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">我的Doom Emacs配置
+    </h2>
   </header>
-
-<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    
-      <div class="widget">
-    <h3 class="widget-title">公告</h3>
-    <div class="widget-body">
-        <div id="board">
-            <div class="content">此处会记录一些我的心得，如果有错误欢迎留言斧正，如果对你有所启发或者帮助，那么我会感觉我做了一件伟大的事情
-            </div>
-        </div>
-    </div>
-</div>
-
-      <div class="widget">
-    <h3 class="widget-title"> 分类</h3>
-    <div class="widget-body">
-        <ul class="category-list">
-            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">4</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/emacs/" class="category-list-link">emacs</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/erlang/" class="category-list-link">erlang</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">6</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
-        </ul>
-    </div>
-</div>
-      <div class="widget">
-    <h3 class="widget-title"> 标签</h3>
-    <div class="widget-body">
-        <ul class="tag-list">
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
-                    class="tag-list-count">3</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/erlang/" class="tag-list-link">erlang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/functional/" class="tag-list-link">functional</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/golang/" class="tag-list-link">golang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/pl/" class="tag-list-link">pl</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/racket/" class="tag-list-link">racket</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
-                    class="tag-list-count">17</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/thread/" class="tag-list-link">thread</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">2</span></li>
-            
-        </ul>
-
-    </div>
-</div>
-      
-<div class="widget">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget-body">
-        <ul class="recent-post-list list-unstyled no-thumbnail">
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/02/my-doom-emacs-config/" class="title">我的Doom Emacs配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-02-23 08:58:54 &#43;0800 CST" itemprop="datePublished">2022-02-23</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/12/doom-emacs-golang-env/" class="title">Doom Emacs Golang 环境配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-12-29 16:55:08 &#43;0800 CST" itemprop="datePublished">2021-12-29</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/08/racket-wc/" class="title">不到60行代码，用Racket实现wc命令</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-09 14:31:04 &#43;0800 CST" itemprop="datePublished">2021-08-09</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-time-improvement/" class="title">改进Racket的time函数</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+  <div class="entry-content">
+    <p>config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &#39;doom ;; sync&#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &#34;Siquan&#34; user-mail-address &#34;xx@xx.com&#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;; &#43; `doom-font&#39; ;; &#43; `doom-variable-pitch-font&#39; ;; &#43; `doom-big-font&#39; -- used for `doom-big-font-mode&#39;; use this for ;; presentations or streaming. ;; ;; They all accept either a font-spec, font string (&#34;Input Mono-12&#34;), or xlfd ;; font string. You generally only need these two: ;;(setq doom-font (font-spec :family &#34;monaco&#34; :size 14 :weight &#39;semi-light) ;; doom-variable-pitch-font (font-spec :family &#34;sans&#34; :size 13)) ;; There are two ways to load a theme. Both assume the theme is installed and ;; available. You can either set `doom-theme&#39; or manually load a theme with the ;; `load-theme&#39; function. This is the default: (setq doom-theme &#39;doom-monokai-pro) ;; If you use `org&#39; and don&#39;t want your org files in the default location below, ;; change `org-directory&#39;. It must be set before org loads! (setq org-directory &#34;~/work/emacs-org/&#34;) ;; This determines the style of line numbers in effect. If set to `nil&#39;, line ;; numbers are disabled. For relative line numbers, set this to `relative&#39;. (setq display-line-numbers-type t) ;; Here are some additional functions/macros that could help you configure Doom: ;; ;; - `load!&#39; for loading external *.el files relative to this one ;; - `use-package!&#39; for configuring packages ;; - `after!&#39; for running code after a package has loaded ;; - `add-load-path!&#39; for adding directories to the `load-path&#39;, relative to ;; this file. Emacs searches the `load-path&#39; when you load packages with ;; `require&#39; or `use-package&#39;. ;; - `map!&#39; for binding new keys ;; ;; To get information about any of these functions/macros, move the cursor over ;; the highlighted symbol at press &#39;K&#39; (non-evil users must press &#39;C-c c k&#39;). ;; This will open documentation for it, including demos of how they are used. ;; ;; You can also try &#39;gd&#39; (or &#39;C-c c d&#39;) to jump to their definition and see how ;; they are implemented. (custom-set-faces ;; custom-set-faces was added by Custom. ;; If you edit it by hand, you could mess it up, so be careful. ;; Your init file should contain only one such instance. ;; If there is more than one, they won&#39;t work right. &#39;(default ((t (:family &#34;Monaco&#34; :foundry &#34;nil&#34; :slant normal :weight normal :height 150 :width normal)))) &#39;(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;light green&#34;)))) &#39;(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;goldenrod2&#34;)))) &#39;(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;dark magenta&#34;)))) &#39;(rainbow-delimiters-depth-4-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;dark cyan&#34;)))) &#39;(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;dark blue&#34;)))) &#39;(rainbow-delimiters-depth-6-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;PaleVioletRed2&#34;)))) &#39;(rainbow-delimiters-depth-7-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;SpringGreen4&#34;)))) &#39;(rainbow-delimiters-depth-8-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;chocolate3&#34;)))) &#39;(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground &#34;blue&#34;))))) (setq auto-save-default t) (run-with-idle-timer 5 t #&#39;save-some-buffers t) (setq make-backup-files t) (setq confirm-kill-emacs nil) (set-frame-position (selected-frame) 0 0) (add-to-list &#39;default-frame-alist &#39;(fullscreen . maximized)) (setq initial-frame-alist &#39;((top . 1) (left . 1) (width . 114) (height . 32))) ;;org-mode (setq org-superstar-headline-bullets-list &#39;(&#34;✿&#34; &#34;✸&#34; &#34;◉&#34; &#34;⁖&#34; &#34;○&#34; )) ;;(setq org-todo-keywords &#39;((sequence &#34;TODO(t)&#34; &#34;STARTED(s!)&#34; &#34;WAITING(w@/!)&#34; &#34;|&#34; &#34;DONE(d@/!)&#34; &#34;CANCELLED(c@/!)&#34;))) (setf org-todo-keyword-faces &#39;((&#34;TODO&#34; . (:foreground &#34;white&#34; :background &#34;#95A5A6&#34;))(&#34;STRT&#34;. (:foreground &#34;white&#34; :background &#34;#2E8B57&#34;))(&#34;DONE&#34; . (:foreground &#34;white&#34; :background &#34;#3498DB&#34;)))) (setq org-log-done &#39;time) (setq org-cycle-include-plain-lists t) (setq org-export-coding-system &#39;utf-8) (setq org-src-fontify-natively t) (setq org-html-doctype &#34;html5&#34;) (setq org-html-xml-declaration nil) (setq org-html-head &#34;&lt;link rel=&#39;stylesheet&#39; href=&#39;https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css&#39; integrity=&#39;sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn&#39; crossorigin=&#39;anonymous&#39;&gt;\n&lt;script src=&#39;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&#39; integrity=&#39;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C&#43;OGpamoFVy38MVBnE&#43;IbbVYUew&#43;OrCXaRkfj&#39; crossorigin=&#39;anonymous&#39;&gt;&lt;/script&gt;\n&lt;script src=&#39;https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js&#39; integrity=&#39;sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp&#43;tA7hAShOK/B/fQ2&#39; crossorigin=&#39;anonymous&#39;&gt;&lt;/script&gt;&#34;) (org-babel-do-load-languages &#39;org-babel-load-languages &#39;((emacs-lisp . t) (c . t) (java . t) (go . t) (racket . t) (python . t) (latex . t) (shell . t) (js . t) (lisp . t) (scheme . t))) (setq-default prettify-symbols-alist &#39;((&#34;#&#43;BEGIN_SRC&#34; . &#34;†&#34;)(&#34;#&#43;END_SRC&#34; . &#34;†&#34;)(&#34;#&#43;begin_src&#34; . &#34;†&#34;) (&#34;#&#43;end_src&#34; . &#34;†&#34;) (&#34;&gt;=&#34; . &#34;≥&#34;)(&#34;=&gt;&#34; . &#34;⇨&#34;))) (setq prettify-symbols-unprettify-at-point &#39;right-edge) (add-hook &#39;org-mode-hook &#39;prettify-symbols-mode) (setq org-adapt-indentation nil) : ;;auto-wrap (global-visual-line-mode 1) ;1 for on, 0 for off. ;;racket (require &#39;racket-mode) (setq racket-program &#34;/Applications/Racket v8.4/bin/racket&#34;) (setq tab-always-indent &#39;complete) ;; 使用tab自动补全 (add-to-list &#39;auto-mode-alist &#39;(&#34;\\.rkt\\&#39;&#34; . racket-mode)) (add-to-list &#39;magic-mode-alist &#39;(&#34;^#lang racket&#34; . :racket-mode)) ;;golang (setq lsp-gopls-staticcheck t) (setq lsp-eldoc-render-all t) (setq lsp-gopls-complete-unimported t) (setq lsp-gopls-codelens nil) ;; Set up before-save hooks to format buffer and add/delete imports. ;; Make sure you don&#39;t have other gofmt/goimports hooks enabled. (defun lsp-go-install-save-hooks () (add-hook &#39;before-save-hook #&#39;lsp-format-buffer t t) (add-hook &#39;before-save-hook #&#39;lsp-organize-imports t t)) (add-hook &#39;go-mode-hook #&#39;lsp-go-install-save-hooks) ;; Company mode is a standard completion package that works well with lsp-mode. (use-package company :ensure t :config ;; Optionally enable completion-as-you-type behavior. (setq company-idle-delay 0) (setq company-minimum-prefix-length 1)) ;; Optional - provides snippet support. (use-package yasnippet :ensure t :commands yas-minor-mode :hook (go-mode . yas-minor-mode)) ;; language evniroment (set-language-environment &#39;UTF-8) (set-locale-environment &#34;UTF-8&#34;) (define-coding-system-alias &#39;UTF-8 &#39;utf-8) ;; elfeed (setq elfeed-db-directory &#34;~/work/emacs-org/elfeed&#34;) (setq rmh-elfeed-org-files (list &#34;~/work/emacs-org/elfeed/elfeed.org&#34;)) (add-hook! &#39;elfeed-search-mode-hook #&#39;elfeed-update) ;;(add-hook &#39;elfeed-new-entry-hook ;; (elfeed-make-tagger :before &#34;2 weeks ago&#34; ;; :remove &#39;unread)) ;; lsp (use-package lsp-mode :ensure t :commands (lsp lsp-deferred) :hook (go-mode . lsp-deferred) :custom ;; what to use when checking on-save. &#34;check&#34; is default, I prefer clippy (lsp-rust-analyzer-cargo-watch-command &#34;clippy&#34;) (lsp-eldoc-render-all t) (lsp-idle-delay 0.6) ;; enable / disable the hints as you prefer: (lsp-inlay-hint-enable t) ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list (lsp-rust-analyzer-display-lifetime-elision-hints-enable &#34;skip_trivial&#34;) (lsp-rust-analyzer-display-chaining-hints t) (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil) (lsp-rust-analyzer-display-closure-return-type-hints t) (lsp-rust-analyzer-display-parameter-hints nil) (lsp-rust-analyzer-display-reborrow-hints nil) :config (add-hook &#39;lsp-mode-hook &#39;lsp-ui-mode)) ;; Optional - provides fancier overlays. (use-package lsp-ui :ensure :commands lsp-ui-mode :custom (lsp-ui-peek-always-show t) (lsp-ui-sideline-show-hover t) (lsp-ui-doc-enable nil)) (use-package flycheck :ensure) ;;rust ;;refer: https://robert.kra.hn/posts/rust-emacs-setup/ (use-package rustic :ensure :bind (:map rustic-mode-map (&#34;M-j&#34; . lsp-ui-imenu) (&#34;M-?&#34; . lsp-find-references) (&#34;C-c C-c l&#34; . flycheck-list-errors) (&#34;C-c C-c a&#34; . lsp-execute-code-action) (&#34;C-c C-c r&#34; . lsp-rename) (&#34;C-c C-c q&#34; . lsp-workspace-restart) (&#34;C-c C-c Q&#34; . lsp-workspace-shutdown) (&#34;C-c C-c s&#34; . lsp-rust-analyzer-status)) :config ;; uncomment for less flashiness ;; (setq lsp-eldoc-hook nil) ;; (setq lsp-enable-symbol-highlighting nil) ;; (setq lsp-signature-auto-activate nil) ;; comment to disable rustfmt on save (setq rustic-format-on-save t) (add-hook &#39;rustic-mode-hook &#39;rk/rustic-mode-hook)) (defun rk/rustic-mode-hook () ;; so that run C-c C-c C-r works without having to confirm, but don&#39;t try to ;; save rust buffers that are not file visiting. Once ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should ;; no longer be necessary. (when buffer-file-name (setq-local buffer-save-without-query t)) (add-hook &#39;before-save-hook &#39;lsp-format-buffer nil t)) init.el ;;; init.el -*- lexical-binding: t; -*- ;; This file controls what Doom modules are enabled and what order they load ;; in. Remember to run &#39;doom sync&#39; after modifying it! ;; NOTE Press &#39;SPC h d h&#39; (or &#39;C-h d h&#39; for non-vim users) to access Doom&#39;s ;; documentation. There you&#39;ll find a &#34;Module Index&#34; link where you&#39;ll find ;; a comprehensive list of Doom&#39;s modules and what flags they support. ;; NOTE Move your cursor over a module&#39;s name (or its flags) and press &#39;K&#39; (or ;; &#39;C-c c k&#39; for non-vim users) to view its documentation. This works on ;; flags as well (those symbols that start with a plus). ;; ;; Alternatively, press &#39;gd&#39; (or &#39;C-c c d&#39;) on a module to browse its ;; directory (for easy access to its source code). ;;; 添加中国源 ;;(setq package-archives &#39;((&#34;gnu&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/gnu/&#34;) ;; (&#34;melpa&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/melpa/&#34;) ;; (&#34;melpa-stable&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/melpa-stable/&#34;) ;; (&#34;org&#34; . &#34;http://mirrors.ustc.edu.cn/elpa/org/&#34;))) (doom! :input ;; chinese ;;japanese ;;layout ; auie,ctsrnm is the superior home row :completion company ; the ultimate code completion backend ;;helm ; the *other* search engine for love and life ;;ido ; the other *other* search engine... ivy ; a search engine for love and life vertico ; the search engine of the future :ui ;;deft ; notational velocity for Emacs doom ; what makes DOOM look the way it does doom-dashboard ; a nifty splash screen for Emacs doom-quit ; DOOM quit-message prompts when you quit Emacs ;;(emoji &#43;unicode) ; 🙂 hl-todo ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW ;;hydra ;;indent-guides ; highlighted indent columns ;;ligatures ; ligatures and symbols to make your code pretty again ;;minimap ; show a map of the code on the side modeline ; snazzy, Atom-inspired modeline, plus API ;;nav-flash ; blink cursor line after big motions ;;neotree ; a project drawer, like NERDTree for vim ophints ; highlight the region an operation acts on (popup &#43;defaults) ; tame sudden yet inevitable temporary windows ;;tabs ; a tab bar for Emacs treemacs ; a project drawer, like neotree but cooler ;;unicode ; extended unicode support for various languages vc-gutter ; vcs diff in the fringe vi-tilde-fringe ; fringe tildes to mark beyond EOB ;;window-select ; visually switch windows workspaces ; tab emulation, persistence &amp; separate workspaces ;;zen ; distraction-free coding or writing :editor (evil &#43;everywhere); come to the dark side, we have cookies file-templates ; auto-snippets for empty files fold ; (nigh) universal code folding (format &#43;onsave) ; automated prettiness ;;god ; run Emacs commands without modifier keys ;;lispy ; vim for lisp, for people who don&#39;t like vim ;;multiple-cursors ; editing in many places at once ;;objed ; text object editing for the innocent ;;parinfer ; turn lisp into python, sort of ;;rotate-text ; cycle region at point between text candidates snippets ; my elves. They type so I don&#39;t have to word-wrap ; soft wrapping with language-aware indent :emacs dired ; making dired pretty [functional] electric ; smarter, keyword-based electric-indent ;;ibuffer ; interactive buffer management undo ; persistent, smarter undo for your inevitable mistakes vc ; version-control and Emacs, sitting in a tree :term eshell ; the elisp shell that works everywhere shell ; simple shell REPL for Emacs ;;term ; basic terminal emulator for Emacs vterm ; the best terminal emulation in Emacs :checkers syntax ; tasing you for every semicolon you forget ;;(spell &#43;flyspell) ; tasing you for misspelling mispelling ;;grammar ; tasing grammar mistake every you make :tools ;;ansible ;;biblio ; Writes a PhD for you (citation needed) ;;debugger ; FIXME stepping through code, to help you add bugs ;;direnv ;;docker ;;editorconfig ; let someone else argue about tabs vs spaces ;;ein ; tame Jupyter notebooks with emacs (eval &#43;overlay) ; run code, run (also, repls) ;;gist ; interacting with github gists lookup ; navigate your code and its documentation lsp ; M-x vscode magit ; a git porcelain for Emacs ;;make ; run make tasks from Emacs ;;pass ; password manager for nerds ;;pdf ; pdf enhancements ;;prodigy ; FIXME managing external services &amp; code builders ;;rgb ; creating color strings ;;taskrunner ; taskrunner for all your projects ;;terraform ; infrastructure as code ;;tmux ; an API for interacting with tmux ;;upload ; map local to remote projects via ssh/ftp :os (:if IS-MAC macos) ; improve compatibility with macOS tty ; improve the terminal Emacs experience :lang ;;agda ; types of types of types of types... ;;beancount ; mind the GAAP ;;cc ; C &gt; C&#43;&#43; == 1 ;;clojure ; java with a lisp ;;common-lisp ; if you&#39;ve seen one lisp, you&#39;ve seen them all ;;coq ; proofs-as-programs ;;crystal ; ruby at the speed of c ;;csharp ; unity, .NET, and mono shenanigans ;;data ; config/data formats ;;(dart &#43;flutter) ; paint ui and not much else ;;dhall ;;elixir ; erlang done right ;;elm ; care for a cup of TEA? emacs-lisp ; drown in parentheses ;;erlang ; an elegant language for a more civilized age ;;ess ; emacs speaks statistics ;;factor ;;faust ; dsp, but you get to keep your soul ;;fortran ; in FORTRAN, GOD is REAL (unless declared INTEGER) ;;fsharp ; ML stands for Microsoft&#39;s Language ;;fstar ; (dependent) types and (monadic) effects and Z3 ;;gdscript ; the language you waited for (go &#43;lsp) ; the hipster dialect ;;(haskell &#43;lsp) ; a language that&#39;s lazier than I am ;;hy ; readability of scheme w/ speed of python ;;idris ; a language you can depend on json ; At least it ain&#39;t XML ;;(java &#43;meghanada) ; the poster child for carpal tunnel syndrome (java &#43;lsp) javascript ; all(hope(abandon(ye(who(enter(here)))))) ;;julia ; a better, faster MATLAB ;;kotlin ; a better, slicker Java(Script) ;;latex ; writing papers in Emacs has never been so fun ;;lean ; for folks with too much to prove ;;ledger ; be audit you can be ;;lua ; one-based indices? one-based indices markdown ; writing docs for people to ignore ;;nim ; python &#43; lisp at the speed of c ;;nix ; I hereby declare &#34;nix geht mehr!&#34; ;;ocaml ; an objective camel (org &#43;pretty) ; organize your plain life in plain text ;;php ; perl&#39;s insecure younger brother ;;plantuml ; diagrams for confusing people more ;;purescript ; javascript, but functional python ; beautiful is better than ugly ;;qt ; the &#39;cutest&#39; gui framework ever racket ; a DSL for DSLs ;;raku ; the artist formerly known as perl6 ;;rest ; Emacs as a REST client ;;rst ; ReST in peace ;;(ruby &#43;rails) ; 1.step {|i| p &#34;Ruby is #{i.even? ? &#39;love&#39; : &#39;life&#39;}&#34;} ;;rust ; Fe2O3.unwrap().unwrap().unwrap().unwrap() ;;scala ; java, but good ;;(scheme &#43;guile) ; a fully conniving family of lisps sh ; she sells {ba,z,fi}sh shells on the C xor ;;sml ;;solidity ; do you need a blockchain? No. ;;swift ; who asked for emoji variables? ;;terra ; Earth and Moon in alignment for performance. ;;web ; the tubes yaml ; JSON, but readable ;;zig ; C, but simpler :email ;;(mu4e &#43;org &#43;gmail) ;;notmuch ;;(wanderlust &#43;gmail) :app ;;calendar ;;emms ;;everywhere ; *leave* Emacs!? You must be joking ;;irc ; how neckbeards socialize (rss &#43;org) ; emacs as an RSS reader ;;twitter ; twitter client https://twitter.com/vnought :config ;;literate (default &#43;bindings &#43;smartparens)) packages.el ;; -*- no-byte-compile: t; -*- ;;; $DOOMDIR/packages.el ;; To install a package with Doom you must declare them here and run &#39;doom sync&#39; ;; on the command line, then restart Emacs for the changes to take effect -- or ;; use &#39;M-x doom/reload&#39;. ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror: ;(package! some-package) ;; To install a package directly from a remote git repo, you must specify a ;; `:recipe&#39;. You&#39;ll find documentation on what `:recipe&#39; accepts here: ;; https://github.com/raxod502/straight.el#the-recipe-format ;(package! another-package ; :recipe (:host github :repo &#34;username/repo&#34;)) ;; If the package you are trying to install does not contain a PACKAGENAME.el ;; file, or is located in a subdirectory of the repo, you&#39;ll need to specify ;; `:files&#39; in the `:recipe&#39;: ;(package! this-package ; :recipe (:host github :repo &#34;username/repo&#34; ; :files (&#34;some-file.el&#34; &#34;src/lisp/*.el&#34;))) ;; If you&#39;d like to disable a package included with Doom, you can do so here ;; with the `:disable&#39; property: ;(package! builtin-package :disable t) ;; You can override the recipe of a built in package without having to specify ;; all the properties for `:recipe&#39;. These will inherit the rest of its recipe ;; from Doom or MELPA/ELPA/Emacsmirror: ;(package! builtin-package :recipe (:nonrecursive t)) ;(package! builtin-package-2 :recipe (:repo &#34;myfork/package&#34;)) ;; Specify a `:branch&#39; to install a package from a particular branch or tag. ;; This is required for some packages whose default branch isn&#39;t &#39;master&#39; (which ;; our package manager can&#39;t deal with; see raxod502/straight.el#279) ;(package! builtin-package :recipe (:branch &#34;develop&#34;)) ;; Use `:pin&#39; to specify a particular commit to install. ;(package! builtin-package :pin &#34;1a2b3c4d5e&#34;) ;; Doom&#39;s packages are pinned to a specific commit and updated from release to ;; release. The `unpin!&#39; macro allows you to unpin single packages... ;(unpin! pinned-package) ;; ...or multiple packages ;(unpin! pinned-package another-pinned-package) ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things) ;(unpin! t) (package! racket-mode) (package! spacemacs-theme) elfeed.org * root :elfeed: ** Programming :programming: *** https://www.reddit.com/r/functionalprogramming/.rss :Reddit: ** News :news: *** https://news.ycombinator.com/rss :Hack News: </p>
   </div>
-</aside>
+  <footer class="entry-footer"><span title='2022-02-23 08:58:54 +0800 CST'>二月 23, 2022</span></footer>
+  <a class="entry-link" aria-label="post link to 我的Doom Emacs配置" href="https://continuation.cn/2022/02/my-doom-emacs-config/"></a>
+</article>
 
-    
-    
-<main class="main" role="main">
-    <article class="content article article-tags post-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">Emacs</h1>
-            <p class="text-muted hidden-xs">共 27 个标签</p>
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-                    <li><a href="https://lvsq.net/tags">All</a></li>
-                    <li><a href="https://lvsq.net/tags/about/">About</a></li>
-                    <li><a href="https://lvsq.net/tags/chez/">Chez</a></li>
-                    <li><a href="https://lvsq.net/tags/emacs/">Emacs</a></li>
-                    <li><a href="https://lvsq.net/tags/engine/">Engine</a></li>
-                    <li><a href="https://lvsq.net/tags/erlang/">Erlang</a></li>
-                    <li><a href="https://lvsq.net/tags/fluid-let/">Fluid-Let</a></li>
-                    <li><a href="https://lvsq.net/tags/functional/">Functional</a></li>
-                    <li><a href="https://lvsq.net/tags/golang/">Golang</a></li>
-                    <li><a href="https://lvsq.net/tags/gossip/">Gossip</a></li>
-                    <li><a href="https://lvsq.net/tags/jgossip/">Jgossip</a></li>
-                    <li><a href="https://lvsq.net/tags/leetcode/">Leetcode</a></li>
-                    <li><a href="https://lvsq.net/tags/lexical/">Lexical</a></li>
-                    <li><a href="https://lvsq.net/tags/lisp/">Lisp</a></li>
-                    <li><a href="https://lvsq.net/tags/module/">Module</a></li>
-                    <li><a href="https://lvsq.net/tags/modules/">Modules</a></li>
-                    <li><a href="https://lvsq.net/tags/pl/">Pl</a></li>
-                    <li><a href="https://lvsq.net/tags/racket/">Racket</a></li>
-                    <li><a href="https://lvsq.net/tags/rec/">Rec</a></li>
-                    <li><a href="https://lvsq.net/tags/scheme/">Scheme</a></li>
-                    <li><a href="https://lvsq.net/tags/scoping/">Scoping</a></li>
-                    <li><a href="https://lvsq.net/tags/sicp/">SICP</a></li>
-                    <li><a href="https://lvsq.net/tags/swagger/">Swagger</a></li>
-                    <li><a href="https://lvsq.net/tags/syntactic/">Syntactic</a></li>
-                    <li><a href="https://lvsq.net/tags/thread/">Thread</a></li>
-                    <li><a href="https://lvsq.net/tags/vendorextensions/">VendorExtensions</a></li>
-                    <li><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/">文史</a></li>
-                    <li><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/">随想</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <div class="article-body">
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2022-02-23 08:58:54 &#43;0800 CST"
-                itemprop="datePublished">2022-02-23</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2022/02/my-doom-emacs-config/">我的Doom Emacs配置</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/emacs" class="label label-default mb">emacs</a>
-    </div>
-</article>
-            </div>
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2021-12-29 16:55:08 &#43;0800 CST"
-                itemprop="datePublished">2021-12-29</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2021/12/doom-emacs-golang-env/">Doom Emacs Golang 环境配置</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/emacs" class="label label-default mb">emacs</a>
-        <a href="https://lvsq.net/tags/golang" class="label label-default mb">golang</a>
-    </div>
-</article>
-            </div>
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-11-27 20:58:09 &#43;0800 CST"
-                itemprop="datePublished">2019-11-27</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://lvsq.net/2019/11/emacs/">Emacs</a>
-        </h3>
-    </div>
-    <div class="panel-footer">
-        <a href="https://lvsq.net/tags/emacs" class="label label-default mb">emacs</a>
-    </div>
-</article>
-            </div>
-        </div>
-    </article>
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-twitter"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2019  -
-    2024
-    <div class="publishby">
-      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
-       base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
-    </div>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Doom Emacs Golang 环境配置
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Doom Emacs是一个Emacs的一个配置集合，可看做CentOS和Linux的关系。它将Emcas和Vim相结合，包含了各自的种种优点，并减少了用户折腾的时间，而且启动很快，提供超过60门编程语言的可选项，可谓十分强大。
+...</p>
   </div>
+  <footer class="entry-footer"><span title='2021-12-29 16:55:08 +0800 CST'>十二月 29, 2021</span></footer>
+  <a class="entry-link" aria-label="post link to Doom Emacs Golang 环境配置" href="https://continuation.cn/2021/12/doom-emacs-golang-env/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Emacs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>M -&gt; Alt(option) S -&gt; Shift 快捷键 用途 M-v 上（后）一屏 C-v 下（前）一屏 C-x 0 关闭当前窗口 C-l 重绘屏幕，将光标所在行置于屏幕中央 C-u(M-num) 重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符 C-x C-f 查找或者新建一个文件 C-x C-b 列出缓冲区。 C-x 1 关闭缓冲区列表。将需要删除的缓冲区标“d”(选中，按d),然后按“x”执行删除标记的所有缓冲区 C-x b 切换缓冲区，输入缓冲区名字，RET C-x C-q 开启或者关闭buffer的只读模式 C-x k 关闭当前缓冲区 C-x C-s 保存当前文件 C-x s 保存所有文件 C-x h 全选 M-w 复制 C-y 粘贴 C-w 剪切 C-s 往前搜索 C-r 往后搜索. DEL 也可以往后搜索， C-/ undo M-x calendar 打开日历。按 q 退出。【g d 到指定日期】【. 到今日（不居中）】【&gt; 前一个月】【&lt; 后一个月】 M-x *-mode 选择Major mode M-x shell 运行一个shell M-x eshell 运行一个eshell C-a 移到行首 C-a C-k、C-S-backspace 删除整行 C-u 5 C-S-backspace、M-5 C-S-backspace 删除后5行，不加数字则删除4行（默认），如果数字为负数，则往前删 C-g 停止当前的命令 C-k 删除从光标位置到行尾所有字符 M-% 查找及替换。输入要被替换的词，回车，然后输入要替换的词，再回车。输入==y==替换并跳到下一个，输入==n==忽略并跳到下一个，输入==q==结束， 输入 ==!== 替换剩下的全部 M-x occur RET xxx RET 新开一个窗口来列出匹配的行，点击就会跳转到对应的位置，编程时有用 C-x C-t 当前行与上一行换位置 Org-Mode 快捷键 用途 C-c . 插入时间 C-c C-e 导出其它格式 C-c C-s 在标题下面插入一个带有“==SCHEDULED==”关键字的时间戳。 C-c C-d 在标题下面插入一个带有“==DEADLINE==”关键字的时间戳 C-c C-t 将当前项的状态在（unmarked）-&gt;TODO-&gt;DONE 之间循环切换 M-RET 插入一个同级标题 M-LEFT/RIGHT 将当前的标题提升/降低一个等级 C-c C-c 插入标签tag。 光标在标题中 C-c C-q 插入标签tag。光标在任意位置 C-c , 设置当前标题的优先级,’A‘、’B‘和’C‘。’A‘是最高级别，如不指定，’B‘是默认的 C-c \ 查找标签tag S-Tab 展开所有标题 Tab 展开光标所在标题 [==[== Link ==][== Description]==]== 创建链接 C-c C-l 编辑链接 C-c C-o 打开链接 C-c | (竖线，not L) 输入 列 x 行， 插入一个表格 [/] 或者 [%] 通过在TODO项目下新建一个大纲树，并在子树上标记子任务来实现这个功能。为了能对已经完成的任务有个大致的了解，你可以在标题的任何地方插入‘[/]’或者‘[%]’。当每个子任务的状态变化时，或者当你在标记上按 C-c C-时，这些标记状态也会随之更新 &lt;s Tab 开启一个代码块。 #&#43;begin_src c -n -t -h 7 -w 40: c为所添加的语言,-n 显示行号,-t 清除格式,-h 7 设置高度为7 -w 40设置宽度为40 C-c &#39; 打开一个buffer, 输入代码，再按一次快捷键，将代码写入buffer C-c C-c 运行源代码，并生成一个RESULT块 内容元数据 详情见文后 Markdown-Mode 快捷键 用途 C-c C-c p 生成临时文件并在浏览器中预览 C-c C-c v 生成 basename.html 并在浏览器中预览 C-c C-a u 插入=&lt;&gt;=这样的链接 C-c C-a f 插入脚注链接 C-c C-a l 插入==这样的链接 Org-Mode 内容元数据 快捷键 内容 用途 s #&#43;begin_src … #&#43;end_src e #&#43;begin_example … #&#43;end_example : 单行的例子以冒号开头 q #&#43;begin_quote … #&#43;end_quote 通常用于引用，与默认格式相比左右都会留出缩进 v #&#43;begin_verse … #&#43;end_verse 默认内容不换行，需要留出空行才能换行 c #&#43;begin_center … #&#43;end_center l #&#43;begin_latex … #&#43;end_latex L #&#43;latex: h #&#43;begin_html … #&#43;end_html H #&#43;html: a #&#43;begin_ascii … #&#43;end_ascii A #&#43;ascii: i #&#43;index: line I #&#43;include: line </p>
+  </div>
+  <footer class="entry-footer"><span title='2019-11-27 20:58:09 +0800 CST'>十一月 27, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Emacs" href="https://continuation.cn/2019/11/emacs/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://continuation.cn/">思泉笔谈 | AI-Life</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/javascript.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/go.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/erlang.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/scheme.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/java.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/lisp.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/rust.min.js"></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
     })
-    hljs.initHighlightingOnLoad();
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
-<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(未命名)',
-            },
-            ROOT_URL: 'https:\/\/lvsq.net\/',
-            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
 
+</script>
+</body>
 
-  </body>
 </html>

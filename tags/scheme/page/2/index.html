@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Scheme | 思泉笔谈 | AI-Life</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://continuation.cn/tags/scheme/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://continuation.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://continuation.cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://continuation.cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://continuation.cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://continuation.cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://continuation.cn/tags/scheme/index.xml">
+<link rel="alternate" hreflang="zh" href="https://continuation.cn/tags/scheme/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://continuation.cn/tags/scheme/">
+  <meta property="og:site_name" content="思泉笔谈 | AI-Life">
+  <meta property="og:title" content="Scheme">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scheme">
+<meta name="twitter:description" content="">
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://continuation.cn/" accesskey="h" title="思泉笔谈 | AI-Life (Alt + H)">思泉笔谈 | AI-Life</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://continuation.cn/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://continuation.cn/posts" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://continuation.cn/categories" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://continuation.cn/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://continuation.cn/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Scheme
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Scheme/Chez Scheme 对象操作
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Pairs and Lists atom? atom? 相当于 (lambda (x) (not (pair? x)))
+(atom? &#39;(a b c)) ⇒ #f (atom? &#39;(3 . 4)) ⇒ #f (atom? &#39;()) ⇒ #t (atom? 3) ⇒ #t list-head(Chez) 用法：(list-head list n) n是一个非负整数，且小于等于list的长度；list-head和Scheme标准过程list-tail可能会同时使用来切割一个list，不同点在于，list-tail不会分配内存而只是返回源list的一个子列表，list-head总是返回源list前n个元素的副本
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-30 16:27:27 +0800 CST'>十二月 30, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Scheme/Chez Scheme 对象操作" href="https://continuation.cn/2019/12/operations-on-objects/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Engine in Scheme
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。
+(make-engine thunk)
+通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-27 10:30:09 +0800 CST'>十二月 27, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Engine in Scheme" href="https://continuation.cn/2019/12/engine-in-scheme/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Chez Scheme中的case扩展
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>case Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Scheme提供了case语法来处理这种情况，这与Java中的switch语法非常相似。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-25 16:47:08 +0800 CST'>十二月 25, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Chez Scheme中的case扩展" href="https://continuation.cn/2019/12/case-in-chez-scheme/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fluid Binding in Chez Scheme
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫易变绑定吧，如果有更好的翻译请在文后的评论中尽情发表。
+先看看该语法描述： (fluid-let ((var expr) …) body1 body2 …) returns: the values of the body body1 body2 … libraries: (chezscheme)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-24 16:43:57 +0800 CST'>十二月 24, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Fluid Binding in Chez Scheme" href="https://continuation.cn/2019/12/fluid-binding/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Recursive Bindings in Chez Scheme
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>rec语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。
+这是语法描述： (rec var expr) syntax returns: value of expr libraries: (chezscheme)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-24 15:20:48 +0800 CST'>十二月 24, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to Recursive Bindings in Chez Scheme" href="https://continuation.cn/2019/12/recursive-bindings/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">两数相加
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本文在于解答LeetCode中的第二题，问题的描述可参见 两数相加
+Golang的实现：
+/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result := &amp;ListNode{} nodes := []*ListNode{} var carry = 0 for { node, c := add(l1, l2, carry) carry = c if node != nil { nodes = append(nodes, node) if l1 != nil &amp;&amp; l1.Next != nil { l1 = l1.Next } else { l1 = nil } if l2 != nil &amp;&amp; l2.Next != nil { l2 = l2.Next } else { l2 = nil } if carry &gt; 0 &amp;&amp; (l1 == nil &amp;&amp; l2 == nil) { nodes = append(nodes, &amp;ListNode{Val:carry}) } } else { break } } for i, n := range nodes{ if i == 0 { result = n } if i &#43; 1 &lt; len(nodes) { n.Next = nodes[i &#43; 1] } } return result } func add (n1 *ListNode, n2 *ListNode, carry int) (*ListNode, int) { node := &amp;ListNode{} if (n1 == nil &amp;&amp; n2 == nil) { return nil, 0 } if n1 == nil { n1 = &amp;ListNode{Val : 0} } if n2 == nil { n2 = &amp;ListNode{Val : 0} } sum := n1.Val &#43; n2.Val &#43; carry carry = 0 if sum &gt; 9 { carry = 1 sum = sum - 10 } node.Val = sum return node, carry } 下面提供Scheme版本的实现【(1 0) &#43; (9 1 2) = (0 2 2)】，为了简单起见，与题目要求稍有不同，这里采用list，而不是题目要求的链表，但实际上应是一样的。比较之下可以看出，相对而言，Scheme语言的实现更加简短优雅，得益于其强大的表达能力
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-17 20:00:31 +0800 CST'>十二月 17, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 两数相加" href="https://continuation.cn/2019/12/leetcode-2/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">钱币组合问题
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-13 15:11:35 +0800 CST'>十二月 13, 2019</span></footer>
+  <a class="entry-link" aria-label="post link to 钱币组合问题" href="https://continuation.cn/2019/12/count-coins/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://continuation.cn/tags/scheme/">
+      «&nbsp;上一页&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://continuation.cn/">思泉笔谈 | AI-Life</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

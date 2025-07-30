@@ -1,592 +1,434 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>https://lvsq.net/categories/</loc>
+    <loc>https://continuation.cn/categories/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/posts/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/tags/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/categories/tool/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/tags/vim/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/2025/01/my-lvim-config/</loc>
+    <lastmod>2025-01-14T09:58:09+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://continuation.cn/2022/03/feynman_technique/</loc>
     <lastmod>2022-03-07T20:46:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/posts/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/%E9%9A%8F%E6%83%B3/</loc>
     <lastmod>2022-03-07T20:46:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/%E6%96%87%E5%8F%B2/</loc>
     <lastmod>2022-03-07T20:46:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2022/03/feynman_technique/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/%E6%96%87%E5%8F%B2/</loc>
-    <lastmod>2022-03-07T20:46:35+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/emacs/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/emacs/</loc>
     <lastmod>2022-02-23T08:58:54+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/emacs/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/emacs/</loc>
     <lastmod>2022-02-23T08:58:54+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2022/02/my-doom-emacs-config/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2022/02/my-doom-emacs-config/</loc>
     <lastmod>2022-02-23T08:58:54+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/12/doom-emacs-golang-env/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/12/doom-emacs-golang-env/</loc>
     <lastmod>2021-12-29T16:55:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/golang/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/golang/</loc>
     <lastmod>2021-12-29T16:55:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/racket/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/racket/</loc>
     <lastmod>2021-08-09T14:31:04+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/racket/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/racket/</loc>
     <lastmod>2021-08-09T14:31:04+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/08/racket-wc/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/08/racket-wc/</loc>
     <lastmod>2021-08-09T14:31:04+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/07/racket-time-improvement/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/07/racket-time-improvement/</loc>
     <lastmod>2021-07-22T11:34:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/07/racket-concurrency/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/07/racket-concurrency/</loc>
     <lastmod>2021-07-08T13:47:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/thread/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/thread/</loc>
     <lastmod>2021-07-08T13:47:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/module/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/module/</loc>
     <lastmod>2021-07-08T11:00:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/07/racket-modules/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/07/racket-modules/</loc>
     <lastmod>2021-07-08T11:00:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2021/05/container-with-most-water/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2021/05/container-with-most-water/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/leetcode/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/leetcode/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/lisp/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/lisp/</loc>
     <lastmod>2021-05-11T18:09:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/science/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/science/</loc>
     <lastmod>2020-12-16T09:05:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/12/brain-reading-computer-code/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/12/brain-reading-computer-code/</loc>
     <lastmod>2020-12-16T09:05:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/chez/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/chez/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/pl/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/pl/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/10/rebuilding-racket/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/10/rebuilding-racket/</loc>
     <lastmod>2020-10-20T10:49:13+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/lexical/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/lexical/</loc>
     <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/09/lexical-dynamic-scoping/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/09/lexical-dynamic-scoping/</loc>
     <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/pl/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/pl/</loc>
     <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/scoping/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/scoping/</loc>
     <lastmod>2020-09-23T11:24:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/lisp/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/lisp/</loc>
     <lastmod>2020-07-20T14:57:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/07/quick-sort-in-cl/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/07/quick-sort-in-cl/</loc>
     <lastmod>2020-07-20T14:57:29+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/erlang/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/erlang/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/scheme/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/scheme/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/scheme/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/scheme/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/05/n-queens/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/05/n-queens/</loc>
     <lastmod>2020-05-23T15:41:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/05/beam-vs-jvm/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/05/beam-vs-jvm/</loc>
     <lastmod>2020-05-14T10:13:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/erlang/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/erlang/</loc>
     <lastmod>2020-05-14T10:13:25+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/03/longest-substr/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/03/longest-substr/</loc>
     <lastmod>2020-03-12T18:02:45+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/functional/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/functional/</loc>
     <lastmod>2020-03-12T10:38:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/golang/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/golang/</loc>
     <lastmod>2020-03-12T10:38:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/03/fp-in-go/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/03/fp-in-go/</loc>
     <lastmod>2020-03-12T10:38:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/03/fifo-queue/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/03/fifo-queue/</loc>
     <lastmod>2020-03-06T17:35:49+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/02/compatibility/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/02/compatibility/</loc>
     <lastmod>2020-02-18T14:23:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/02/thread/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/02/thread/</loc>
     <lastmod>2020-02-17T15:18:39+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/02/storage-management/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/02/storage-management/</loc>
     <lastmod>2020-02-12T16:18:53+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/02/system-operations/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/02/system-operations/</loc>
     <lastmod>2020-02-06T10:54:14+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/02/define-record-type/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/02/define-record-type/</loc>
     <lastmod>2020-02-03T14:51:17+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/01/modules/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/01/modules/</loc>
     <lastmod>2020-01-17T15:07:58+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/modules/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/modules/</loc>
     <lastmod>2020-01-17T15:07:58+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/01/my-let/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/01/my-let/</loc>
     <lastmod>2020-01-17T10:13:27+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/syntactic/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/syntactic/</loc>
     <lastmod>2020-01-15T16:00:51+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/01/syntactic-extension-and-modules/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/01/syntactic-extension-and-modules/</loc>
     <lastmod>2020-01-15T16:00:51+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2020/01/boxes-in-chez/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2020/01/boxes-in-chez/</loc>
     <lastmod>2020-01-03T14:44:33+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/operations-on-objects/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/operations-on-objects/</loc>
     <lastmod>2019-12-30T16:27:27+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/engine/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/engine/</loc>
     <lastmod>2019-12-27T10:30:09+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/engine-in-scheme/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/engine-in-scheme/</loc>
     <lastmod>2019-12-27T10:30:09+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/chez/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/chez/</loc>
     <lastmod>2019-12-25T16:47:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/case-in-chez-scheme/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/case-in-chez-scheme/</loc>
     <lastmod>2019-12-25T16:47:08+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/think/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/think/</loc>
     <lastmod>2019-12-24T17:24:01+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/fluid-binding/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/fluid-binding/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/fluid-let/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/fluid-let/</loc>
     <lastmod>2019-12-24T16:43:57+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/rec/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/rec/</loc>
     <lastmod>2019-12-24T15:20:48+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/recursive-bindings/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/recursive-bindings/</loc>
     <lastmod>2019-12-24T15:20:48+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/gossip/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/gossip/</loc>
     <lastmod>2019-12-19T16:07:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/java/</loc>
+  </url><url>
+    <loc>https://continuation.cn/categories/java/</loc>
     <lastmod>2019-12-19T16:07:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/jgossip/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/jgossip/</loc>
     <lastmod>2019-12-19T16:07:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/jgossip/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/jgossip/</loc>
     <lastmod>2019-12-19T16:07:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/leetcode/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/leetcode/</loc>
     <lastmod>2019-12-17T20:00:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/leetcode-2/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/leetcode-2/</loc>
     <lastmod>2019-12-17T20:00:31+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/sicp/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/sicp/</loc>
     <lastmod>2019-12-13T15:11:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/12/count-coins/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/12/count-coins/</loc>
     <lastmod>2019-12-13T15:11:35+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/about/</loc>
+  </url><url>
+    <loc>https://continuation.cn/about/</loc>
     <lastmod>2019-12-03T09:06:26+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/about/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/about/</loc>
     <lastmod>2019-12-03T09:06:26+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/swagger/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/swagger/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/11/swagger-vendor/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/11/swagger-vendor/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/categories/tool/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/vendorextensions/</loc>
     <lastmod>2019-11-29T10:21:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/vendorextensions/</loc>
-    <lastmod>2019-11-29T10:21:12+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/11/do-not-touch-history/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/11/do-not-touch-history/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/tags/%E6%96%87%E5%8F%B2/</loc>
+  </url><url>
+    <loc>https://continuation.cn/tags/%E6%96%87%E5%8F%B2/</loc>
     <lastmod>2019-11-28T12:43:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/2019/11/emacs/</loc>
+  </url><url>
+    <loc>https://continuation.cn/2019/11/emacs/</loc>
     <lastmod>2019-11-27T20:58:09+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://lvsq.net/series/</loc>
+  </url><url>
+    <loc>https://continuation.cn/series/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
 </urlset>

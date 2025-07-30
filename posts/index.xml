@@ -1,195 +1,1491 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on 思泉笔谈 | AI-Life</title>
-    <link>https://lvsq.net/posts/</link>
+    <link>https://continuation.cn/posts/</link>
     <description>Recent content in Posts on 思泉笔谈 | AI-Life</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 07 Mar 2022 20:46:35 +0800</lastBuildDate>
-    
-        <atom:link href="https://lvsq.net/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 14 Jan 2025 09:58:09 +0800</lastBuildDate>
+    <atom:link href="https://continuation.cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的LazyVim配置(Golang, Python...)</title>
+      <link>https://continuation.cn/2025/01/my-lvim-config/</link>
+      <pubDate>Tue, 14 Jan 2025 09:58:09 +0800</pubDate>
+      <guid>https://continuation.cn/2025/01/my-lvim-config/</guid>
+      <description>&lt;hr&gt;
+&lt;h3 id=&#34;luapluginsgolua&#34;&gt;lua/plugins/go.lua&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;-- add language parsers to treesitter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nvim-treesitter/nvim-treesitter&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(_, opts)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      vim.list_extend(opts.ensure_installed, {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;go&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gomod&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gowork&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;-- cmdline tools for LSP servers, DAP servers, formatters and linters&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;williamboman/mason.nvim&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(_, opts)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      vim.list_extend(opts.ensure_installed, {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gopls&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goimports&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gofumpt&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;golangci-lint&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;golangci-lint-langserver&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#75715e&#34;&gt;-- Wraps golangci-lint as a language server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;delve&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;--&amp;#34;staticcheck&amp;#34;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gomodifytags&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;impl&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;-- setup lspconfig servers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neovim/nvim-lspconfig&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;---@class PluginLspOpts&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;-- server cmdline will be automatically installed with mason and loaded with lspconfig&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;---@type lspconfig.options&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      servers &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        gopls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          gofumpt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;, &lt;span style=&#34;color:#75715e&#34;&gt;-- formatter, default &amp;#34;goimports&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          codelenses &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            gc_details &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            generate &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            regenerate_cgo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            run_govulncheck &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            test &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            tidy &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            upgrade_dependency &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            vendor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          hints &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            assignVariableTypes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            compositeLiteralFields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            compositeLiteralTypes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            constantValues &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            functionTypeParameters &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            parameterNames &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            rangeVariableTypes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          analyses &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            fieldalignment &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            nilness &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            unusedparams &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            unusedwrite &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            useany &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        golangci_lint_ls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {}, &lt;span style=&#34;color:#75715e&#34;&gt;-- linter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      code_actions &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#75715e&#34;&gt;-- null-ls.nvim: builtins code_actions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gomodifytags&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;impl&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      dap &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#75715e&#34;&gt;-- nvim-dap: language specific extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        { &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;leoluz/nvim-dap-go&amp;#34;&lt;/span&gt; },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      test &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#75715e&#34;&gt;-- neotest: language specific adapters&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nvim-neotest/neotest-go&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        adapters &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neotest-go&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            args &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-count=1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-timeout=60s&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-race&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-cover&amp;#34;&lt;/span&gt; },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;-- setup code actions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nvimtools/none-ls.nvim&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    event &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;BufReadPre&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    dependencies &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;mason.nvim&amp;#34;&lt;/span&gt; },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(_, opts)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;local&lt;/span&gt; nls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;null-ls&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      vim.list_extend(opts.sources, {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        nls.builtins.code_actions.gomodifytags,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        nls.builtins.code_actions.impl,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;-- setup neotest adapter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nvim-neotest/neotest&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    optional &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    dependencies &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nvim-neotest/neotest-go&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(_, opts)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      table.insert(opts.adapters, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; require(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neotest-go&amp;#34;&lt;/span&gt;)({
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          args &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-count=1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-timeout=60s&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-race&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-cover&amp;#34;&lt;/span&gt; },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        })
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;luapluginslspconfiglua&#34;&gt;lua/plugins/lspconfig.lua&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;neovim/nvim-lspconfig&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    opts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      servers &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        gopls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          settings &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            gopls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              analyses &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                unusedparams &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              staticcheck &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;前提是在 Lazy Extra  把 Golang , Python, Lsp 等先安装好&lt;/p&gt;</description>
+    </item>
     <item>
       <title>费曼学习法</title>
-      <link>https://lvsq.net/2022/03/feynman_technique/</link>
+      <link>https://continuation.cn/2022/03/feynman_technique/</link>
       <pubDate>Mon, 07 Mar 2022 20:46:35 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2022/03/feynman_technique/</guid>
-      <description>本篇是用费曼学习法来学习《费曼学习法》。当代很多人都有知识焦虑，人前露怯不在少数，沉下心来读一些书充实自己就很重要，很多人确实读了一些书，但</description>
+      <guid>https://continuation.cn/2022/03/feynman_technique/</guid>
+      <description>&lt;p&gt;本篇是用费曼学习法来学习《费曼学习法》。当代很多人都有知识焦虑，人前露怯不在少数，沉下心来读一些书充实自己就很重要，很多人确实读了一些书，但往往读完就忘记，或者记住了很多知识点，但是转换不成能力，枉费了很多心力和时间，所以读书方法尤为重要。我自小也读过一些书，不过从没有研究过方法论，也属于不得要领的这一类，所以潦倒半生，顽愚不堪。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>我的Doom Emacs配置</title>
-      <link>https://lvsq.net/2022/02/my-doom-emacs-config/</link>
+      <link>https://continuation.cn/2022/02/my-doom-emacs-config/</link>
       <pubDate>Wed, 23 Feb 2022 08:58:54 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2022/02/my-doom-emacs-config/</guid>
-      <description>config.el ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*- ;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom ;; sync&amp;#39; after modifying this file! ;; Some functionality uses this to identify you, e.g. GPG configuration, email ;; clients, file templates and snippets. (setq user-full-name &amp;#34;Siquan&amp;#34; user-mail-address &amp;#34;xx@xx.com&amp;#34;) ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here ;; are the three important ones: ;; ;;</description>
+      <guid>https://continuation.cn/2022/02/my-doom-emacs-config/</guid>
+      <description>&lt;h3 id=&#34;configel&#34;&gt;config.el&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Place your private configuration here! Remember, you do not need to run &amp;#39;doom&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; sync&amp;#39; after modifying this file!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Some functionality uses this to identify you, e.g. GPG configuration, email&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; clients, file templates and snippets.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; user-full-name &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Siquan&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      user-mail-address &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xx@xx.com&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Doom exposes five (optional) variables for controlling fonts in Doom. Here&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; are the three important ones:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; + `doom-font&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; + `doom-variable-pitch-font&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; + `doom-big-font&amp;#39; -- used for `doom-big-font-mode&amp;#39;; use this for&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;   presentations or streaming.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; They all accept either a font-spec, font string (&amp;#34;Input Mono-12&amp;#34;), or xlfd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; font string. You generally only need these two:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;(setq doom-font (font-spec :family &amp;#34;monaco&amp;#34; :size 14 :weight &amp;#39;semi-light)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;       doom-variable-pitch-font (font-spec :family &amp;#34;sans&amp;#34; :size 13))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; There are two ways to load a theme. Both assume the theme is installed and&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; available. You can either set `doom-theme&amp;#39; or manually load a theme with the&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; `load-theme&amp;#39; function. This is the default:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; doom-theme &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;doom-monokai-pro&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; If you use `org&amp;#39; and don&amp;#39;t want your org files in the default location below,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; change `org-directory&amp;#39;. It must be set before org loads!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-directory &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/work/emacs-org/&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; This determines the style of line numbers in effect. If set to `nil&amp;#39;, line&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; numbers are disabled. For relative line numbers, set this to `relative&amp;#39;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; display-line-numbers-type &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Here are some additional functions/macros that could help you configure Doom:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; - `load!&amp;#39; for loading external *.el files relative to this one&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; - `use-package!&amp;#39; for configuring packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; - `after!&amp;#39; for running code after a package has loaded&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; - `add-load-path!&amp;#39; for adding directories to the `load-path&amp;#39;, relative to&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;   this file. Emacs searches the `load-path&amp;#39; when you load packages with&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;   `require&amp;#39; or `use-package&amp;#39;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; - `map!&amp;#39; for binding new keys&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; To get information about any of these functions/macros, move the cursor over&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; the highlighted symbol at press &amp;#39;K&amp;#39; (non-evil users must press &amp;#39;C-c c k&amp;#39;).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; This will open documentation for it, including demos of how they are used.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; You can also try &amp;#39;gd&amp;#39; (or &amp;#39;C-c c d&amp;#39;) to jump to their definition and see how&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; they are implemented.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(custom-set-faces
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;;; custom-set-faces was added by Custom.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;;; If you edit it by hand, you could mess it up, so be careful.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;;; Your init file should contain only one such instance.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;;; If there is more than one, they won&amp;#39;t work right.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(default ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:family&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Monaco&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:foundry&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nil&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:slant&lt;/span&gt; normal &lt;span style=&#34;color:#e6db74&#34;&gt;:weight&lt;/span&gt; normal &lt;span style=&#34;color:#e6db74&#34;&gt;:height&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;150&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:width&lt;/span&gt; normal))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-1-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;light green&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-2-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goldenrod2&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-3-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dark magenta&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-4-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dark cyan&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-5-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dark blue&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-6-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PaleVioletRed2&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-7-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SpringGreen4&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-8-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;chocolate3&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(rainbow-delimiters-depth-9-face ((&lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:inherit&lt;/span&gt; rainbow-delimiters-base-face &lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;)))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; auto-save-default &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(run-with-idle-timer &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;#&amp;#39;&lt;/span&gt;save-some-buffers &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; make-backup-files &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; confirm-kill-emacs &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(set-frame-position (selected-frame) &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-to-list &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;default-frame-alist&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(fullscreen &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; maximized))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; initial-frame-alist &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;((top &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) (left &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) (width &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;114&lt;/span&gt;) (height &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;org-mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-superstar-headline-bullets-list &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;✿&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;✸&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;◉&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;⁖&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;○&amp;#34;&lt;/span&gt; ))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;(setq org-todo-keywords &amp;#39;((sequence &amp;#34;TODO(t)&amp;#34; &amp;#34;STARTED(s!)&amp;#34; &amp;#34;WAITING(w@/!)&amp;#34; &amp;#34;|&amp;#34; &amp;#34;DONE(d@/!)&amp;#34; &amp;#34;CANCELLED(c@/!)&amp;#34;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(setf org-todo-keyword-faces &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;((&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TODO&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:background&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#95A5A6&amp;#34;&lt;/span&gt;))(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;STRT&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:background&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#2E8B57&amp;#34;&lt;/span&gt;))(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DONE&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:foreground&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:background&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#3498DB&amp;#34;&lt;/span&gt;))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-log-done &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;time&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-cycle-include-plain-lists &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-export-coding-system &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;utf-8&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-src-fontify-natively &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-html-doctype &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;html5&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-html-xml-declaration &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-html-head &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;lt;link rel=&amp;#39;stylesheet&amp;#39; href=&amp;#39;https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css&amp;#39; integrity=&amp;#39;sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn&amp;#39; crossorigin=&amp;#39;anonymous&amp;#39;&amp;gt;\n&amp;lt;script src=&amp;#39;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&amp;#39; integrity=&amp;#39;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&amp;#39; crossorigin=&amp;#39;anonymous&amp;#39;&amp;gt;&amp;lt;/script&amp;gt;\n&amp;lt;script src=&amp;#39;https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js&amp;#39; integrity=&amp;#39;sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2&amp;#39; crossorigin=&amp;#39;anonymous&amp;#39;&amp;gt;&amp;lt;/script&amp;gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(org-babel-do-load-languages
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;org-babel-load-languages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;((emacs-lisp &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (c &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (java &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (&lt;span style=&#34;color:#66d9ef&#34;&gt;go&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (racket &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (python &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (latex &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (shell &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (js &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (lisp &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (scheme &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(setq-default prettify-symbols-alist &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;((&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+BEGIN_SRC&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;†&amp;#34;&lt;/span&gt;)(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+END_SRC&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;†&amp;#34;&lt;/span&gt;)(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+begin_src&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;†&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+end_src&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;†&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;gt;=&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;≥&amp;#34;&lt;/span&gt;)(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;=&amp;gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;⇨&amp;#34;&lt;/span&gt;)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; prettify-symbols-unprettify-at-point &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;right-edge&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;org-mode-hook&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prettify-symbols-mode&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; org-adapt-indentation &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;auto-wrap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(global-visual-line-mode &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;;1 for on, 0 for off.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;racket&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;require&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;racket-mode&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; racket-program &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/Applications/Racket v8.4/bin/racket&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; tab-always-indent &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;complete&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;;; 使用tab自动补全&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-to-list &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;auto-mode-alist&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\\.rkt\\&amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; racket-mode))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-to-list &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;magic-mode-alist&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;^#lang racket&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:racket-mode&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;golang&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; lsp-gopls-staticcheck &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; lsp-eldoc-render-all &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; lsp-gopls-complete-unimported &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; lsp-gopls-codelens &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Set up before-save hooks to format buffer and add/delete imports.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Make sure you don&amp;#39;t have other gofmt/goimports hooks enabled.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(defun lsp-go-install-save-hooks ()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;#&amp;#39;&lt;/span&gt;lsp-format-buffer &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;#&amp;#39;&lt;/span&gt;lsp-organize-imports &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;#&amp;#39;&lt;/span&gt;lsp-go-install-save-hooks)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Company mode is a standard completion package that works well with lsp-mode.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; company
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; Optionally enable completion-as-you-type behavior.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; company-idle-delay &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; company-minimum-prefix-length &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Optional - provides snippet support.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; yasnippet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:commands&lt;/span&gt; yas-minor-mode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:hook&lt;/span&gt; (go-mode &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; yas-minor-mode))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; language evniroment&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(set-language-environment &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;UTF-8&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(set-locale-environment &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(define-coding-system-alias &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;UTF-8&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;utf-8&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; elfeed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; elfeed-db-directory &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/work/emacs-org/elfeed&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; rmh-elfeed-org-files (&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;~/work/emacs-org/elfeed/elfeed.org&amp;#34;&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(add-hook! &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;elfeed-search-mode-hook&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;#&amp;#39;&lt;/span&gt;elfeed-update)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;(add-hook &amp;#39;elfeed-new-entry-hook&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;          (elfeed-make-tagger :before &amp;#34;2 weeks ago&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;                              :remove &amp;#39;unread))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; lsp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; lsp-mode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:commands&lt;/span&gt; (lsp lsp-deferred)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:hook&lt;/span&gt; (go-mode &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-deferred)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:custom&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; what to use when checking on-save. &amp;#34;check&amp;#34; is default, I prefer clippy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-cargo-watch-command &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clippy&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-eldoc-render-all &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-idle-delay &lt;span style=&#34;color:#ae81ff&#34;&gt;0.6&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; enable / disable the hints as you prefer:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-inlay-hint-enable &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-lifetime-elision-hints-enable &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;skip_trivial&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-chaining-hints &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-closure-return-type-hints &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-parameter-hints &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-rust-analyzer-display-reborrow-hints &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lsp-mode-hook&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lsp-ui-mode&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Optional - provides fancier overlays.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; lsp-ui
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:commands&lt;/span&gt; lsp-ui-mode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:custom&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-ui-peek-always-show &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-ui-sideline-show-hover &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (lsp-ui-doc-enable &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; flycheck &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;rust&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;refer: https://robert.kra.hn/posts/rust-emacs-setup/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;use-package&lt;/span&gt; rustic
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:ensure&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:bind&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;:map&lt;/span&gt; rustic-mode-map
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;M-j&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-ui-imenu)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;M-?&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-find-references)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c l&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; flycheck-list-errors)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c a&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-execute-code-action)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c r&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-rename)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c q&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-workspace-restart)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c Q&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-workspace-shutdown)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C-c C-c s&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; lsp-rust-analyzer-status))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;:config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; uncomment for less flashiness&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; (setq lsp-eldoc-hook nil)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; (setq lsp-enable-symbol-highlighting nil)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; (setq lsp-signature-auto-activate nil)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; comment to disable rustfmt on save&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#66d9ef&#34;&gt;setq&lt;/span&gt; rustic-format-on-save &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;rustic-mode-hook&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;rk/rustic-mode-hook&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(defun rk/rustic-mode-hook ()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; so that run C-c C-c C-r works without having to confirm, but don&amp;#39;t try to&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; save rust buffers that are not file visiting. Once&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;;; no longer be necessary.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (when buffer-file-name
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (setq-local buffer-save-without-query &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (add-hook &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;lsp-format-buffer&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;t&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;initel&#34;&gt;init.el&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;; init.el -*- lexical-binding: t; -*-&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; This file controls what Doom modules are enabled and what order they load&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; in. Remember to run &amp;#39;doom sync&amp;#39; after modifying it!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; NOTE Press &amp;#39;SPC h d h&amp;#39; (or &amp;#39;C-h d h&amp;#39; for non-vim users) to access Doom&amp;#39;s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      documentation. There you&amp;#39;ll find a &amp;#34;Module Index&amp;#34; link where you&amp;#39;ll find&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      a comprehensive list of Doom&amp;#39;s modules and what flags they support.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; NOTE Move your cursor over a module&amp;#39;s name (or its flags) and press &amp;#39;K&amp;#39; (or&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      &amp;#39;C-c c k&amp;#39; for non-vim users) to view its documentation. This works on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      flags as well (those symbols that start with a plus).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      Alternatively, press &amp;#39;gd&amp;#39; (or &amp;#39;C-c c d&amp;#39;) on a module to browse its&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;      directory (for easy access to its source code).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;; 添加中国源&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;(setq package-archives &amp;#39;((&amp;#34;gnu&amp;#34; . &amp;#34;http://mirrors.ustc.edu.cn/elpa/gnu/&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;                         (&amp;#34;melpa&amp;#34; . &amp;#34;http://mirrors.ustc.edu.cn/elpa/melpa/&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;                         (&amp;#34;melpa-stable&amp;#34; . &amp;#34;http://mirrors.ustc.edu.cn/elpa/melpa-stable/&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;                         (&amp;#34;org&amp;#34; . &amp;#34;http://mirrors.ustc.edu.cn/elpa/org/&amp;#34;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(doom! &lt;span style=&#34;color:#e6db74&#34;&gt;:input&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;; chinese&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;japanese&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;layout            ; auie,ctsrnm is the superior home row&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:completion&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       company           &lt;span style=&#34;color:#75715e&#34;&gt;; the ultimate code completion backend&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;helm              ; the *other* search engine for love and life&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ido               ; the other *other* search engine...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       ivy               &lt;span style=&#34;color:#75715e&#34;&gt;; a search engine for love and life&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       vertico           &lt;span style=&#34;color:#75715e&#34;&gt;; the search engine of the future&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:ui&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;deft              ; notational velocity for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       doom              &lt;span style=&#34;color:#75715e&#34;&gt;; what makes DOOM look the way it does&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       doom-dashboard    &lt;span style=&#34;color:#75715e&#34;&gt;; a nifty splash screen for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       doom-quit         &lt;span style=&#34;color:#75715e&#34;&gt;; DOOM quit-message prompts when you quit Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(emoji +unicode)  ; 🙂&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       hl-todo           &lt;span style=&#34;color:#75715e&#34;&gt;; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;hydra&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;indent-guides     ; highlighted indent columns&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ligatures         ; ligatures and symbols to make your code pretty again&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;minimap           ; show a map of the code on the side&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       modeline          &lt;span style=&#34;color:#75715e&#34;&gt;; snazzy, Atom-inspired modeline, plus API&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;nav-flash         ; blink cursor line after big motions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;neotree           ; a project drawer, like NERDTree for vim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       ophints           &lt;span style=&#34;color:#75715e&#34;&gt;; highlight the region an operation acts on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (popup +defaults)   &lt;span style=&#34;color:#75715e&#34;&gt;; tame sudden yet inevitable temporary windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;tabs              ; a tab bar for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       treemacs          &lt;span style=&#34;color:#75715e&#34;&gt;; a project drawer, like neotree but cooler&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;unicode           ; extended unicode support for various languages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       vc-gutter         &lt;span style=&#34;color:#75715e&#34;&gt;; vcs diff in the fringe&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       vi-tilde-fringe   &lt;span style=&#34;color:#75715e&#34;&gt;; fringe tildes to mark beyond EOB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;window-select     ; visually switch windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       workspaces        &lt;span style=&#34;color:#75715e&#34;&gt;; tab emulation, persistence &amp;amp; separate workspaces&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;zen               ; distraction-free coding or writing&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:editor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (evil +everywhere)&lt;span style=&#34;color:#75715e&#34;&gt;; come to the dark side, we have cookies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       file-templates    &lt;span style=&#34;color:#75715e&#34;&gt;; auto-snippets for empty files&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       fold              &lt;span style=&#34;color:#75715e&#34;&gt;; (nigh) universal code folding&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (&lt;span style=&#34;color:#a6e22e&#34;&gt;format&lt;/span&gt; +onsave)  &lt;span style=&#34;color:#75715e&#34;&gt;; automated prettiness&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;god               ; run Emacs commands without modifier keys&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;lispy             ; vim for lisp, for people who don&amp;#39;t like vim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;multiple-cursors  ; editing in many places at once&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;objed             ; text object editing for the innocent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;parinfer          ; turn lisp into python, sort of&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;rotate-text       ; cycle region at point between text candidates&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       snippets          &lt;span style=&#34;color:#75715e&#34;&gt;; my elves. They type so I don&amp;#39;t have to&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       word-wrap         &lt;span style=&#34;color:#75715e&#34;&gt;; soft wrapping with language-aware indent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       dired             &lt;span style=&#34;color:#75715e&#34;&gt;; making dired pretty [functional]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       electric          &lt;span style=&#34;color:#75715e&#34;&gt;; smarter, keyword-based electric-indent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ibuffer         ; interactive buffer management&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       undo              &lt;span style=&#34;color:#75715e&#34;&gt;; persistent, smarter undo for your inevitable mistakes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       vc                &lt;span style=&#34;color:#75715e&#34;&gt;; version-control and Emacs, sitting in a tree&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:term&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       eshell            &lt;span style=&#34;color:#75715e&#34;&gt;; the elisp shell that works everywhere&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       shell             &lt;span style=&#34;color:#75715e&#34;&gt;; simple shell REPL for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;term              ; basic terminal emulator for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       vterm             &lt;span style=&#34;color:#75715e&#34;&gt;; the best terminal emulation in Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:checkers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       syntax              &lt;span style=&#34;color:#75715e&#34;&gt;; tasing you for every semicolon you forget&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(spell +flyspell) ; tasing you for misspelling mispelling&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;grammar           ; tasing grammar mistake every you make&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:tools&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ansible&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;biblio            ; Writes a PhD for you (citation needed)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;debugger          ; FIXME stepping through code, to help you add bugs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;direnv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;editorconfig      ; let someone else argue about tabs vs spaces&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ein               ; tame Jupyter notebooks with emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (&lt;span style=&#34;color:#a6e22e&#34;&gt;eval&lt;/span&gt; +overlay)     &lt;span style=&#34;color:#75715e&#34;&gt;; run code, run (also, repls)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;gist              ; interacting with github gists&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       lookup              &lt;span style=&#34;color:#75715e&#34;&gt;; navigate your code and its documentation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       lsp               &lt;span style=&#34;color:#75715e&#34;&gt;; M-x vscode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       magit             &lt;span style=&#34;color:#75715e&#34;&gt;; a git porcelain for Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;make              ; run make tasks from Emacs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;pass              ; password manager for nerds&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;pdf               ; pdf enhancements&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;prodigy           ; FIXME managing external services &amp;amp; code builders&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;rgb               ; creating color strings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;taskrunner        ; taskrunner for all your projects&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;terraform         ; infrastructure as code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;tmux              ; an API for interacting with tmux&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;upload            ; map local to remote projects via ssh/ftp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:os&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (&lt;span style=&#34;color:#e6db74&#34;&gt;:if&lt;/span&gt; IS-MAC macos)  &lt;span style=&#34;color:#75715e&#34;&gt;; improve compatibility with macOS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       tty               &lt;span style=&#34;color:#75715e&#34;&gt;; improve the terminal Emacs experience&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:lang&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;agda              ; types of types of types of types...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;beancount         ; mind the GAAP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;cc                ; C &amp;gt; C++ == 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;clojure           ; java with a lisp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;common-lisp       ; if you&amp;#39;ve seen one lisp, you&amp;#39;ve seen them all&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;coq               ; proofs-as-programs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;crystal           ; ruby at the speed of c&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;csharp            ; unity, .NET, and mono shenanigans&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;data              ; config/data formats&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(dart +flutter)   ; paint ui and not much else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;dhall&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;elixir            ; erlang done right&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;elm               ; care for a cup of TEA?&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       emacs-lisp        &lt;span style=&#34;color:#75715e&#34;&gt;; drown in parentheses&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;erlang            ; an elegant language for a more civilized age&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ess               ; emacs speaks statistics&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;factor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;faust             ; dsp, but you get to keep your soul&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;fsharp            ; ML stands for Microsoft&amp;#39;s Language&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;fstar             ; (dependent) types and (monadic) effects and Z3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;gdscript          ; the language you waited for&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (&lt;span style=&#34;color:#66d9ef&#34;&gt;go&lt;/span&gt; +lsp)         &lt;span style=&#34;color:#75715e&#34;&gt;; the hipster dialect&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(haskell +lsp)    ; a language that&amp;#39;s lazier than I am&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;hy                ; readability of scheme w/ speed of python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;idris             ; a language you can depend on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       json              &lt;span style=&#34;color:#75715e&#34;&gt;; At least it ain&amp;#39;t XML&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(java +meghanada) ; the poster child for carpal tunnel syndrome&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (java +lsp)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       javascript        &lt;span style=&#34;color:#75715e&#34;&gt;; all(hope(abandon(ye(who(enter(here))))))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;julia             ; a better, faster MATLAB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;kotlin            ; a better, slicker Java(Script)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;latex             ; writing papers in Emacs has never been so fun&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;lean              ; for folks with too much to prove&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ledger            ; be audit you can be&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;lua               ; one-based indices? one-based indices&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       markdown          &lt;span style=&#34;color:#75715e&#34;&gt;; writing docs for people to ignore&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;nim               ; python + lisp at the speed of c&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;nix               ; I hereby declare &amp;#34;nix geht mehr!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;ocaml             ; an objective camel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (org +pretty)               &lt;span style=&#34;color:#75715e&#34;&gt;; organize your plain life in plain text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;php               ; perl&amp;#39;s insecure younger brother&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;plantuml          ; diagrams for confusing people more&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;purescript        ; javascript, but functional&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       python            &lt;span style=&#34;color:#75715e&#34;&gt;; beautiful is better than ugly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;qt                ; the &amp;#39;cutest&amp;#39; gui framework ever&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       racket            &lt;span style=&#34;color:#75715e&#34;&gt;; a DSL for DSLs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;raku              ; the artist formerly known as perl6&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;rest              ; Emacs as a REST client&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;rst               ; ReST in peace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(ruby +rails)     ; 1.step {|i| p &amp;#34;Ruby is #{i.even? ? &amp;#39;love&amp;#39; : &amp;#39;life&amp;#39;}&amp;#34;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;scala             ; java, but good&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(scheme +guile)   ; a fully conniving family of lisps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       sh                &lt;span style=&#34;color:#75715e&#34;&gt;; she sells {ba,z,fi}sh shells on the C xor&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;sml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;solidity          ; do you need a blockchain? No.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;swift             ; who asked for emoji variables?&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;terra             ; Earth and Moon in alignment for performance.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;web               ; the tubes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       yaml              &lt;span style=&#34;color:#75715e&#34;&gt;; JSON, but readable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;zig               ; C, but simpler&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:email&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(mu4e +org +gmail)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;notmuch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;(wanderlust +gmail)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;calendar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;emms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;everywhere        ; *leave* Emacs!? You must be joking&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;irc               ; how neckbeards socialize&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (rss +org)        &lt;span style=&#34;color:#75715e&#34;&gt;; emacs as an RSS reader&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;twitter           ; twitter client https://twitter.com/vnought&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#e6db74&#34;&gt;:config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#75715e&#34;&gt;;;literate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       (default +bindings +smartparens))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;packagesel&#34;&gt;packages.el&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; -*- no-byte-compile: t; -*-&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;;; $DOOMDIR/packages.el&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; To install a package with Doom you must declare them here and run &amp;#39;doom sync&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; on the command line, then restart Emacs for the changes to take effect -- or&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; use &amp;#39;M-x doom/reload&amp;#39;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! some-package)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; To install a package directly from a remote git repo, you must specify a&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; `:recipe&amp;#39;. You&amp;#39;ll find documentation on what `:recipe&amp;#39; accepts here:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; https://github.com/raxod502/straight.el#the-recipe-format&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! another-package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;  :recipe (:host github :repo &amp;#34;username/repo&amp;#34;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; If the package you are trying to install does not contain a PACKAGENAME.el&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; file, or is located in a subdirectory of the repo, you&amp;#39;ll need to specify&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; `:files&amp;#39; in the `:recipe&amp;#39;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! this-package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;  :recipe (:host github :repo &amp;#34;username/repo&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;           :files (&amp;#34;some-file.el&amp;#34; &amp;#34;src/lisp/*.el&amp;#34;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; If you&amp;#39;d like to disable a package included with Doom, you can do so here&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; with the `:disable&amp;#39; property:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! builtin-package :disable t)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; You can override the recipe of a built in package without having to specify&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; all the properties for `:recipe&amp;#39;. These will inherit the rest of its recipe&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; from Doom or MELPA/ELPA/Emacsmirror:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! builtin-package :recipe (:nonrecursive t))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! builtin-package-2 :recipe (:repo &amp;#34;myfork/package&amp;#34;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Specify a `:branch&amp;#39; to install a package from a particular branch or tag.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; This is required for some packages whose default branch isn&amp;#39;t &amp;#39;master&amp;#39; (which&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; our package manager can&amp;#39;t deal with; see raxod502/straight.el#279)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! builtin-package :recipe (:branch &amp;#34;develop&amp;#34;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Use `:pin&amp;#39; to specify a particular commit to install.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(package! builtin-package :pin &amp;#34;1a2b3c4d5e&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; Doom&amp;#39;s packages are pinned to a specific commit and updated from release to&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; release. The `unpin!&amp;#39; macro allows you to unpin single packages...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(unpin! pinned-package)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; ...or multiple packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(unpin! pinned-package another-pinned-package)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;(unpin! t)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(package! racket-mode)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(package! spacemacs-theme)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;elfeedorg&#34;&gt;elfeed.org&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;*&lt;/span&gt; root &lt;span style=&#34;color:#e6db74&#34;&gt;:elfeed:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;** Programming &lt;span style=&#34;color:#e6db74&#34;&gt;:programming:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;*** https://www.reddit.com/r/functionalprogramming/.rss &lt;span style=&#34;color:#e6db74&#34;&gt;:Reddit:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;** News &lt;span style=&#34;color:#e6db74&#34;&gt;:news:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;*** https://news.ycombinator.com/rss &lt;span style=&#34;color:#e6db74&#34;&gt;:Hack&lt;/span&gt; News:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>Doom Emacs Golang 环境配置</title>
-      <link>https://lvsq.net/2021/12/doom-emacs-golang-env/</link>
+      <link>https://continuation.cn/2021/12/doom-emacs-golang-env/</link>
       <pubDate>Wed, 29 Dec 2021 16:55:08 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/12/doom-emacs-golang-env/</guid>
-      <description>Doom Emacs是一个Emacs的一个配置集合，可看做CentOS和Linux的关系。它将Emcas和Vim相结合，包含了各自的种种优点，并减少</description>
+      <guid>https://continuation.cn/2021/12/doom-emacs-golang-env/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/hlissner/doom-emacs&#34;&gt;Doom Emacs&lt;/a&gt;是一个Emacs的一个配置集合，可看做CentOS和Linux的关系。它将Emcas和Vim相结合，包含了各自的种种优点，并减少了用户折腾的时间，而且启动很快，提供超过60门编程语言的可选项，可谓十分强大。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>不到60行代码，用Racket实现wc命令</title>
-      <link>https://lvsq.net/2021/08/racket-wc/</link>
+      <link>https://continuation.cn/2021/08/racket-wc/</link>
       <pubDate>Mon, 09 Aug 2021 14:31:04 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/08/racket-wc/</guid>
-      <description>Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需50多行</description>
+      <guid>https://continuation.cn/2021/08/racket-wc/</guid>
+      <description>&lt;p&gt;Racket语言开发命令行程序十分简单，而且支持跨平台编译，我们可以用它来开发各种方便的工具程序。下面实现了一个完整的wc程序，只需50多行代码就完成了。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>改进Racket的time函数</title>
-      <link>https://lvsq.net/2021/07/racket-time-improvement/</link>
+      <link>https://continuation.cn/2021/07/racket-time-improvement/</link>
       <pubDate>Thu, 22 Jul 2021 11:34:29 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/07/racket-time-improvement/</guid>
-      <description>Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配</description>
+      <guid>https://continuation.cn/2021/07/racket-time-improvement/</guid>
+      <description>&lt;p&gt;Racket和Chez Scheme一样都有time函数，用来打印函数的执行时间，所不同的地方在于，Chez Scheme的time函数会把分配的字节数也显示出来，这对于我们调试和优化代码很有帮助，不过Matthew Flatt并没有打算将Racket的time函数添加这一功能，尽管如此，Matthew Flatt提供了一个思路，只是稍微麻烦一些。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Racket 并发与同步</title>
-      <link>https://lvsq.net/2021/07/racket-concurrency/</link>
+      <link>https://continuation.cn/2021/07/racket-concurrency/</link>
       <pubDate>Thu, 08 Jul 2021 13:47:13 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/07/racket-concurrency/</guid>
-      <description>Threads 创建一个新线程： (thread (lambda() (displayln &amp;#34;This is a new thread&amp;#34;))) 休眠线程并且杀掉: (define worker (thread (lambda () (let loop () (displayln &amp;#34;Working...&amp;#34;) (sleep 0.2) (loop))))) (sleep 2.5) (kill-thread worker) 如果主线程退出或者被杀掉，其子线程也面临着退出, 可以利</description>
+      <guid>https://continuation.cn/2021/07/racket-concurrency/</guid>
+      <description>&lt;h3 id=&#34;threads&#34;&gt;Threads&lt;/h3&gt;
+&lt;p&gt;创建一个新线程：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(thread (lambda() (displayln &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;This is a new thread&amp;#34;&lt;/span&gt;)))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;休眠线程并且杀掉:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lisp&#34; data-lang=&#34;lisp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(define worker (thread (lambda ()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                         (&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; loop ()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                           (displayln &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Working...&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                           (&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                           (loop)))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sleep&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2.5&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(kill-thread worker)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果主线程退出或者被杀掉，其子线程也面临着退出, 可以利用therad-wait来等待其他线程执行完成.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Racket Modules</title>
-      <link>https://lvsq.net/2021/07/racket-modules/</link>
+      <link>https://continuation.cn/2021/07/racket-modules/</link>
       <pubDate>Thu, 08 Jul 2021 11:00:25 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/07/racket-modules/</guid>
-      <description>模块基础 一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set! 通常，每个Racket模块驻留在自己的文件中，换句话说，可以</description>
+      <guid>https://continuation.cn/2021/07/racket-modules/</guid>
+      <description>&lt;h2 id=&#34;模块基础&#34;&gt;模块基础&lt;/h2&gt;
+&lt;p&gt;一个模块可以被另一个模块使用，但是模块内部的变量不能直接修改，即set!&lt;/p&gt;
+&lt;p&gt;通常，每个Racket模块驻留在自己的文件中，换句话说，可以认为一个.rkt 文件里的内容属于某一个模块，模块名就是文件名。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>【盛最多水的容器】问题的求解</title>
-      <link>https://lvsq.net/2021/05/container-with-most-water/</link>
+      <link>https://continuation.cn/2021/05/container-with-most-water/</link>
       <pubDate>Tue, 11 May 2021 18:09:35 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2021/05/container-with-most-water/</guid>
-      <description>这是一个leet code出现的问题: 给 n 个非负整数 $a_1$，$a_2$，&amp;hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在</description>
+      <guid>https://continuation.cn/2021/05/container-with-most-water/</guid>
+      <description>&lt;p&gt;这是一个leet code出现的问题:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给 n 个非负整数 $a_1$，$a_2$，&amp;hellip;，$a_n$，每个数代表坐标中的一个点(i, $a_i$) 。在坐标内画 n 条垂直线，垂直线 i的两个端点分别为(i, $a_i$) 和 (i, 0) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>对大脑而言，阅读计算机代码与阅读语言不同</title>
-      <link>https://lvsq.net/2020/12/brain-reading-computer-code/</link>
+      <link>https://continuation.cn/2020/12/brain-reading-computer-code/</link>
       <pubDate>Wed, 16 Dec 2020 09:05:44 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/12/brain-reading-computer-code/</guid>
-      <description>神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。 安妮·特拉夫顿 | 麻省理工学院新闻办公室 发布日期：2020年12月15</description>
+      <guid>https://continuation.cn/2020/12/brain-reading-computer-code/</guid>
+      <description>&lt;p&gt;神经科学家发现，解释代码可以激活通用的大脑网络，但不能激活语言处理中心。&lt;/p&gt;
+&lt;p&gt;安妮·特拉夫顿 | 麻省理工学院新闻办公室
+发布日期：2020年12月15日&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;在某些方面，学习计算机编程与学习新语言相似。它需要学习新的符号和术语，必须正确组织这些符号和术语以指导计算机该怎么做。计算机代码还必须足够清晰，以便其他程序员可以阅读和理解。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>基于Chez Scheme重建Racket</title>
-      <link>https://lvsq.net/2020/10/rebuilding-racket/</link>
+      <link>https://continuation.cn/2020/10/rebuilding-racket/</link>
       <pubDate>Tue, 20 Oct 2020 10:49:13 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/10/rebuilding-racket/</guid>
-      <description>作者 MATTHEW FLATT, University of Utah, USACANER DERICI, Indiana University, USA R. KENT DYBVIG, Cisco Systems, Inc., USA ANDREW W. KEEP, Cisco Systems, Inc., USA GUSTAVO E. MASSACCESI, Universidad de Buenos Aires, Argentina SARAH SPALL, Indiana University, USA SAM TOBIN-HOCHSTADT, Indiana University, USA JON ZEPPIERI, independent researcher, USA 概要 我们在Chez Scheme上重建了Ra</description>
+      <guid>https://continuation.cn/2020/10/rebuilding-racket/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;作者&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;MATTHEW FLATT, University of Utah,&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;USACANER DERICI, Indiana University, USA&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;R. KENT DYBVIG, Cisco Systems, Inc., USA&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;ANDREW W. KEEP, Cisco Systems, Inc., USA&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;GUSTAVO E. MASSACCESI, Universidad de Buenos Aires, Argentina&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;SARAH SPALL, Indiana University, USA&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;SAM TOBIN-HOCHSTADT, Indiana University, USA&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Lexical Scoping and Dynamic Scoping</title>
-      <link>https://lvsq.net/2020/09/lexical-dynamic-scoping/</link>
+      <link>https://continuation.cn/2020/09/lexical-dynamic-scoping/</link>
       <pubDate>Wed, 23 Sep 2020 11:24:24 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/09/lexical-dynamic-scoping/</guid>
-      <description>我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的</description>
+      <guid>https://continuation.cn/2020/09/lexical-dynamic-scoping/</guid>
+      <description>&lt;p&gt;我相信每一位程序员在学习或者实践编程时，都会遇到作用域的问题。您可能觉得作用域很简单，甚至都不能当做一个问题来看待，我想原因可能是目前主流的计算机语言Java, Python, C等等几乎一致采用Lexical Scoping,程序员没有机会察觉到异样，从而掩盖了还有其他作用域的事实，许多教科书也很配合地一笔带过，当然还有一种可能是您已经洞察了不同作用域的差异和内涵，自觉地规避了问题。我衷心的希望所有程序员都是第二种可能。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>快速排序（Lisp版本）</title>
-      <link>https://lvsq.net/2020/07/quick-sort-in-cl/</link>
+      <link>https://continuation.cn/2020/07/quick-sort-in-cl/</link>
       <pubDate>Mon, 20 Jul 2020 14:57:29 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/07/quick-sort-in-cl/</guid>
-      <description>快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为： 设定一个分界值，通常为第一个元素； 遍历列表，将所有小于</description>
+      <guid>https://continuation.cn/2020/07/quick-sort-in-cl/</guid>
+      <description>&lt;p&gt;快速排序是一种常见的排序手段，由C.A.R.Hoare在1960年提出。其基本思路为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;设定一个分界值，通常为第一个元素；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;遍历列表，将所有小于分界值的元素集中到列表的左侧，所有大于或等于分界值的元素集中到右侧；&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>从“八皇后”到amb</title>
-      <link>https://lvsq.net/2020/05/n-queens/</link>
+      <link>https://continuation.cn/2020/05/n-queens/</link>
       <pubDate>Sat, 23 May 2020 15:41:35 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/05/n-queens/</guid>
-      <description>讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出</description>
+      <guid>https://continuation.cn/2020/05/n-queens/</guid>
+      <description>&lt;p&gt;讲故事并不是我擅长的事情，不过事情总有一个开始，诸位看官莫嫌我絮烦，只是希望可以讲述的更有条理一些。某日正读一本关于Erlang的书，书中出了一个关于&lt;strong&gt;八皇后&lt;/strong&gt;的题目，这是计算机科学中经典的问题，当年上学时曾绞尽脑汁仍然云山雾罩，不得其解。如今再次相遇，岂能再坐壁上观？！更何况手边已有趁手的兵器。试看Erlang的实现：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>[译]BEAM vs JVM</title>
-      <link>https://lvsq.net/2020/05/beam-vs-jvm/</link>
+      <link>https://continuation.cn/2020/05/beam-vs-jvm/</link>
       <pubDate>Thu, 14 May 2020 10:13:25 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/05/beam-vs-jvm/</guid>
-      <description>作者是 Francesco Cesarini &amp;amp; Gabor Olah 任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是： 1）Erlang编程语言的语义，并在其上实现</description>
+      <guid>https://continuation.cn/2020/05/beam-vs-jvm/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;作者是 Francesco Cesarini &amp;amp; Gabor Olah&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;任何编程语言在Erlang生态系统中的成功都可以分为三个紧密耦合的组件。它们是：&lt;!-- raw HTML omitted --&gt;
+1）&lt;strong&gt;Erlang编程语言的语义&lt;/strong&gt;，并在其上实现其他语言&lt;!-- raw HTML omitted --&gt;
+2）用于构建可伸缩和弹性并发系统的&lt;strong&gt;OTP库和中间件&lt;/strong&gt;，以及&lt;!-- raw HTML omitted --&gt;
+3）与语言语义紧密耦合的&lt;strong&gt;BEAM虚拟机和OTP&lt;/strong&gt;。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>无重复字符的最长子串-Scheme实现</title>
-      <link>https://lvsq.net/2020/03/longest-substr/</link>
+      <link>https://continuation.cn/2020/03/longest-substr/</link>
       <pubDate>Thu, 12 Mar 2020 18:02:45 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/03/longest-substr/</guid>
-      <description>实现 下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;quot;abbabcx&amp;quot;,其最长无重复字符的子串为</description>
+      <guid>https://continuation.cn/2020/03/longest-substr/</guid>
+      <description>&lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
+&lt;p&gt;下面将使用Scheme语言来实现“无重复字符的最长子串”，即，对于字符串&amp;quot;abbabcx&amp;quot;,其最长无重复字符的子串为&amp;quot;abcx&amp;quot;，长度4，详细描述可访问&lt;a href=&#34;https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/&#34;&gt;https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用Golang进行函数式编程</title>
-      <link>https://lvsq.net/2020/03/fp-in-go/</link>
+      <link>https://continuation.cn/2020/03/fp-in-go/</link>
       <pubDate>Thu, 12 Mar 2020 10:38:55 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/03/fp-in-go/</guid>
-      <description>为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违</description>
+      <guid>https://continuation.cn/2020/03/fp-in-go/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Golang&#34; loading=&#34;lazy&#34; src=&#34;https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2020/02/functional-programming-in-go.png?w=730&amp;ssl=1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;为什么要用Go练习函数式编程？简而言之，正是由于缺少状态和可变数据，函数式编程使您的代码更易读，更易于测试且不太复杂。如果遇到错误，只要不违反函数式编程规则，就可以快速调试应用程序。当函数被隔离时，您不必处理影响输出的隐藏状态的更改。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Scheme实现一个FIFO队列</title>
-      <link>https://lvsq.net/2020/03/fifo-queue/</link>
+      <link>https://continuation.cn/2020/03/fifo-queue/</link>
       <pubDate>Fri, 06 Mar 2020 17:35:49 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/03/fifo-queue/</guid>
-      <description>闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。 队列可以看成是由下面一组操作定义的结构： 构造函数 (make-queue) 返回一个</description>
+      <guid>https://continuation.cn/2020/03/fifo-queue/</guid>
+      <description>&lt;p&gt;闲来无事，用Scheme实现一个FIFO队列，数据从末端插入，从前端删除或者查询。&lt;/p&gt;
+&lt;p&gt;队列可以看成是由下面一组操作定义的结构：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;构造函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(make-queue)&lt;!-- raw HTML omitted --&gt;
+返回一个空队列&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>兼容性（Compatibility Features in Chez Scheme）</title>
-      <link>https://lvsq.net/2020/02/compatibility/</link>
+      <link>https://continuation.cn/2020/02/compatibility/</link>
       <pubDate>Tue, 18 Feb 2020 14:23:39 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/02/compatibility/</guid>
-      <description>本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可</description>
+      <guid>https://continuation.cn/2020/02/compatibility/</guid>
+      <description>&lt;p&gt;本章介绍了当前版本的Chez Scheme中包含的几个项目，主要是为了与系统的较早版本兼容。由于兼容功能可能在未来会被放弃，所以新项目中应尽可能使用Scheme标准机制。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>线程（Thread System in Chez Scheme）</title>
-      <link>https://lvsq.net/2020/02/thread/</link>
+      <link>https://continuation.cn/2020/02/thread/</link>
       <pubDate>Mon, 17 Feb 2020 15:18:39 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/02/thread/</guid>
-      <description>下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程</description>
+      <guid>https://continuation.cn/2020/02/thread/</guid>
+      <description>&lt;p&gt;下面介绍Chez Scheme线程系统过程和语法形式。 除了锁，锁增量和锁减量之外，线程系统的功能在非基于Windows的系统上在Posix线程系统（pthreads）之上实现，并在基于Windows的系统上直接使用Windows API。 有关线程创建和交互的基本详细信息，请查阅系统上的相应文档。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>存储管理(Storage Management in Chez Scheme)</title>
-      <link>https://lvsq.net/2020/02/storage-management/</link>
+      <link>https://continuation.cn/2020/02/storage-management/</link>
       <pubDate>Wed, 12 Feb 2020 16:18:53 +0800</pubDate>
-      
-      <guid>https://lvsq.net/2020/02/storage-management/</guid>
-      <description>垃圾回收 Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动</description>
+      <guid>https://continuation.cn/2020/02/storage-management/</guid>
+      <description>&lt;h3 id=&#34;垃圾回收&#34;&gt;垃圾回收&lt;/h3&gt;
+&lt;p&gt;Scheme程序不会显式地释放诸如序对，字符串和过程之类的Scheme对象。 相反，一旦存储管理系统证明不再可以访问该对象，它就会自动回收与该对象关联的存储。 为了回收此存储，Chez Scheme使用了一个垃圾收集器，该垃圾收集器在程序运行时定期运行。 垃圾收集器从一组已知的根开始（例如，机器注册），查找所有可访问对象，并在大多数情况下复制它们，以消除可访问对象之间的碎片，并回收不可访问对象所占用的存储。&lt;/p&gt;</description>
     </item>
-    
+    <item>
+      <title>系统操作(System Operations in Chez Scheme)</title>
+      <link>https://continuation.cn/2020/02/system-operations/</link>
+      <pubDate>Thu, 06 Feb 2020 10:54:14 +0800</pubDate>
+      <guid>https://continuation.cn/2020/02/system-operations/</guid>
+      <description>&lt;h3 id=&#34;异常&#34;&gt;异常&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(warning who msg irritant &amp;hellip;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;返回：未指定&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;警告会引发条件类型＆warning的持续异常，并应用于描述＆warning条件类型适用的情况，通常是一种不应该阻止程序继续运行但可能在以后导致更严重问题的情况。&lt;!-- raw HTML omitted --&gt;
+通常最好是识别程序员已调用的过程，而不是程序员可能不知道的其他过程。 msg必须为字符串，并应描述异常情况。irritant可以是任何Scheme对象，并且应包含可能导致或严重涉及异常情况的值。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Scheme语法define-record-type介绍</title>
+      <link>https://continuation.cn/2020/02/define-record-type/</link>
+      <pubDate>Mon, 03 Feb 2020 14:51:17 +0800</pubDate>
+      <guid>https://continuation.cn/2020/02/define-record-type/</guid>
+      <description>&lt;h3 id=&#34;define-record-type&#34;&gt;define-record-type&lt;/h3&gt;
+&lt;p&gt;Scheme语言中的define-record-type形式用来定义一个记录类型，并定义该类型的构造函数、仅对该类型的record返回true的谓词、以及每个字段的访问procedure和针对可变字段的赋值procedure。总的来说，与Java中的POJO类比较相似，不过不用自定义getter和setter方法，这与Kotlin倒为类似，例如：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Chez Scheme Modules</title>
+      <link>https://continuation.cn/2020/01/modules/</link>
+      <pubDate>Fri, 17 Jan 2020 15:07:58 +0800</pubDate>
+      <guid>https://continuation.cn/2020/01/modules/</guid>
+      <description>&lt;h2 id=&#34;modules&#34;&gt;Modules&lt;/h2&gt;
+&lt;p&gt;模块用于帮助将程序组织成单独的部分，这些部分通过声明好的接口干净地交互。尽管模块化编程通常可以为多人参加的大型程序开发带来便利，但它也可以在 Chez Scheme 中以“微模块”级别使用，因为 Chez Scheme 中的模块和 import 形式属于定义，并且可以出现在定义可以出现的任意位置，包括在 lambda 表达式的程序体或其他局部作用域中。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>自定义 Let*</title>
+      <link>https://continuation.cn/2020/01/my-let/</link>
+      <pubDate>Fri, 17 Jan 2020 10:13:27 +0800</pubDate>
+      <guid>https://continuation.cn/2020/01/my-let/</guid>
+      <description>&lt;p&gt;实现Let*语法的两种方式，主要目的是记录两种编程思路，在编写其他程序时应该也有所裨益。&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-scheme&#34; data-lang=&#34;scheme&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;define-syntax &lt;/span&gt;my-let*
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#66d9ef&#34;&gt;syntax-rules &lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ((&lt;span style=&#34;color:#a6e22e&#34;&gt;_&lt;/span&gt; () bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;) (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;() bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      (&lt;span style=&#34;color:#a6e22e&#34;&gt;_&lt;/span&gt; ((&lt;span style=&#34;color:#a6e22e&#34;&gt;a1&lt;/span&gt; v1)) bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;((&lt;span style=&#34;color:#a6e22e&#34;&gt;a1&lt;/span&gt; v1)) bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      (&lt;span style=&#34;color:#a6e22e&#34;&gt;_&lt;/span&gt; ((&lt;span style=&#34;color:#a6e22e&#34;&gt;a1&lt;/span&gt; v1) (&lt;span style=&#34;color:#a6e22e&#34;&gt;a2&lt;/span&gt; v2) &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;) bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;((&lt;span style=&#34;color:#a6e22e&#34;&gt;a1&lt;/span&gt; v1)) (&lt;span style=&#34;color:#a6e22e&#34;&gt;my-let*&lt;/span&gt; ((&lt;span style=&#34;color:#a6e22e&#34;&gt;a2&lt;/span&gt; v2) &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;) bodys &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意，my-let*是可以递归使用的，以及**&amp;hellip;**的用法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Syntactic Extension and Modules in Chez Scheme</title>
+      <link>https://continuation.cn/2020/01/syntactic-extension-and-modules/</link>
+      <pubDate>Wed, 15 Jan 2020 16:00:51 +0800</pubDate>
+      <guid>https://continuation.cn/2020/01/syntactic-extension-and-modules/</guid>
+      <description>&lt;h2 id=&#34;fluid-keyword-bindings&#34;&gt;Fluid Keyword Bindings&lt;/h2&gt;
+&lt;h3 id=&#34;fluid-let-syntax&#34;&gt;fluid-let-syntax&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;语法: fluid-let-syntax ((keyword expr) &amp;hellip;) form1 form2 &amp;hellip;)
+&lt;strong&gt;fluid-let-syntax&lt;/strong&gt;与标准&lt;strong&gt;let&lt;/strong&gt;语法相似，不同之处在于Fluid-let-syntax在其body扩展期间会暂时更改keyword的现有绑定，而不是引入keyword的新绑定。也就是说，在扩展form1 form2 &amp;hellip;的过程中，每个keyword的可见范围（或顶级）将会&lt;strong&gt;临时&lt;/strong&gt;替换为新的绑定关系。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Chez Scheme中Boxes介绍</title>
+      <link>https://continuation.cn/2020/01/boxes-in-chez/</link>
+      <pubDate>Fri, 03 Jan 2020 14:44:33 +0800</pubDate>
+      <guid>https://continuation.cn/2020/01/boxes-in-chez/</guid>
+      <description>&lt;p&gt;Chez Scheme中有一种Boxes结构，它是一个&lt;em&gt;单元素&lt;/em&gt;对象，主要用于提供一个“额外的间接层”。这个额外的间接层，通常用于使多个代码块或数据结构可以共享指向一个对象的引用，或指针。例如，在采用此种参数传递规则的语言的解释器中，可以用 boxes 实现 call-by-reference 的语义。解释有点绕，按我的理解boxes就相当于Golang的struct、Java中的类，将一些状态包装成一个整块，外界通过引用该整块的指针来访问内部的各个状态。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Scheme/Chez Scheme 对象操作</title>
+      <link>https://continuation.cn/2019/12/operations-on-objects/</link>
+      <pubDate>Mon, 30 Dec 2019 16:27:27 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/operations-on-objects/</guid>
+      <description>&lt;h3 id=&#34;pairs-and-lists&#34;&gt;Pairs and Lists&lt;/h3&gt;
+&lt;h4 id=&#34;atom&#34;&gt;atom?&lt;/h4&gt;
+&lt;p&gt;atom? 相当于 (lambda (x) (not (pair? x)))&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-scheme&#34; data-lang=&#34;scheme&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;atom?&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(a b c)) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⇒&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;#f&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;atom?&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;)) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⇒&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;#f&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;atom?&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;()) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⇒&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;#t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;atom?&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⇒&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;#t&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;list-headchez&#34;&gt;list-head(Chez)&lt;/h4&gt;
+&lt;p&gt;用法：(list-head list n) &lt;!-- raw HTML omitted --&gt;
+&lt;em&gt;n&lt;/em&gt;是一个非负整数，且小于等于&lt;em&gt;list&lt;/em&gt;的长度；&lt;strong&gt;list-head&lt;/strong&gt;和Scheme标准过程&lt;strong&gt;list-tail&lt;/strong&gt;可能会同时使用来切割一个list，不同点在于，&lt;strong&gt;list-tail&lt;/strong&gt;不会分配内存而只是返回源list的一个子列表，&lt;strong&gt;list-head&lt;/strong&gt;总是返回源list前n个元素的副本&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Engine in Scheme</title>
+      <link>https://continuation.cn/2019/12/engine-in-scheme/</link>
+      <pubDate>Fri, 27 Dec 2019 10:30:09 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/engine-in-scheme/</guid>
+      <description>&lt;p&gt;Engine(引擎)是支持&lt;em&gt;时间抢占&lt;/em&gt; 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(make-engine thunk)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Chez Scheme中的case扩展</title>
+      <link>https://continuation.cn/2019/12/case-in-chez-scheme/</link>
+      <pubDate>Wed, 25 Dec 2019 16:47:08 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/case-in-chez-scheme/</guid>
+      <description>&lt;h3 id=&#34;case&#34;&gt;case&lt;/h3&gt;
+&lt;p&gt;Scheme原生提供了if语法，用于判断十分便利，但是对于某些多于一个的条件，就只能嵌套写if来实现了，写起来有些不便，Chez Scheme提供了&lt;strong&gt;case&lt;/strong&gt;语法来处理这种情况，这与Java中的&lt;strong&gt;switch&lt;/strong&gt;语法非常相似。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>继学录</title>
+      <link>https://continuation.cn/2019/12/think/</link>
+      <pubDate>Tue, 24 Dec 2019 17:24:01 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/think/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;易经曰：通其变，使民不倦。引颜师古注：此易下系之辞也，言通物之变，胡能乐其器用，不解倦也。不才私度其意，白话言之：人物一理，应明其格，顺其兴至，克尽其用，上下一体，俱不倦而事可毕矣&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Fluid Binding in Chez Scheme</title>
+      <link>https://continuation.cn/2019/12/fluid-binding/</link>
+      <pubDate>Tue, 24 Dec 2019 16:43:57 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/fluid-binding/</guid>
+      <description>&lt;p&gt;Fluid Binding是Chez另一个扩展，这个名词不太好翻译，我想想暂时就叫&lt;strong&gt;易变绑定&lt;/strong&gt;吧，如果有更好的翻译请在文后的评论中尽情发表。&lt;/p&gt;
+&lt;p&gt;先看看该语法描述：&lt;!-- raw HTML omitted --&gt;
+(&lt;strong&gt;fluid-let&lt;/strong&gt; ((var expr) &amp;hellip;) body1 body2 &amp;hellip;) &lt;!-- raw HTML omitted --&gt;
+&lt;strong&gt;returns:&lt;/strong&gt; the values of the body body1 body2 &amp;hellip; &lt;!-- raw HTML omitted --&gt;
+&lt;strong&gt;libraries:&lt;/strong&gt; (chezscheme)&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Recursive Bindings in Chez Scheme</title>
+      <link>https://continuation.cn/2019/12/recursive-bindings/</link>
+      <pubDate>Tue, 24 Dec 2019 15:20:48 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/recursive-bindings/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;rec&lt;/strong&gt;语法是Chez Scheme中一个非常有用的扩展，在不依赖外部变量进行递归时将很有用，可以减轻代码且使代码更加容易阅读。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;这是语法描述：&lt;!-- raw HTML omitted --&gt;
+(&lt;strong&gt;rec&lt;/strong&gt; var expr) syntax&lt;!-- raw HTML omitted --&gt;
+&lt;strong&gt;returns:&lt;/strong&gt; value of expr&lt;!-- raw HTML omitted --&gt;
+&lt;strong&gt;libraries:&lt;/strong&gt; (chezscheme)&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Jgossip - gossip协议的开源实现</title>
+      <link>https://continuation.cn/2019/12/jgossip/</link>
+      <pubDate>Thu, 19 Dec 2019 16:07:31 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/jgossip/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Gossip_protocol&#34;&gt;Gossip&lt;/a&gt;是一种一致性协议，在系统设计和开发当中有着广泛的应用，网上有一些开源实现，但是并不好用有些甚至出现了一些bug，于是乎，花了一些时间，动手写了一个，目前已经在公司内部运行了几年，效果良好，并且已经开源在Github上，以飨各位。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;API简洁&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;支持3种事件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;UP&lt;/li&gt;
+&lt;li&gt;DOWN&lt;/li&gt;
+&lt;li&gt;JOIN&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于&lt;a href=&#34;http://vertx.io/&#34;&gt;Vert.X&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;引入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;net.lvsq&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;jgossip&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.3.2&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一个简单的例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; gossip_port &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 60001;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;String cluster &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gossip_cluster&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;GossipSettings settings &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; GossipSettings();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;settings.&lt;span style=&#34;color:#a6e22e&#34;&gt;setGossipInterval&lt;/span&gt;(1000);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    String myIpAddress &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; InetAddress.&lt;span style=&#34;color:#a6e22e&#34;&gt;getLocalHost&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;getHostAddress&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    List&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;SeedMember&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; seedNodes &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; ArrayList&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    SeedMember seed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SeedMember();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seed.&lt;span style=&#34;color:#a6e22e&#34;&gt;setCluster&lt;/span&gt;(cluster);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seed.&lt;span style=&#34;color:#a6e22e&#34;&gt;setIpAddress&lt;/span&gt;(myIpAddress);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seed.&lt;span style=&#34;color:#a6e22e&#34;&gt;setPort&lt;/span&gt;(60001);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seedNodes.&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(seed);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    gossipService &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; GossipService(cluster, myIpAddress, gossip_port, &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;, seedNodes, settings, (member, state) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;member:&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; member &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;  state: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; state));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; (Exception e) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    e.&lt;span style=&#34;color:#a6e22e&#34;&gt;printStackTrace&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gossipService.&lt;span style=&#34;color:#a6e22e&#34;&gt;start&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;详细介绍请看 =&amp;gt; &lt;a href=&#34;https://github.com/monkeymq/jgossip&#34;&gt;项目地址&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>两数相加</title>
+      <link>https://continuation.cn/2019/12/leetcode-2/</link>
+      <pubDate>Tue, 17 Dec 2019 20:00:31 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/leetcode-2/</guid>
+      <description>&lt;p&gt;本文在于解答LeetCode中的第二题，问题的描述可参见 &lt;a href=&#34;https://leetcode-cn.com/problems/add-two-numbers/&#34;&gt;两数相加&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Golang的实现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * Definition for singly-linked list.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * type ListNode struct {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *     Val int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *     Next *ListNode
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;addTwoNumbers&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; []&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt; = append(&lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Next&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Next&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Next&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Next&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt; = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; &amp;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;l1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;l2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt; = append(&lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &amp;lt; len(&lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Next&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;nodes&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;n1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;n2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) (&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;n1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;n1&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;n2&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ListNode&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt; : &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n1&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n2&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; &amp;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Val&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;carry&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;下面提供Scheme版本的实现【(1 0) + (9 1 2) = (0 2 2)】，为了简单起见，与题目要求稍有不同，这里采用list，而不是题目要求的链表，但实际上应是一样的。比较之下可以看出，相对而言，Scheme语言的实现更加简短优雅，得益于其强大的表达能力&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>钱币组合问题</title>
+      <link>https://continuation.cn/2019/12/count-coins/</link>
+      <pubDate>Fri, 13 Dec 2019 15:11:35 +0800</pubDate>
+      <guid>https://continuation.cn/2019/12/count-coins/</guid>
+      <description>&lt;p&gt;最近同事参加公司的黑客竞赛，有一道题目与钱币组合问题比较像，记得SICP里面有所描述，正好不是很忙，就试着实现该算法，用Scheme语言开发。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Swagger 如何使用vendorExtensions进行扩展</title>
+      <link>https://continuation.cn/2019/11/swagger-vendor/</link>
+      <pubDate>Fri, 29 Nov 2019 10:21:12 +0800</pubDate>
+      <guid>https://continuation.cn/2019/11/swagger-vendor/</guid>
+      <description>&lt;p&gt;Swagger或者叫OpenAPI是一套完备且通用的API标准，本文并不介绍Swagger的用法，仅针对某些场景需要扩展（扩展需要以&amp;quot;x-&amp;quot;）该如何开发做紧要的介绍。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>历史不能碰</title>
+      <link>https://continuation.cn/2019/11/do-not-touch-history/</link>
+      <pubDate>Thu, 28 Nov 2019 12:43:50 +0800</pubDate>
+      <guid>https://continuation.cn/2019/11/do-not-touch-history/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;秦始皇即得天下，同度量衡，皆因各国差别太大，此种说法多见于历史课本，但有问题。有成语叫朝秦暮楚，如若差异太大，必难去秦适楚。周姬以末交通殷繁，如平原君广纳异国宾客；苏秦上书于七国；荀子遍游天下者皆可证各国文字并无大乖。&lt;/li&gt;
+&lt;li&gt;《史籀篇》文首盖云“太史籀书”，人多误以太史籀所作，如此便望文生义了。太史乃官职，王国维先生引《说文》解释，籀即读，读即籀书。另太史籀书乃周世之成语，绝非人名。&lt;/li&gt;
+&lt;li&gt;近日得闻汉文帝霸陵被发现，自元以降，谬传霸陵在凤凰嘴，如今得以确认，此案终于勾销。《汉书.文帝纪》载：“乙巳，葬霸陵”。凤凰嘴也好，江村也罢，在史书上只是一行字。周知公元前221年，秦始皇统一六国，当时有个“卫国”并未统一，但是史书不会这么写：“前221年，秦始皇统一六国，卫国除外。”；960年，宋朝统一中原，但是现在的江浙地区还存在一个“吴越国”，过了18年才献土入宋，史书也不会这么写：“960年，宋有中国，吴越除外”。卫国和吴越都只是史书上的一行字，这就是历史的看法。1949年，共产党统一了中国，台湾孤悬一隅，其处境和前者比照并无二致，将来史书上的台湾也只是一行字。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>Emacs</title>
+      <link>https://continuation.cn/2019/11/emacs/</link>
+      <pubDate>Wed, 27 Nov 2019 20:58:09 +0800</pubDate>
+      <guid>https://continuation.cn/2019/11/emacs/</guid>
+      <description>&lt;h2 id=&#34;m---altoption-----s---shift&#34;&gt;M -&amp;gt; Alt(option)     S -&amp;gt; Shift&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;快捷键&lt;/th&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-v&lt;/td&gt;
+          &lt;td&gt;上（后）一屏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-v&lt;/td&gt;
+          &lt;td&gt;下（前）一屏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x 0&lt;/td&gt;
+          &lt;td&gt;关闭当前窗口&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-l&lt;/td&gt;
+          &lt;td&gt;重绘屏幕，将光标所在行置于屏幕中央&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-u(M-num)&lt;/td&gt;
+          &lt;td&gt;重复执行。C-u 8 C-f(M-8 C-u) 会把光标往前移动8个字符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x C-f &lt;!-- raw HTML omitted --&gt;&lt;/td&gt;
+          &lt;td&gt;查找或者新建一个文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x C-b&lt;/td&gt;
+          &lt;td&gt;列出缓冲区。 C-x 1 关闭缓冲区列表。将需要删除的缓冲区标“d”(选中，按d),然后按“x”执行删除标记的所有缓冲区&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x b&lt;/td&gt;
+          &lt;td&gt;切换缓冲区，输入缓冲区名字，RET&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x C-q&lt;/td&gt;
+          &lt;td&gt;开启或者关闭buffer的只读模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x k&lt;/td&gt;
+          &lt;td&gt;关闭当前缓冲区&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x C-s&lt;/td&gt;
+          &lt;td&gt;保存当前文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x s&lt;/td&gt;
+          &lt;td&gt;保存所有文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x h&lt;/td&gt;
+          &lt;td&gt;全选&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-w&lt;/td&gt;
+          &lt;td&gt;复制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-y&lt;/td&gt;
+          &lt;td&gt;粘贴&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-w&lt;/td&gt;
+          &lt;td&gt;剪切&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-s&lt;/td&gt;
+          &lt;td&gt;往前搜索&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-r&lt;/td&gt;
+          &lt;td&gt;往后搜索. DEL 也可以往后搜索，&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-/&lt;/td&gt;
+          &lt;td&gt;undo&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-x calendar&lt;/td&gt;
+          &lt;td&gt;打开日历。按 q 退出。【g d 到指定日期】【. 到今日（不居中）】【&amp;gt; 前一个月】【&amp;lt; 后一个月】&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-x *-mode&lt;/td&gt;
+          &lt;td&gt;选择Major mode&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-x shell&lt;/td&gt;
+          &lt;td&gt;运行一个shell&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-x eshell&lt;/td&gt;
+          &lt;td&gt;运行一个eshell&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-a&lt;/td&gt;
+          &lt;td&gt;移到行首&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-a C-k、C-S-backspace&lt;/td&gt;
+          &lt;td&gt;删除整行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-u 5 C-S-backspace、M-5 C-S-backspace&lt;/td&gt;
+          &lt;td&gt;删除后5行，不加数字则删除4行（默认），如果数字为负数，则往前删&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-g&lt;/td&gt;
+          &lt;td&gt;停止当前的命令&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-k&lt;/td&gt;
+          &lt;td&gt;删除从光标位置到行尾所有字符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-%&lt;/td&gt;
+          &lt;td&gt;查找及替换。输入要被替换的词，回车，然后输入要替换的词，再回车。输入==y==替换并跳到下一个，输入==n==忽略并跳到下一个，输入==q==结束， 输入 ==!== 替换剩下的全部&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-x occur RET xxx RET&lt;/td&gt;
+          &lt;td&gt;新开一个窗口来列出匹配的行，点击就会跳转到对应的位置，编程时有用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-x C-t&lt;/td&gt;
+          &lt;td&gt;当前行与上一行换位置&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;org-mode&#34;&gt;Org-Mode&lt;/h1&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;快捷键&lt;/th&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c .&lt;/td&gt;
+          &lt;td&gt;插入时间&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-e&lt;/td&gt;
+          &lt;td&gt;导出其它格式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-s&lt;/td&gt;
+          &lt;td&gt;在标题下面插入一个带有“==SCHEDULED==”关键字的时间戳。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-d&lt;/td&gt;
+          &lt;td&gt;在标题下面插入一个带有“==DEADLINE==”关键字的时间戳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-t&lt;/td&gt;
+          &lt;td&gt;将当前项的状态在（unmarked）-&amp;gt;TODO-&amp;gt;DONE 之间循环切换&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-RET&lt;/td&gt;
+          &lt;td&gt;插入一个同级标题&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;M-LEFT/RIGHT&lt;/td&gt;
+          &lt;td&gt;将当前的标题提升/降低一个等级&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-c&lt;/td&gt;
+          &lt;td&gt;插入标签tag。 光标在标题中&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-q&lt;/td&gt;
+          &lt;td&gt;插入标签tag。光标在任意位置&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c ,&lt;/td&gt;
+          &lt;td&gt;设置当前标题的优先级,’A‘、’B‘和’C‘。’A‘是最高级别，如不指定，’B‘是默认的&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c \&lt;/td&gt;
+          &lt;td&gt;查找标签tag&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;S-Tab&lt;/td&gt;
+          &lt;td&gt;展开所有标题&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Tab&lt;/td&gt;
+          &lt;td&gt;展开光标所在标题&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;[==[== Link ==][== Description]==]==&lt;/td&gt;
+          &lt;td&gt;创建链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-l&lt;/td&gt;
+          &lt;td&gt;编辑链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-o&lt;/td&gt;
+          &lt;td&gt;打开链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c | (竖线，not L)&lt;/td&gt;
+          &lt;td&gt;输入 列 x 行， 插入一个表格&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;[/] 或者 [%]&lt;/td&gt;
+          &lt;td&gt;通过在TODO项目下新建一个大纲树，并在子树上标记子任务来实现这个功能。为了能对已经完成的任务有个大致的了解，你可以在标题的任何地方插入‘[/]’或者‘[%]’。当每个子任务的状态变化时，或者当你在标记上按 C-c C-时，这些标记状态也会随之更新&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&amp;lt;s Tab&lt;/td&gt;
+          &lt;td&gt;开启一个代码块。 #+begin_src c -n -t -h 7 -w 40: c为所添加的语言,-n 显示行号,-t 清除格式,-h 7 设置高度为7 -w 40设置宽度为40&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c &#39;&lt;/td&gt;
+          &lt;td&gt;打开一个buffer, 输入代码，再按一次快捷键，将代码写入buffer&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-c&lt;/td&gt;
+          &lt;td&gt;运行源代码，并生成一个RESULT块&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;内容元数据&lt;/td&gt;
+          &lt;td&gt;详情见文后&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;markdown-mode&#34;&gt;Markdown-Mode&lt;/h1&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;快捷键&lt;/th&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-c p&lt;/td&gt;
+          &lt;td&gt;生成临时文件并在浏览器中预览&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-c v&lt;/td&gt;
+          &lt;td&gt;生成 basename.html 并在浏览器中预览&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-a u&lt;/td&gt;
+          &lt;td&gt;插入=&amp;lt;&amp;gt;=这样的链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-a f&lt;/td&gt;
+          &lt;td&gt;插入脚注链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;C-c C-a l&lt;/td&gt;
+          &lt;td&gt;插入=&lt;a href=&#34;&#34;&gt;&lt;/a&gt;=这样的链接&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;org-mode-内容元数据&#34;&gt;Org-Mode 内容元数据&lt;/h1&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;快捷键&lt;/th&gt;
+          &lt;th&gt;内容&lt;/th&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;s&lt;/td&gt;
+          &lt;td&gt;#+begin_src &amp;hellip; #+end_src&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;e&lt;/td&gt;
+          &lt;td&gt;#+begin_example &amp;hellip; #+end_example&lt;/td&gt;
+          &lt;td&gt;: 单行的例子以冒号开头&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;q&lt;/td&gt;
+          &lt;td&gt;#+begin_quote &amp;hellip; #+end_quote&lt;/td&gt;
+          &lt;td&gt;通常用于引用，与默认格式相比左右都会留出缩进&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;v&lt;/td&gt;
+          &lt;td&gt;#+begin_verse &amp;hellip; #+end_verse&lt;/td&gt;
+          &lt;td&gt;默认内容不换行，需要留出空行才能换行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;c&lt;/td&gt;
+          &lt;td&gt;#+begin_center &amp;hellip; #+end_center&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;l&lt;/td&gt;
+          &lt;td&gt;#+begin_latex &amp;hellip; #+end_latex&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;L&lt;/td&gt;
+          &lt;td&gt;#+latex:&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;h&lt;/td&gt;
+          &lt;td&gt;#+begin_html &amp;hellip; #+end_html&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;H&lt;/td&gt;
+          &lt;td&gt;#+html:&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;a&lt;/td&gt;
+          &lt;td&gt;#+begin_ascii &amp;hellip; #+end_ascii&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A&lt;/td&gt;
+          &lt;td&gt;#+ascii:&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;i&lt;/td&gt;
+          &lt;td&gt;#+index: line&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;I&lt;/td&gt;
+          &lt;td&gt;#+include: line&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -1,411 +1,218 @@
 <!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        Engine in Scheme - 思泉笔谈 | AI-Life
-      </title>
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  
-  <meta name="theme-color" content="#000000" />
-  
-  <meta http-equiv="window-target" content="_top" />
-  
-  
-  <meta name="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
-  <meta name="generator" content="Hugo 0.123.7 with theme pure" />
-  <title>Engine in Scheme - 思泉笔谈 | AI-Life</title>
-  
+<html lang="zh" dir="auto">
 
-  <link rel="stylesheet" href="https://lvsq.net/css/style.css">
-  <link rel="stylesheet" href="https://lvsq.net/css/github.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Engine in Scheme" />
-<meta property="og:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://lvsq.net/2019/12/engine-in-scheme/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-27T10:30:09+08:00" />
-<meta property="article:modified_time" content="2019-12-27T10:30:09+08:00" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Engine in Scheme | 思泉笔谈 | AI-Life</title>
+<meta name="keywords" content="engine, scheme">
+<meta name="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。
 
-<meta itemprop="name" content="Engine in Scheme">
-<meta itemprop="description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"><meta itemprop="datePublished" content="2019-12-27T10:30:09+08:00" />
-<meta itemprop="dateModified" content="2019-12-27T10:30:09+08:00" />
-<meta itemprop="wordCount" content="1231">
-<meta itemprop="keywords" content="engine,scheme," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Engine in Scheme"/>
-<meta name="twitter:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。 (make-engine thunk) 通过传递一个无参数的thun"/>
+(make-engine thunk)
+通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：">
+<meta name="author" content="">
+<link rel="canonical" href="https://continuation.cn/2019/12/engine-in-scheme/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://continuation.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://continuation.cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://continuation.cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://continuation.cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://continuation.cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://continuation.cn/2019/12/engine-in-scheme/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
-  <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+            .list {
+                background: var(--theme);
+            }
 
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://continuation.cn/2019/12/engine-in-scheme/">
+  <meta property="og:site_name" content="思泉笔谈 | AI-Life">
+  <meta property="og:title" content="Engine in Scheme">
+  <meta property="og:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。
+(make-engine thunk)
+通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-12-27T10:30:09+08:00">
+    <meta property="article:modified_time" content="2019-12-27T10:30:09+08:00">
+    <meta property="article:tag" content="Engine">
+    <meta property="article:tag" content="Scheme">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Engine in Scheme">
+<meta name="twitter:description" content="Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。
+
+(make-engine thunk)
+通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://continuation.cn/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Engine in Scheme",
+      "item": "https://continuation.cn/2019/12/engine-in-scheme/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Engine in Scheme",
+  "name": "Engine in Scheme",
+  "description": "Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。\n(make-engine thunk)\n通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：\n",
+  "keywords": [
+    "engine", "scheme"
+  ],
+  "articleBody": "Engine(引擎)是支持时间抢占 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。\n(make-engine thunk)\n通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：\nticks： 一个正整数，指定提供给engine的执行时间片（原文用的是fuel这个单词，意思是燃料，正对应这engine的本意，十分贴切）的数量，engine将会执行到时间片用完或者计算完成为止； complete： 一个或多个参数的函数，用于指定计算完成后的操作。它的参数是剩余的时间片数量和计算产生的值； expire： 一个参数的函数，该函数指定如果在计算完成之前时间片用完了该怎么办。它的参数是一个能从中断点继续进行计算的新引擎。 将引擎应用于其参数时，它将开启一个时长为ticks的计时器，如果引擎计算在计时器执行之前完成，系统将调用complete，并将剩余的ticks和计算产生的值传递给它；\n另一方面，如果计时器在引擎计算完成之前耗尽了，则系统会从中断计算的continuation中创建一个新引擎，并使该引擎过期。complete和expire会被新引擎继续使用。If, on the other hand, the timer goes off before the engine computation completes, the system creates a new engine from the continuation of the in- terrupted computation and passes this engine to expire. complete and expire are invoked in the continuation of the engine invocation.\n看看具体的例子：\n(define eng (make-engine (lambda () 3))) (eng 10 ;; ticks (lambda (ticks value) value) ;; complete (lambda (x) x) ;; expire ) ⇒ 3 通常将列表作为完整过程传递给引擎，使引擎完成时返回一个列表，该列表的第一个元素是剩余的ticks，另一个元素是计算返回的值，这通常很有用。\n(define eng (make-engine (lambda () 3))) (eng 10 list (lambda (x) x)) ⇒ (9 3) 在上面的示例中，计算值为3，还剩下9个时间片，即，需要一单位的时间片来计算出3。\n再看一个复杂点的例子： 先定义一个计算裴波那切值的函数\n(define fibonacci (lambda (n) (let fib ([i n]) (cond [(= i 0) 0] [(= i 1) 1] [else (+ (fib (- i 1)) (fib (- i 2)))])))) 创建engine\n(define eng (make-engine (lambda () (fibonacci 10)))) (eng 50 list (lambda (new-eng) (set! eng new-eng) \"expired\")) ⇒ \"expired\" (eng 50 list (lambda (new-eng) (set! eng new-eng) \"expired\")) ⇒ \"expired\" (eng 50 list (lambda (new-eng) (set! eng new-eng) \"expired\")) ⇒ \"expired\" (eng 50 list (lambda (new-eng) (set! eng new-eng) \"expired\")) ⇒ (21 55) 每次时间片（燃料）用完时，到期程序都会将eng分配给新引擎。整个计算需要4个blocks，每个block包含50个ticks。最后50个燃料中，有21个都用掉了。因此，使用的燃料总量为179个。\n我们还可以统计一下消耗的ticks数量\n(define mileage (lambda (thunk) (let loop ([eng (make-engine thunk)] [total-ticks 0]) (eng 50 (lambda (ticks . values) (+ total-ticks (- 50 ticks))) (lambda (new-eng) (loop new-eng (+ total-ticks 50))))))) (mileage (lambda () (fibonacci 10))) ⇒ 179 再看看一个例子——round-robin:\n(define round-robin (lambda (engs) (if (null? engs) '() ((car engs) 1 ;;ticks (lambda (ticks value) (cons value (round-robin (cdr engs)))) ;;complete (lambda (eng) ;;expire (round-robin (append (cdr engs) (list eng)))))))) (round-robin (map (lambda (x) (make-engine (lambda () (fibonacci x)))) '(4 5 2 8 3 7 6 2))) ⇒ (1 1 2 3 5 8 13 21) 这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数’(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！\n",
+  "wordCount" : "1231",
+  "inLanguage": "zh",
+  "datePublished": "2019-12-27T10:30:09+08:00",
+  "dateModified": "2019-12-27T10:30:09+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://continuation.cn/2019/12/engine-in-scheme/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "思泉笔谈 | AI-Life",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://continuation.cn/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
-  </head>
-  
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 
-  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
-    <div class="slimContent">
-      <div class="navbar-header">
-        <div class="profile-block text-center">
-          <a id="avatar" href="https://github.com/monkeymq" target="_blank">
-            <img class="img-circle img-rotate" src="https://lvsq.net/avatar.jpeg" width="200" height="200">
-          </a>
-          <h2 id="name" class="hidden-xs hidden-sm">思泉</h2>
-          <h3 id="title" class="hidden-xs hidden-sm hidden-md">历史及函数式编程爱好者</h3>
-          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Hefei, China</small>
-        </div><div class="search" id="search-form-wrap">
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="搜索" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
-                        class="icon icon-search"></i></button>
-            </span>
-        </div>
-        <div class="ins-search">
-            <div class="ins-search-mask"></div>
-            <div class="ins-search-container">
-                <div class="ins-input-wrapper">
-                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
-                        x-webkit-speech />
-                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
-                        aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="ins-section-wrapper">
-                    <div class="ins-section-container"></div>
-                </div>
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://continuation.cn/" accesskey="h" title="思泉笔谈 | AI-Life (Alt + H)">思泉笔谈 | AI-Life</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
             </div>
         </div>
-    </form>
-</div>
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-        <ul class="nav navbar-nav main-nav">
-            <li class="menu-item menu-item-home">
-                <a href="/">
-                    <i class="icon icon-home-fill"></i>
-                  <span class="menu-title">Home</span>
+        <ul id="menu">
+            <li>
+                <a href="https://continuation.cn/" title="Home">
+                    <span>Home</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-archives">
-                <a href="/posts">
-                    <i class="icon icon-archives-fill"></i>
-                  <span class="menu-title">Archives</span>
+            <li>
+                <a href="https://continuation.cn/posts" title="Archives">
+                    <span>Archives</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-categories">
-                <a href="/categories">
-                    <i class="icon icon-folder"></i>
-                  <span class="menu-title">Categories</span>
+            <li>
+                <a href="https://continuation.cn/categories" title="Categories">
+                    <span>Categories</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-tags">
-                <a href="/tags">
-                    <i class="icon icon-tags"></i>
-                  <span class="menu-title">Tags</span>
+            <li>
+                <a href="https://continuation.cn/tags" title="Tags">
+                    <span>Tags</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-about">
-                <a href="/about">
-                    <i class="icon icon-cup-fill"></i>
-                  <span class="menu-title">About</span>
+            <li>
+                <a href="https://continuation.cn/about" title="About">
+                    <span>About</span>
                 </a>
             </li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    
-      <div class="widget">
-    <h3 class="widget-title">公告</h3>
-    <div class="widget-body">
-        <div id="board">
-            <div class="content">此处会记录一些我的心得，如果有错误欢迎留言斧正，如果对你有所启发或者帮助，那么我会感觉我做了一件伟大的事情
-            </div>
-        </div>
-    </div>
-</div>
-
-      <div class="widget">
-    <h3 class="widget-title"> 分类</h3>
-    <div class="widget-body">
-        <ul class="category-list">
-            <li class="category-list-item"><a href="https://lvsq.net/categories/chez/" class="category-list-link">chez</a><span class="category-list-count">4</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/emacs/" class="category-list-link">emacs</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/erlang/" class="category-list-link">erlang</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/java/" class="category-list-link">java</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/leetcode/" class="category-list-link">leetcode</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/lisp/" class="category-list-link">lisp</a><span class="category-list-count">3</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/pl/" class="category-list-link">pl</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/racket/" class="category-list-link">racket</a><span class="category-list-count">6</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/scheme/" class="category-list-link">scheme</a><span class="category-list-count">18</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/science/" class="category-list-link">science</a><span class="category-list-count">1</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/tool/" class="category-list-link">tool</a><span class="category-list-count">2</span></li>
-            <li class="category-list-item"><a href="https://lvsq.net/categories/%E6%96%87%E5%8F%B2/" class="category-list-link">文史</a><span class="category-list-count">3</span></li>
-        </ul>
-    </div>
-</div>
-      <div class="widget">
-    <h3 class="widget-title"> 标签</h3>
-    <div class="widget-body">
-        <ul class="tag-list">
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/about/" class="tag-list-link">about</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/chez/" class="tag-list-link">chez</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/emacs/" class="tag-list-link">emacs</a><span
-                    class="tag-list-count">3</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/engine/" class="tag-list-link">engine</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/erlang/" class="tag-list-link">erlang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/fluid-let/" class="tag-list-link">fluid-let</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/functional/" class="tag-list-link">functional</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/golang/" class="tag-list-link">golang</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/gossip/" class="tag-list-link">gossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/jgossip/" class="tag-list-link">jgossip</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/leetcode/" class="tag-list-link">leetcode</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lexical/" class="tag-list-link">lexical</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/lisp/" class="tag-list-link">lisp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/module/" class="tag-list-link">module</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/modules/" class="tag-list-link">modules</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/pl/" class="tag-list-link">pl</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/racket/" class="tag-list-link">racket</a><span
-                    class="tag-list-count">4</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/rec/" class="tag-list-link">rec</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scheme/" class="tag-list-link">scheme</a><span
-                    class="tag-list-count">17</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/scoping/" class="tag-list-link">scoping</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/sicp/" class="tag-list-link">sicp</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/swagger/" class="tag-list-link">swagger</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/syntactic/" class="tag-list-link">syntactic</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/thread/" class="tag-list-link">thread</a><span
-                    class="tag-list-count">2</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/vendorextensions/" class="tag-list-link">vendorextensions</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E6%96%87%E5%8F%B2/" class="tag-list-link">文史</a><span
-                    class="tag-list-count">1</span></li>
-            
-            
-            <li class="tag-list-item"><a href="https://lvsq.net/tags/%E9%9A%8F%E6%83%B3/" class="tag-list-link">随想</a><span
-                    class="tag-list-count">2</span></li>
-            
-        </ul>
-
-    </div>
-</div>
-      
-<div class="widget">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget-body">
-        <ul class="recent-post-list list-unstyled no-thumbnail">
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/03/feynman_technique/" class="title">费曼学习法</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-03-07 20:46:35 &#43;0800 CST" itemprop="datePublished">2022-03-07</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2022/02/my-doom-emacs-config/" class="title">我的Doom Emacs配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2022-02-23 08:58:54 &#43;0800 CST" itemprop="datePublished">2022-02-23</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/12/doom-emacs-golang-env/" class="title">Doom Emacs Golang 环境配置</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-12-29 16:55:08 &#43;0800 CST" itemprop="datePublished">2021-12-29</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/08/racket-wc/" class="title">不到60行代码，用Racket实现wc命令</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-09 14:31:04 &#43;0800 CST" itemprop="datePublished">2021-08-09</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://lvsq.net/2021/07/racket-time-improvement/" class="title">改进Racket的time函数</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-07-22 11:34:29 &#43;0800 CST" itemprop="datePublished">2021-07-22</time>
-                    </p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-  </div>
-</aside>
-
-    
-    
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <h4 class="toc-title">文章目录</h4>
-    <nav id="toc" class="js-toc toc">
-
     </nav>
-  </div>
-</aside>
-<main class="main" role="main"><div class="content">
-  <article id="-" class="article article-type-" itemscope
-    itemtype="http://schema.org/BlogPosting">
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
     
-    <div class="article-header">
-      <h1 itemprop="name">
-  <a
-    class="article-title"
-    href="/2019/12/engine-in-scheme/"
-    >Engine in Scheme</a
-  >
-</h1>
+    <h1 class="post-title entry-hint-parent">
+      Engine in Scheme
+    </h1>
+    <div class="post-meta"><span title='2019-12-27 10:30:09 +0800 CST'>十二月 27, 2019</span>
 
-      <div class="article-meta">
-        <span class="article-date">
-  <i class="icon icon-calendar-check"></i>
-<a href="https://lvsq.net/2019/12/engine-in-scheme/" class="article-date">
-  <time datetime="2019-12-27 10:30:09 &#43;0800 CST" itemprop="datePublished">2019-12-27</time>
-</a>
-</span><span class="article-category">
-  <i class="icon icon-folder"></i>
-  <a class="article-category-link" href="/categories/scheme/"> Scheme </a>
-</span>  
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/engine/"> engine </a>
-    <a class="article-tag-link" href="/tags/scheme/"> scheme </a>
-  </span>
-
-	<span class="article-read hidden-xs">
-	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
-	    <span id="busuanzi_container_page_pv">
-			<span id="busuanzi_value_page_pv">0</span>
-		</span>
-	</span>
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/engine-in-scheme/#comments"
-            class="article-comment-link">评论</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计:1231字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长:3分 </span>
-      </div>
-    </div>
-    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>Engine(引擎)是支持<em>时间抢占</em> 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。</p>
+</div>
+  </header> 
+  <div class="post-content"><p>Engine(引擎)是支持<em>时间抢占</em> 的高级抽象过程， 它可被用于模拟多任务处理、实现操作系统内核和非确定性计算。</p>
 <blockquote>
-<p>(make-engine thunk)</p>
-</blockquote>
+<p>(make-engine thunk)</p></blockquote>
 <p>通过传递一个无参数的thunk(形实转换程序)给make-engine来创建一个engine。thunk的body是会被engine执行的计算，engine本身是带3个参数的过程：<!-- raw HTML omitted --></p>
 <ul>
 <li><em>ticks：</em> 一个正整数，指定提供给engine的执行时间片（原文用的是fuel这个单词，意思是燃料，正对应这engine的本意，十分贴切）的数量，engine将会执行到时间片用完或者计算完成为止；</li>
@@ -495,221 +302,87 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">2</span>))) <span style="color:#960050;background-color:#1e0010">⇒</span> (<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">21</span>)
 </span></span></code></pre></div><p>这段代码需要费些思量，首先map函数创建了8个engine, 然后代入round-robin函数，该函数依次执行各个engine，但是每个engine分配的时间片只有1，对于参数&rsquo;(4 5 2 8 3 7 6 2)，数字越小，越先执行完成，所以越早执行complete函数，最终结果就是排好顺序的了，很棒的程序！</p>
 
-    </div>
-    <div class="article-footer">
-<blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接: </strong>
-      <a href="https://lvsq.net/2019/12/engine-in-scheme/" title="Engine in Scheme" target="_blank" rel="external">https://lvsq.net/2019/12/engine-in-scheme/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
-    </li>
-  </ul>
-</blockquote>
 
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/monkeymq" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="https://lvsq.net/avatar.jpeg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/monkeymq" target="_blank"><span class="text-dark">思泉</span><small class="ml-1x">历史及函数式编程爱好者</small></a></h3>
-        <div>爱生活，与天地往来, ailife.dev</div>
-      </div>
-    </figure>
   </div>
-</div>
-    </div>
-  </article>
-<section id="comments">
-</section>
 
-</div><nav class="bar bar-footer clearfix" data-stick-bottom>
-    <div class="bar-inner">
-        <ul class="pager pull-left">
-            <li class="prev">
-                <a href="https://lvsq.net/2019/12/case-in-chez-scheme/" title="Chez Scheme中的case扩展"><i
-                        class="icon icon-angle-left"
-                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://lvsq.net/2019/12/operations-on-objects/"
-                    title="Scheme/Chez Scheme 对象操作"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="文章目录" role="button">
-                    <span>[&nbsp;</span><span>文章目录</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        
-        <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
-            data-target="#donateModal"><span>赏</span></button>
-        
-        <div class="bar-right">
-            <div class="share-component" data-sites="wechat,twitter,douban,google"
-                data-mobile-sites="wechat,twitter,douban"></div>
-        </div>
-    </div>
-</nav>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://continuation.cn/tags/engine/">Engine</a></li>
+      <li><a href="https://continuation.cn/tags/scheme/">Scheme</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://continuation.cn/">思泉笔谈 | AI-Life</a></span> · 
 
-
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content donate">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <div class="modal-body">
-                <div class="donate-box">
-                    <div class="donate-head">
-                        <p>感谢您的支持,我会继续努力的!</p>
-                    </div>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-                            <div class="donate-payimg">
-                                <img src="https://lvsq.net/donate/alipayimg.jpeg"
-                                    alt="扫码支持" title="扫一扫" />
-                            </div>
-                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
-                            <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦~</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-                            <div class="donate-payimg">
-                                <img src="https://lvsq.net/donate/wechatpayimg.jpeg"
-                                    alt="扫码支持" title="扫一扫" />
-                            </div>
-                            <p class="text-muted mv">扫码打赏, 多少你说了算~</p>
-                            <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
-                        </div>
-                    </div>
-                    <div class="donate-footer">
-                        <ul class="nav nav-tabs nav-justified" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay"
-                                    aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab"
-                                    aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i>
-                                    微信支付</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/monkeymq" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://lvsq.net/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-    <li><a href="https://twitter.com/lvsiquan" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-twitter"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2019  -
-    2024
-    <div class="publishby">
-      <p><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
-       base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
-    </div>
-  </div>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
 </footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('\x3Cscript src="js/jquery.min.js"><\/script>')
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/python.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/javascript.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/go.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/erlang.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/scheme.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/java.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/lisp.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/rust.min.js"></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
     })
-    hljs.initHighlightingOnLoad();
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/application.js"></script>
-<script type="text/javascript" src="https://lvsq.net/js/plugin.js"></script>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(未命名)',
-            },
-            ROOT_URL: 'https:\/\/lvsq.net\/',
-            CONTENT_URL: 'https:\/\/lvsq.net\/\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://lvsq.net/js/insight.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
 
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '7b6f34c867f37fdfb75e',
-        clientSecret: '93074a8dd654eb23cd0b35107a5099d6a1710408',
-        repo: 'monkeymq.github.io',
-        owner: 'monkeymq',
-        admin: ['monkeymq'],
-        id: md5(location.pathname),
-        distractionFreeMode: true
-    });
-    gitalk.render('comments');
 </script>
+</body>
 
-  </body>
 </html>
